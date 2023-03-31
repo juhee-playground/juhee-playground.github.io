@@ -1,0 +1,35 @@
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+.main__container {
+    display: grid;
+    grid-template-columns: 25% 35% 35%;
+    grid-template-rows: 25% 25% 25% 25%;
+    gap: 4px 4px;
+}
+
+.section-right {
+    background-color: ghostwhite;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    grid-column-start: 2;
+    grid-column-end: 4;
+
+    .action {
+        padding: 12px;
+        height: 10%;
+    }
+
+    .career {
+        padding: 12px;
+        height: 50%;
+        border: solid 1px grey;
+    }
+
+    .toy {
+        padding: 12px;
+        height: 30%;
+    }
+}

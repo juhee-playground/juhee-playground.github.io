@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-## React - typescript 세팅
+# React - typescript 세팅
 
 react - typescript app 생성
 
@@ -25,7 +23,7 @@ git branch -M main
 git push -u origin main
 ```
 
-### 불필요한 파일 삭제
+## 불필요한 파일 삭제
 
 ```text
 /public
@@ -169,7 +167,7 @@ root 위치에 .. 파일 생성
 - settings
   - ESLint 구성 파일에 설정 개체를 추가할 수 있으며, 실행될 모든 규칙에 제공됩니다.
   
-#### `.eslintrc` 파일을 ESLint 적용을 원하는 프로젝트의 root 경로에 생성(FE or BE 폴더)
+*`.eslintrc` 파일을 ESLint 적용을 원하는 프로젝트의 root 경로에 생성(FE or BE 폴더)*
 
 ```javascript
 {
@@ -242,7 +240,7 @@ npm -D install prettier prettier-eslint
 
 ### .prettierc 파일내용
 
-```javascript
+```json
 {
   "parser": "typescript",
   "singleQuote": true,
@@ -261,7 +259,7 @@ npm -D install prettier prettier-eslint
   "insertPragma": false,
   "proseWrap": "preserve",
   "vueIndentScriptAndStyle": false 
-  }
+}
 ```
 
 *scss 사용*
