@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # React - typescript 세팅
 
 react - typescript app 생성
@@ -268,6 +267,3 @@ npm -D install prettier prettier-eslint
 
 *react router dom*
 `npm install react-router-dom`
-=======
-작업중.....
->>>>>>> bbddec6fe8cc107427e21e4e74845e80a1687314

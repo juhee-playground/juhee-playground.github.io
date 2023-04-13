@@ -4,6 +4,7 @@ import './Nav.scss';
 
 const DenseAppBar = () => {
   return (
+    //TODO: common components 로 profile-box 빼기
     <nav className='nav-left'>
       <div className='profile'>
         <img

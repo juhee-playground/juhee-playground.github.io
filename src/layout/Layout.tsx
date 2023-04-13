@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 // import Header from './Header';
 import Nav from './Nav';
 
 import './Layout.scss';
+
+const Main = lazy(() => import('../pages/Main'));
+
+const renderLoader = () => <p>Loading</p>;
 
 const Layout = () => {
   return (
@@ -10,11 +15,11 @@ const Layout = () => {
       {/* <Header /> */}
       <main className='main__container'>
         <Nav />
-        <div className='section-right'>
-          <section className='action'>탭 및 필터 영역</section>
-          <section className='career'>회사 및 프로젝트 영역</section>
-          <section className='toy'>사이드 프로젝트 영역</section>
-        </div>
+        <Suspense fallback={renderLoader()}>
+          <Routes>
+            <Route path='' element={<Main />} />
+          </Routes>
+        </Suspense>
       </main>
     </div>
   );

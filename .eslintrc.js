@@ -1,13 +1,13 @@
 module.exports = {
   root: true,
   extends: [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
-    "plugin:@typescript-eslint/eslint-recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+    'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
+    'plugin:@typescript-eslint/eslint-recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
   ],
-  parser: "@typescript-eslint/parser", // Specifies the ESLint parser
+  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   env: {
     browser: true,
     es6: true,
@@ -16,56 +16,57 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-    sourceType: "module", // Allows for the use of imports
+    sourceType: 'module', // Allows for the use of imports
     ecmaFeatures: {
       jsx: true, // Allows for the parsing of JSX
       arrowFunctions: true,
     },
   },
-  plugins: ["react", "@typescript-eslint", "prettier"],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
+
   settings: {
     react: {
-      version: "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
+      version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
     },
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
-        paths: ["./src"],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        paths: ['./src'],
       },
     },
   },
   rules: {
     // Existing rules
-    "comma-dangle": "off", // https://eslint.org/docs/rules/comma-dangle
-    "function-paren-newline": "off", // https://eslint.org/docs/rules/function-paren-newline
-    "global-require": "off", // https://eslint.org/docs/rules/global-require
-    "import/no-dynamic-require": "off", // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-dynamic-require.md
-    "no-inner-declarations": "off", // https://eslint.org/docs/rules/no-inner-declarations
+    'comma-dangle': 'off', // https://eslint.org/docs/rules/comma-dangle
+    'function-paren-newline': 'off', // https://eslint.org/docs/rules/function-paren-newline
+    'global-require': 'off', // https://eslint.org/docs/rules/global-require
+    'import/no-dynamic-require': 'off', // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-dynamic-require.md
+    'no-inner-declarations': 'off', // https://eslint.org/docs/rules/no-inner-declarations
     // New rules
-    "class-methods-use-this": "off",
-    "import/extensions": "off",
-    "import/prefer-default-export": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-var-requires": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    'class-methods-use-this': 'off',
+    'import/extensions': 'off',
+    'import/prefer-default-export': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };
 
-    // add rules
-    // "linebreak-style": "off",
-    // "import/no-unresolved": "off",
-    // "import/no-extraneous-dependencies": "off",
-    // "jsx-quotes": ["error", "prefer-single"],
-    // "react/jsx-props-no-spreading": "off", 
-    // "react/forbid-prop-types": "off",
-    // "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    // "react-hooks/exhaustive-deps": "off",
-    // "react/prop-types": "off",
-    // "no-use-before-define": "off",
-    // "no-shadow": "off",
-    // "no-empty-pattern": "off",
-    // "no-alert": "off",
-    // "@typescript-eslint/no-empty-interface": "off",
-    // "@typescript-eslint/explicit-function-return-type": "off",
-    // "@typescript-eslint/no-var-requires": "off",
-    // "@typescript-eslint/no-explicit-any": "off"
+// add rules
+// "linebreak-style": "off",
+// "import/no-unresolved": "off",
+// "import/no-extraneous-dependencies": "off",
+// "jsx-quotes": ["error", "prefer-single"],
+// "react/jsx-props-no-spreading": "off",
+// "react/forbid-prop-types": "off",
+// "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+// "react-hooks/exhaustive-deps": "off",
+// "react/prop-types": "off",
+// "no-use-before-define": "off",
+// "no-shadow": "off",
+// "no-empty-pattern": "off",
+// "no-alert": "off",
+// "@typescript-eslint/no-empty-interface": "off",
+// "@typescript-eslint/explicit-function-return-type": "off",
+// "@typescript-eslint/no-var-requires": "off",
+// "@typescript-eslint/no-explicit-any": "off"
