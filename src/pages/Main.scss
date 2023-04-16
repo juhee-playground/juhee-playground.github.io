@@ -1,6 +1,18 @@
+.action {
+    .filter__container {
+        // display: flex;
+        // flex-direction: columns;
+        .list__item {
+            display: flex;
+            .filter__left {
+                margin-right: 4px;
+            }
+        }
+    }
+}
 .career {
-    overflow-y: scroll;
-    max-height: 400px;
+    // overflow-y: scroll;
+    // max-height: 910px;
 }
 
 .box__container {
@@ -16,9 +28,17 @@
 }
 
 .project__container {
+    margin: 12px 0;
     .title {
         display: flex;
         align-items: center;
+    }
+    .numbers {
+        padding: 0 4px;
+    }
+    .results {
+        display: flex;
+        flex-direction: column;
     }
 }
 .text {

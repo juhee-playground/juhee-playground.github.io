@@ -2,12 +2,7 @@ $dark-text-color: whitesmoke;
 $light-text-color: #222222;
 $point-color: #00ae60;
 
-.nav-left {
-    grid-row-start: 1;
-    grid-row-end: 5;
-    grid-column-start: 1;
-    grid-column-end: 2;
-   
+.nav__container {
     background-color: black;
 }
 

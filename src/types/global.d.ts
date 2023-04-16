@@ -30,6 +30,7 @@ declare global {
     department: NotionText;
     company: NotionRelation;
     explain: NotionText;
+    result: NotionText;
     stack: NotionMultiSelect;
     numberOfParticipants: NotionNumber;
   }
