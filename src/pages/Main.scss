@@ -4,8 +4,13 @@
         // flex-direction: columns;
         .list__item {
             display: flex;
+            margin: 8px;
             .filter__left {
                 margin-right: 4px;
+                width: 15%;
+            }
+            .filter__chips {
+                width: 75%;
             }
         }
     }
