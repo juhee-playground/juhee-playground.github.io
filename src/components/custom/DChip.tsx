@@ -1,14 +1,10 @@
 import React from 'react';
+import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
+import CheckIcon from '@mui/icons-material/Check';
+
 import { red, purple, yellow, orange, blueGrey, pink, cyan, green, blue, brown } from '@mui/material/colors';
-
-interface DChip {
-  color: string;
-  label: string;
-  onClick?: () => void;
-}
-
 interface SelectChipColor {
   [color: string]: ActionComponentColor;
 }
@@ -17,11 +13,7 @@ interface ActionComponentColor {
   text: string;
 }
 
-const handleClick = (): void => {
-  console.info('You clicked the Chip.');
-};
-
-function DChip({ color, label }: DChip) {
+function DChip({ color, label, clickable, parentFunction }: CustomChip) {
   // TODO: module화 해서 밖으로 빼기;;;
   const notionSelect: SelectChipColor = {
     red: {
@@ -65,14 +57,35 @@ function DChip({ color, label }: DChip) {
       text: pink[700],
     },
   };
+  const [selected, setSelected] = useState(false);
+
+  const handleClick = (): void => {
+    if (parentFunction) {
+      setSelected(!selected);
+      parentFunction(label);
+    }
+  };
+
+  let icon;
+
+  if (selected) {
+    icon = <CheckIcon />;
+  }
+  let notionColor = { bg: 'default', text: 'grey' };
+  if (notionSelect[color]) {
+    notionColor = notionSelect[color];
+  }
+
+  const applyColor = selected || !clickable;
+
   const customTheme = createTheme({
     components: {
       MuiChip: {
         styleOverrides: {
           root: {
-            backgroundColor: notionSelect[color] ? notionSelect[color].bg : 'default',
-            color: notionSelect[color] ? notionSelect[color].text : 'grey',
-            borderColor: notionSelect[color] ? notionSelect[color].text : 'grey',
+            backgroundColor: applyColor ? notionColor.bg : 'default',
+            color: applyColor ? notionColor.text : 'grey',
+            borderColor: applyColor ? notionColor.text : 'grey',
           },
         },
       },
@@ -81,7 +94,14 @@ function DChip({ color, label }: DChip) {
 
   return (
     <ThemeProvider theme={customTheme}>
-      <Chip label={label} size='small' variant='outlined' onClick={handleClick} />
+      <Chip
+        label={label}
+        size='small'
+        variant='outlined'
+        icon={icon}
+        clickable={clickable}
+        onClick={handleClick}
+      />
     </ThemeProvider>
   );
 }

@@ -105,9 +105,10 @@ declare global {
     number: number;
   }
 
-  interface Chip {
-    key: string;
-    chip: string;
+  interface CustomChip {
+    color: string;
+    label: string;
+    clickable: boolean;
+    parentFunction?: (label: string) => void;
   }
 }
-

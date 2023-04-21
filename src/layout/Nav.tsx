@@ -3,6 +3,9 @@ import * as React from 'react';
 import './Nav.scss';
 
 const DenseAppBar = () => {
+  const phone_number = process.env.PHONE_NUMBER;
+  const email = process.env.EMAIL;
+
   return (
     //TODO: common components 로 profile-box 빼기
     <nav className='nav__container'>
@@ -29,11 +32,11 @@ const DenseAppBar = () => {
             {/* subtitle이 있는 list item */}
             <li className='list-item'>
               <span className='subtitle'>Phone</span>
-              <span className='text--light'>010-0000-0000</span>
+              <span className='text--light'>{phone_number}</span>
             </li>
             <li className='list-item'>
               <span className='subtitle'>Email</span>
-              <span className='text--light'>XXXXXX@naver.com</span>
+              <span className='text--light'>{email}</span>
             </li>
           </ul>
         </div>
