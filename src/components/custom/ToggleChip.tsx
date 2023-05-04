@@ -4,11 +4,8 @@ import { useState } from 'react';
 import Chip from '@mui/material/Chip';
 import CheckIcon from '@mui/icons-material/Check';
 
-const ToggleChip = ({ label, clickable, parentFunction }: CustomChip) => {
-  const [selected, setSelected] = useState(false);
-
+const ToggleChip = ({ selected, label, clickable, parentFunction }: CustomChip) => {
   const handleClick = () => {
-    setSelected(!selected);
     if (parentFunction) {
       parentFunction(label);
     }

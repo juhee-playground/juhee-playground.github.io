@@ -13,7 +13,7 @@ interface ActionComponentColor {
   text: string;
 }
 
-function DChip({ color, label, clickable, parentFunction }: CustomChip) {
+function DChip({ selected, color, label, clickable, parentFunction }: CustomChip) {
   // TODO: module화 해서 밖으로 빼기;;;
   const notionSelect: SelectChipColor = {
     red: {
@@ -57,11 +57,9 @@ function DChip({ color, label, clickable, parentFunction }: CustomChip) {
       text: pink[700],
     },
   };
-  const [selected, setSelected] = useState(false);
 
   const handleClick = (): void => {
     if (parentFunction) {
-      setSelected(!selected);
       parentFunction(label);
     }
   };
