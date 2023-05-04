@@ -3,9 +3,8 @@ import * as React from 'react';
 import './Nav.scss';
 
 const DenseAppBar = () => {
-  const phone_number = process.env.PHONE_NUMBER;
-  const email = process.env.EMAIL;
-
+  const phone_number = process.env.REACT_APP_PHONE_NUMBER;
+  const email = process.env.REACT_APP_EMAIL;
   return (
     //TODO: common components 로 profile-box 빼기
     <nav className='nav__container'>
