@@ -7,6 +7,12 @@
 export {};
 
 declare global {
+  interface Process {
+    env: ProcessEnv;
+  }
+  interface ProcessEnv {
+    [key: string]: string | undefined;
+  }
   interface NotionData {
     id: string;
     icon: NotionIcon;
@@ -24,6 +30,7 @@ declare global {
   }
 
   interface NotionProperties {
+    id: string;
     name: NotionTitleName;
     period: NotionDate;
     role: NotionSelect;
@@ -35,6 +42,25 @@ declare global {
     numberOfParticipants: NotionNumber;
   }
 
+  interface CompanyQuery {
+    id: string;
+    name: string;
+    startDate: string;
+    endDate: string;
+    period: string;
+    role: string;
+    department: string;
+  }
+  interface ProjectQuery {
+    id: string;
+    companyId: string;
+    name: string;
+    period: string;
+    stacks: SelectProperty[];
+    explain: string;
+    contents: string[];
+    numberOfParticipants: number;
+  }
   interface NotionDefaultProperties {
     id: string;
     type: string;
@@ -106,6 +132,7 @@ declare global {
   }
 
   interface CustomChip {
+    selected?: boolean;
     color: string;
     label: string;
     clickable: boolean;

@@ -1,7 +1,5 @@
 .action {
     .filter__container {
-        // display: flex;
-        // flex-direction: columns;
         .list__item {
             display: flex;
             margin: 8px;
@@ -12,6 +10,17 @@
             .filter__chips {
                 width: 75%;
             }
+        }
+    }
+    .sort {
+        &__container {
+            display: flex;
+            justify-content: flex-end;
+        }
+        &__button {
+            cursor: pointer;
+            border: solid 1px #dedede;
+            padding: 4px;
         }
     }
 }
