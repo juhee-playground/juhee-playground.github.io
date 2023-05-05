@@ -150,4 +150,30 @@ declare global {
     key: string;
     info: ProjectQuery;
   }
+
+  interface NavInfoItems {
+    icon: string;
+    title: string;
+    isBasic: boolean;
+    basic?: string[];
+    isSubTitle: boolean;
+    subTitle?: SubTitleItem[];
+    isSpaceBetween: boolean;
+    spaceBetween?: DateItem[];
+  }
+
+  interface NavProfileProps {
+    info: NavInfoItems;
+    key: string;
+  }
+
+  interface SubTitleItem {
+    subTitle: string;
+    value: string;
+  }
+
+  interface DateItem {
+    text: string;
+    date: string;
+  }
 }

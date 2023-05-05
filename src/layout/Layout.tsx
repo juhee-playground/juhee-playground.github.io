@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 // import Header from './Header';
-import Nav from './Nav';
+import Nav from './nav/Nav';
 
 import './Layout.scss';
 
