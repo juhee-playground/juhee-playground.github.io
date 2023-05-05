@@ -52,6 +52,7 @@ declare global {
     department: string;
   }
   interface ProjectQuery {
+    [x: string]: any;
     id: string;
     companyId: string;
     name: string;
@@ -137,5 +138,16 @@ declare global {
     label: string;
     clickable: boolean;
     parentFunction?: (label: string) => void;
+  }
+
+  interface CardListProps {
+    key: string;
+    info: CompanyQuery;
+    subInfo: ProjectQuery[];
+  }
+
+  interface SubListProps {
+    key: string;
+    info: ProjectQuery;
   }
 }

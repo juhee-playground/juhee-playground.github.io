@@ -7,10 +7,10 @@ import { useQuery } from 'react-query';
 
 import './Main.scss';
 import Stack from '@mui/material/Stack';
-import LabelIcon from '@mui/icons-material/Label';
 import DChip from '@/components/custom/DChip';
 import ToggleChip from '@/components/custom/ToggleChip';
 import CircularProgress from '@mui/material/CircularProgress';
+import CardListItem from '@/components/card/CardListItem';
 
 interface filterSelected {
   [key: string]: string[];
@@ -82,8 +82,8 @@ export default function Main() {
           const numberOfMonths = month - year * 12;
           const noNumberOfMonths = numberOfMonths === 0;
           period = `${isZero ? `기간: (` : ''} 
-            ${noYear ? '' : year}년 
-            ${noNumberOfMonths ? '' : numberOfMonths}개월 
+            ${noYear ? '' : `${year}년`}
+            ${noNumberOfMonths ? '' : `${numberOfMonths}개월`} 
             ${isZero ? `)` : ''}`;
         }
         return {
@@ -226,85 +226,16 @@ export default function Main() {
         </ul>
         <div className='sort__container'>
           <span className='sort__button' onClick={handleToggle}>
-            {isNewest ? '최신순' : '오래된순'}
+            {isNewest ? '오래된순' : '최신순'}
           </span>
         </div>
       </section>
       <section className='career'>
-        {companyQuery.data ? (
-          parseCompanyQuery.map((company: CompanyQuery) => {
-            const { startDate, endDate, period, name, role, department, id }: CompanyQuery = company;
-            return (
-              <div key={id} className='box__container'>
-                <div className='left'>
-                  <span className='text__sub'>{startDate}</span>
-                  <span className='text__plain'> {startDate !== '' ? `~` : null} </span>
-                  <span className='text__sub'>{endDate}</span>
-                  <div className='text__plain'>{period}</div>
-                </div>
-                <div className='right'>
-                  <span className='text__title'>{name}</span>
-                  <div className='list chip'>
-                    <span className='text__plain'>{role}</span>
-                    <span className='text__plain'> / </span>
-                    <span className='text__plain'>{department}</span>
-                  </div>
-                  <div className='projects'>
-                    {projectQuery.data ? (
-                      parseProjectQuery
-                        .filter((project) => project.companyId === id)
-                        .map((project: ProjectQuery) => {
-                          const { numberOfParticipants, stacks, contents }: ProjectQuery = project;
-                          return (
-                            <div className='project__container' key={project.id}>
-                              <div className='title'>
-                                <LabelIcon fontSize='small' className='text__icon--pre' />
-                                <span className='text__subTitle'>{project.name}</span>
-                                <span className='numbers text__sub'>
-                                  | 참여인원: <span className='text__sub'>{numberOfParticipants}</span>
-                                </span>
-                              </div>
-                              <div className='explain'>
-                                <span className='text__plain'>{project.explain}</span>
-                              </div>
-                              <div className='period'>
-                                <span className='text__plain'>{project.period}</span>
-                              </div>
-                              <div className='stacks'>
-                                <ul className='list__container'>
-                                  <Stack direction='row' spacing={1}>
-                                    {stacks.map((select: SelectProperty) => (
-                                      <DChip
-                                        key={select.id}
-                                        color={select.color}
-                                        label={select.name}
-                                        clickable={false}
-                                      />
-                                    ))}
-                                  </Stack>
-                                </ul>
-                              </div>
-                              <div className='results'>
-                                {contents.map((text: string, index: number) => (
-                                  <span key={`result_content${index}`} className='text__plain'>
-                                    {text}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          );
-                        })
-                    ) : (
-                      <CircularProgress color='primary' variant='determinate' />
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })
-        ) : (
-          <CircularProgress color='primary' variant='determinate' />
-        )}
+        {companyQuery.data
+          ? parseCompanyQuery.map((company: CompanyQuery) => {
+              return <CardListItem key={company.id} info={company} subInfo={parseProjectQuery} />;
+            })
+          : null}
       </section>
     </div>
   );
