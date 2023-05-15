@@ -38,6 +38,7 @@ declare global {
     company: NotionRelation;
     explain: NotionText;
     result: NotionText;
+    mainStack: NotionMultiSelect;
     stack: NotionMultiSelect;
     numberOfParticipants: NotionNumber;
   }
@@ -130,6 +131,10 @@ declare global {
   interface NotionNumber extends NotionDefaultProperties {
     type: 'number';
     number: number;
+  }
+
+  interface FilterSelected {
+    [key: string]: string[];
   }
 
   interface CustomChip {

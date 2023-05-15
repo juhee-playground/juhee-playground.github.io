@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import SubListItem from './SubListItem';
 function CardListItem(props: CardListProps) {
   const { startDate, endDate, period, name, role, department, id }: CompanyQuery = props.info;
+  const isWave = useMemo(() => (startDate !== '' ? `~` : null), []);
   return (
     <div key={id} className='box__container'>
       <div className='left'>
         <span className='text__sub'>{startDate}</span>
-        <span className='text__plain'> {startDate !== '' ? `~` : null} </span>
+        <span className='text__plain'> {isWave} </span>
         <span className='text__sub'>{endDate}</span>
         <div className='text__plain'>{period}</div>
       </div>

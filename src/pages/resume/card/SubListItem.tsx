@@ -2,7 +2,7 @@ import React from 'react';
 
 import LabelIcon from '@mui/icons-material/Label';
 import Stack from '@mui/material/Stack';
-import DChip from '@/components/custom/DChip';
+import DChip from 'components/custom/DChip';
 
 function SubListItem(props: SubListProps) {
   const { id, name, numberOfParticipants, explain, period, stacks, contents }: ProjectQuery = props.info;

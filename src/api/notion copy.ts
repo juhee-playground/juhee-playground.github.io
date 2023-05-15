@@ -18,8 +18,6 @@ export async function fetchData() {
     const response = await notion.databases.query({
       database_id: databaseId,
     });
-
-    console.log('response', response);
     // const results = response.results;
     return response.results;
   }

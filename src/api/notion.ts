@@ -1,5 +1,9 @@
 import customAxios from './customAxios';
 
+interface MultiOptionsProperty {
+  property: string;
+}
+
 export async function getCompanies() {
   const response = await customAxios.get<NotionData[]>('/company');
   return response.data;
@@ -10,12 +14,12 @@ export async function getProjects() {
   return response.data;
 }
 
-export async function getStackOptions() {
-  const response = await customAxios.get<SelectProperty[]>('/options');
+export async function getStackOptions(data: MultiOptionsProperty) {
+  const response = await customAxios.get<SelectProperty[]>('/options', { params: data });
   return response.data;
 }
 
-export async function getRoleOptions() {
-  const response = await customAxios.get<SelectProperty[]>('/multiOptions');
+export async function getMainStackOptions() {
+  const response = await customAxios.get<SelectProperty[]>('/mainOptions');
   return response.data;
 }

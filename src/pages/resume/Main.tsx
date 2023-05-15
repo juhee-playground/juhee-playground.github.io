@@ -2,19 +2,13 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { AxiosError } from 'axios';
 import { format, differenceInYears, differenceInMonths } from 'date-fns';
 
-import { getCompanies, getProjects, getStackOptions } from '../api/notion';
+import { getCompanies, getProjects, getStackOptions } from 'api/notion';
 import { useQuery } from 'react-query';
 
 import './Main.scss';
-import Stack from '@mui/material/Stack';
-import DChip from '@/components/custom/DChip';
-import ToggleChip from '@/components/custom/ToggleChip';
-import CircularProgress from '@mui/material/CircularProgress';
-import CardListItem from '@/components/card/CardListItem';
-
-interface filterSelected {
-  [key: string]: string[];
-}
+import Loading from 'components/Loading';
+import CardListItem from 'pages/resume/card/CardListItem';
+import FilterOption from './filter/FilterOption';
 
 const filterDefault = {
   company: [],
@@ -22,8 +16,9 @@ const filterDefault = {
 };
 
 export default function Main() {
+  const [loading, setLoading] = useState(false);
   const [isNewest, setNewest] = useState(true);
-  const [selectedChips, setSelectedChips] = useState<filterSelected>(filterDefault);
+  const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
   const companyQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
     ['getCompanies'],
@@ -41,7 +36,12 @@ export default function Main() {
 
   const projectQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
     ['getProjects'],
-    () => getProjects(),
+    async () => {
+      setLoading(true);
+      const response = await getProjects();
+      setLoading(false);
+      return response;
+    },
     {
       select: (query) =>
         query.map((data) => {
@@ -53,9 +53,14 @@ export default function Main() {
     },
   );
 
-  const stackSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
+  // const stackSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
+  //   ['getStackOptions'],
+  //   () => getStackOptions({ property: 'stack' }),
+  // );
+
+  const mainStackSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
     ['getStackOptions'],
-    () => getStackOptions(),
+    () => getStackOptions({ property: 'mainStack' }),
   );
 
   const parseCompanyQuery: CompanyQuery[] = useMemo(() => {
@@ -110,7 +115,7 @@ export default function Main() {
 
     const projectData = projectQuery.data
       .filter((project) => {
-        const stackInfo = JSON.stringify(project.stack.multi_select);
+        const stackInfo = JSON.stringify(project.mainStack.multi_select);
         let isSelected = false;
 
         selectedChips.stack.forEach((item) => {
@@ -130,7 +135,7 @@ export default function Main() {
           companyId: project.company.relation[0].id,
           name: project.name.title[0].plain_text,
           period: date.start ? `${date.start}~${date.end}` : '',
-          stacks: project.stack.multi_select,
+          stacks: [...project.mainStack.multi_select, ...project.stack.multi_select],
           explain: project.explain.rich_text[0].plain_text,
           contents: results.text.content.split('\n'),
           numberOfParticipants: project.numberOfParticipants.number,
@@ -146,25 +151,21 @@ export default function Main() {
   );
 
   const stackOptions = useMemo(
-    () => (stackSelectOptions.data ? stackSelectOptions.data.map((select) => select.name) : []),
-    [stackSelectOptions.data],
+    () => (mainStackSelectOptions.data ? mainStackSelectOptions.data.map((select) => select.name) : []),
+    [mainStackSelectOptions.data],
   );
 
-  // useCallback children 에 함수 감싸주면 좋음
-  const handleChange = useCallback(
-    (option: string, key: string) => () => {
-      setSelectedChips((prevChips: filterSelected): filterSelected => {
-        const newChips = JSON.parse(JSON.stringify(prevChips));
-        if (prevChips[key].includes(option)) {
-          newChips[key] = prevChips[key].filter((chip: string) => chip !== option);
-        } else {
-          newChips[key] = [...prevChips[key], option];
-        }
-        return newChips;
-      });
-    },
-    [],
-  );
+  const handleChange = (option: string, key: string) => {
+    setSelectedChips((prevChips: FilterSelected): FilterSelected => {
+      const newChips = JSON.parse(JSON.stringify(prevChips));
+      if (prevChips[key].includes(option)) {
+        newChips[key] = prevChips[key].filter((chip: string) => chip !== option);
+      } else {
+        newChips[key] = [...prevChips[key], option];
+      }
+      return newChips;
+    });
+  };
 
   const handleToggle = () => {
     setNewest(!isNewest);
@@ -180,26 +181,19 @@ export default function Main() {
 
   return (
     <div className='section-right'>
+      {loading ? <Loading /> : null}
       <section className='action'>
         <ul className='filter__container'>
-          <li className='list__item'>
-            <span className='filter__left'>회사별 </span>
-            <div className='filter__chips'>
-              <Stack direction='row' spacing={1}>
-                {companies.map((company: string, index: number) => (
-                  <ToggleChip
-                    key={`company_${index}`}
-                    selected={selectedChips.company.indexOf(company) !== -1}
-                    label={company}
-                    color='primary'
-                    clickable={true}
-                    parentFunction={handleChange(company, 'company')}
-                  />
-                ))}
-              </Stack>
-            </div>
-          </li>
-          <li className='list__item'>
+          <FilterOption options={companies} type='company' selected={selectedChips} onChange={handleChange} />
+          <FilterOption
+            options={stackOptions}
+            colorOptions={mainStackSelectOptions.data}
+            type='stack'
+            selected={selectedChips}
+            onChange={handleChange}
+          />
+
+          {/* <li className='list__item'>
             <span className='filter__left'>스택별 </span>
             <div className='filter__chips'>
               <Stack direction='row' flexWrap='wrap' spacing={1} useFlexGap>
@@ -210,8 +204,8 @@ export default function Main() {
                       <DChip
                         key={id}
                         selected={selectedChips.stack.indexOf(name) !== -1}
-                        color={color}
                         label={name}
+                        color={color}
                         clickable={true}
                         parentFunction={handleChange(name, 'stack')}
                       />
@@ -222,7 +216,7 @@ export default function Main() {
                 )}
               </Stack>
             </div>
-          </li>
+          </li> */}
         </ul>
         <div className='sort__container'>
           <span className='sort__button' onClick={handleToggle}>

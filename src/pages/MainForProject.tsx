@@ -9,8 +9,8 @@
 // import Chip from '@mui/material/Chip';
 // import Stack from '@mui/material/Stack';
 // import LabelIcon from '@mui/icons-material/Label';
-// import DChip from '@/components/custom/DChip';
-// import ToggleChip from '@/components/custom/ToggleChip';
+// import DChip from 'components/custom/DChip';
+// import ToggleChip from 'components/custom/ToggleChip';
 
 // interface filterSelected {
 //   [key: string]: string[];

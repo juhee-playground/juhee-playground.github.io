@@ -5,13 +5,11 @@ const ProfileInfoBox = (props: NavProfileProps) => {
   const email = process.env.REACT_APP_EMAIL;
   const profile = props.info;
 
-  console.log(profile);
-
   return (
     <section className='profile-box'>
       <div className='profile-box__header'>
         <span className='box-icon'>{profile.icon}</span>
-        <h5 className='box-title'>profile.title</h5>
+        <h5 className='box-title'>{profile.title}</h5>
       </div>
       <hr />
       {profile.subTitle ? (

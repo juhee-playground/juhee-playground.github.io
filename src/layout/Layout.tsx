@@ -6,7 +6,7 @@ import Nav from './nav/Nav';
 import './Layout.scss';
 
 // const Main = lazy(() => import('../pages/MainForProject'));
-const Main = lazy(() => import('../pages/Main'));
+const Main = lazy(() => import('../pages/resume/Main'));
 
 const renderLoader = () => <p>Loading</p>;
 

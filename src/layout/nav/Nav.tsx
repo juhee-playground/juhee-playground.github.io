@@ -8,7 +8,6 @@ import ProfileInfoBox from './ProfileInfoBox';
 const DenseAppBar = () => {
   const infos = ProfileInfo;
   return (
-    //TODO: common components 로 profile-box 빼기
     <nav className='nav__container'>
       <div className='profile'>
         <img
