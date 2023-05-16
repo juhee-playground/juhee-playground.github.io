@@ -5,7 +5,7 @@ import ProfileInfo from '../../data/DB_profileInfo.json';
 import './Nav.scss';
 import ProfileInfoBox from './ProfileInfoBox';
 
-const DenseAppBar = () => {
+const LeftNav = () => {
   const infos = ProfileInfo;
   return (
     <nav className='nav__container'>
@@ -28,4 +28,4 @@ const DenseAppBar = () => {
   );
 };
 
-export default DenseAppBar;
+export default LeftNav;

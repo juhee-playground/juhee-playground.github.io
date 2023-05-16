@@ -1,0 +1,29 @@
+.card__container {
+    padding: 8px 24px;
+
+    .paper__list {
+        display: flex;
+    }
+
+    .paper--radio {
+        width: 45px;
+        height: 45px;
+        background-color: #8B8D92;
+        margin: 4px
+    }
+    .red {
+        background-color: #EC5A58;
+    }
+    .amber {
+        background-color: #F4B73F;
+    }
+    .green {
+        background-color: #76C73B;
+    }
+    .purple {
+        background-color: #8958F4;
+    }
+    .blue {
+        background-color: #52AEF8;
+    }
+}

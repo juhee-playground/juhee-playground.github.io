@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { AxiosError } from 'axios';
 import { format, differenceInYears, differenceInMonths } from 'date-fns';
 
@@ -52,11 +52,6 @@ export default function Main() {
         }),
     },
   );
-
-  // const stackSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
-  //   ['getStackOptions'],
-  //   () => getStackOptions({ property: 'stack' }),
-  // );
 
   const mainStackSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
     ['getStackOptions'],
