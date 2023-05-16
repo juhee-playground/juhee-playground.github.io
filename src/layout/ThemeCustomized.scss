@@ -8,8 +8,14 @@
     .paper--radio {
         width: 45px;
         height: 45px;
+        margin: 4px;
+        cursor: pointer;
+    }
+    .active {
+        border: solid 3px black;
+    }
+    .grey {
         background-color: #8B8D92;
-        margin: 4px
     }
     .red {
         background-color: #EC5A58;

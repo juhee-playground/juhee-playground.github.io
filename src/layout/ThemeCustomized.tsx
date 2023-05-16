@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import React, { useState } from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -7,7 +6,14 @@ import FormControl from '@mui/material/FormControl';
 
 import './ThemeCustomized.scss';
 
+const colorList = ['purple', 'green', 'blue', 'amber', 'red', 'grey'];
+
 const ThemeCustomized = () => {
+  const [active, setActive] = useState('green');
+  const clickHandler = (color: string) => {
+    console.log('color clicked', color);
+    setActive(color);
+  };
   return (
     <div className='card__container'>
       <h2>Theme Customize</h2>
@@ -23,14 +29,17 @@ const ThemeCustomized = () => {
         </FormControl>
       </div>
       <h5>Point Color</h5>
-      <div className='paper__list'>
-        <div className='paper--radio purple'></div>
-        <div className='paper--radio'></div>
-        <div className='paper--radio green'></div>
-        <div className='paper--radio blue'></div>
-        <div className='paper--radio amber'></div>
-        <div className='paper--radio red'></div>
-      </div>
+      <ul className='paper__list'>
+        {colorList.map((color: string) => {
+          return (
+            <li
+              key={`list__${color}`}
+              className={`paper--radio ${color} ${active === color && 'active'}`}
+              onClick={() => clickHandler(color)}
+            ></li>
+          );
+        })}
+      </ul>
       <hr />
     </div>
   );
