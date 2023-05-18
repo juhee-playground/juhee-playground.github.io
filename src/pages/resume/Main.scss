@@ -4,11 +4,20 @@
             display: flex;
             margin: 8px;
             .filter__left {
-                margin-right: 4px;
+                margin-right: 12px;
                 width: 15%;
+                border-right: solid 2px #676767;
+                padding: 4px;
+                display: flex;
+                align-self: center;
+                .text {
+                    font-size: 16px;
+                    font-weight: 600;
+                }
             }
             .filter__chips {
                 width: 75%;
+                padding: 4px;
             }
         }
     }
@@ -34,15 +43,23 @@
     padding: 8px;
     .left {
         width: 15%;
+        .period {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
     }
     .right {
         width: 85%;
-        padding: 0 24px;
+        padding: 0 12px;
     }
 }
 
 .project__container {
     margin: 12px 0;
+    .list__item {
+        margin: 8px 0;
+    }
     .title {
         display: flex;
         align-items: center;
@@ -50,12 +67,18 @@
     .numbers {
         padding: 0 4px;
     }
+    .period {
+        font-weight: 700;
+        font-size: 12px;
+    }
     .results {
         display: flex;
         flex-direction: column;
     }
 }
+
 .text {
+    line-height: normal;
     &__title {
         font-size: 24px;
         font-weight: 600;

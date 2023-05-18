@@ -1,11 +1,14 @@
 import * as React from 'react';
 
+import { useSelector } from 'react-redux';
+import type { RootState } from 'redux/store';
 import ProfileInfo from '../../data/DB_profileInfo.json';
 
 import './Nav.scss';
 import ProfileInfoBox from './ProfileInfoBox';
 
 const LeftNav = () => {
+  const { pointColor } = useSelector((state: RootState) => state.pointColor);
   const infos = ProfileInfo;
   return (
     <nav className='nav__container'>
@@ -16,7 +19,9 @@ const LeftNav = () => {
           alt='profileImage'
         />
         <section className='profile-info'>
-          <h2 className='profile-info-first-name'>BAEK</h2>
+          <h2 style={{ color: pointColor }} className='profile-info-first-name'>
+            BAEK
+          </h2>
           <h2 className='profile-info-name'>JU HEE</h2>
           <p className='profile-info-role'>Front Developer</p>
         </section>

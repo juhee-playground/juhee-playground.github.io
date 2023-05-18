@@ -54,7 +54,6 @@ export default function Main() {
   //       const filtering = stacks.filter((stack: any) => selectedChips.stack.includes(stack.name));
   //       return filtering;
   //     });
-  //     console.log('why?? ', aaa);
   //   }
   //   if (companyQuery.data) {
   //     const bbb = companyQuery.data.filter((company) => {
@@ -62,7 +61,6 @@ export default function Main() {
   //       const filtering = selectedChips.company.includes(name[0].plain_text);
   //       return filtering;
   //     });
-  //     console.log('bbb', bbb);
   //   }
   //   return (
   //     <div className='section-right'>

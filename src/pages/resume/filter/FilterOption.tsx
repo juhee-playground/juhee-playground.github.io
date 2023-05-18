@@ -21,7 +21,9 @@ const FilterOption = ({ type, options, colorOptions, selected, onChange }: Props
 
   return (
     <li className='list__item'>
-      <span className='filter__left'>{firstLetterToUpper(type)}</span>
+      <div className='filter__left'>
+        <span className='text'>{firstLetterToUpper(type)}</span>
+      </div>
       <div className='filter__chips'>
         <Stack direction='row' flexWrap='wrap' spacing={1} useFlexGap>
           {colorOptions

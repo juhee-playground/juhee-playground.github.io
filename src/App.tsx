@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Layout from './layout/Layout';
 import { QueryClient, QueryClientProvider, QueryCache } from 'react-query';
 
-import './App.css';
+import './App.scss';
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({

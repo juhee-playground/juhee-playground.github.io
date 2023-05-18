@@ -2,6 +2,8 @@ import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './header/Header';
 import Nav from './nav/Nav';
+import { useSelector } from 'react-redux';
+import type { RootState } from 'redux/store';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -17,6 +19,7 @@ const Main = lazy(() => import('../pages/resume/Main'));
 
 const renderLoader = () => <p>Loading</p>;
 const Layout = () => {
+  const { pointColor } = useSelector((state: RootState) => state.pointColor);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -33,8 +36,6 @@ const Layout = () => {
       return;
     }
 
-    console.log(anchor, open);
-
     setState({ ...state, [anchor]: open });
   };
   const anchor = 'right';
@@ -42,7 +43,11 @@ const Layout = () => {
     <div className='container'>
       <Header />
       <main className='main__container'>
-        <button className='button toggler ripple' onClick={toggleDrawer(anchor, true)}>
+        <button
+          style={{ backgroundColor: pointColor }}
+          className='button toggler ripple'
+          onClick={toggleDrawer(anchor, true)}
+        >
           <SettingsIcon />
         </button>
         <SwipeableDrawer

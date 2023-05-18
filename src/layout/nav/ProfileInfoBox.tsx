@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+import type { RootState } from 'redux/store';
 
 const ProfileInfoBox = (props: NavProfileProps) => {
+  const { pointColor } = useSelector((state: RootState) => state.pointColor);
   const phone_number = process.env.REACT_APP_PHONE_NUMBER;
   const email = process.env.REACT_APP_EMAIL;
   const profile = props.info;
@@ -9,10 +12,12 @@ const ProfileInfoBox = (props: NavProfileProps) => {
     <section className='profile-box'>
       <div className='profile-box__header'>
         <span className='box-icon'>{profile.icon}</span>
-        <h5 className='box-title'>{profile.title}</h5>
+        <h5 style={{ color: pointColor }} className='box-title'>
+          {profile.title}
+        </h5>
       </div>
       <hr />
-      {profile.subTitle ? (
+      {profile.isSubTitle && profile.subTitle ? (
         <div className='profile-box__content'>
           <ul className='list list-subtitle'>
             {/* subtitle이 있는 list item */}
@@ -25,7 +30,7 @@ const ProfileInfoBox = (props: NavProfileProps) => {
           </ul>
         </div>
       ) : null}
-      {profile.basic ? (
+      {profile.isBasic && profile.basic ? (
         <div className='profile-box__content'>
           <ul className='list list-row'>
             {/* 기본 list item row 정렬 */}
@@ -37,7 +42,7 @@ const ProfileInfoBox = (props: NavProfileProps) => {
           </ul>
         </div>
       ) : null}
-      {profile.spaceBetween ? (
+      {profile.isSpaceBetween && profile.spaceBetween ? (
         <div className='profile-box__content'>
           <ul className='list list-date'>
             {/* 기본 list item row 정렬 */}

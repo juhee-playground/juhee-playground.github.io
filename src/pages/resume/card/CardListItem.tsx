@@ -7,17 +7,17 @@ function CardListItem(props: CardListProps) {
   return (
     <div key={id} className='box__container'>
       <div className='left'>
-        <span className='text__sub'>{startDate}</span>
-        <span className='text__plain'> {isWave} </span>
-        <span className='text__sub'>{endDate}</span>
-        <div className='text__plain'>{period}</div>
+        <span className='text text__sub period'>{startDate}</span>
+        <span className='text text__plain period'> {isWave} </span>
+        <span className='text text__sub period'>{endDate}</span>
+        <div className='text text__plain'>{period}</div>
       </div>
       <div className='right'>
-        <span className='text__title'>{name}</span>
+        <span className='text text__title'>{name}</span>
         <div className='list chip'>
-          <span className='text__plain'>{role}</span>
-          <span className='text__plain'> / </span>
-          <span className='text__plain'>{department}</span>
+          <span className='text text__plain'>{role}</span>
+          <span className='text text__plain'> / </span>
+          <span className='text text__plain'>{department}</span>
         </div>
         <div className='projects'>
           {props.subInfo
