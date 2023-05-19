@@ -8,9 +8,11 @@ function SubListItem(props: SubListProps) {
   const { id, name, numberOfParticipants, explain, period, stacks, contents }: ProjectQuery = props.info;
   return (
     <div className='project__container' key={id}>
-      <div className='list__item title'>
-        <LabelIcon fontSize='small' className='text text__icon--pre' />
-        <span className='text text__subTitle'>{name}</span>
+      <div className='list__item list__item--vertical'>
+        <div className='title'>
+          <LabelIcon fontSize='small' className='text text__icon--pre' />
+          <span className='text text__subTitle'>{name}</span>
+        </div>
         <span className='numbers text__sub'>
           | 참여인원: <span className='text__sub'>{numberOfParticipants}</span>
         </span>
@@ -23,7 +25,7 @@ function SubListItem(props: SubListProps) {
       </div>
       <div className='list__item stacks'>
         <ul className='list__container'>
-          <Stack direction='row' spacing={1}>
+          <Stack className='stacks' direction='row' spacing={1}>
             {stacks.map((select: SelectProperty) => (
               <DChip
                 key={select.id}
