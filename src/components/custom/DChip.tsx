@@ -16,15 +16,15 @@ interface ActionComponentColor {
 const notionSelect: SelectChipColor = {
   red: {
     bg: red[100],
-    text: red[900],
+    text: red[600],
   },
   brown: {
     bg: brown[100],
-    text: brown[900],
+    text: brown[600],
   },
   purple: {
     bg: purple[100],
-    text: purple[900],
+    text: purple[600],
   },
   yellow: {
     bg: yellow[100],
@@ -32,27 +32,27 @@ const notionSelect: SelectChipColor = {
   },
   green: {
     bg: green[100],
-    text: green[900],
+    text: green[600],
   },
   blue: {
     bg: blue[100],
-    text: blue[900],
+    text: blue[600],
   },
   orange: {
     bg: orange[100],
-    text: orange[900],
+    text: orange[600],
   },
   default: {
     bg: cyan[100],
-    text: cyan[900],
+    text: cyan[600],
   },
   gray: {
     bg: blueGrey[100],
-    text: blueGrey[900],
+    text: blueGrey[600],
   },
   pink: {
     bg: pink[100],
-    text: pink[900],
+    text: pink[600],
   },
 };
 
