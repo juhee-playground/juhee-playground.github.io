@@ -9,16 +9,16 @@ const ProfileInfoBox = (props: NavProfileProps) => {
   const profile = props.info;
 
   return (
-    <section className='profile-box'>
-      <div className='profile-box__header'>
+    <section className='profile__box'>
+      <div className='profile__box__header'>
         <span className='box-icon'>{profile.icon}</span>
-        <h5 style={{ color: pointColor }} className='box-title'>
+        <h3 style={{ color: pointColor }} className='box-title'>
           {profile.title}
-        </h5>
+        </h3>
       </div>
       <hr />
       {profile.isSubTitle && profile.subTitle ? (
-        <div className='profile-box__content'>
+        <div className='profile__box__content'>
           <ul className='list list-subtitle'>
             {/* subtitle이 있는 list item */}
             {profile.subTitle.map((item: SubTitleItem, index: number) => (
@@ -31,7 +31,7 @@ const ProfileInfoBox = (props: NavProfileProps) => {
         </div>
       ) : null}
       {profile.isBasic && profile.basic ? (
-        <div className='profile-box__content'>
+        <div className='profile__box__content'>
           <ul className='list list-row'>
             {/* 기본 list item row 정렬 */}
             {profile.basic.map((item: string, index: number) => (
@@ -43,7 +43,7 @@ const ProfileInfoBox = (props: NavProfileProps) => {
         </div>
       ) : null}
       {profile.isSpaceBetween && profile.spaceBetween ? (
-        <div className='profile-box__content'>
+        <div className='profile__box__content'>
           <ul className='list list-date'>
             {/* 기본 list item row 정렬 */}
             {profile.spaceBetween.map((item: DateItem, index: number) => (

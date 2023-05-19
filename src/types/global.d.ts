@@ -7,6 +7,8 @@
 export {};
 
 declare global {
+  type ModeType = 'light' | 'dark';
+
   interface Process {
     env: ProcessEnv;
   }
@@ -140,6 +142,7 @@ declare global {
   interface CustomChip {
     selected?: boolean;
     color: string;
+    size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     label: string;
     clickable: boolean;
     parentFunction?: (label: string) => void;

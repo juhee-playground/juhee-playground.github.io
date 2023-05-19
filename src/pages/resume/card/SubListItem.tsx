@@ -25,7 +25,13 @@ function SubListItem(props: SubListProps) {
         <ul className='list__container'>
           <Stack direction='row' spacing={1}>
             {stacks.map((select: SelectProperty) => (
-              <DChip key={select.id} color={select.color} label={select.name} clickable={false} />
+              <DChip
+                key={select.id}
+                size='small'
+                color={select.color}
+                label={select.name}
+                clickable={false}
+              />
             ))}
           </Stack>
         </ul>

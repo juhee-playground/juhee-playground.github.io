@@ -5,6 +5,8 @@ import { format, differenceInYears, differenceInMonths } from 'date-fns';
 import { getCompanies, getProjects, getStackOptions } from 'api/notion';
 import { useQuery } from 'react-query';
 
+import { useTheme } from '@mui/material/styles';
+
 import './Main.scss';
 import Loading from 'components/Loading';
 import CardListItem from 'pages/resume/card/CardListItem';
@@ -19,6 +21,8 @@ export default function Main() {
   const [loading, setLoading] = useState(false);
   const [isNewest, setNewest] = useState(true);
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
+
+  const theme = useTheme();
 
   const companyQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
     ['getCompanies'],
@@ -175,7 +179,7 @@ export default function Main() {
   }, [companies, stackOptions]);
 
   return (
-    <div className='section-right'>
+    <div className={`section-right section-right--${theme.palette.mode}`}>
       {loading ? <Loading /> : null}
       <section className='action'>
         <ul className='filter__container'>

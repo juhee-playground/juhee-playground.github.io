@@ -16,47 +16,47 @@ interface ActionComponentColor {
 const notionSelect: SelectChipColor = {
   red: {
     bg: red[100],
-    text: red[700],
+    text: red[900],
   },
   brown: {
     bg: brown[100],
-    text: brown[700],
+    text: brown[900],
   },
   purple: {
     bg: purple[100],
-    text: purple[700],
+    text: purple[900],
   },
   yellow: {
     bg: yellow[100],
-    text: yellow[700],
+    text: yellow[900],
   },
   green: {
     bg: green[100],
-    text: green[700],
+    text: green[900],
   },
   blue: {
     bg: blue[100],
-    text: blue[700],
+    text: blue[900],
   },
   orange: {
     bg: orange[100],
-    text: orange[700],
+    text: orange[900],
   },
   default: {
     bg: cyan[100],
-    text: cyan[700],
+    text: cyan[900],
   },
   gray: {
     bg: blueGrey[100],
-    text: blueGrey[700],
+    text: blueGrey[900],
   },
   pink: {
     bg: pink[100],
-    text: pink[700],
+    text: pink[900],
   },
 };
 
-function DChip({ selected, color, label, clickable, parentFunction }: CustomChip) {
+function DChip({ selected, color, size, label, clickable, parentFunction }: CustomChip) {
   const handleClick = (): void => {
     if (parentFunction) {
       parentFunction(label);
@@ -92,8 +92,8 @@ function DChip({ selected, color, label, clickable, parentFunction }: CustomChip
   return (
     <ThemeProvider theme={customTheme}>
       <Chip
-        label={label}
-        size='small'
+        label={<div className='dChip__label'> {label}</div>}
+        size={size}
         variant='outlined'
         icon={icon}
         clickable={clickable}

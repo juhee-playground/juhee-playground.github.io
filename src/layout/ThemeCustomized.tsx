@@ -4,8 +4,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
-import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from 'redux/store';
+import { ColorModeContext } from 'context/ColorModeContext';
+import { useDispatch } from 'react-redux';
 import { changePointColor } from 'redux/actions2';
 
 import './ThemeCustomized.scss';
@@ -16,7 +16,7 @@ interface ColorType {
 
 const colorList = [
   { text: 'purple', hex: '#8958F4' },
-  { text: 'green', hex: '#76C73B' },
+  { text: 'green', hex: '#009688' },
   { text: 'blue', hex: '#52AEF8' },
   { text: 'amber', hex: '#F4B73F' },
   { text: 'red', hex: '#EC5A58' },
@@ -24,16 +24,22 @@ const colorList = [
 ];
 
 const ThemeCustomized = () => {
+  const [active, setActive] = useState('green');
+  const colorMode = React.useContext(ColorModeContext);
   const dispatch = useDispatch();
-  const { pointColor } = useSelector((state: RootState) => state.pointColor);
   const handleColorChange = (color: string) => {
     dispatch(changePointColor(color));
   };
 
-  const [active, setActive] = useState('green');
   const clickHandler = (color: ColorType) => {
     setActive(color.text);
     handleColorChange(color.hex);
+  };
+
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('change', event.target.value);
+    const mode = event.target.value as ModeType;
+    colorMode.toggleColorMode(mode);
   };
 
   return (
@@ -44,7 +50,13 @@ const ThemeCustomized = () => {
       <div>
         <FormControl>
           <h5>Theme</h5>
-          <RadioGroup row aria-labelledby='demo-row-radio-buttons-group-label' name='row-radio-buttons-group'>
+          <RadioGroup
+            row
+            aria-labelledby='demo-row-radio-buttons-group-label'
+            defaultValue='light'
+            name='row-radio-buttons-group'
+            onChange={changeHandler}
+          >
             <FormControlLabel value='light' control={<Radio />} label='Light' />
             <FormControlLabel value='dark' control={<Radio />} label='Dark' />
           </RadioGroup>
@@ -56,18 +68,14 @@ const ThemeCustomized = () => {
           return (
             <li
               key={`list__${color.text}`}
-              className={`paper--radio ${color.text} ${active === color.text && 'active'}`}
+              className={`paper--radio ${active === color.text && 'active'}`}
               onClick={() => clickHandler(color)}
+              style={{ backgroundColor: color.hex }}
             ></li>
           );
         })}
       </ul>
       <hr />
-
-      <div>
-        change point color
-        <div style={{ backgroundColor: pointColor, width: '100px', height: '100px' }}></div>
-      </div>
     </div>
   );
 };

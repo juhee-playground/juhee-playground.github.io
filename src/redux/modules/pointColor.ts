@@ -1,5 +1,5 @@
 const initialState = {
-  pointColor: '#76C73B',
+  pointColor: '#009688',
 };
 
 interface ActionType {

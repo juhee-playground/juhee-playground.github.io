@@ -18,6 +18,14 @@
             .filter__chips {
                 width: 75%;
                 padding: 4px;
+                .chip__toggle {
+                    &--light {
+                        background-color: $white-color;
+                    }
+                    &--dark {
+                        background-color: $light-text-color;
+                    }
+                }
             }
         }
     }
@@ -105,4 +113,8 @@
     list-style: none;
     margin: 4px 0;
     padding: 0;
+}
+
+.dChip__label {
+    font-weight: 700;
 }
