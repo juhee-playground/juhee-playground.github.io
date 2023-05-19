@@ -1,59 +1,69 @@
-$dark-text-color: whitesmoke;
-$light-text-color: #222222;
-$point-color: #00ae60;
-
-.nav-left {
-    grid-row-start: 1;
-    grid-row-end: 5;
-    grid-column-start: 1;
-    grid-column-end: 2;
-   
-    background-color: black;
+.nav__container {
+    background-color: $black-color;
+    &--light {
+        background-color: $light-background-color;
+        color: $light-text-color;
+    }
+    &--dark {
+        background-color: $dark-background-color;
+        color: $dark-text-color;
+    }
 }
 
 .profile {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px;
-    color: $dark-text-color;
-    &-picture-img {
+    padding: 24px 12px 18px 10px;
+    // color: $dark-text-color;
+    &__picture-img {
         vertical-align: middle;
-        width: 160px;
-        height: 160px;
+        width: 120px;
+        height: 120px;
         border-radius: 50%;
-        background-color: white;
+        background-color: $white-color;
     }
-    &-info {
+    &__info {
         text-align: center;
-        margin-top: 16px;
+        margin-top: 11px;
+        &--light {
+            color: $light-text-color;
+        }
+        &--dark {
+            color: $dark-text-color;
+        }
         h2 {
             margin: 0;
+            font-size: 24px;
         }
         &-first-name {
             color: $point-color;
         }
+        &-role {
+            margin: 8px;
+        }
     }
-    &-box {
+    &__box {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        color: $dark-text-color;
         width: 80%;
         align-items: flex-start;
         margin: 8px auto;
 
         &__header {
             display: flex;
-            h5 {
+            align-items: center;
+            h3 {
                 margin: 0;
                 padding: 0 4px;
-                line-height: 20px;
+                line-height: 28px;
                 color: $point-color;
             }
         }
         hr {
             width: 100%;
+            margin: 2px;
         }
         &__content {
             display: flex;
@@ -67,18 +77,21 @@ $point-color: #00ae60;
                     .list-item {
                         display: flex;
                         flex-direction: column;
+                        line-height: 24px;
                         margin-bottom: 8px;
                     }
                 }
                 &-row {
                     display: flex;
                     .list-item {
+                        line-height: normal;
                         padding-right: 12px;
                     }
                 }
 
                 &-date {
                     .list-item {
+                        line-height: normal;
                         &__between {
                             display: flex;
                             justify-content: space-between;
@@ -90,15 +103,14 @@ $point-color: #00ae60;
                 // 공통 font
                 .subtitle {
                     font-weight: 600;
-                    font-size: 16px;
+                    font-size: 18px;
                 }
                 .text {
                     font-weight: 400;
                     font-size: 14px;
                 }
                 .text--light {
-                    font-weight: 300;
-                    font-size: 14px;
+                    font-size: 16px;
                 }
                 
             }

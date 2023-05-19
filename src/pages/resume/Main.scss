@@ -1,0 +1,120 @@
+.action {
+    .filter__container {
+        .list__item {
+            display: flex;
+            margin: 8px;
+            .filter__left {
+                margin-right: 12px;
+                width: 15%;
+                border-right: solid 2px #676767;
+                padding: 4px;
+                display: flex;
+                align-self: center;
+                .text {
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
+            .filter__chips {
+                width: 75%;
+                padding: 4px;
+                .chip__toggle {
+                    &--light {
+                        background-color: $white-color;
+                    }
+                    &--dark {
+                        background-color: $light-text-color;
+                    }
+                }
+            }
+        }
+    }
+    .sort {
+        &__container {
+            display: flex;
+            justify-content: flex-end;
+        }
+        &__button {
+            cursor: pointer;
+            border: solid 1px $white-color;
+            padding: 4px;
+        }
+    }
+}
+.career {
+    // overflow-y: scroll;
+    // max-height: 910px;
+}
+
+.box__container {
+    display: flex;
+    padding: 8px;
+    .left {
+        width: 15%;
+        .period {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+    }
+    .right {
+        width: 85%;
+        padding: 0 12px;
+    }
+}
+
+.project__container {
+    margin: 12px 0;
+    .list__item {
+        margin: 8px 0;
+    }
+    .title {
+        display: flex;
+        align-items: center;
+    }
+    .numbers {
+        padding: 0 4px;
+    }
+    .period {
+        font-weight: 700;
+        font-size: 12px;
+    }
+    .results {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.text {
+    line-height: normal;
+    &__title {
+        font-size: 24px;
+        font-weight: 600;
+    }
+    &__subTitle {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    &__sub {
+        font-size: 14px;
+        font-weight: 400;
+    }
+    &__plain {
+        font-size: 14px;
+    }
+    &__icon {
+        &--pre {
+            padding-right: 4px;
+        }
+    }
+}
+
+.list__container {
+    list-style: none;
+    margin: 4px 0;
+    padding: 0;
+}
+
+.dChip__label {
+    font-weight: 700;
+}

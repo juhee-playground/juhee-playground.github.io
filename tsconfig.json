@@ -1,12 +1,15 @@
 {
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    "target": "es5",
+    "baseUrl": "src",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "types": ["node", "webpack-env"],
+    "typeRoots": ["./node_modules/@types", "./src/types/global.d.ts"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
