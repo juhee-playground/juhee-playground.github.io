@@ -32,7 +32,6 @@ function App() {
   const colorMode = useMemo(
     () => ({
       toggleColorMode: (mode: ModeType) => {
-        console.log('app mode', mode);
         setMode(mode);
         // setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },

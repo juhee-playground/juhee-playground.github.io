@@ -26,7 +26,9 @@ const colorList = [
 ];
 
 const ThemeCustomized = () => {
-  const [active, setActive] = useState('green');
+  const [active, setActive] = useState('#009688');
+  // const [checked, setChecked] = React.useState(true);
+
   const colorMode = React.useContext(ColorModeContext);
   const { pointColor } = useSelector((state: RootState) => state.pointColor);
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ const ThemeCustomized = () => {
   };
 
   const clickHandler = (color: ColorType) => {
-    setActive(color.text);
+    setActive(color.hex);
     handleColorChange(color.hex);
   };
 
@@ -43,6 +45,10 @@ const ThemeCustomized = () => {
     const mode = event.target.value as ModeType;
     colorMode.toggleColorMode(mode);
   };
+
+  // const switchHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setChecked(event.target.checked);
+  // };
 
   return (
     <div className='card__container'>
@@ -70,7 +76,7 @@ const ThemeCustomized = () => {
           return (
             <li
               key={`list__${color.text}`}
-              className={`paper--radio ${active === color.text && 'active'}`}
+              className={`paper--radio ${active === color.hex && 'active'}`}
               onClick={() => clickHandler(color)}
               style={{ backgroundColor: color.hex }}
             ></li>

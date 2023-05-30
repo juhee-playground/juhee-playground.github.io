@@ -9,6 +9,9 @@ import { useTheme } from '@mui/material/styles';
 import './Nav.scss';
 import ProfileInfoBox from './ProfileInfoBox';
 
+const imageBaseUrl = 'https://juhee100bucket.s3.ap-northeast-2.amazonaws.com/image-juhee-playground';
+// 공룡사진 - (비활성화 되있을 때): dino_dinosaur_icon_153295.png
+// 이력서 사진 : juheePicture.jpg
 const LeftNav = () => {
   const theme = useTheme();
   const { pointColor } = useSelector((state: RootState) => state.pointColor);
@@ -18,7 +21,7 @@ const LeftNav = () => {
       <div className='profile'>
         <img
           className='profile__picture-img'
-          src='https://juhee100bucket.s3.ap-northeast-2.amazonaws.com/image-juhee-playground/dino_dinosaur_icon_153295.png'
+          src={`${imageBaseUrl}/dino_dinosaur_icon_153295.png`}
           alt='profileImage'
         />
         <section className={`profile__info profile__info--${theme.palette.mode}`}>
