@@ -12,13 +12,16 @@ import Loading from 'components/Loading';
 import CardListItem from 'pages/resume/card/CardListItem';
 import FilterOption from './filter/FilterOption';
 
+import COMPANY_DATA from 'data/DB_company.json';
+import DB_STACK from 'data/DB_stack.json';
+import PROJECT_DATA from 'data/DB_project.json';
+
 const filterDefault = {
   company: [],
   stack: [],
 };
 
 export default function Main() {
-  const [loading, setLoading] = useState(false);
   const [isNewest, setNewest] = useState(true);
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
@@ -38,12 +41,11 @@ export default function Main() {
     },
   );
 
-  const projectQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
+  // TODO: error 처리 다시 해주기
+  const { data, isLoading, error } = useQuery<NotionData[], AxiosError, NotionProperties[]>(
     ['getProjects'],
     async () => {
-      setLoading(true);
       const response = await getProjects();
-      setLoading(false);
       return response;
     },
     {
@@ -64,7 +66,11 @@ export default function Main() {
 
   const parseCompanyQuery: CompanyQuery[] = useMemo(() => {
     if (!companyQuery.data) {
-      return [] as CompanyQuery[];
+      return COMPANY_DATA.filter((company) => {
+        const name = company.name;
+        const filtering = selectedChips.company?.includes(name);
+        return filtering;
+      }) as CompanyQuery[];
     }
 
     const companyData = companyQuery.data
@@ -108,11 +114,23 @@ export default function Main() {
   }, [companyQuery.data, isNewest, selectedChips]);
 
   const parseProjectQuery: ProjectQuery[] = useMemo(() => {
-    if (!projectQuery.data) {
-      return [] as ProjectQuery[];
+    if (!data) {
+      return PROJECT_DATA.filter((project) => {
+        const stackInfo = JSON.stringify(project.stacks);
+        let isSelected = false;
+
+        selectedChips.stack.forEach((item) => {
+          const stackRegex = new RegExp(item);
+
+          if (!isSelected) {
+            isSelected = stackRegex.test(stackInfo);
+          }
+        });
+        return isSelected;
+      }) as ProjectQuery[];
     }
 
-    const projectData = projectQuery.data
+    const projectData = data
       .filter((project) => {
         const stackInfo = JSON.stringify(project.mainStack.multi_select);
         let isSelected = false;
@@ -142,19 +160,23 @@ export default function Main() {
       });
 
     return projectData;
-  }, [projectQuery.data, selectedChips]);
+  }, [data, selectedChips]);
 
   const companies = useMemo(
-    () => (companyQuery.data ? companyQuery.data.map((company) => company.name.title[0].plain_text) : []),
-    [companyQuery.data],
+    () =>
+      companyQuery.data
+        ? companyQuery.data.map((company) => company.name.title[0].plain_text)
+        : COMPANY_DATA.map((company) => company.name),
+    [companyQuery.data, COMPANY_DATA],
   );
 
   const stackOptions = useMemo(
-    () => (mainStackSelectOptions.data ? mainStackSelectOptions.data.map((select) => select.name) : []),
-    [mainStackSelectOptions.data],
+    () => (mainStackSelectOptions.data ? mainStackSelectOptions.data.map((select) => select.name) : DB_STACK),
+    [mainStackSelectOptions.data, DB_STACK],
   );
 
   const handleChange = (option: string, key: string) => {
+    console.log(option, key);
     setSelectedChips((prevChips: FilterSelected): FilterSelected => {
       const newChips = JSON.parse(JSON.stringify(prevChips));
       if (prevChips[key].includes(option)) {
@@ -178,9 +200,13 @@ export default function Main() {
     }));
   }, [companies, stackOptions]);
 
+  console.log('companies', companies);
+  console.log('stackOptions', stackOptions);
+  console.log('selectedChips', selectedChips);
+
   return (
     <div className={`section-right section-right--${theme.palette.mode}`}>
-      {loading ? <Loading /> : null}
+      {isLoading ? <Loading /> : null}
       <section className='action'>
         <ul className='filter__container'>
           <FilterOption options={companies} type='company' selected={selectedChips} onChange={handleChange} />
@@ -224,11 +250,9 @@ export default function Main() {
         </div>
       </section>
       <section className='career'>
-        {companyQuery.data
-          ? parseCompanyQuery.map((company: CompanyQuery) => {
-              return <CardListItem key={company.id} info={company} subInfo={parseProjectQuery} />;
-            })
-          : null}
+        {parseCompanyQuery.map((company: CompanyQuery) => {
+          return <CardListItem key={company.id} info={company} subInfo={parseProjectQuery} />;
+        })}
       </section>
     </div>
   );

@@ -1,35 +1,45 @@
-import { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
 // https://dev.to/vikirobles/how-to-create-an-auth-login-system-with-axios-interceptors-typescript-2k11
 interface ResponseData {
   data?: string;
 }
 
+const logOnDev = (message: string) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log('message????', message);
+  }
+};
+
 function handleError(serverError: ResponseData) {
+  console.log('habdle error');
   if (serverError?.data) {
-    if (serverError?.data == '토큰 만료') {
-      console.error('err');
-    }
+    console.log('handleErrror@@@@@@@@@', serverError);
   }
 }
 
-const onRequest = (config: AxiosRequestConfig): any => {
+const onRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+  const { method, url } = config;
+  logOnDev(`🚀 [API] ${method?.toUpperCase()} ${url} | Request`);
   return config;
 };
 
-const onResponseSuccess = (response: AxiosResponse) => {
+const onResponse = (response: AxiosResponse): AxiosResponse => {
+  const { method, url } = response.config;
+  const { status } = response;
+  logOnDev(`🚀 [API] ${method?.toUpperCase()} ${url} | Response ${status}`);
   return response;
 };
 
 const onResponseError = (error: AxiosError): Promise<AxiosError> => {
+  console.log('responseError,', error);
   handleError(error?.response as ResponseData);
   return Promise.reject(error);
 };
 
 export default function setupInterceptorsTo(axiosInstance: AxiosInstance): AxiosInstance {
-  axiosInstance.interceptors.request.use(onRequest, undefined);
-
-  axiosInstance.interceptors.response.use(onResponseSuccess, onResponseError);
+  axiosInstance.interceptors.request.use(onRequest);
+  axiosInstance.interceptors.response.use(onResponse, onResponseError);
 
   return axiosInstance;
 }
