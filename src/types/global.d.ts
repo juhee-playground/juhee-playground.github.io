@@ -175,6 +175,14 @@ declare global {
     key: string;
   }
 
+  type errorType = 'success' | 'warning' | 'error' | 'info';
+
+  interface SnackBarProps {
+    message: string;
+    type: errorType;
+    isOpen: boolean;
+  }
+
   interface SubTitleItem {
     subTitle: string;
     value: string;

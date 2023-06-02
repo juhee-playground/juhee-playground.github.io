@@ -7,12 +7,11 @@ interface ResponseData {
 
 const logOnDev = (message: string) => {
   if (process.env.NODE_ENV === 'development') {
-    console.log('message????', message);
+    console.log(message);
   }
 };
 
 function handleError(serverError: ResponseData) {
-  console.log('habdle error');
   if (serverError?.data) {
     console.log('handleErrror@@@@@@@@@', serverError);
   }
@@ -32,7 +31,6 @@ const onResponse = (response: AxiosResponse): AxiosResponse => {
 };
 
 const onResponseError = (error: AxiosError): Promise<AxiosError> => {
-  console.log('responseError,', error);
   handleError(error?.response as ResponseData);
   return Promise.reject(error);
 };

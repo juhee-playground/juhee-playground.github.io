@@ -41,8 +41,7 @@ export default function Main() {
     },
   );
 
-  // TODO: error 처리 다시 해주기
-  const { data, isLoading, error } = useQuery<NotionData[], AxiosError, NotionProperties[]>(
+  const { data, isLoading } = useQuery<NotionData[], AxiosError, NotionProperties[]>(
     ['getProjects'],
     async () => {
       const response = await getProjects();
@@ -176,7 +175,6 @@ export default function Main() {
   );
 
   const handleChange = (option: string, key: string) => {
-    console.log(option, key);
     setSelectedChips((prevChips: FilterSelected): FilterSelected => {
       const newChips = JSON.parse(JSON.stringify(prevChips));
       if (prevChips[key].includes(option)) {
@@ -199,10 +197,6 @@ export default function Main() {
       stack: [...stackOptions],
     }));
   }, [companies, stackOptions]);
-
-  console.log('companies', companies);
-  console.log('stackOptions', stackOptions);
-  console.log('selectedChips', selectedChips);
 
   return (
     <div className={`section-right section-right--${theme.palette.mode}`}>
