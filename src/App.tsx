@@ -1,5 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import merge from 'ts-deepmerge';
+import { AxiosError } from 'axios';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import Layout from './layout/Layout';
 import { QueryClient, QueryClientProvider, QueryCache } from 'react-query';
@@ -13,6 +19,11 @@ import './App.scss';
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
+      console.log(query);
+      if ((error as AxiosError).code == 'ERR_NETWORK') {
+        //FIXME: 한번만 나오면 참 좋겠다~
+        toast.error(`서버와 연결되지 않습니다`);
+      }
       query.state.data;
     },
   }),
@@ -29,6 +40,13 @@ const queryClient = new QueryClient({
 
 function App() {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
+
+  const snackBarOptions = {
+    message: 'error',
+    type: 'error',
+    isOpen: true,
+  } as SnackBarProps;
+
   const colorMode = useMemo(
     () => ({
       toggleColorMode: (mode: ModeType) => {
@@ -52,6 +70,7 @@ function App() {
           <CssBaseline />
           <div className='container'>
             <div className={`labeling__wrapper labeling__wrapper--${theme.palette.mode}`}>
+              <ToastContainer />
               <Layout />
             </div>
           </div>
