@@ -14,7 +14,6 @@ import ThemeCustomized from './ThemeCustomized';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-// const Main = lazy(() => import('../pages/MainForProject'));
 const Main = lazy(() => import('../pages/resume/Main'));
 
 const renderLoader = () => <p>Loading</p>;

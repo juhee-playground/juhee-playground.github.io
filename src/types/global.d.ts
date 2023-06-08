@@ -144,7 +144,7 @@ declare global {
     color: string;
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     label: string;
-    clickable: boolean;
+    clickable?: boolean;
     parentFunction?: (label: string) => void;
   }
 
@@ -173,6 +173,14 @@ declare global {
   interface NavProfileProps {
     info: NavInfoItems;
     key: string;
+  }
+
+  type errorType = 'success' | 'warning' | 'error' | 'info';
+
+  interface SnackBarProps {
+    message: string;
+    type: errorType;
+    isOpen: boolean;
   }
 
   interface SubTitleItem {

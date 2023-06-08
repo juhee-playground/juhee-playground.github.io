@@ -16,6 +16,7 @@ const ToggleChip = ({ selected, label, clickable, parentFunction }: CustomChip) 
   const theme = useTheme();
 
   let icon;
+
   if (selected) {
     icon = <CheckIcon />;
   }
@@ -24,7 +25,7 @@ const ToggleChip = ({ selected, label, clickable, parentFunction }: CustomChip) 
     <Chip
       className={`chip__toggle chip__toggle--${theme.palette.mode}`}
       sx={{ borderRadius: 1 }}
-      style={{ color: pointColor, borderColor: pointColor }}
+      style={selected ? { color: pointColor, borderColor: pointColor } : { color: 'grey' }}
       label={<div className='dChip__label'> {label}</div>}
       size='small'
       variant='outlined'

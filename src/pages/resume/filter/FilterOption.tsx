@@ -36,7 +36,6 @@ const FilterOption = ({ type, options, colorOptions, selected, onChange }: Props
                     label={name}
                     size='small'
                     color={color}
-                    clickable={true}
                     parentFunction={clickedChip}
                   />
                 );
