@@ -144,7 +144,7 @@ declare global {
     color: string;
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     label: string;
-    clickable: boolean;
+    clickable?: boolean;
     parentFunction?: (label: string) => void;
   }
 
