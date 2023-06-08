@@ -41,12 +41,6 @@ const queryClient = new QueryClient({
 function App() {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
 
-  const snackBarOptions = {
-    message: 'error',
-    type: 'error',
-    isOpen: true,
-  } as SnackBarProps;
-
   const colorMode = useMemo(
     () => ({
       toggleColorMode: (mode: ModeType) => {
