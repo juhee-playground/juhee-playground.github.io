@@ -65,6 +65,10 @@ export default function Main() {
 
   const parseCompanyQuery: CompanyQuery[] = useMemo(() => {
     if (!companyQuery.data) {
+      if (!isNewest) {
+        COMPANY_DATA.reverse();
+      }
+
       return COMPANY_DATA.filter((company) => {
         const name = company.name;
         const filtering = selectedChips.company?.includes(name);
@@ -211,31 +215,6 @@ export default function Main() {
             selected={selectedChips}
             onChange={handleChange}
           />
-
-          {/* <li className='list__item'>
-            <span className='filter__left'>스택별 </span>
-            <div className='filter__chips'>
-              <Stack direction='row' flexWrap='wrap' spacing={1} useFlexGap>
-                {stackSelectOptions.data ? (
-                  stackSelectOptions.data.map((select: SelectProperty) => {
-                    const { id, name, color } = select;
-                    return (
-                      <DChip
-                        key={id}
-                        selected={selectedChips.stack.indexOf(name) !== -1}
-                        label={name}
-                        color={color}
-                        clickable={true}
-                        parentFunction={handleChange(name, 'stack')}
-                      />
-                    );
-                  })
-                ) : (
-                  <DChip color='a' label='Vue' clickable={false} />
-                )}
-              </Stack>
-            </div>
-          </li> */}
         </ul>
         <div className='sort__container'>
           <span className='sort__button' onClick={handleToggle}>
