@@ -159,6 +159,7 @@ export default function Main() {
           explain: project.explain.rich_text[0].plain_text,
           contents: results.text.content.split('\n'),
           numberOfParticipants: project.numberOfParticipants.number,
+          url: project.url.url,
         } as ProjectQuery;
       });
 

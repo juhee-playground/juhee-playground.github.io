@@ -30,7 +30,11 @@ declare global {
     url: string;
     expiry_time: string;
   }
-
+  interface NotionURL {
+    id: string;
+    type: 'url';
+    url: string;
+  }
   interface NotionProperties {
     id: string;
     name: NotionTitleName;
@@ -43,6 +47,7 @@ declare global {
     mainStack: NotionMultiSelect;
     stack: NotionMultiSelect;
     numberOfParticipants: NotionNumber;
+    url: NotionURL;
   }
 
   interface CompanyQuery {
@@ -64,6 +69,7 @@ declare global {
     explain: string;
     contents: string[];
     numberOfParticipants: number;
+    url: string;
   }
   interface NotionDefaultProperties {
     id: string;

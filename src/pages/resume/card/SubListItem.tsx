@@ -5,14 +5,19 @@ import Stack from '@mui/material/Stack';
 import DChip from 'components/custom/DChip';
 
 function SubListItem(props: SubListProps) {
-  const { id, name, numberOfParticipants, explain, period, stacks, contents }: ProjectQuery = props.info;
+  const { id, name, numberOfParticipants, explain, period, stacks, contents, url }: ProjectQuery = props.info;
   return (
     <div className='project__container' key={id}>
       <div className='list__item list__item--vertical'>
-        <div className='title'>
+        <a
+          className='title__link'
+          onClick={() => {
+            window.open(url);
+          }}
+        >
           <LabelIcon fontSize='small' className='text text__icon--pre' />
           <span className='text text__subTitle'>{name}</span>
-        </div>
+        </a>
         <span className='numbers text__sub'>
           | 참여인원: <span className='text__sub'>{numberOfParticipants}</span>
         </span>
