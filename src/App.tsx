@@ -19,7 +19,6 @@ import './App.scss';
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
-      console.log(query);
       if ((error as AxiosError).code == 'ERR_NETWORK') {
         //FIXME: 한번만 나오면 참 좋겠다~
         toast.error(`서버와 연결되지 않습니다`);
@@ -45,7 +44,6 @@ function App() {
     () => ({
       toggleColorMode: (mode: ModeType) => {
         setMode(mode);
-        // setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
     [],

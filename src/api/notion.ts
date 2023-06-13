@@ -15,8 +15,8 @@ export async function getProjects() {
 }
 
 export async function getStackOptions(data: MultiOptionsProperty) {
-  const response = await customAxios.get<SelectProperty[]>('/options', { params: data });
-  return response.data;
+  const response = await customAxios.get<NotionSelectOptions>('/options', { params: data });
+  return response.data.multi_select.options;
 }
 
 export async function getMainStackOptions() {

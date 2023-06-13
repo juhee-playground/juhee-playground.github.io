@@ -41,11 +41,6 @@
             display: flex;
             justify-content: flex-end;
         }
-        &__button {
-            cursor: pointer;
-            border: solid 1px $white-color;
-            padding: 4px;
-        }
     }
 }
 
@@ -84,9 +79,13 @@
             align-items: center;
         }
     }
-    .title {
+    .title__link {
         display: flex;
         align-items: center;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
     }
     .numbers {
         padding: 0 4px;

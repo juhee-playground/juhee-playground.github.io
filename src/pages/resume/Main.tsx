@@ -6,6 +6,10 @@ import { getCompanies, getProjects, getStackOptions } from 'api/notion';
 import { useQuery } from 'react-query';
 
 import { useTheme } from '@mui/material/styles';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
 import './Main.scss';
 import Loading from 'components/Loading';
@@ -22,11 +26,11 @@ const filterDefault = {
 };
 
 export default function Main() {
-  const [isNewest, setNewest] = useState(true);
+  const [sortValue, setSortValue] = useState('N');
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
   const theme = useTheme();
-
+  0;
   const companyQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
     ['getCompanies'],
     () => getCompanies(),
@@ -65,7 +69,7 @@ export default function Main() {
 
   const parseCompanyQuery: CompanyQuery[] = useMemo(() => {
     if (!companyQuery.data) {
-      if (!isNewest) {
+      if (sortValue === 'O') {
         COMPANY_DATA.reverse();
       }
 
@@ -110,11 +114,11 @@ export default function Main() {
         } as CompanyQuery;
       });
 
-    if (!isNewest) {
+    if (sortValue === 'O') {
       return companyData.reverse();
     }
     return companyData;
-  }, [companyQuery.data, isNewest, selectedChips]);
+  }, [companyQuery.data, sortValue, selectedChips]);
 
   const parseProjectQuery: ProjectQuery[] = useMemo(() => {
     if (!data) {
@@ -154,11 +158,12 @@ export default function Main() {
           id: project.id,
           companyId: project.company.relation[0].id,
           name: project.name.title[0].plain_text,
-          period: date.start ? `${date.start}~${date.end}` : '',
+          period: date.start ? `${date.start}~${date.end === null ? '' : date.end}` : '',
           stacks: [...project.mainStack.multi_select, ...project.stack.multi_select],
           explain: project.explain.rich_text[0].plain_text,
           contents: results.text.content.split('\n'),
           numberOfParticipants: project.numberOfParticipants.number,
+          url: project.url.url,
         } as ProjectQuery;
       });
 
@@ -190,8 +195,9 @@ export default function Main() {
     });
   };
 
-  const handleToggle = () => {
-    setNewest(!isNewest);
+  const handleChangeSelect = (event: SelectChangeEvent) => {
+    console.log('select change', event.target.value);
+    setSortValue(event.target.value);
   };
 
   useEffect(() => {
@@ -217,9 +223,24 @@ export default function Main() {
           />
         </ul>
         <div className='sort__container'>
-          <span className='sort__button' onClick={handleToggle}>
-            {isNewest ? '오래된순' : '최신순'}
-          </span>
+          <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+            <InputLabel id='demo-select-small-label'>정렬방법</InputLabel>
+            <Select
+              className='sort__select-input'
+              labelId='demo-simple-select-label'
+              id='demo-select-small'
+              value={sortValue}
+              label='정렬방법'
+              onChange={handleChangeSelect}
+            >
+              <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'N'}>
+                최신순
+              </MenuItem>
+              <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'O'}>
+                오래된순
+              </MenuItem>
+            </Select>
+          </FormControl>
         </div>
       </section>
       <section className='career'>
