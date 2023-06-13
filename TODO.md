@@ -159,5 +159,3 @@ router작업 필요. 상세페이지
 
 - 스토리북 붙이기
 - react query test(https://tanstack.com/query/v4/docs/react/guides/testing)
-
-git action TEST 중.
