@@ -170,6 +170,8 @@ export default function Main() {
     return projectData;
   }, [data, selectedChips]);
 
+  console.log('parseProjectQuery', parseProjectQuery);
+
   const companies = useMemo(
     () =>
       companyQuery.data
