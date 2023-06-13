@@ -125,6 +125,14 @@ declare global {
     multi_select: SelectProperty[];
   }
 
+  interface NotionSelectOptions {
+    id: string;
+    name: string;
+    type: 'multi_select';
+    multi_select: {
+      options: SelectProperty[];
+    };
+  }
   interface SelectProperty {
     id: string;
     name: string;
