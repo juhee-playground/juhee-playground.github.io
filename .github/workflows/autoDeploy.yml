@@ -1,0 +1,16 @@
+name: CI for dev
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Create .env file
+        run: |
+          echo "REACT_APP_BACK_END_POINT=${{ secrets.REACT_APP_BACK_END_POINT }}" >> .env
+          echo "REACT_APP_PHONE_NUMBER=${{ secrets.REACT_APP_PHONE_NUMBER }}" >> .env
+          echo "REACT_APP_EMAIL=${{ secrets.REACT_APP_EMAIL }}" >> .env
+          cat .env
