@@ -1,16 +1,21 @@
 name: CI for dev
 on:
   pull_request:
-    branches:
-      - gh-pages
+      branches: 
+      - main
 jobs:
   build:
+    name: Create env file
     runs-on: ubuntu-latest
     steps:
-
-      - name: Create .env file
+      - name: access to secrets
         run: |
           echo "REACT_APP_BACK_END_POINT=${{ secrets.REACT_APP_BACK_END_POINT }}" >> .env
           echo "REACT_APP_PHONE_NUMBER=${{ secrets.REACT_APP_PHONE_NUMBER }}" >> .env
           echo "REACT_APP_EMAIL=${{ secrets.REACT_APP_EMAIL }}" >> .env
           cat .env
+        env:
+          REACT_APP_BACK_END_POINT: ${{secrets.REACT_APP_BACK_END_POINT}}
+          REACT_APP_PHONE_NUMBER: ${{secrets.REACT_APP_PHONE_NUMBER}}
+          REACT_APP_EMAIL: ${{secrets.REACT_APP_EMAIL}}
+        
