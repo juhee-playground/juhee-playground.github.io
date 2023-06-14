@@ -19,7 +19,7 @@ const LeftNav = () => {
   return (
     <nav className={`nav__container nav__container--${theme.palette.mode}`}>
       <div className='profile'>
-        <img className='profile__picture-img' src={`${imageBaseUrl}/juheePicture.jpg`} alt='profileImage' />
+        <img className='profile__picture-img' src={`${imageBaseUrl}/juhee-back.png`} alt='profileImage' />
         <section className={`profile__info profile__info--${theme.palette.mode}`}>
           <h2 style={{ color: pointColor }} className='profile__info-first-name'>
             BAEK
