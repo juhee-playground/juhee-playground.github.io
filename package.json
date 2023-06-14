@@ -2,7 +2,7 @@
   "homepage": "https://juhee-playground.github.io/",
   "name": "juhee-playground",
   "version": "0.1.0",
-  "proxy": "https://api.notion.com",
+  "proxy": "https://uts64qkqjg.execute-api.ap-northeast-2.amazonaws.com/Prod",
   "private": true,
   "dependencies": {
     "@craco/craco": "^7.1.0",
