@@ -10,14 +10,13 @@ jobs:
     steps:
       - name: Create .env
         shell: bash
+        run: |
+          echo "REACT_APP_BACK_END_POINT=$REACT_APP_BACK_END_POINT" >> .env
+          echo "REACT_APP_EMAIL=$REACT_APP_EMAIL" >> .env
+          echo "REACT_APP_PHONE_NUMBER=$REACT_APP_PHONE_NUMBER" >> .env
+          cat .env
         env:
           REACT_APP_BACK_END_POINT: ${{ secrets.REACT_APP_BACK_END_POINT }}
           REACT_APP_PHONE_NUMBER: ${{ vars.REACT_APP_PHONE_NUMBER }}
           REACT_APP_EMAIL: ${{ vars.REACT_APP_EMAIL }}
-        run: |
-          touch .env
-          echo REACT_APP_EMAIL="$REACT_APP_EMAIL" >> .env
-          echo REACT_APP_BACK_END_POINT="$REACT_APP_BACK_END_POINT" >> .env
-          echo REACT_APP_PHONE_NUMBER="$REACT_APP_PHONE_NUMBER" >> .env
-          cat .env
         
