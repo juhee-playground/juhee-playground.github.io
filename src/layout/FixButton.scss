@@ -58,5 +58,8 @@
     inset-block-start: 19%;
     inset-inline-end: 0;
     transform: translateY(-50%);
+    @include tablet-down {
+        inset-block-start: 4%;
+    }
 }
 

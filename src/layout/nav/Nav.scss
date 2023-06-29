@@ -8,6 +8,10 @@
         background-color: $dark-background-color;
         color: $dark-text-color;
     }
+    @include tablet-down {
+        display: flex;
+        padding: 16px;
+    }
 }
 
 .profile {
@@ -43,13 +47,24 @@
             margin: 8px;
         }
     }
-    &__box {
+}
+.infos {
+    display: flex;
+    flex-wrap: wrap;
+    .profile__box {
         display: flex;
         flex-direction: column;
         justify-content: center;
         width: 80%;
         align-items: flex-start;
         margin: 8px auto;
+
+        @include tablet-down {
+            width: 41%;
+            justify-content: flex-start;
+        }
+
+        
 
         &__header {
             display: flex;

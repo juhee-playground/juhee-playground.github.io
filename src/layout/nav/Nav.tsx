@@ -19,7 +19,7 @@ const LeftNav = () => {
   return (
     <nav className={`nav__container nav__container--${theme.palette.mode}`}>
       <div className='profile'>
-        <img className='profile__picture-img' src={`${imageBaseUrl}/juhee-back.png`} alt='profileImage' />
+        <img className='profile__picture-img' src={`${imageBaseUrl}/juheePicture.jpg`} alt='profileImage' />
         <section className={`profile__info profile__info--${theme.palette.mode}`}>
           <h2 style={{ color: pointColor }} className='profile__info-first-name'>
             BAEK
@@ -28,9 +28,11 @@ const LeftNav = () => {
           <p className='profile__info-role'>Front Developer</p>
         </section>
       </div>
-      {infos.map((info: NavInfoItems) => (
-        <ProfileInfoBox info={info} key={info.title} />
-      ))}
+      <div className='infos'>
+        {infos.map((info: NavInfoItems) => (
+          <ProfileInfoBox info={info} key={info.title} />
+        ))}
+      </div>
     </nav>
   );
 };
