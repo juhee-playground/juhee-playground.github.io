@@ -246,8 +246,8 @@ export default function Main() {
         </div>
       </section>
       <section className='career'>
-        {parseCompanyQuery.map((company: CompanyQuery) => {
-          return <CardListItem key={company.id} info={company} subInfo={parseProjectQuery} />;
+        {parseCompanyQuery.map((company: CompanyQuery, index: number) => {
+          return <CardListItem key={company.id} info={company} subInfo={parseProjectQuery} index={index} />;
         })}
       </section>
     </div>

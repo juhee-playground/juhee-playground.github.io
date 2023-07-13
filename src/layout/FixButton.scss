@@ -8,8 +8,6 @@
     background-color: $point-color;
     color: $white-color;
     vertical-align: middle;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
     font-size: 14px;
     text-align: center;
     text-decoration:none;
@@ -23,6 +21,11 @@
     &:focus {
         outline:0;
     }
+}
+
+.half-left{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 .ripple{

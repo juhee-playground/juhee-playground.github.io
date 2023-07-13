@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useSelector } from 'react-redux';
 import type { RootState } from 'redux/store';
@@ -12,10 +12,12 @@ import ProfileInfoBox from './ProfileInfoBox';
 const imageBaseUrl = 'https://juhee100bucket.s3.ap-northeast-2.amazonaws.com/image-juhee-playground';
 // 공룡사진 - (비활성화 되있을 때): dino_dinosaur_icon_153295.png
 // 이력서 사진 : juheePicture.jpg
+
 const LeftNav = () => {
   const theme = useTheme();
   const { pointColor } = useSelector((state: RootState) => state.pointColor);
   const infos = ProfileInfo;
+
   return (
     <nav className={`nav__container nav__container--${theme.palette.mode}`}>
       <div className='profile'>

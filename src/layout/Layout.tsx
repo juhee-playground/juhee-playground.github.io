@@ -38,13 +38,14 @@ const Layout = () => {
     setState({ ...state, [anchor]: open });
   };
   const anchor = 'right';
+
   return (
     <div className='container'>
       <Header />
       <main className='main__container'>
         <button
           style={{ backgroundColor: pointColor }}
-          className='button toggler ripple'
+          className='button half-left toggler ripple'
           onClick={toggleDrawer(anchor, true)}
         >
           <SettingsIcon />
