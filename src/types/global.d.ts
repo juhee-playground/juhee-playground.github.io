@@ -201,6 +201,7 @@ declare global {
   interface SubTitleItem {
     subTitle: string;
     value: string;
+    icon?: string;
   }
 
   interface DateItem {
