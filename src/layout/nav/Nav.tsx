@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'redux/hooks';
 import type { RootState } from 'redux/store';
 import ProfileInfo from '../../data/DB_profileInfo.json';
 
@@ -15,7 +15,8 @@ const imageBaseUrl = 'https://juhee100bucket.s3.ap-northeast-2.amazonaws.com/ima
 
 const LeftNav = () => {
   const theme = useTheme();
-  const { pointColor } = useSelector((state: RootState) => state.pointColor);
+  const { pointColor } = useAppSelector((state: RootState) => state.settings);
+
   const infos = ProfileInfo;
 
   return (

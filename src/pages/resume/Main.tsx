@@ -170,8 +170,6 @@ export default function Main() {
     return projectData;
   }, [data, selectedChips]);
 
-  console.log('parseProjectQuery', parseProjectQuery);
-
   const companies = useMemo(
     () =>
       companyQuery.data
@@ -198,7 +196,6 @@ export default function Main() {
   };
 
   const handleChangeSelect = (event: SelectChangeEvent) => {
-    console.log('select change', event.target.value);
     setSortValue(event.target.value);
   };
 

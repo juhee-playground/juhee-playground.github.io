@@ -10,6 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Layout from './layout/Layout';
 import { QueryClient, QueryClientProvider, QueryCache } from 'react-query';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider, responsiveFontSizes, Theme } from '@mui/material/styles';
 import { getDesignTokens, getThemedComponents } from './theme/Theme';
 import { ColorModeContext } from './context/ColorModeContext';
@@ -38,12 +39,13 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const [mode, setMode] = useState<'light' | 'dark'>('light');
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const [mode, setMode] = useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light');
 
   const colorMode = useMemo(
     () => ({
-      toggleColorMode: (mode: ModeType) => {
-        setMode(mode);
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
     [],

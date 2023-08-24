@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import type { RootState } from 'redux/store';
+import { useAppSelector } from 'redux/hooks';
 
 const ProfileInfoBox = (props: NavProfileProps) => {
-  const { pointColor } = useSelector((state: RootState) => state.pointColor);
+  const { pointColor } = useAppSelector((state: RootState) => state.settings);
   const phone_number = process.env.REACT_APP_PHONE_NUMBER;
   const email = process.env.REACT_APP_EMAIL;
   const profile = props.info;

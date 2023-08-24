@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import type { RootState } from 'redux/store';
-import { changePointColor } from 'redux/actions';
+import { changePointColor } from 'redux/modules/settings';
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -26,29 +26,19 @@ const colorList = [
 ];
 
 const ThemeCustomized = () => {
-  const [active, setActive] = useState('#009688');
-  // const [checked, setChecked] = React.useState(true);
-
   const colorMode = React.useContext(ColorModeContext);
-  const { pointColor } = useSelector((state: RootState) => state.pointColor);
-  const dispatch = useDispatch();
-  const handleColorChange = (color: string) => {
+  const { pointColor } = useAppSelector((state: RootState) => state.settings);
+  const dispatch = useAppDispatch();
+  const clickHandler = (color: ColorType) => {
+    handlePointColor(color.hex);
+  };
+  const handlePointColor = (color: string) => {
     dispatch(changePointColor(color));
   };
 
-  const clickHandler = (color: ColorType) => {
-    setActive(color.hex);
-    handleColorChange(color.hex);
+  const changeHandler = () => {
+    colorMode.toggleColorMode();
   };
-
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const mode = event.target.value as ModeType;
-    colorMode.toggleColorMode(mode);
-  };
-
-  // const switchHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setChecked(event.target.checked);
-  // };
 
   return (
     <div className='card__container'>
@@ -76,7 +66,7 @@ const ThemeCustomized = () => {
           return (
             <li
               key={`list__${color.text}`}
-              className={`paper--radio ${active === color.hex && 'active'}`}
+              className={`paper--radio ${pointColor === color.hex && 'active'}`}
               onClick={() => clickHandler(color)}
               style={{ backgroundColor: color.hex }}
             ></li>
