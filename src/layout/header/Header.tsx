@@ -8,6 +8,9 @@ import IconButton from '@mui/material/IconButton';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import { useTheme } from '@mui/material/styles';
+
+import { ColorModeContext } from 'context/ColorModeContext';
 import PdfDialog from 'pages/resume/dialog/MakePdf';
 
 interface CanvasImageInfo {
@@ -19,6 +22,9 @@ interface CanvasImageInfo {
 export default function DenseAppBar() {
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
+  const theme = useTheme();
+  const colorMode = React.useContext(ColorModeContext);
+
   const companyIds = [
     '02458f34-9632-4ee9-9363-ec9b4dd9af2f',
     'ac39715c-45de-4b35-9daa-30cf52a10664',
@@ -30,15 +36,20 @@ export default function DenseAppBar() {
     pageHeight: 210 * 1.414 - 10,
     margin: 8,
   };
+
   const handleClickOpen = async () => {
     // change print mode
     handlePrintModeChange();
     // 이미지 생성
-    const imageDataArr = await Promise.all(companyIds.map((id) => makeImage(id)));
+    // const imageDataArr = await Promise.all(companyIds.map((id) => makeImage(id)));
     // pdf 생성
-    createPdf(imageDataArr);
+    // createPdf(imageDataArr);
     // dialog open
     setOpen(true);
+  };
+
+  const handlePrintModeChange = () => {
+    dispatch(changePrintMode());
   };
 
   const makeImage = async (id: string) => {
