@@ -15,8 +15,7 @@ const imageBaseUrl = 'https://juhee100bucket.s3.ap-northeast-2.amazonaws.com/ima
 
 const LeftNav = () => {
   const theme = useTheme();
-  const { pointColor } = useAppSelector((state: RootState) => state.settings);
-  const isPrintMode = useAppSelector((state: RootState) => state.printMode.isPrintMode);
+  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
 
   const infos = ProfileInfo;
 

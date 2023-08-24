@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from 'redux/hooks';
-import { changePrintMode } from 'redux/modules/printMode';
+import { changePrintMode } from 'redux/modules/settings';
 import html2canvas from 'html2canvas';
 
 import './Header.scss';
