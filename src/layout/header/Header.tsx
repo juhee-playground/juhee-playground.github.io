@@ -1,4 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import { useAppDispatch } from 'redux/hooks';
+import { changePrintMode } from 'redux/modules/printMode';
 import html2canvas from 'html2canvas';
 
 import './Header.scss';
@@ -16,6 +18,7 @@ interface CanvasImageInfo {
 
 export default function DenseAppBar() {
   const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
   const companyIds = [
     '02458f34-9632-4ee9-9363-ec9b4dd9af2f',
     'ac39715c-45de-4b35-9daa-30cf52a10664',
@@ -28,6 +31,8 @@ export default function DenseAppBar() {
     margin: 8,
   };
   const handleClickOpen = async () => {
+    // change print mode
+    handlePrintModeChange();
     // 이미지 생성
     const imageDataArr = await Promise.all(companyIds.map((id) => makeImage(id)));
     // pdf 생성
@@ -78,18 +83,15 @@ export default function DenseAppBar() {
     // return { data: imgData, width: imgWidth, height: imgHeight };
   };
 
-  const changeMode = () => {
-    console.log('changeMode');
-  };
-
   const handleClose = () => {
+    dispatch(changePrintMode());
     setOpen(false);
   };
 
   return (
     <header className='header'>
-      <IconButton aria-label='lightMode' onClick={changeMode}>
-        <LightModeIcon />
+      <IconButton aria-label='lightMode' onClick={colorMode.toggleColorMode}>
+        {theme.palette.mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
       </IconButton>
       <IconButton aria-label='makePdf' onClick={handleClickOpen}>
         <PictureAsPdfIcon />
