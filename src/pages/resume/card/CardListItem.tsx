@@ -3,7 +3,6 @@ import React, { useMemo } from 'react';
 import SubListItem from './SubListItem';
 function CardListItem(props: CardListProps) {
   const { startDate, endDate, period, name, role, department, id }: CompanyQuery = props.info;
-  console.log(id);
 
   const isWave = useMemo(() => (startDate !== '' ? `~` : null), []);
   return (
