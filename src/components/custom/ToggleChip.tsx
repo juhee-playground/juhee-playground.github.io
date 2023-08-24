@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'redux/hooks';
 import type { RootState } from 'redux/store';
 
 import { useTheme } from '@mui/material/styles';
@@ -12,7 +12,7 @@ const ToggleChip = ({ selected, label, clickable, parentFunction }: CustomChip) 
       parentFunction(label);
     }
   };
-  const { pointColor } = useSelector((state: RootState) => state.pointColor);
+  const { pointColor } = useAppSelector((state: RootState) => state.settings);
   const theme = useTheme();
 
   let icon;
