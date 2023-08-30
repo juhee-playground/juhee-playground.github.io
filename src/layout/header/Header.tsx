@@ -24,14 +24,17 @@ export default function DenseAppBar() {
     await handlePrintModeChange();
   };
 
-  const handlePrintModeChange = async () => {
-    await dispatch(changePrintMode());
+  const handlePrintModeChange = () => {
+    dispatch(changePrintMode());
+  };
+
+  const openPrint = () => {
+    window.print();
   };
 
   useEffect(() => {
-    console.log(isPrintMode);
     if (isPrintMode) {
-      window.print();
+      openPrint();
     }
   }, [isPrintMode]);
 
@@ -39,9 +42,14 @@ export default function DenseAppBar() {
     <header className={isPrintMode ? 'header header--print' : 'header'}>
       <div className='button__groups'>
         {isPrintMode ? (
-          <IconButton aria-label='offPrintMode' onClick={handleClickOpen}>
-            <ClearIcon />
-          </IconButton>
+          <>
+            <IconButton aria-label='printMode' onClick={openPrint}>
+              <PrintIcon />
+            </IconButton>
+            <IconButton aria-label='offPrintMode' onClick={handleClickOpen}>
+              <ClearIcon />
+            </IconButton>
+          </>
         ) : (
           <>
             <IconButton aria-label='lightMode' onClick={colorMode.toggleColorMode}>
