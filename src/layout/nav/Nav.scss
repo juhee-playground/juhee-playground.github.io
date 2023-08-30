@@ -11,6 +11,8 @@
     &--print {
         display: flex;
         padding: 16px;
+        margin: auto;
+        background-color: white;
     }
     @include tablet-down {
         display: flex;
@@ -62,6 +64,10 @@
         width: 80%;
         align-items: flex-start;
         margin: 8px auto;
+        &--print {
+            width: 41%;
+            justify-content: flex-start;
+        }
 
         @include tablet-down {
             width: 41%;

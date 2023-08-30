@@ -18,7 +18,7 @@ const Main = lazy(() => import('../pages/resume/Main'));
 
 const renderLoader = () => <p>Loading</p>;
 const Layout = () => {
-  const { pointColor } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -39,13 +39,15 @@ const Layout = () => {
   };
   const anchor = 'right';
 
+  const mode = isPrintMode ? 'print' : '';
+
   return (
     <div className='container'>
       <Header />
-      <main className='main__container'>
+      <main className={isPrintMode ? `main__container main__container--${mode}` : 'main__container'}>
         <button
           style={{ backgroundColor: pointColor }}
-          className='button half-left toggler ripple'
+          className={`fixButton half-left toggler ripple ${isPrintMode ? `fixButton--${mode}` : ''}`}
           onClick={toggleDrawer(anchor, true)}
         >
           <SettingsIcon />

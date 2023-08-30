@@ -1,4 +1,4 @@
-.button {
+.fixButton {
     font-family: 'Roboto', sans-serif;
     -webkit-appearance: none;
     border: none;
@@ -20,6 +20,9 @@
     }
     &:focus {
         outline:0;
+    }
+    &--print {
+        display: none;
     }
 }
 
@@ -58,9 +61,12 @@
 
 .toggler {
     position: fixed!important;
-    inset-block-start: 19%;
+    inset-block-start: 10%;
     inset-inline-end: 0;
     transform: translateY(-50%);
+    &--print {
+        inset-block-start: 4%;
+    }
     @include tablet-down {
         inset-block-start: 4%;
     }
