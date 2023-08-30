@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import type { RootState } from 'redux/store';
 import { changePrintMode } from 'redux/modules/settings';
@@ -28,19 +28,34 @@ export default function DenseAppBar() {
     dispatch(changePrintMode());
   };
 
+  const openPrint = () => {
+    window.print();
+  };
+
+  useEffect(() => {
+    if (isPrintMode) {
+      openPrint();
+    }
+  }, [isPrintMode]);
+
   return (
     <header className={isPrintMode ? 'header header--print' : 'header'}>
       <div className='button__groups'>
         {isPrintMode ? (
-          <IconButton aria-label='offPrintMode' onClick={handleClickOpen}>
-            <ClearIcon />
-          </IconButton>
+          <>
+            <IconButton aria-label='printMode' onClick={openPrint}>
+              <PrintIcon />
+            </IconButton>
+            <IconButton aria-label='offPrintMode' onClick={handleClickOpen}>
+              <ClearIcon />
+            </IconButton>
+          </>
         ) : (
           <>
             <IconButton aria-label='lightMode' onClick={colorMode.toggleColorMode}>
               {theme.palette.mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
-            <IconButton aria-label='makePdf' onClick={handleClickOpen}>
+            <IconButton aria-label='printMode' onClick={handleClickOpen}>
               <PrintIcon />
             </IconButton>
           </>
