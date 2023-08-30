@@ -1,4 +1,9 @@
 .action {
+    padding: 12px;
+    height: 20%;
+    &--print {
+        display: none;
+    }
     .filter__container {
         .list__item {
             display: flex;
@@ -47,25 +52,39 @@
 .box__container {
     display: flex;
     padding: 8px;
+    &--print {
+        flex-direction: column;
+        padding: 6px;
+    }
     @include tablet-down {
         flex-direction: column;
     }
     .left {
         width: 16%;
+        padding-top: 8px;
+        &--print {
+            display: none;
+        }
         @include tablet-down {
             width: 84%;
-            border-bottom: solid 1px #dedede;
-            padding: 12px;
+            padding: 12px 0 4px 12px;
+            display: flex;
         }
         .period {
             font-weight: 700;
             font-size: 12px;
+            line-height: 21px;
         }
 
     }
     .right {
         width: 84%;
         padding: 0 12px;
+
+        .printMode {
+            padding: 0 8px;
+            font-size: 16px;
+        }
     }
 }
 
@@ -129,6 +148,9 @@
     margin: 4px 0;
     padding: 0;
     .stacks { 
+        &--print {
+            flex-wrap: wrap;
+        }
         @include tablet-down {
             flex-wrap: wrap;
         }

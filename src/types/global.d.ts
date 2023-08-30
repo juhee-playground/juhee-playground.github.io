@@ -166,7 +166,7 @@ declare global {
     key: string;
     info: CompanyQuery;
     subInfo: ProjectQuery[];
-    index: number;
+    isLastCompany: boolean;
   }
 
   interface SubListProps {

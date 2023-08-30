@@ -1,4 +1,6 @@
 import React from 'react';
+import { useAppSelector } from 'redux/hooks';
+import type { RootState } from 'redux/store';
 
 import LabelIcon from '@mui/icons-material/Label';
 import Stack from '@mui/material/Stack';
@@ -6,8 +8,11 @@ import DChip from 'components/custom/DChip';
 
 function SubListItem(props: SubListProps) {
   const { id, name, numberOfParticipants, explain, period, stacks, contents, url }: ProjectQuery = props.info;
+  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const mode = isPrintMode ? 'print' : '';
+
   return (
-    <div className='project__container' key={id}>
+    <div className='project__container' key={`project__${id}`}>
       <div className='list__item list__item--vertical'>
         <a
           className='title__link'
@@ -29,11 +34,11 @@ function SubListItem(props: SubListProps) {
         <span className='text text__plain'>{period}</span>
       </div>
       <div className='list__item stacks'>
-        <ul className='list__container'>
+        <ul className={isPrintMode ? `list__container--${mode}` : 'list__container'}>
           <Stack className='stacks' direction='row' spacing={1}>
             {stacks.map((select: SelectProperty) => (
               <DChip
-                key={select.id}
+                key={`stacks__${select.id}`}
                 size='small'
                 color={select.color}
                 label={select.name}
@@ -45,7 +50,7 @@ function SubListItem(props: SubListProps) {
       </div>
       <div className='list__item results'>
         {contents.map((text: string, index: number) => (
-          <span key={`result_content${index}`} className='text text__plain'>
+          <span key={`result_content_${index}`} className='text text__plain'>
             {text}
           </span>
         ))}

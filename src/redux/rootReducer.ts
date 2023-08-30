@@ -1,13 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import pointColor from './modules/pointColor';
-import printMode from './modules/printMode';
 import settings from './modules/settings';
 
 // 만들어 놓은 리듀서들을 합친다.
 const reducer = combineReducers({
-  pointColor,
-  printMode,
   settings,
 });
 

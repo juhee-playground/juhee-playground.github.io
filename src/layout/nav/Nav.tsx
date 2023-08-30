@@ -15,12 +15,19 @@ const imageBaseUrl = 'https://juhee100bucket.s3.ap-northeast-2.amazonaws.com/ima
 
 const LeftNav = () => {
   const theme = useTheme();
-  const { pointColor } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
 
   const infos = ProfileInfo;
 
+  const mode = isPrintMode ? 'print' : '';
+
   return (
-    <nav id='profileInfo' className={`nav__container nav__container--${theme.palette.mode}`}>
+    <nav
+      id='profileInfo'
+      className={`nav__container nav__container--${theme.palette.mode} ${
+        isPrintMode ? `nav__container--${mode}` : ''
+      }`}
+    >
       <div className='profile'>
         <img className='profile__picture-img' src={`${imageBaseUrl}/juheePicture.jpg`} alt='profileImage' />
         <section className={`profile__info profile__info--${theme.palette.mode}`}>

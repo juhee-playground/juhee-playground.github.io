@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
   pointColor: '#009688',
+  isPrintMode: false,
 };
 
 const SettingSlice = createSlice({
@@ -11,8 +12,11 @@ const SettingSlice = createSlice({
     changePointColor(state, action: PayloadAction<string>) {
       state.pointColor = action.payload;
     },
+    changePrintMode(state) {
+      state.isPrintMode = !state.isPrintMode;
+    },
   },
 });
 
-export const { changePointColor } = SettingSlice.actions;
+export const { changePointColor, changePrintMode } = SettingSlice.actions;
 export default SettingSlice.reducer;
