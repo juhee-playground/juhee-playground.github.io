@@ -12,19 +12,6 @@ import FormControl from '@mui/material/FormControl';
 import { ColorModeContext } from 'context/ColorModeContext';
 
 import './ThemeCustomized.scss';
-interface ColorType {
-  text: string;
-  hex: string;
-}
-
-const colorList = [
-  { text: 'purple', hex: '#8958F4' },
-  { text: 'green', hex: '#009688' },
-  { text: 'blue', hex: '#52AEF8' },
-  { text: 'amber', hex: '#F4B73F' },
-  { text: 'red', hex: '#EC5A58' },
-  { text: 'grey', hex: '#8B8D92' },
-];
 
 const ThemeCustomized = () => {
   const [color, setColor] = useState<string>('');
