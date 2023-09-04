@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import type { RootState } from 'redux/store';
 import { changePointColor } from 'redux/modules/settings';
+import { ColorResult, ChromePicker } from 'react-color';
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -26,12 +27,16 @@ const colorList = [
 ];
 
 const ThemeCustomized = () => {
+  const [color, setColor] = useState<string>('');
   const colorMode = React.useContext(ColorModeContext);
   const { pointColor } = useAppSelector((state: RootState) => state.settings);
   const dispatch = useAppDispatch();
-  const clickHandler = (color: ColorType) => {
+
+  const handleChangeComplete = (color: ColorResult) => {
+    setColor(color.hex);
     handlePointColor(color.hex);
   };
+
   const handlePointColor = (color: string) => {
     dispatch(changePointColor(color));
   };
@@ -61,18 +66,7 @@ const ThemeCustomized = () => {
         </FormControl>
       </div>
       <h5>Point Color</h5>
-      <ul className='paper__list'>
-        {colorList.map((color: ColorType) => {
-          return (
-            <li
-              key={`list__${color.text}`}
-              className={`paper--radio ${pointColor === color.hex && 'active'}`}
-              onClick={() => clickHandler(color)}
-              style={{ backgroundColor: color.hex }}
-            ></li>
-          );
-        })}
-      </ul>
+      <ChromePicker color={color} onChangeComplete={handleChangeComplete} />
       <hr />
     </div>
   );
