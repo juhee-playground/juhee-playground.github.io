@@ -16,3 +16,13 @@ jobs:
           echo "REACT_APP_BACK_END_POINT=${{ secrets.REACT_APP_BACK_END_POINT }}" >> $GITHUB_ENV
           echo "REACT_APP_EMAIL=${{ vars.REACT_APP_EMAIL }}" >> $GITHUB_ENV
           echo "REACT_APP_PHONE_NUMBER=${{ vars.REACT_APP_PHONE_NUMBER }}" >> $GITHUB_ENV
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_PAT }}
+          publish_dir: ./dist
+
