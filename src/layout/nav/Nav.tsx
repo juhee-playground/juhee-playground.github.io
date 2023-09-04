@@ -9,10 +9,6 @@ import { useTheme } from '@mui/material/styles';
 import './Nav.scss';
 import ProfileInfoBox from './ProfileInfoBox';
 
-const imageBaseUrl = 'https://juhee100bucket.s3.ap-northeast-2.amazonaws.com/image-juhee-playground';
-// 공룡사진 - (비활성화 되있을 때): dino_dinosaur_icon_153295.png
-// 이력서 사진 : juheePicture.jpg
-
 const LeftNav = () => {
   const theme = useTheme();
   const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
