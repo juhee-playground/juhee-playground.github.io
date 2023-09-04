@@ -13,9 +13,9 @@ const ProfileInfoBox = (props: NavProfileProps) => {
     <section className={isPrintMode ? `profile__box profile__box--${mode}` : 'profile__box'}>
       <div className='profile__box__header'>
         <span className='box-icon'>{profile.icon}</span>
-        <h3 style={{ color: pointColor }} className='box-title'>
+        <h4 style={{ color: pointColor }} className='box-title'>
           {profile.title}
-        </h3>
+        </h4>
       </div>
       <hr />
       {profile.isSubTitle && profile.subTitle ? (
