@@ -6,8 +6,8 @@
         "basic": [],
         "isSubTitle": true,
         "subTitle" : [
-            {"subTitle": "Phone", "value": "phone_number"},
-            {"subTitle": "Email",  "value": "email" }
+            {"icon": "📞","subTitle": "Phone", "value": "phone_number"},
+            {"icon": "📧", "subTitle": "Email",  "value": "email" }
         ],
         "isSpaceBetween": false,
         "spaceBetween": []

@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { useAppSelector } from 'redux/hooks';
+import type { RootState } from 'redux/store';
 import { AxiosError } from 'axios';
 import { format, differenceInYears, differenceInMonths } from 'date-fns';
 
@@ -30,7 +32,9 @@ export default function Main() {
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
   const theme = useTheme();
-  0;
+  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const mode = isPrintMode ? 'print' : '';
+
   const companyQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
     ['getCompanies'],
     () => getCompanies(),
@@ -98,7 +102,7 @@ export default function Main() {
           const noYear = year === 0;
           const numberOfMonths = month - year * 12;
           const noNumberOfMonths = numberOfMonths === 0;
-          period = `${isZero ? `기간: (` : ''} 
+          period = `${isZero ? `(` : ''} 
             ${noYear ? '' : `${year}년`}
             ${noNumberOfMonths ? '' : `${numberOfMonths}개월`} 
             ${isZero ? `)` : ''}`;
@@ -119,6 +123,8 @@ export default function Main() {
     }
     return companyData;
   }, [companyQuery.data, sortValue, selectedChips]);
+
+  const companyLength = parseCompanyQuery.length - 1;
 
   const parseProjectQuery: ProjectQuery[] = useMemo(() => {
     if (!data) {
@@ -170,8 +176,6 @@ export default function Main() {
     return projectData;
   }, [data, selectedChips]);
 
-  console.log('parseProjectQuery', parseProjectQuery);
-
   const companies = useMemo(
     () =>
       companyQuery.data
@@ -198,7 +202,6 @@ export default function Main() {
   };
 
   const handleChangeSelect = (event: SelectChangeEvent) => {
-    console.log('select change', event.target.value);
     setSortValue(event.target.value);
   };
 
@@ -211,9 +214,13 @@ export default function Main() {
   }, [companies, stackOptions]);
 
   return (
-    <div className={`section-right section-right--${theme.palette.mode}`}>
+    <div
+      className={`section-right section-right--${theme.palette.mode} ${
+        isPrintMode ? `section-right--${mode}` : ''
+      }`}
+    >
       {isLoading ? <Loading /> : null}
-      <section className='action'>
+      <section className={isPrintMode ? `action--${mode}` : 'action'}>
         <ul className='filter__container'>
           <FilterOption options={companies} type='company' selected={selectedChips} onChange={handleChange} />
           <FilterOption
@@ -245,9 +252,16 @@ export default function Main() {
           </FormControl>
         </div>
       </section>
-      <section className='career'>
-        {parseCompanyQuery.map((company: CompanyQuery) => {
-          return <CardListItem key={company.id} info={company} subInfo={parseProjectQuery} />;
+      <section className={isPrintMode ? `career--${mode}` : 'career'}>
+        {parseCompanyQuery.map((company: CompanyQuery, index: number) => {
+          return (
+            <CardListItem
+              key={company.id}
+              info={company}
+              subInfo={parseProjectQuery}
+              isLastCompany={index === companyLength}
+            />
+          );
         })}
       </section>
     </div>

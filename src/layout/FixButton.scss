@@ -1,4 +1,4 @@
-.button {
+.fixButton {
     font-family: 'Roboto', sans-serif;
     -webkit-appearance: none;
     border: none;
@@ -8,8 +8,6 @@
     background-color: $point-color;
     color: $white-color;
     vertical-align: middle;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
     font-size: 14px;
     text-align: center;
     text-decoration:none;
@@ -23,6 +21,14 @@
     &:focus {
         outline:0;
     }
+    &--print {
+        display: none;
+    }
+}
+
+.half-left{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 .ripple{
@@ -55,8 +61,11 @@
 
 .toggler {
     position: fixed!important;
-    inset-block-start: 19%;
+    inset-block-start: 10%;
     inset-inline-end: 0;
     transform: translateY(-50%);
+    @include tablet-down {
+        inset-block-start: 2%;
+    }
 }
 

@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './header/Header';
 import Nav from './nav/Nav';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'redux/hooks';
 import type { RootState } from 'redux/store';
 
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -18,7 +18,7 @@ const Main = lazy(() => import('../pages/resume/Main'));
 
 const renderLoader = () => <p>Loading</p>;
 const Layout = () => {
-  const { pointColor } = useSelector((state: RootState) => state.pointColor);
+  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -38,13 +38,16 @@ const Layout = () => {
     setState({ ...state, [anchor]: open });
   };
   const anchor = 'right';
+
+  const mode = isPrintMode ? 'print' : '';
+
   return (
     <div className='container'>
       <Header />
-      <main className='main__container'>
+      <main className={isPrintMode ? `main__container main__container--${mode}` : 'main__container'}>
         <button
           style={{ backgroundColor: pointColor }}
-          className='button toggler ripple'
+          className={`fixButton half-left toggler ripple ${isPrintMode ? `fixButton--${mode}` : ''}`}
           onClick={toggleDrawer(anchor, true)}
         >
           <SettingsIcon />

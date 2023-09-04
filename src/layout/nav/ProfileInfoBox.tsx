@@ -1,20 +1,21 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import type { RootState } from 'redux/store';
+import { useAppSelector } from 'redux/hooks';
 
 const ProfileInfoBox = (props: NavProfileProps) => {
-  const { pointColor } = useSelector((state: RootState) => state.pointColor);
+  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const phone_number = process.env.REACT_APP_PHONE_NUMBER;
   const email = process.env.REACT_APP_EMAIL;
   const profile = props.info;
+  const mode = isPrintMode ? 'print' : '';
 
   return (
-    <section className='profile__box'>
+    <section className={isPrintMode ? `profile__box profile__box--${mode}` : 'profile__box'}>
       <div className='profile__box__header'>
         <span className='box-icon'>{profile.icon}</span>
-        <h3 style={{ color: pointColor }} className='box-title'>
+        <h4 style={{ color: pointColor }} className='box-title'>
           {profile.title}
-        </h3>
+        </h4>
       </div>
       <hr />
       {profile.isSubTitle && profile.subTitle ? (

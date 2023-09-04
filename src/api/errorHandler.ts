@@ -13,7 +13,7 @@ const logOnDev = (message: string) => {
 
 function handleError(serverError: ResponseData) {
   if (serverError?.data) {
-    console.log('handleErrror@@@@@@@@@', serverError);
+    console.log('handleError', serverError);
   }
 }
 

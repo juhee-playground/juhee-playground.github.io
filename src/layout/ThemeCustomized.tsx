@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from 'redux/hooks';
 import type { RootState } from 'redux/store';
-import { changePointColor } from 'redux/actions';
+import { changePointColor } from 'redux/modules/settings';
+import { ColorResult, ChromePicker } from 'react-color';
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -11,44 +12,25 @@ import FormControl from '@mui/material/FormControl';
 import { ColorModeContext } from 'context/ColorModeContext';
 
 import './ThemeCustomized.scss';
-interface ColorType {
-  text: string;
-  hex: string;
-}
-
-const colorList = [
-  { text: 'purple', hex: '#8958F4' },
-  { text: 'green', hex: '#009688' },
-  { text: 'blue', hex: '#52AEF8' },
-  { text: 'amber', hex: '#F4B73F' },
-  { text: 'red', hex: '#EC5A58' },
-  { text: 'grey', hex: '#8B8D92' },
-];
 
 const ThemeCustomized = () => {
-  const [active, setActive] = useState('#009688');
-  // const [checked, setChecked] = React.useState(true);
-
+  const [color, setColor] = useState<string>('');
   const colorMode = React.useContext(ColorModeContext);
-  const { pointColor } = useSelector((state: RootState) => state.pointColor);
-  const dispatch = useDispatch();
-  const handleColorChange = (color: string) => {
+  const { pointColor } = useAppSelector((state: RootState) => state.settings);
+  const dispatch = useAppDispatch();
+
+  const handleChangeComplete = (color: ColorResult) => {
+    setColor(color.hex);
+    handlePointColor(color.hex);
+  };
+
+  const handlePointColor = (color: string) => {
     dispatch(changePointColor(color));
   };
 
-  const clickHandler = (color: ColorType) => {
-    setActive(color.hex);
-    handleColorChange(color.hex);
+  const changeHandler = () => {
+    colorMode.toggleColorMode();
   };
-
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const mode = event.target.value as ModeType;
-    colorMode.toggleColorMode(mode);
-  };
-
-  // const switchHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setChecked(event.target.checked);
-  // };
 
   return (
     <div className='card__container'>
@@ -71,18 +53,7 @@ const ThemeCustomized = () => {
         </FormControl>
       </div>
       <h5>Point Color</h5>
-      <ul className='paper__list'>
-        {colorList.map((color: ColorType) => {
-          return (
-            <li
-              key={`list__${color.text}`}
-              className={`paper--radio ${active === color.hex && 'active'}`}
-              onClick={() => clickHandler(color)}
-              style={{ backgroundColor: color.hex }}
-            ></li>
-          );
-        })}
-      </ul>
+      <ChromePicker color={color} onChangeComplete={handleChangeComplete} />
       <hr />
     </div>
   );

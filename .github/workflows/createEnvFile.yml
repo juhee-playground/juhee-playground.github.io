@@ -3,18 +3,18 @@ name: github pages
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-
+  
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
         with:
-          node-version: '12.x'
+          node-version: '18.x'
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -23,18 +23,12 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
       - name: Set environment variables
-        run: |
-          echo "REACT_APP_BACK_END_POINT=${{ secrets.REACT_APP_BACK_END_POINT }}" >> $GITHUB_ENV
-          echo "REACT_APP_EMAIL=${{ vars.REACT_APP_EMAIL }}" >> $GITHUB_ENV
-          echo "REACT_APP_PHONE_NUMBER=${{ vars.REACT_APP_PHONE_NUMBER }}" >> $GITHUB_ENV
-
       - run: npm ci
       - run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_PAT }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist

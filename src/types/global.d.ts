@@ -166,6 +166,7 @@ declare global {
     key: string;
     info: CompanyQuery;
     subInfo: ProjectQuery[];
+    isLastCompany: boolean;
   }
 
   interface SubListProps {
@@ -200,6 +201,7 @@ declare global {
   interface SubTitleItem {
     subTitle: string;
     value: string;
+    icon?: string;
   }
 
   interface DateItem {
