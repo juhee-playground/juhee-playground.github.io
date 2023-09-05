@@ -9,8 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-  
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Set environment variables
         run: |
           echo "REACT_APP_BACK_END_POINT=${{ secrets.REACT_APP_BACK_END_POINT }}" >> $GITHUB_ENV
@@ -22,5 +23,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GIT_TOKEN }}
           publish_dir: ./dist
