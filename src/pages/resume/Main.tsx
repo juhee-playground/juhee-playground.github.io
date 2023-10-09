@@ -21,6 +21,7 @@ import FilterOption from './filter/FilterOption';
 import COMPANY_DATA from 'data/DB_company.json';
 import DB_STACK from 'data/DB_stack.json';
 import PROJECT_DATA from 'data/DB_project.json';
+import PointStackCard from './pointStack/Card';
 
 const filterDefault = {
   company: [],
@@ -89,6 +90,9 @@ export default function Main() {
         const name = company.name.title;
         const filtering = selectedChips.company?.includes(name[0].plain_text);
         return filtering;
+      })
+      .sort((firstObject: NotionProperties, secondObject: NotionProperties) => {
+        return firstObject.type.number > secondObject.type.number ? 1 : -1;
       })
       .map((company: NotionProperties) => {
         const date = company.period.date;
@@ -252,6 +256,7 @@ export default function Main() {
           </FormControl>
         </div>
       </section>
+      <PointStackCard />
       <section className={isPrintMode ? `career--${mode}` : 'career'}>
         {parseCompanyQuery.map((company: CompanyQuery, index: number) => {
           return (
