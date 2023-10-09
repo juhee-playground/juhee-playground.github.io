@@ -255,8 +255,10 @@ export default function Main() {
             </Select>
           </FormControl>
         </div>
+        <hr className='hrBasic' />
       </section>
       <PointStackCard />
+      <hr className='hrBasic' />
       <section className={isPrintMode ? `career--${mode}` : 'career'}>
         {parseCompanyQuery.map((company: CompanyQuery, index: number) => {
           return (
