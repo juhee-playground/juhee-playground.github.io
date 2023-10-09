@@ -102,6 +102,7 @@
         display: flex;
         align-items: center;
         cursor: pointer;
+        color: inherit;
         &:hover {
             text-decoration: underline;
         }
@@ -154,8 +155,12 @@
         @include tablet-down {
             flex-wrap: wrap;
         }
-    }
-    
+    }    
+}
+.hrBasic {
+    background:#dddddd;
+    height:1px;
+    width: 100%;
 }
 
 .dChip__label {

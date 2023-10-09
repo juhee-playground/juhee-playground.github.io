@@ -2,15 +2,32 @@ import * as React from 'react';
 import type { RootState } from 'redux/store';
 import { useAppSelector } from 'redux/hooks';
 
+interface ContactProperties {
+  [key: string]: string | undefined;
+  phone_number: string | undefined;
+  email: string | undefined;
+  github: string | undefined;
+  portfolio: string | undefined;
+}
+
 const ProfileInfoBox = (props: NavProfileProps) => {
   const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
-  const phone_number = process.env.REACT_APP_PHONE_NUMBER;
-  const email = process.env.REACT_APP_EMAIL;
+  const contactInfo: ContactProperties = {
+    phone_number: process.env.REACT_APP_PHONE_NUMBER,
+    email: process.env.REACT_APP_EMAIL,
+    github: process.env.REACT_APP_GITHUB,
+    portfolio: process.env.REACT_APP_PORTFOLIO,
+  };
   const profile = props.info;
+  const profileClass = profile.title.toLowerCase();
   const mode = isPrintMode ? 'print' : '';
 
   return (
-    <section className={isPrintMode ? `profile__box profile__box--${mode}` : 'profile__box'}>
+    <section
+      className={
+        isPrintMode ? `profile__box profile__box--${mode} ${profileClass}` : `profile__box ${profileClass}`
+      }
+    >
       <div className='profile__box__header'>
         <span className='box-icon'>{profile.icon}</span>
         <h4 style={{ color: pointColor }} className='box-title'>
@@ -22,12 +39,28 @@ const ProfileInfoBox = (props: NavProfileProps) => {
         <div className='profile__box__content'>
           <ul className='list list-subtitle'>
             {/* subtitle이 있는 list item */}
-            {profile.subTitle.map((item: SubTitleItem, index: number) => (
-              <li className='list-item' key={`profile_subTitle_${index}`}>
-                <span className='subtitle'>{item.subTitle}</span>
-                <span className='text--light'>{item.value === 'phone_number' ? phone_number : email}</span>
-              </li>
-            ))}
+            {profile.subTitle.map((item: SubTitleItem, index: number) => {
+              const key = item.value;
+              if (key === 'github' || key === 'portfolio') {
+                return (
+                  <li className='list-item' key={`profile_subTitle_${index}`}>
+                    <span className='subtitle'>{item.subTitle}</span>
+                    <span className='text--light'>
+                      <a className='text--link' href={contactInfo[key]}>
+                        {contactInfo[key]}
+                      </a>
+                    </span>
+                  </li>
+                );
+              } else {
+                return (
+                  <li className='list-item' key={`profile_subTitle_${index}`}>
+                    <span className='subtitle'>{item.subTitle}</span>
+                    <span className='text--light'>{contactInfo[key]}</span>
+                  </li>
+                );
+              }
+            })}
           </ul>
         </div>
       ) : null}
