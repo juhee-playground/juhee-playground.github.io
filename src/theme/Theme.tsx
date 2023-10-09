@@ -4,9 +4,9 @@ import { Theme } from '@mui/material/styles';
 const palette = {
   light: {
     primary: {
-      main: '#009688',
-      light: '#009688',
-      dark: '#009688',
+      main: '##00b8ff',
+      light: '##00b8ff',
+      dark: '##00b8ff',
     },
   },
 };
@@ -32,9 +32,9 @@ export const getDesignTokens = (mode: PaletteMode | undefined) =>
           }
         : {
             primary: {
-              main: '#009688',
-              light: '#009688',
-              dark: '#009688',
+              main: '#00b8ff',
+              light: '#00b8ff',
+              dark: '#00b8ff',
               contrastText: '#fff',
             },
             divider: grey[700],

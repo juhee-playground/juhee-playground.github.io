@@ -42,6 +42,7 @@ declare global {
     role: NotionSelect;
     department: NotionText;
     company: NotionRelation;
+    type: NotionNumber;
     explain: NotionText;
     result: NotionText;
     mainStack: NotionMultiSelect;
@@ -58,6 +59,7 @@ declare global {
     period: string;
     role: string;
     department: string;
+    type: number;
   }
   interface ProjectQuery {
     [x: string]: any;
