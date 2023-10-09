@@ -33,7 +33,7 @@ const LeftNav = () => {
           <p className='profile__info-role'>Front Developer</p>
         </section>
       </div>
-      <div className='infos'>
+      <div className={isPrintMode ? `infos infos--${mode}` : `infos`}>
         {infos.map((info: NavInfoItems) => (
           <ProfileInfoBox info={info} key={info.title} />
         ))}

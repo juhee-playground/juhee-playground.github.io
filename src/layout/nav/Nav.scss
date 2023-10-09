@@ -57,6 +57,28 @@
 .infos {
     display: flex;
     flex-wrap: wrap;
+    &--print {
+        display: grid;
+        flex-wrap: nowrap;
+        column-gap: 10px;
+        grid-template-rows: repeat(3, 100px);
+        grid-template-columns: repeat(2, 240px);
+        grid-template-areas:
+            "contact hobby"
+            "contact education"
+            "contact certification";
+    }
+    @include tablet-down {
+        display: grid;
+        flex-wrap: nowrap;
+        column-gap: 10px;
+        grid-template-rows: repeat(3, 100px);
+        grid-template-columns: repeat(2, 280px);
+        grid-template-areas:
+            "contact hobby"
+            "contact education"
+            "contact certification";
+    }
     .profile__box {
         display: flex;
         flex-direction: column;
@@ -65,12 +87,12 @@
         align-items: flex-start;
         margin: 8px auto;
         &--print {
-            width: 41%;
+            width: 100%;
             justify-content: flex-start;
         }
 
         @include tablet-down {
-            width: 41%;
+            width: 100%;
             justify-content: flex-start;
         }
         @include mobile {
@@ -145,8 +167,16 @@
                 .text--light {
                     font-size: 13px;
                 }
+                .text--link {
+                    color: black;
+                }
                 
             }
         }
     }
+
+    .contact { grid-area: contact; }
+    .hobby   { grid-area: hobby;   }
+    .education  { grid-area: education;  }
+    .certification { grid-area: certification; }
 }

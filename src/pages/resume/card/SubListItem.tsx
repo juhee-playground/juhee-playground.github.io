@@ -8,18 +8,13 @@ import DChip from 'components/custom/DChip';
 
 function SubListItem(props: SubListProps) {
   const { id, name, numberOfParticipants, explain, period, stacks, contents, url }: ProjectQuery = props.info;
-  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
   return (
     <div className='project__container' key={`project__${id}`}>
       <div className='list__item list__item--vertical'>
-        <a
-          className='title__link'
-          onClick={() => {
-            window.open(url);
-          }}
-        >
+        <a className='title__link' href={url} target='_blank' rel='noreferrer'>
           <LabelIcon fontSize='small' className='text text__icon--pre' />
           <span className='text text__subTitle'>{name}</span>
         </a>
