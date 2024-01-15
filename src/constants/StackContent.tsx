@@ -1,8 +1,8 @@
-const CONTENT_SOCAR = [
+const CONTENT_MAIN = [
   {
-    content: '웹 프론트엔드 개발 경력(Vue) 3년 이상인 사람',
+    content: '웹 프론트엔드 개발 실무 경력(Vue)이 3년 이상인 사람',
     link: 'https://dino100.notion.site/OHCOACH-Ultimate-fd838cf131fc4d718d2b4d89e7d42dd8',
-    bold: '개발 경력(Vue) 3년',
+    bold: '개발 실무 경력(Vue)이 3년',
   },
   {
     content: '웹 프론트엔드의 기본적인 지식(Javascript)을 중요하게 생각하는 사람',
@@ -15,12 +15,8 @@ const CONTENT_SOCAR = [
     bold: 'TypeScript - React.js',
   },
   {
-    content: 'Tailwind나 Bootstrap을 사용하지 않고도 마크업 개발(HTML, CSS)이 가능한 사람',
-    bold: '',
-  },
-  {
     content: '팀 플레이 및 소통을 중요시 여기는 사람',
     bold: '팀 플레이 및 소통',
   },
 ];
-export default CONTENT_SOCAR;
+export default CONTENT_MAIN;
