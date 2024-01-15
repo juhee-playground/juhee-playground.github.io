@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './card.scss';
-import CONTENT_SOCAR from '../../../constants/StackContent';
+import CONTENT_MAIN from '../../../constants/StackContent';
 
 interface CardContentProperty {
   content: string;
@@ -9,7 +9,7 @@ interface CardContentProperty {
   bold: string;
 }
 
-const contents = CONTENT_SOCAR;
+const contents = CONTENT_MAIN;
 
 const PointStackCard = () => {
   return (
