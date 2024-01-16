@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { useAppSelector } from 'redux/hooks';
 import type { RootState } from 'redux/store';
 import { AxiosError } from 'axios';
-import { format, differenceInYears, differenceInMonths } from 'date-fns';
 
 import { getCompanies, getProjects, getStackOptions } from 'api/notion';
 import { useQuery } from 'react-query';
@@ -18,7 +17,7 @@ import Loading from 'components/Loading';
 import CardListItem from 'pages/resume/card/CardListItem';
 import FilterOption from './filter/FilterOption';
 
-import COMPANY_DATA from 'data/DB_company.json';
+import dataCompany from 'data/DB_company.json';
 import DB_STACK from 'data/DB_stack.json';
 import PROJECT_DATA from 'data/DB_project.json';
 import PointStackCard from './pointStack/Card';
@@ -29,6 +28,7 @@ const filterDefault = {
 };
 
 export default function Main() {
+  const COMPANY_DATA = dataCompany;
   const [sortValue, setSortValue] = useState('N');
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
@@ -36,7 +36,7 @@ export default function Main() {
   const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
-  const companyQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
+  const companyQuery = useQuery<NotionData[], AxiosError, CompanyProperties[]>(
     ['getCompanies'],
     () => getCompanies(),
     {
@@ -50,7 +50,7 @@ export default function Main() {
     },
   );
 
-  const { data, isLoading } = useQuery<NotionData[], AxiosError, NotionProperties[]>(
+  const projectQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
     ['getProjects'],
     async () => {
       const response = await getProjects();
@@ -72,66 +72,31 @@ export default function Main() {
     () => getStackOptions({ property: 'mainStack' }),
   );
 
-  const parseCompanyQuery: CompanyQuery[] = useMemo(() => {
-    if (!companyQuery.data) {
-      if (sortValue === 'O') {
-        COMPANY_DATA.reverse();
-      }
+  //TODO: COMPANY_DATA === companyQuery.data 랑 type 안 맞는문제 어떻게 처리할것인지;;;
+  const companiesData = companyQuery.data === undefined ? [] : companyQuery.data;
 
-      return COMPANY_DATA.filter((company) => {
-        const name = company.name;
-        const filtering = selectedChips.company?.includes(name);
-        return filtering;
-      }) as CompanyQuery[];
-    }
-
-    const companyData = companyQuery.data
-      .filter((company) => {
+  const parseCompanyQuery: CompanyProperties[] = useMemo(() => {
+    const companyData = companiesData
+      .filter((company: CompanyProperties) => {
         const name = company.name.title;
         const filtering = selectedChips.company?.includes(name[0].plain_text);
         return filtering;
       })
-      .sort((firstObject: NotionProperties, secondObject: NotionProperties) => {
-        return firstObject.type.number > secondObject.type.number ? 1 : -1;
-      })
-      .map((company: NotionProperties) => {
-        const date = company.period.date;
-        let year = 0;
-        let month = 0;
-        let period = '';
-        if (date?.start) {
-          year = differenceInYears(new Date(date.end), new Date(date.start));
-          month = differenceInMonths(new Date(date.end), new Date(date.start));
-          const isZero = year !== 0 || month !== 0;
-          const noYear = year === 0;
-          const numberOfMonths = month - year * 12;
-          const noNumberOfMonths = numberOfMonths === 0;
-          period = `${isZero ? `(` : ''} 
-            ${noYear ? '' : `${year}년`}
-            ${noNumberOfMonths ? '' : `${numberOfMonths}개월`} 
-            ${isZero ? `)` : ''}`;
-        }
-        return {
-          id: company.id,
-          name: company.name.title[0].plain_text,
-          startDate: date?.start ? format(new Date(date.start), 'yyyy/MM') : '',
-          endDate: date?.start ? format(new Date(date.end), 'yyyy/MM') : '',
-          department: company.department.rich_text[0].plain_text,
-          role: company.role.select.name,
-          period,
-        } as CompanyQuery;
+      .sort((firstObject: CompanyProperties, secondObject: CompanyProperties) => {
+        return firstObject.order.number > secondObject.order.number ? 1 : -1;
       });
 
     if (sortValue === 'O') {
       return companyData.reverse();
     }
+
     return companyData;
   }, [companyQuery.data, sortValue, selectedChips]);
 
   const companyLength = parseCompanyQuery.length - 1;
 
   const parseProjectQuery: ProjectQuery[] = useMemo(() => {
-    if (!data) {
+    if (!projectQuery.data) {
       return PROJECT_DATA.filter((project) => {
         const stackInfo = JSON.stringify(project.stacks);
         let isSelected = false;
@@ -147,7 +112,7 @@ export default function Main() {
       }) as ProjectQuery[];
     }
 
-    const projectData = data
+    const projectData = projectQuery.data
       .filter((project) => {
         const stackInfo = JSON.stringify(project.mainStack.multi_select);
         let isSelected = false;
@@ -178,13 +143,10 @@ export default function Main() {
       });
 
     return projectData;
-  }, [data, selectedChips]);
+  }, [projectQuery, selectedChips]);
 
   const companies = useMemo(
-    () =>
-      companyQuery.data
-        ? companyQuery.data.map((company) => company.name.title[0].plain_text)
-        : COMPANY_DATA.map((company) => company.name),
+    () => companiesData.map((company) => company.name.title[0].plain_text),
     [companyQuery.data, COMPANY_DATA],
   );
 
@@ -223,7 +185,7 @@ export default function Main() {
         isPrintMode ? `section-right--${mode}` : ''
       }`}
     >
-      {isLoading ? <Loading /> : null}
+      {projectQuery.isLoading ? <Loading /> : null}
       <section className={isPrintMode ? `action--${mode}` : 'action'}>
         <ul className='filter__container'>
           <FilterOption options={companies} type='company' selected={selectedChips} onChange={handleChange} />
@@ -260,7 +222,7 @@ export default function Main() {
       <PointStackCard />
       <hr className='hrBasic' />
       <section className={isPrintMode ? `career--${mode}` : 'career'}>
-        {parseCompanyQuery.map((company: CompanyQuery, index: number) => {
+        {parseCompanyQuery.map((company: CompanyProperties, index: number) => {
           return (
             <CardListItem
               key={company.id}
