@@ -8,6 +8,21 @@ const palette = {
       light: '##00b8ff',
       dark: '##00b8ff',
     },
+    text: {
+      primary: '#222222',
+      secondary: grey[800],
+    },
+  },
+  dark: {
+    primary: {
+      main: '##00b8ff',
+      light: '##00b8ff',
+      dark: '##00b8ff',
+    },
+    text: {
+      primary: '#fff',
+      secondary: grey[200],
+    },
   },
 };
 
@@ -26,8 +41,8 @@ export const getDesignTokens = (mode: PaletteMode | undefined) =>
               contrastText: '#fff',
             },
             text: {
-              primary: '#222222',
-              secondary: grey[800],
+              primary: palette.light.text.primary,
+              secondary: palette.light.text.secondary,
             },
           }
         : {
@@ -43,8 +58,8 @@ export const getDesignTokens = (mode: PaletteMode | undefined) =>
               paper: grey[900],
             },
             text: {
-              primary: '#fff',
-              secondary: '#fff',
+              primary: palette.dark.text.primary,
+              secondary: palette.dark.text.secondary,
             },
           }),
     },
