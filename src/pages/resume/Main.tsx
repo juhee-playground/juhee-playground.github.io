@@ -17,7 +17,7 @@ import Loading from 'components/Loading';
 import CardListItem from 'pages/resume/card/CardListItem';
 import FilterOption from './filter/FilterOption';
 
-import dataCompany from 'data/DB_company.json';
+import COMPANY_DATA from 'data/DB_company.json';
 import DB_STACK from 'data/DB_stack.json';
 import PROJECT_DATA from 'data/DB_project.json';
 import PointStackCard from './pointStack/Card';
@@ -28,7 +28,8 @@ const filterDefault = {
 };
 
 export default function Main() {
-  const COMPANY_DATA = dataCompany;
+  const DB_COMPANY_DATAS = COMPANY_DATA as CompanyProperties[];
+  const DB_PROJECT_DATAS = PROJECT_DATA as NotionProperties[];
   const [sortValue, setSortValue] = useState('N');
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
@@ -72,8 +73,8 @@ export default function Main() {
     () => getStackOptions({ property: 'mainStack' }),
   );
 
-  //TODO: COMPANY_DATA === companyQuery.data 랑 type 안 맞는문제 어떻게 처리할것인지;;;
-  const companiesData = companyQuery.data === undefined ? [] : companyQuery.data;
+  const companiesData = companyQuery.data === undefined ? DB_COMPANY_DATAS : companyQuery.data;
+  const projectsData = projectQuery.data === undefined ? DB_PROJECT_DATAS : projectQuery.data;
 
   const parseCompanyQuery: CompanyProperties[] = useMemo(() => {
     const companyData = companiesData
@@ -95,25 +96,8 @@ export default function Main() {
 
   const companyLength = parseCompanyQuery.length - 1;
 
-  const parseProjectQuery: ProjectQuery[] = useMemo(() => {
-    if (!projectQuery.data) {
-      return PROJECT_DATA.filter((project) => {
-        const stackInfo = JSON.stringify(project.stacks);
-        let isSelected = false;
-
-        selectedChips.stack.forEach((item) => {
-          const stackRegex = new RegExp(item);
-
-          if (!isSelected) {
-            isSelected = stackRegex.test(stackInfo);
-          }
-        });
-        return isSelected;
-      }) as ProjectQuery[];
-    }
-
-    const projectData = projectQuery.data
-      .filter((project) => {
+  const parseProjectQuery: NotionProperties[] = useMemo(() => {
+    const projectData = projectsData.filter((project: NotionProperties) => {
         const stackInfo = JSON.stringify(project.mainStack.multi_select);
         let isSelected = false;
 

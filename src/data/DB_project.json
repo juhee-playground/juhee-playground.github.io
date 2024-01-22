@@ -1,387 +1,1813 @@
 [
-    {
-        "id": "7015d12d-81b8-4344-a2b5-0522d6a3a80a",
-        "companyId": "ac39715c-45de-4b35-9daa-30cf52a10664",
-        "name": "DataManager(데스크탑 어플리케이션)",
-        "period": "2022-05-01~2022-09-30",
-        "stacks": [
-            {
-                "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
-                "name": "Vue",
-                "color": "green"
-            },
-            {
-                "id": "254c4a7a-4c56-49d3-a7f2-92635f9b60ee",
-                "name": "TypeScript",
-                "color": "yellow"
-            },
-            {
-                "id": "d88c41a9-be7d-4bfc-9b57-ffdcc482d63a",
-                "name": "electron",
-                "color": "blue"
-            }
-        ],
-        "explain": "하드웨어 기기 데이터 업로드, 펌웨어, 기기 연결 등의 기능을 가진 데스크탑 어플리케이션",
-        "contents": [
-            "• 데스크탑 어플리케이션 경험.",
-            "• Typescript 적용한 프로젝트",
-            "• 하드웨어 기기 펌웨어 업데이트 기능 개발",
-            "    - 고객에게 방문하여 업그레이드해주던 일을 기능을 개발함으로써 사용자들이 직접 업데이트를 할 수 있게 한 작업."
-        ],
-        "numberOfParticipants": 3,
-        "url": "https://dino100.notion.site/DataManager-7015d12d81b84344a2b50522d6a3a80a"
-    },
-    {
-        "id": "fd838cf1-31fc-4d71-8d2b-4d89e7d42dd8",
-        "companyId": "ac39715c-45de-4b35-9daa-30cf52a10664",
-        "name": "OHCOACH Ultimate(자사서비스)",
-        "period": "2020-09-01~2022-11-30",
-        "stacks": [
-            {
-                "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
-                "name": "Vue",
-                "color": "green"
-            },
-            {
-                "id": "f8094f60-d8c1-438a-be6c-7698c392804b",
-                "name": "Javascript",
-                "color": "yellow"
-            },
-            {
-                "id": "749ec31e-d31e-4f1f-9d01-535f1b580b8a",
-                "name": "D3",
-                "color": "gray"
-            },
-            {
-                "id": "04e253fa-81d3-452d-979d-0599ddf68d7b",
-                "name": "Highcharts.js",
-                "color": "gray"
-            },
-            {
-                "id": "13fb0684-7bee-4ee6-8de0-a8e5258b14bf",
-                "name": "Scss",
-                "color": "pink"
-            },
-            {
-                "id": "d1d01b78-51c2-4595-8b43-80420bea5729",
-                "name": "GoogleMap API",
-                "color": "gray"
-            },
-            {
-                "id": "99183b8f-896b-470f-a159-2cbb24333280",
-                "name": "Vuex",
-                "color": "brown"
-            }
-        ],
-        "explain": "자사의 주요 서비스로 축구 데이터를 시각화하여 사용자에게 데이터를 효과적으로 전달 및 업무 효율을 높여주기 위한 서비스.",
-        "contents": [
-            "• PHP로 만들어진 서비스를 SPA로 변경하여 새로운 버전으로 구축.",
-            "    - 초기 기본 세팅 작업",
-            "• 차트 라이브러리를 사용하여 데이터 시각화 극대화하는 작업.",
-            "    - 추후 D3를 사용하여 라이브러리에 국한되지 않고 더 다양한 시각화를 표현.",
-            "• 비슷한 컴포넌트를 공통 컴포넌트로 구현하여 코드 개선.",
-            "• PDF 기능을 붙여 사용자들이 쉽게 사용하도록 리포트 기능 구현.",
-            "• 코드 개선 및 리펙토링 작업",
-            "• Playground 라는 개발자 페이지에서 이런 기능이 있었으면 좋겠다 하는 기능을 미리 붙여보고 역으로 기획팀에 제안하는 시스템을 만들어서 사용함."
-        ],
-        "numberOfParticipants": 3,
-        "url": "https://dino100.notion.site/OHCOACH-Ultimate-fd838cf131fc4d718d2b4d89e7d42dd8"
-    },
-    {
-        "id": "19c653a2-c55e-4ff7-a3ae-601aef929362",
-        "companyId": "ac39715c-45de-4b35-9daa-30cf52a10664",
-        "name": "OHCOACH Admin(백오피스)",
-        "period": "2020-01-02~2021-03-31",
-        "stacks": [
-            {
-                "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
-                "name": "Vue",
-                "color": "green"
-            },
-            {
-                "id": "99183b8f-896b-470f-a159-2cbb24333280",
-                "name": "Vuex",
-                "color": "brown"
-            }
-        ],
-        "explain": "기본 서비스페이지와 관리자 페이지가 하나로 되어 있었는데 관리자 페이지를 따로 분리하는 작업.",
-        "contents": [
-            "• 소스관리 및 배포 운영 경험.",
-            "    - main: 운영 브랜치",
-            "    - develop : 작업 브랜치",
-            "    - test : QA 브랜치",
-            "• 각종 문서(출고, 입고, 검수 등) 다운로드 기능 구현",
-            "• 사람의 실수로 나온 오류 백오피스에서 해결 할 수 있도록 구현",
-            "    - CS팀에서 활용하여 고객 대응 속도 빨라짐."
-        ],
-        "numberOfParticipants": 2,
-        "url": "https://dino100.notion.site/OHCOACH-Admin-19c653a2c55e4ff7a3ae601aef929362?pvs=4"
-    },
-    {
-        "id": "469c852e-8f8a-45f8-8501-08ec7a22c38c",
-        "companyId": "ac39715c-45de-4b35-9daa-30cf52a10664",
-        "name": "DataHub(정부과제)",
-        "period": "2019-11-01~2019-12-31",
-        "stacks": [
-            {
-                "id": "5768898a-63ef-47b2-ba46-ec949b014307",
-                "name": "php",
-                "color": "purple"
-            },
-            {
-                "id": "07714c07-815c-4289-8206-c25e388edfec",
-                "name": "MySQL",
-                "color": "purple"
-            }
-        ],
-        "explain": "약 한 달 안에 자사 서비스와 비슷한 서비스를 만들었어야 하는 아주 극악무도한 프로젝트.",
-        "contents": [
-            "• CSS 스타일 규칙 통일 및 공통 CSS로 규격화 작업,",
-            "• 캘린더 라이브러리 사용하여 일정 관리 기능 구현."
-        ],
-        "numberOfParticipants": 2,
-        "url": "https://dino100.notion.site/DataHub-469c852e8f8a45f8850108ec7a22c38c"
-    },
-    {
-        "id": "3e2c2b03-001f-4989-b541-64f087c9f269",
-        "companyId": "ac39715c-45de-4b35-9daa-30cf52a10664",
-        "name": "사내 ERP 시스템",
-        "period": "2019-01-02~2019-04-30",
-        "stacks": [
-            {
-                "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
-                "name": "Vue",
-                "color": "green"
-            },
-            {
-                "id": "ba3b3815-dc62-4aee-bec5-b6337e235417",
-                "name": "GoogleSheet API",
-                "color": "gray"
-            }
-        ],
-        "explain": "타사 서비스를 사용하지 않고 자체적으로 시스템을 구현하여 회사에 맞게 커스텀 하기 위해 개발된 사내 시스템(구메, 근태, 생산, 출고 등의 모듈을 탑재한 시스템)",
-        "contents": [
-            "• 경영지원팀을 지원하기 위한 사내 최적화 구매 모듈 제작",
-            "    - 구글 Sheet API를 사용하여 쉽게 수정 가능",
-            "• 근 2년을 근태 모듈을 사용하여 출퇴근 처리를 하고 업무 기록을 함.",
-            "    - 업무 기록으로 1년 정리 리포트를 만들어 주고 그걸 연봉협상에 사용함.",
-            "• QR code 대량 생산 및 QR 이미지 다운로드하여 업무 효율성 높임.",
-            "    - 수작업으로 하던 일을 QR 코드 만들어 이미지로 저장까지 한번에 해결."
-        ],
-        "numberOfParticipants": 2,
-        "url": "https://dino100.notion.site/ERP-3e2c2b03001f4989b54164f087c9f269"
-    },
-    {
-        "id": "d8267476-4f3e-40f6-818a-aab191950c69",
-        "companyId": "ac39715c-45de-4b35-9daa-30cf52a10664",
-        "name": "OHCOACH Essential",
-        "period": "2018-07-02~2019-12-31",
-        "stacks": [
-            {
-                "id": "5768898a-63ef-47b2-ba46-ec949b014307",
-                "name": "php",
-                "color": "purple"
-            },
-            {
-                "id": "07714c07-815c-4289-8206-c25e388edfec",
-                "name": "MySQL",
-                "color": "purple"
-            },
-            {
-                "id": "04e253fa-81d3-452d-979d-0599ddf68d7b",
-                "name": "Highcharts.js",
-                "color": "gray"
-            }
-        ],
-        "explain": "자사 서비스의 초기 버전 서비스. 관리자 메뉴와 사용자 메뉴가 한번에 있던 서비스",
-        "contents": [
-            "• 레거시 코드로 가독성 떨어지고 여러 외주 개발자들의 기워서 만든 코드 리펙토링.",
-            "• 전시회 출품할 데모 페이지 구현",
-            "    - 자사 서비스에 특화된 차트 구현",
-            "• <span>태그로 만들어진 차트 ⇒ 라이브러리(highcharts.js) 사용하여 다양한 차트 구현."
-        ],
-        "numberOfParticipants": 2,
-        "url": "https://dino100.notion.site/OHCOACH-Essential-d82674764f3e40f6818aaab191950c69"
-    },
-    {
-        "id": "135e25ad-cbe6-4a1d-a56c-5510688fd50c",
-        "companyId": "02458f34-9632-4ee9-9363-ec9b4dd9af2f",
-        "name": "이력서-포트폴리오",
-        "period": "2023-03-30~",
-        "stacks": [
-            {
-                "id": "af40e4bf-c112-4451-bb62-2897117b04d2",
-                "name": "React",
-                "color": "green"
-            },
-            {
-                "id": "254c4a7a-4c56-49d3-a7f2-92635f9b60ee",
-                "name": "TypeScript",
-                "color": "yellow"
-            },
-            {
-                "id": "32998093-c710-4210-81d1-509df0e0d654",
-                "name": "Redux",
-                "color": "brown"
-            }
-        ],
-        "explain": "notion에 정리해둔 경력을 API로 불러와서 사이트에서 이력서로 보여주는 사이트",
-        "contents": [
-            "• 테마 기능, 다크모드 기능 구현"
-        ],
-        "numberOfParticipants": 1,
-        "url": "https://dino100.notion.site/135e25adcbe64a1da56c5510688fd50c"
-    },
-    {
-        "id": "7e5af315-4a71-4251-a8c9-96b9242ee925",
-        "companyId": "02458f34-9632-4ee9-9363-ec9b4dd9af2f",
-        "name": "Paragon_info",
-        "period": "2023-01-09~2023-02-20",
-        "stacks": [
-            {
-                "id": "af40e4bf-c112-4451-bb62-2897117b04d2",
-                "name": "React",
-                "color": "green"
-            },
-            {
-                "id": "254c4a7a-4c56-49d3-a7f2-92635f9b60ee",
-                "name": "TypeScript",
-                "color": "yellow"
-            },
-            {
-                "id": "32998093-c710-4210-81d1-509df0e0d654",
-                "name": "Redux",
-                "color": "brown"
-            }
-        ],
-        "explain": "게임 공략 사이트",
-        "contents": [
-            "• React, Typescript 개발 경험 쌓기",
-            "• 영웅 페이지 - 상세페이지",
-            "• 웹 프런트앤드 최적화 적용",
-            "    - 이미지 최적화"
-        ],
-        "numberOfParticipants": 2,
-        "url": "https://dino100.notion.site/Paragon_info-7e5af3154a714251a8c996b9242ee925"
-    },
-    {
-        "id": "587102b3-8173-4784-9198-51a49bbd2a6c",
-        "companyId": "02458f34-9632-4ee9-9363-ec9b4dd9af2f",
-        "name": "Rna-frontend",
-        "period": "2021-09-06~2022-01-31",
-        "stacks": [
-            {
-                "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
-                "name": "Vue",
-                "color": "green"
-            },
-            {
-                "id": "f8094f60-d8c1-438a-be6c-7698c392804b",
-                "name": "Javascript",
-                "color": "yellow"
-            },
-            {
-                "id": "99183b8f-896b-470f-a159-2cbb24333280",
-                "name": "Vuex",
-                "color": "brown"
-            }
-        ],
-        "explain": "한양대학교 연구 과제 사이트",
-        "contents": [
-            "• 사용자, 과제 관리 페이지 구축",
-            "• 엑셀 과제 업로드 및 다운로드 페이지 구현",
-            "• JWT 토큰 사용하여 로그인 기능 구축"
-        ],
-        "numberOfParticipants": 2,
-        "url": "https://dino100.notion.site/Rna-frontend-587102b381734784919851a49bbd2a6c"
-    },
-    {
-        "id": "465ebd26-b8f0-44dc-9dd8-42adcfb68082",
-        "companyId": "02458f34-9632-4ee9-9363-ec9b4dd9af2f",
-        "name": "NNNN(동호회관리)",
-        "period": "2020-01-01~2021-07-31",
-        "stacks": [
-            {
-                "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
-                "name": "Vue",
-                "color": "green"
-            },
-            {
-                "id": "055f592f-c6d8-41b7-b769-d764b6310d53",
-                "name": "AWS",
-                "color": "orange"
-            },
-            {
-                "id": "13fb0684-7bee-4ee6-8de0-a8e5258b14bf",
-                "name": "Scss",
-                "color": "pink"
-            },
-            {
-                "id": "99183b8f-896b-470f-a159-2cbb24333280",
-                "name": "Vuex",
-                "color": "brown"
-            }
-        ],
-        "explain": "풋살동호회 관리프로그램",
-        "contents": [
-            "• 회원 및 출석부 관리를 통한 유령회원 정리",
-            "• 랜덤 팀 나누기 알고리즘 개발",
-            "• 경기 이벤트 등록으로 나와 발 맞는 선수 찾는 기능 개발",
-            "• 등록한 데이터로 랭킹(골, 어시, 출석)으로 연말 시상식 진행",
-            "• AWS EC2 서버 세팅, RDS DB 사용"
-        ],
-        "numberOfParticipants": 2,
-        "url": "https://dino100.notion.site/NNNN-465ebd26b8f044dc9dd842adcfb68082"
-    },
-    {
-        "id": "8a48a0df-27a6-4498-b496-b5012a80cfb3",
-        "companyId": "f194e7b4-3174-4fd2-8dfc-17ea186dd8ed",
-        "name": "자사 실적 관리 프로그램(백오피스)",
-        "period": "2017-09-01~2017-12-29",
-        "stacks": [
-            {
-                "id": "f8094f60-d8c1-438a-be6c-7698c392804b",
-                "name": "Javascript",
-                "color": "yellow"
-            },
-            {
-                "id": "055f592f-c6d8-41b7-b769-d764b6310d53",
-                "name": "AWS",
-                "color": "orange"
-            },
-            {
-                "id": "a6ca21e3-ce6e-4ec0-8b29-c7dd7d4f7c93",
-                "name": "AngularJS",
-                "color": "green"
-            }
-        ],
-        "explain": "고객 실적 관리 프로그램.",
-        "contents": [
-            "• 백오피스 페이지 기본 레이아웃 구축",
-            "• AWS EC2 서버 세팅, RDS DB 사용"
-        ],
-        "numberOfParticipants": 2,
-        "url": null
-    },
-    {
-        "id": "e0c1949b-a3da-4af1-8efc-13261ce4ca9c",
-        "companyId": "f194e7b4-3174-4fd2-8dfc-17ea186dd8ed",
-        "name": "고도몰 관리(자사 쇼핑몰)",
-        "period": "2017-05-01~2018-02-28",
-        "stacks": [
-            {
-                "id": "5768898a-63ef-47b2-ba46-ec949b014307",
-                "name": "php",
-                "color": "purple"
-            }
-        ],
-        "explain": "cafe24 같은 웹 쇼핑몰",
-        "contents": [
-            "• 웹 쇼핑몰 유지복수",
-            "• 디자인 리뉴얼 - UI/UX 개선으로 불필요한 기능 제거",
-            "• 배너 슬라이드 컴포넌트 UI수정 등"
-        ],
-        "numberOfParticipants": 1,
-        "url": null
-    }
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2023-04-03",
+              "end": "2023-07-30",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "02458f34-9632-4ee9-9363-ec9b4dd9af2f"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/135e25adcbe64a1da56c5510688fd50c"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "배포, 기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "배포, 기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "notion에 정리해둔 경력을 API로 불러와서 사이트에서 이력서로 보여주는 사이트",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "notion에 정리해둔 경력을 API로 불러와서 사이트에서 이력서로 보여주는 사이트",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• 테마 기능, 다크모드 기능 구현\n• 노션을 DB로 사용하여 API 연동  및 상세페이지 연결\n• 필터 기능, 정렬 기능\n• 람다 사용하여 백엔드를 서버리스로 구현",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• 테마 기능, 다크모드 기능 구현\n• 노션을 DB로 사용하여 API 연동  및 상세페이지 연결\n• 필터 기능, 정렬 기능\n• 람다 사용하여 백엔드를 서버리스로 구현",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "32998093-c710-4210-81d1-509df0e0d654",
+                  "name": "Redux",
+                  "color": "brown"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 1
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "af40e4bf-c112-4451-bb62-2897117b04d2",
+                  "name": "React",
+                  "color": "green"
+              },
+              {
+                  "id": "254c4a7a-4c56-49d3-a7f2-92635f9b60ee",
+                  "name": "TypeScript",
+                  "color": "yellow"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "이력서-포트폴리오",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "이력서-포트폴리오",
+                  "href": null
+              }
+          ]
+      },
+      "id": "135e25ad-cbe6-4a1d-a56c-5510688fd50c"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2023-01-09",
+              "end": "2023-02-20",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "02458f34-9632-4ee9-9363-ec9b4dd9af2f"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/Paragon_info-7e5af3154a714251a8c996b9242ee925"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "게임 공략 사이트",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "게임 공략 사이트",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• React와 Typescript로 만들어본 경험을 쌓기 위해 참여.\n• 영웅 페이지 + 상세페이지 작업함.\n• 웹 프런트앤드 최적화 책 읽고 .webp 파일 이미지 최적화 적용.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• React와 Typescript로 만들어본 경험을 쌓기 위해 참여.\n• 영웅 페이지 + 상세페이지 작업함.\n• 웹 프런트앤드 최적화 책 읽고 .webp 파일 이미지 최적화 적용.",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "32998093-c710-4210-81d1-509df0e0d654",
+                  "name": "Redux",
+                  "color": "brown"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 2
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "af40e4bf-c112-4451-bb62-2897117b04d2",
+                  "name": "React",
+                  "color": "green"
+              },
+              {
+                  "id": "254c4a7a-4c56-49d3-a7f2-92635f9b60ee",
+                  "name": "TypeScript",
+                  "color": "yellow"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "Paragon_info",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "Paragon_info",
+                  "href": null
+              }
+          ]
+      },
+      "id": "7e5af315-4a71-4251-a8c9-96b9242ee925"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2022-05-01",
+              "end": "2022-09-30",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "ac39715c-45de-4b35-9daa-30cf52a10664"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/DataManager-7015d12d81b84344a2b50522d6a3a80a"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "하드웨어 기기 데이터 업로드, 펌웨어, 기기 연결 등의 기능을 가진 데스크탑 어플리케이션",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "하드웨어 기기 데이터 업로드, 펌웨어, 기기 연결 등의 기능을 가진 데스크탑 어플리케이션",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• 데스크탑 어플리케이션 경험.\n• Typescript 적용한 프로젝트\n• 하드웨어 기기 펌웨어 업데이트 기능 개발\n    - 직접 방문하여 하던 일을 기능을 개발함으로써 사용자들이 직접 업데이트 하도록 하는 작업.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• 데스크탑 어플리케이션 경험.\n• Typescript 적용한 프로젝트\n• 하드웨어 기기 펌웨어 업데이트 기능 개발\n    - 직접 방문하여 하던 일을 기능을 개발함으로써 사용자들이 직접 업데이트 하도록 하는 작업.",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "d88c41a9-be7d-4bfc-9b57-ffdcc482d63a",
+                  "name": "electron",
+                  "color": "blue"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 3
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
+                  "name": "Vue",
+                  "color": "green"
+              },
+              {
+                  "id": "254c4a7a-4c56-49d3-a7f2-92635f9b60ee",
+                  "name": "TypeScript",
+                  "color": "yellow"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "DataManager(데스크탑 어플리케이션)",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "DataManager(데스크탑 어플리케이션)",
+                  "href": null
+              }
+          ]
+      },
+      "id": "7015d12d-81b8-4344-a2b5-0522d6a3a80a"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2021-09-06",
+              "end": "2022-01-31",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "02458f34-9632-4ee9-9363-ec9b4dd9af2f"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/Rna-frontend-587102b381734784919851a49bbd2a6c"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "한양대학교 연구 과제 사이트",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "한양대학교 연구 과제 사이트",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• JWT 토큰 사용하여 로그인 기능 구축\n• 사용자, 과제 관리 페이지 구축\n• 엑셀 파일 업로드 및 다운로드 기능 구현\n• 비슷한 포맷의 입력 FORM을 공통 컴포넌트로 구현\n• 일정관리부터 요구사항을 노션을 활용하여 필요한 작업들을 비대면으로 협업하며 진행.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• JWT 토큰 사용하여 로그인 기능 구축\n• 사용자, 과제 관리 페이지 구축\n• 엑셀 파일 업로드 및 다운로드 기능 구현\n• 비슷한 포맷의 입력 FORM을 공통 컴포넌트로 구현\n• 일정관리부터 요구사항을 노션을 활용하여 필요한 작업들을 비대면으로 협업하며 진행.",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "99183b8f-896b-470f-a159-2cbb24333280",
+                  "name": "Vuex",
+                  "color": "brown"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 2
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
+                  "name": "Vue",
+                  "color": "green"
+              },
+              {
+                  "id": "f8094f60-d8c1-438a-be6c-7698c392804b",
+                  "name": "Javascript",
+                  "color": "yellow"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "Rna-frontend",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "Rna-frontend",
+                  "href": null
+              }
+          ]
+      },
+      "id": "587102b3-8173-4784-9198-51a49bbd2a6c"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2020-09-01",
+              "end": "2022-11-30",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "ac39715c-45de-4b35-9daa-30cf52a10664"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/OHCOACH-Ultimate-fd838cf131fc4d718d2b4d89e7d42dd8"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "축구 데이터를 시각화하여 데이터를 효과적으로 전달 및 업무 효율을 높여주기 위한 서비스.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "축구 데이터를 시각화하여 데이터를 효과적으로 전달 및 업무 효율을 높여주기 위한 서비스.",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• PHP로 만들어진 서비스를 SPA로 변경하여 새로운 버전으로 구축.\n- 초기 기본 세팅 작업\n• 차트 라이브러리를 사용하여 데이터 시각화 극대화하는 작업.\n- 추후 D3를 사용하여 라이브러리에 국한되지 않고 더 다양한 시각화를 표현.\n• 비슷한 컴포넌트를 공통 컴포넌트로 구현하여 코드 개선.\n• PDF 기능을 붙여 사용자들이 편하게 보고자료로 사용하도록 리포트 기능 구현.\n• 레거시 코드 개선 및 리펙토링 작업\n• Playground 라는 페이지에서 데모 기능을 붙여보고 기획팀에게 역제안.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• PHP로 만들어진 서비스를 SPA로 변경하여 새로운 버전으로 구축.\n- 초기 기본 세팅 작업\n• 차트 라이브러리를 사용하여 데이터 시각화 극대화하는 작업.\n- 추후 D3를 사용하여 라이브러리에 국한되지 않고 더 다양한 시각화를 표현.\n• 비슷한 컴포넌트를 공통 컴포넌트로 구현하여 코드 개선.\n• PDF 기능을 붙여 사용자들이 편하게 보고자료로 사용하도록 리포트 기능 구현.\n• 레거시 코드 개선 및 리펙토링 작업\n• Playground 라는 페이지에서 데모 기능을 붙여보고 기획팀에게 역제안.",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "749ec31e-d31e-4f1f-9d01-535f1b580b8a",
+                  "name": "D3",
+                  "color": "gray"
+              },
+              {
+                  "id": "04e253fa-81d3-452d-979d-0599ddf68d7b",
+                  "name": "Highcharts.js",
+                  "color": "gray"
+              },
+              {
+                  "id": "13fb0684-7bee-4ee6-8de0-a8e5258b14bf",
+                  "name": "Scss",
+                  "color": "pink"
+              },
+              {
+                  "id": "d1d01b78-51c2-4595-8b43-80420bea5729",
+                  "name": "GoogleMap API",
+                  "color": "gray"
+              },
+              {
+                  "id": "99183b8f-896b-470f-a159-2cbb24333280",
+                  "name": "Vuex",
+                  "color": "brown"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 3
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
+                  "name": "Vue",
+                  "color": "green"
+              },
+              {
+                  "id": "f8094f60-d8c1-438a-be6c-7698c392804b",
+                  "name": "Javascript",
+                  "color": "yellow"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "OHCOACH Ultimate(자사서비스)",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "OHCOACH Ultimate(자사서비스)",
+                  "href": null
+              }
+          ]
+      },
+      "id": "fd838cf1-31fc-4d71-8d2b-4d89e7d42dd8"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2020-01-02",
+              "end": "2021-03-31",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "ac39715c-45de-4b35-9daa-30cf52a10664"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/OHCOACH-Admin-19c653a2c55e4ff7a3ae601aef929362?pvs=4"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "운영, 배포, 기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "운영, 배포, 기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "기본 서비스페이지와 관리자 페이지가 하나로 되어 있었는데 관리자 페이지를 따로 분리하는 작업.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "기본 서비스페이지와 관리자 페이지가 하나로 되어 있었는데 관리자 페이지를 따로 분리하는 작업.",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• 소스관리 및 배포 운영 경험.\n    - main: 운영 브랜치\n    - develop : 작업 브랜치\n    - test : QA 브랜치\n• 각종 문서(출고, 입고, 검수 등) 다운로드 기능 구현\n• 사람의 실수로 나온 오류 백오피스에서 해결 할 수 있도록 구현\n    - CS팀에서 활용하여 고객 대응 속도 빨라짐.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• 소스관리 및 배포 운영 경험.\n    - main: 운영 브랜치\n    - develop : 작업 브랜치\n    - test : QA 브랜치\n• 각종 문서(출고, 입고, 검수 등) 다운로드 기능 구현\n• 사람의 실수로 나온 오류 백오피스에서 해결 할 수 있도록 구현\n    - CS팀에서 활용하여 고객 대응 속도 빨라짐.",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "99183b8f-896b-470f-a159-2cbb24333280",
+                  "name": "Vuex",
+                  "color": "brown"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 2
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
+                  "name": "Vue",
+                  "color": "green"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "OHCOACH Admin(백오피스)",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "OHCOACH Admin(백오피스)",
+                  "href": null
+              }
+          ]
+      },
+      "id": "19c653a2-c55e-4ff7-a3ae-601aef929362"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2020-01-01",
+              "end": "2021-07-31",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "02458f34-9632-4ee9-9363-ec9b4dd9af2f"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/NNNN-465ebd26b8f044dc9dd842adcfb68082"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "배포, 운영, 기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "배포, 운영, 기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "풋살동호회 관리프로그램",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "풋살동호회 관리프로그램",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• 회원 및 동호회 출석부 관리를 통한 유령회원 정리\n• 매번 팀 나누는 문제로 고민하지 않게 랜덤 팀 나누기 알고리즘 개발\n• 경기 정보와 기록들을 정리하여 통계를 내서 나와 골을 많이 넣는 선수 찾아서 대회 스쿼드에 활용\n• 등록한 골, 어시, 클린시트, 출석데이터로 랭킹을 정리하여 연말 시상식 진행 이벤트로 활용\n• AWS EC2 서버 세팅, RDS DB 사용",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• 회원 및 동호회 출석부 관리를 통한 유령회원 정리\n• 매번 팀 나누는 문제로 고민하지 않게 랜덤 팀 나누기 알고리즘 개발\n• 경기 정보와 기록들을 정리하여 통계를 내서 나와 골을 많이 넣는 선수 찾아서 대회 스쿼드에 활용\n• 등록한 골, 어시, 클린시트, 출석데이터로 랭킹을 정리하여 연말 시상식 진행 이벤트로 활용\n• AWS EC2 서버 세팅, RDS DB 사용",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "055f592f-c6d8-41b7-b769-d764b6310d53",
+                  "name": "AWS",
+                  "color": "orange"
+              },
+              {
+                  "id": "13fb0684-7bee-4ee6-8de0-a8e5258b14bf",
+                  "name": "Scss",
+                  "color": "pink"
+              },
+              {
+                  "id": "99183b8f-896b-470f-a159-2cbb24333280",
+                  "name": "Vuex",
+                  "color": "brown"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 2
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
+                  "name": "Vue",
+                  "color": "green"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "NNNN(동호회관리)",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "NNNN(동호회관리)",
+                  "href": null
+              }
+          ]
+      },
+      "id": "465ebd26-b8f0-44dc-9dd8-42adcfb68082"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2019-11-01",
+              "end": "2019-12-31",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "ac39715c-45de-4b35-9daa-30cf52a10664"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/DataHub-469c852e8f8a45f8850108ec7a22c38c"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "약 한 달 안에 자사 서비스와 비슷한 서비스를 만들었어야 하는 아주 극악 무도한 프로젝트.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "약 한 달 안에 자사 서비스와 비슷한 서비스를 만들었어야 하는 아주 극악 무도한 프로젝트.",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• CSS 스타일 규칙 통일 및 공통 CSS로 규격화 작업,\n• 캘린더 라이브러리 사용하여 일정 관리 기능 구현.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• CSS 스타일 규칙 통일 및 공통 CSS로 규격화 작업,\n• 캘린더 라이브러리 사용하여 일정 관리 기능 구현.",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "07714c07-815c-4289-8206-c25e388edfec",
+                  "name": "MySQL",
+                  "color": "purple"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 2
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "5768898a-63ef-47b2-ba46-ec949b014307",
+                  "name": "php",
+                  "color": "purple"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "DataHub(정부과제)",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "DataHub(정부과제)",
+                  "href": null
+              }
+          ]
+      },
+      "id": "469c852e-8f8a-45f8-8501-08ec7a22c38c"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2019-01-02",
+              "end": "2019-04-30",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "ac39715c-45de-4b35-9daa-30cf52a10664"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/ERP-3e2c2b03001f4989b54164f087c9f269"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "배포, 운영, 기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "배포, 운영, 기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "타사 서비스를 사용하지 않고 회사에 커스텀된 사내 시스템\n(구매, 근태, 생산, 출고 모듈을 탑재한 시스템)",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "타사 서비스를 사용하지 않고 회사에 커스텀된 사내 시스템\n(구매, 근태, 생산, 출고 모듈을 탑재한 시스템)",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• 경영지원팀을 지원하기 위한 사내 최적화 구매 모듈 제작\n    - 구글 Sheet API를 사용하여 쉽게 수정 가능\n• 근 2년을 근태 모듈을 사용하여 출퇴근 처리를 하고 업무 기록을 함.\n    - 업무 기록으로 1년 정리 리포트를 만들어 주고 그걸 연봉협상에 사용함.\n• QR code 대량 생산 및 QR 이미지 다운로드하여 업무 효율성 높임.\n    - 수작업으로 하던 일을 QR 코드 만들어 이미지로 저장까지 한번에 해결.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• 경영지원팀을 지원하기 위한 사내 최적화 구매 모듈 제작\n    - 구글 Sheet API를 사용하여 쉽게 수정 가능\n• 근 2년을 근태 모듈을 사용하여 출퇴근 처리를 하고 업무 기록을 함.\n    - 업무 기록으로 1년 정리 리포트를 만들어 주고 그걸 연봉협상에 사용함.\n• QR code 대량 생산 및 QR 이미지 다운로드하여 업무 효율성 높임.\n    - 수작업으로 하던 일을 QR 코드 만들어 이미지로 저장까지 한번에 해결.",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "ba3b3815-dc62-4aee-bec5-b6337e235417",
+                  "name": "GoogleSheet API",
+                  "color": "gray"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 2
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "877802a8-8154-409d-a0e0-f10ac71c0b8c",
+                  "name": "Vue",
+                  "color": "green"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "사내 ERP 시스템",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "사내 ERP 시스템",
+                  "href": null
+              }
+          ]
+      },
+      "id": "3e2c2b03-001f-4989-b541-64f087c9f269"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2018-07-02",
+              "end": "2019-12-31",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "ac39715c-45de-4b35-9daa-30cf52a10664"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": "https://dino100.notion.site/OHCOACH-Essential-d82674764f3e40f6818aaab191950c69"
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "자사 서비스의 초기 버전 서비스. 관리자 메뉴와 사용자 메뉴가 한번에 있던 서비스",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "자사 서비스의 초기 버전 서비스. 관리자 메뉴와 사용자 메뉴가 한번에 있던 서비스",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• 레거시 코드로 가독성 떨어지고 여러 외주 개발자들의 기워서 만든 코드 리펙토링.\n• 전시회 출품할 데모 페이지 구현\n    - 자사 서비스에 특화된 차트 구현\n• <span>태그로 만들어진 차트 ⇒ 라이브러리 사용하여 다양한 차트 구현.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• 레거시 코드로 가독성 떨어지고 여러 외주 개발자들의 기워서 만든 코드 리펙토링.\n• 전시회 출품할 데모 페이지 구현\n    - 자사 서비스에 특화된 차트 구현\n• <span>태그로 만들어진 차트 ⇒ 라이브러리 사용하여 다양한 차트 구현.",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "04e253fa-81d3-452d-979d-0599ddf68d7b",
+                  "name": "Highcharts.js",
+                  "color": "gray"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 2
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "5768898a-63ef-47b2-ba46-ec949b014307",
+                  "name": "php",
+                  "color": "purple"
+              },
+              {
+                  "id": "07714c07-815c-4289-8206-c25e388edfec",
+                  "name": "MySQL",
+                  "color": "purple"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "OHCOACH Essential",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "OHCOACH Essential",
+                  "href": null
+              }
+          ]
+      },
+      "id": "d8267476-4f3e-40f6-818a-aab191950c69"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2017-09-01",
+              "end": "2017-12-29",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "f194e7b4-3174-4fd2-8dfc-17ea186dd8ed"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": null
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "고객 실적 관리 프로그램.",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "고객 실적 관리 프로그램.",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• 백오피스 페이지 기본 레이아웃 구축\n• AWS EC2 서버 세팅, RDS DB 사용",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• 백오피스 페이지 기본 레이아웃 구축\n• AWS EC2 서버 세팅, RDS DB 사용",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "055f592f-c6d8-41b7-b769-d764b6310d53",
+                  "name": "AWS",
+                  "color": "orange"
+              },
+              {
+                  "id": "a6ca21e3-ce6e-4ec0-8b29-c7dd7d4f7c93",
+                  "name": "AngularJS",
+                  "color": "green"
+              }
+          ]
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 2
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "f8094f60-d8c1-438a-be6c-7698c392804b",
+                  "name": "Javascript",
+                  "color": "yellow"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "자사 실적 관리 프로그램(백오피스)",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "자사 실적 관리 프로그램(백오피스)",
+                  "href": null
+              }
+          ]
+      },
+      "id": "8a48a0df-27a6-4498-b496-b5012a80cfb3"
+  },
+  {
+      "period": {
+          "id": "Bhjf",
+          "type": "date",
+          "date": {
+              "start": "2017-05-01",
+              "end": "2018-02-28",
+              "time_zone": null
+          }
+      },
+      "company": {
+          "id": "Ep%3Eh",
+          "type": "relation",
+          "relation": [
+              {
+                  "id": "f194e7b4-3174-4fd2-8dfc-17ea186dd8ed"
+              }
+          ],
+          "has_more": false
+      },
+      "url": {
+          "id": "KBJJ",
+          "type": "url",
+          "url": null
+      },
+      "role": {
+          "id": "S_%5C%5C",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "기능개발",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "기능개발",
+                  "href": null
+              }
+          ]
+      },
+      "explain": {
+          "id": "WyDJ",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "cafe24 같은 웹 쇼핑몰",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "cafe24 같은 웹 쇼핑몰",
+                  "href": null
+              }
+          ]
+      },
+      "result": {
+          "id": "_z%7D~",
+          "type": "rich_text",
+          "rich_text": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "• 웹 쇼핑몰 유지복수\n• 디자인 리뉴얼 - UI/UX 개선으로 불필요한 기능 제거\n• 배너 슬라이드 컴포넌트 UI수정 등",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "• 웹 쇼핑몰 유지복수\n• 디자인 리뉴얼 - UI/UX 개선으로 불필요한 기능 제거\n• 배너 슬라이드 컴포넌트 UI수정 등",
+                  "href": null
+              }
+          ]
+      },
+      "stack": {
+          "id": "g%3CEO",
+          "type": "multi_select",
+          "multi_select": []
+      },
+      "numberOfParticipants": {
+          "id": "u%60lW",
+          "type": "number",
+          "number": 1
+      },
+      "mainStack": {
+          "id": "yOc%3F",
+          "type": "multi_select",
+          "multi_select": [
+              {
+                  "id": "5768898a-63ef-47b2-ba46-ec949b014307",
+                  "name": "php",
+                  "color": "purple"
+              }
+          ]
+      },
+      "name": {
+          "id": "title",
+          "type": "title",
+          "title": [
+              {
+                  "type": "text",
+                  "text": {
+                      "content": "고도몰 관리(자사 쇼핑몰)",
+                      "link": null
+                  },
+                  "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                  },
+                  "plain_text": "고도몰 관리(자사 쇼핑몰)",
+                  "href": null
+              }
+          ]
+      },
+      "id": "e0c1949b-a3da-4af1-8efc-13261ce4ca9c"
+  }
 ]
