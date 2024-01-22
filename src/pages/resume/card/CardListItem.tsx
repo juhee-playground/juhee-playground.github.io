@@ -6,7 +6,6 @@ import type { RootState } from 'redux/store';
 import { parserPeriod } from 'utils/Parser';
 import SubListItem from './SubListItem';
 function CardListItem(props: CardListProps) {
-  console.log(props.info);
   const date = props.info.period.date;
   const companyData = {
     id: props.info.id,
@@ -20,8 +19,6 @@ function CardListItem(props: CardListProps) {
     role: props.info.role.select.name,
     period: date?.start ? parserPeriod(date) : '',
   };
-
-  console.log(companyData.description);
 
   const { isPrintMode, pointColor } = useAppSelector((state: RootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
@@ -71,8 +68,8 @@ function CardListItem(props: CardListProps) {
         <div className='projects'>
           {props.subInfo
             ? props.subInfo
-                .filter((project: { companyId: string }) => project.companyId === companyData.id)
-                .map((project: ProjectQuery) => {
+                .filter((project) => project.company.relation[0].id === companyData.id)
+                .map((project: ProjectProperties) => {
                   return <SubListItem key={project.id} info={project} />;
                 })
             : null}

@@ -29,7 +29,7 @@ const filterDefault = {
 
 export default function Main() {
   const DB_COMPANY_DATAS = COMPANY_DATA as CompanyProperties[];
-  const DB_PROJECT_DATAS = PROJECT_DATA as NotionProperties[];
+  const DB_PROJECT_DATAS = PROJECT_DATA as ProjectProperties[];
   const [sortValue, setSortValue] = useState('N');
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
@@ -51,7 +51,7 @@ export default function Main() {
     },
   );
 
-  const projectQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
+  const projectQuery = useQuery<NotionData[], AxiosError, ProjectProperties[]>(
     ['getProjects'],
     async () => {
       const response = await getProjects();
@@ -79,8 +79,7 @@ export default function Main() {
   const parseCompanyQuery: CompanyProperties[] = useMemo(() => {
     const companyData = companiesData
       .filter((company: CompanyProperties) => {
-        const name = company.name.title;
-        const filtering = selectedChips.company?.includes(name[0].plain_text);
+        const filtering = selectedChips.company?.includes(company.name.title[0].plain_text);
         return filtering;
       })
       .sort((firstObject: CompanyProperties, secondObject: CompanyProperties) => {
@@ -96,42 +95,28 @@ export default function Main() {
 
   const companyLength = parseCompanyQuery.length - 1;
 
-  const parseProjectQuery: NotionProperties[] = useMemo(() => {
-    const projectData = projectsData.filter((project: NotionProperties) => {
-        const stackInfo = JSON.stringify(project.mainStack.multi_select);
-        let isSelected = false;
+  const parseProjectQuery: ProjectProperties[] = useMemo(() => {
+    const projectData = projectsData.filter((project: ProjectProperties) => {
+      const stackInfo = JSON.stringify(project.mainStack.multi_select);
+      let isSelected = false;
 
-        selectedChips.stack.forEach((item) => {
-          const stackRegex = new RegExp(item);
+      selectedChips.stack.forEach((item) => {
+        const stackRegex = new RegExp(item);
 
-          if (!isSelected) {
-            isSelected = stackRegex.test(stackInfo);
-          }
-        });
-        return isSelected;
-      })
-      .map((project: NotionProperties) => {
-        const date = project.period.date;
-        const results = project.result.rich_text[0];
-        return {
-          id: project.id,
-          companyId: project.company.relation[0].id,
-          name: project.name.title[0].plain_text,
-          period: date.start ? `${date.start}~${date.end === null ? '' : date.end}` : '',
-          stacks: [...project.mainStack.multi_select, ...project.stack.multi_select],
-          explain: project.explain.rich_text[0].plain_text,
-          contents: results.text.content.split('\n'),
-          numberOfParticipants: project.numberOfParticipants.number,
-          url: project.url.url,
-        } as ProjectQuery;
+        if (!isSelected) {
+          isSelected = stackRegex.test(stackInfo);
+        }
       });
-
+      return isSelected;
+    });
     return projectData;
   }, [projectQuery, selectedChips]);
 
+  console.log('parseProjectQuery', parseProjectQuery);
+
   const companies = useMemo(
     () => companiesData.map((company) => company.name.title[0].plain_text),
-    [companyQuery.data, COMPANY_DATA],
+    [companyQuery.data, DB_COMPANY_DATAS],
   );
 
   const stackOptions = useMemo(
