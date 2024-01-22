@@ -33,7 +33,7 @@ export default function Main() {
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
   const theme = useTheme();
-  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
   const companyQuery = useQuery<NotionData[], AxiosError, CompanyProperties[]>(
@@ -222,6 +222,12 @@ export default function Main() {
       <PointStackCard />
       <hr className='hrBasic' />
       <section className={isPrintMode ? `career--${mode}` : 'career'}>
+        <div className='group__header'>
+          <span className='box-icon'>⚽️</span>
+          <h3 style={{ color: pointColor }} className='box-title'>
+            Career
+          </h3>
+        </div>
         {parseCompanyQuery.map((company: CompanyProperties, index: number) => {
           return (
             <CardListItem
