@@ -6,25 +6,27 @@ import type { RootState } from 'redux/store';
 import { parserPeriod } from 'utils/Parser';
 import SubListItem from './SubListItem';
 function CardListItem(props: CardListProps) {
+  console.log(props.info);
   const date = props.info.period.date;
   const companyData = {
     id: props.info.id,
     name: props.info.name.title[0].plain_text,
+    description: props.info.description.rich_text[0].plain_text.split('- '),
     startDate: date?.start ? format(new Date(date.start), 'yyyy/MM') : '',
     endDate: date?.start ? format(new Date(date.end), 'yyyy/MM') : '',
+    year: props.info.year.number,
+    scale: props.info.scale.rich_text[0].plain_text,
     department: props.info.department.rich_text[0].plain_text,
     role: props.info.role.select.name,
     period: date?.start ? parserPeriod(date) : '',
   };
 
-  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  console.log(companyData.description);
+
+  const { isPrintMode, pointColor } = useAppSelector((state: RootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
   const isWave = useMemo(() => (companyData.startDate !== '' ? `~` : null), []);
-  const periodString =
-    companyData.startDate !== ''
-      ? `${companyData.startDate} ${isWave} ${companyData.endDate} / ${companyData.period}`
-      : '';
   return (
     <>
       <div
@@ -32,32 +34,50 @@ function CardListItem(props: CardListProps) {
         className={isPrintMode ? `box__container box__container--${mode}` : 'box__container'}
         id={companyData.id}
       >
-        <div className={isPrintMode ? `left left--${mode}` : 'left'}>
-          <span className='text text__sub period'>{companyData.startDate}</span>
-          <span className='text text__plain period'> {isWave} </span>
-          <span className='text text__sub period'>{companyData.endDate}</span>
-          <div className='text text__plain'>{companyData.period}</div>
+        <div className='box__header'>
+          <div className='row row__first'>
+            <span className='text text__title'>{companyData.name}</span>
+            <div className='period__groups'>
+              <span className='text text__sub period'>{companyData.startDate}</span>
+              <span className='text text__plain period'> {isWave} </span>
+              <span className='text text__sub period'>{companyData.endDate}</span>
+              <span className='text text__plain period'>{companyData.period}</span>
+            </div>
+          </div>
+          <div className='row row__second'>
+            <span className='text text__sub'>{companyData.role}</span>
+            <span className='text text__plain'> | </span>
+            <span className='text text__sub'>{companyData.department}</span>
+            <span className='text text__plain'> | 설립년도:</span>
+            <span className='text text__sub'> {companyData.year}</span>
+            <span className='text text__plain'> | 회사규모: </span>
+            <span className='text text__sub'> {companyData.scale}</span>
+          </div>
+          <div className='row row__third'>
+            {companyData.description.map((description, index) => {
+              return (
+                <span key={`description_${index}`} className='text text__plain'>
+                  {description}
+                </span>
+              );
+            })}
+          </div>
         </div>
-        <div className='right'>
-          <span className='text text__title'>{companyData.name}</span>
-          {isPrintMode ? <span className='text text__sub printMode'>{periodString}</span> : ''}
-          <div className='list chip'>
-            <span className='text text__plain'>{companyData.role}</span>
-            <span className='text text__plain'> / </span>
-            <span className='text text__plain'>{companyData.department}</span>
-          </div>
-          <div className='projects'>
-            {props.subInfo
-              ? props.subInfo
-                  .filter((project: { companyId: string }) => project.companyId === companyData.id)
-                  .map((project: ProjectQuery) => {
-                    return <SubListItem key={project.id} info={project} />;
-                  })
-              : null}
-          </div>
+        <div className='group__header'>
+          <h3 style={{ color: pointColor }} className='box-title'>
+            Work Experience
+          </h3>
+        </div>
+        <div className='projects'>
+          {props.subInfo
+            ? props.subInfo
+                .filter((project: { companyId: string }) => project.companyId === companyData.id)
+                .map((project: ProjectQuery) => {
+                  return <SubListItem key={project.id} info={project} />;
+                })
+            : null}
         </div>
       </div>
-
       {props.isLastCompany ? '' : <hr className='line--bottom' />}
     </>
   );
