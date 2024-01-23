@@ -7,9 +7,12 @@ import Stack from '@mui/material/Stack';
 import DChip from 'components/custom/DChip';
 
 function SubListItem(props: SubListProps) {
-  // const { id, name, numberOfParticipants, explain, period, stacks, contents, url }: ProjectQuery = ;
   const date = props.info.period.date;
-  // const results
+  const boldSentence = props.info.experience.rich_text
+    .filter((rich) => rich.annotations.bold)
+    .map((rich) => rich.plain_text);
+  const experience = props.info.experience.rich_text.map((rich) => rich.text.content);
+  const content = experience.join('').split('\n');
   const projectData = {
     id: props.info.id,
     companyId: props.info.company.relation[0].id,
@@ -19,12 +22,12 @@ function SubListItem(props: SubListProps) {
     skills: props.info.skill.multi_select,
     role: props.info.role.rich_text[0].plain_text,
     description: props.info.description.rich_text[0].plain_text,
-    experience: props.info.experience.rich_text[0].text.content.split('\n'),
+    experience: content,
     numberOfParticipants: props.info.numberOfParticipants.number,
     url: props.info.url.url,
   };
 
-  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
   return (
@@ -44,8 +47,8 @@ function SubListItem(props: SubListProps) {
         <span className='text text__plain'> | 역활: </span>
         <span className='text text__sub'> {projectData.role}</span>
       </div>
-      <div className='list__item explain'>
-        <span className='text text__plain'>{projectData.experience}</span>
+      <div className='list__item description'>
+        <span className='text text__plain'>{projectData.description}</span>
       </div>
       <div className='list__item period'></div>
       <div className='list__item stacks'>
@@ -73,11 +76,33 @@ function SubListItem(props: SubListProps) {
         </ul>
       </div>
       <div className='list__item results'>
-        {projectData.experience.map((text: string, index: number) => (
-          <span key={`result_content_${index}`} className='text text__plain'>
-            {text}
-          </span>
-        ))}
+        {projectData.experience.map((text: string, index) => {
+          const boldTexts = boldSentence.filter((bold) => text.includes(bold));
+          const [first, last] = text.split(boldTexts[0]);
+          if (boldTexts.length > 0) {
+            return (
+              <>
+                <div>
+                  <span key={`content_first_${index}`} className='text text__plain'>
+                    {first}
+                  </span>
+                  <span key={`content_bold_${index}`} className='text text__plain text__bold'>
+                    {boldTexts[0]}
+                  </span>
+                  <span key={`content_last${index}`} className='text text__plain'>
+                    {last}
+                  </span>
+                </div>
+              </>
+            );
+          } else {
+            return (
+              <span key={`result_content_${index}`} className='text text__plain'>
+                {text}
+              </span>
+            );
+          }
+        })}
       </div>
     </div>
   );
