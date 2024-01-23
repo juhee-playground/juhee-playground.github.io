@@ -112,8 +112,6 @@ export default function Main() {
     return projectData;
   }, [projectQuery, selectedChips]);
 
-  console.log('parseProjectQuery', parseProjectQuery);
-
   const companies = useMemo(
     () => companiesData.map((company) => company.name.title[0].plain_text),
     [companyQuery.data, DB_COMPANY_DATAS],

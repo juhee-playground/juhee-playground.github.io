@@ -38,7 +38,10 @@ function SubListItem(props: SubListProps) {
         </span>
       </div>
       <div>
-        참여인원: <span className='text__sub'>{projectData.numberOfParticipants}</span>
+        <span className='text text__sub'>참여인원: </span>
+        <span className='text__sub'>{projectData.numberOfParticipants}</span>
+        <span className='text text__plain'> | 역활: </span>
+        <span className='text text__sub'> {projectData.role}</span>
       </div>
       <div className='list__item explain'>
         <span className='text text__plain'>{projectData.explain}</span>
@@ -53,6 +56,15 @@ function SubListItem(props: SubListProps) {
                 size='small'
                 color={select.color}
                 label={select.name}
+                clickable={false}
+              />
+            ))}
+            {projectData.skills.map((skill: SelectProperty) => (
+              <DChip
+                key={`stacks__${skill.id}`}
+                size='small'
+                color='grey'
+                label={skill.name}
                 clickable={false}
               />
             ))}
