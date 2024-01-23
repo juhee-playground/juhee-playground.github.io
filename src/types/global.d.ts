@@ -42,11 +42,11 @@ declare global {
     company: NotionRelation;
     url: NotionURL;
     role: NotionText;
-    explain: NotionText;
-    result: NotionText;
-    stack: NotionMultiSelect;
+    description: NotionText;
+    experience: NotionText;
+    skill: NotionMultiSelect;
     numberOfParticipants: NotionNumber;
-    mainStack: NotionMultiSelect;
+    mainSkill: NotionMultiSelect;
     name: NotionTitleName;
   }
 

@@ -97,7 +97,7 @@ export default function Main() {
 
   const parseProjectQuery: ProjectProperties[] = useMemo(() => {
     const projectData = projectsData.filter((project: ProjectProperties) => {
-      const stackInfo = JSON.stringify(project.mainStack.multi_select);
+      const stackInfo = JSON.stringify(project.mainSkill.multi_select);
       let isSelected = false;
 
       selectedChips.stack.forEach((item) => {

@@ -47,7 +47,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -70,7 +70,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -93,7 +93,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -109,7 +109,7 @@
           "type": "number",
           "number": 1
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -198,7 +198,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -221,7 +221,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -244,7 +244,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -260,7 +260,7 @@
           "type": "number",
           "number": 2
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -349,7 +349,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -372,7 +372,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -395,7 +395,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -411,7 +411,7 @@
           "type": "number",
           "number": 3
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -500,7 +500,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -523,7 +523,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -546,7 +546,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -562,7 +562,7 @@
           "type": "number",
           "number": 2
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -651,7 +651,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -674,7 +674,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -697,7 +697,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -733,7 +733,7 @@
           "type": "number",
           "number": 3
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -822,7 +822,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -845,7 +845,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -868,7 +868,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -884,7 +884,7 @@
           "type": "number",
           "number": 2
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -968,7 +968,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -991,7 +991,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -1014,7 +1014,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -1040,7 +1040,7 @@
           "type": "number",
           "number": 2
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -1124,7 +1124,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -1147,7 +1147,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -1170,7 +1170,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -1186,7 +1186,7 @@
           "type": "number",
           "number": 2
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -1270,7 +1270,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -1293,7 +1293,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -1316,7 +1316,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -1332,7 +1332,7 @@
           "type": "number",
           "number": 2
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -1416,7 +1416,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -1439,7 +1439,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -1462,7 +1462,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -1478,7 +1478,7 @@
           "type": "number",
           "number": 2
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -1567,7 +1567,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -1590,7 +1590,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -1613,7 +1613,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": [
@@ -1634,7 +1634,7 @@
           "type": "number",
           "number": 2
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [
@@ -1718,7 +1718,7 @@
               }
           ]
       },
-      "explain": {
+      "description": {
           "id": "WyDJ",
           "type": "rich_text",
           "rich_text": [
@@ -1741,7 +1741,7 @@
               }
           ]
       },
-      "result": {
+      "experience": {
           "id": "_z%7D~",
           "type": "rich_text",
           "rich_text": [
@@ -1764,7 +1764,7 @@
               }
           ]
       },
-      "stack": {
+      "skill": {
           "id": "g%3CEO",
           "type": "multi_select",
           "multi_select": []
@@ -1774,7 +1774,7 @@
           "type": "number",
           "number": 1
       },
-      "mainStack": {
+      "mainSkill": {
           "id": "yOc%3F",
           "type": "multi_select",
           "multi_select": [

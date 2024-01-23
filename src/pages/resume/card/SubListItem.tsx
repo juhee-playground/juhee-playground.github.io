@@ -9,16 +9,17 @@ import DChip from 'components/custom/DChip';
 function SubListItem(props: SubListProps) {
   // const { id, name, numberOfParticipants, explain, period, stacks, contents, url }: ProjectQuery = ;
   const date = props.info.period.date;
+  // const results
   const projectData = {
     id: props.info.id,
     companyId: props.info.company.relation[0].id,
     name: props.info.name.title[0].plain_text,
     period: date.start ? `${date.start}~${date.end === null ? '' : date.end}` : '',
-    mainSkills: [...props.info.mainStack.multi_select],
-    skills: props.info.stack.multi_select,
+    mainSkills: [...props.info.mainSkill.multi_select],
+    skills: props.info.skill.multi_select,
     role: props.info.role.rich_text[0].plain_text,
-    explain: props.info.explain.rich_text[0].plain_text,
-    contents: props.info.result.rich_text[0].text.content.split('\n'),
+    description: props.info.description.rich_text[0].plain_text,
+    experience: props.info.experience.rich_text[0].text.content.split('\n'),
     numberOfParticipants: props.info.numberOfParticipants.number,
     url: props.info.url.url,
   };
@@ -44,7 +45,7 @@ function SubListItem(props: SubListProps) {
         <span className='text text__sub'> {projectData.role}</span>
       </div>
       <div className='list__item explain'>
-        <span className='text text__plain'>{projectData.explain}</span>
+        <span className='text text__plain'>{projectData.experience}</span>
       </div>
       <div className='list__item period'></div>
       <div className='list__item stacks'>
@@ -72,7 +73,7 @@ function SubListItem(props: SubListProps) {
         </ul>
       </div>
       <div className='list__item results'>
-        {projectData.contents.map((text: string, index: number) => (
+        {projectData.experience.map((text: string, index: number) => (
           <span key={`result_content_${index}`} className='text text__plain'>
             {text}
           </span>
