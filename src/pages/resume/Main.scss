@@ -55,32 +55,30 @@
     width: 100%;
 }
 
-.career {
-    .group {
+.group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 8px auto;
+    &__header {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        margin: 8px auto;
-        &__header {
-            display: flex;
-            align-items: center;
-            margin: 12px 0 0 0;
-            h3 {
-                margin: 0;
-                padding: 0 4px;
-                line-height: 28px;
-            }
-            .box-icon {
-                padding: 0 4px ;
-            }
+        align-items: center;
+        margin: 12px 0 0 0;
+        h3 {
+            margin: 0;
+            padding: 0 4px;
+            line-height: 28px;
         }
-        hr {
-            width: 100%;
-            margin: 2px;
+        .box-icon {
+            padding: 0 4px ;
         }
     }
-}
+    hr {
+        width: 100%;
+        margin: 2px;
+    }
+    }
 
 // CardListItem.tsx section
 .box__container {
@@ -104,6 +102,9 @@
         .row__third {
             display: flex;
             flex-direction: column;
+        }
+        .period {
+            font-size: 15px;
         }
     }
 }
@@ -169,9 +170,6 @@
             padding-right: 4px;
         }
     }
-}
-.period {
-    font-size: 15px;
 }
 
 .list__container {
