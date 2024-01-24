@@ -1,5 +1,4 @@
 .action {
-    padding: 12px;
     height: 20%;
     &--print {
         display: none;
@@ -49,47 +48,69 @@
     }
 }
 
+.hrBasic {
+    background:#dddddd;
+    height:1px;
+    width: 100%;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 8px auto;
+    &__header {
+        display: flex;
+        align-items: center;
+        // margin: 12px 0 0 0;
+        h4 {
+            margin: 0;
+            padding: 0 4px;
+            line-height: 28px;
+        }
+        .box-icon {
+            padding: 0 4px ;
+        }
+    }
+    hr {
+        width: 100%;
+        margin: 2px;
+    }
+    }
+
+// CardListItem.tsx section
 .box__container {
     display: flex;
-    padding: 8px;
-    &--print {
+    flex-direction: column;
+    padding: 0px 12px;
+
+    .box__header {
+        display: flex;
         flex-direction: column;
-        padding: 6px;
-    }
-    @include tablet-down {
-        flex-direction: column;
-    }
-    .left {
-        width: 16%;
-        padding-top: 8px;
-        &--print {
-            display: none;
-        }
-        @include tablet-down {
-            width: 84%;
-            padding: 12px 0 4px 12px;
-            display: flex;
+        .row {
+            padding: 4px 0;
+            &__first {
+                display: flex;
+                align-items: center;
+                .period__groups {
+                    margin-left: 20px;
+                }
+            }
+            &__third {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 12px;
+            }
         }
         .period {
-            font-weight: 700;
-            font-size: 12px;
-            line-height: 21px;
-        }
-
-    }
-    .right {
-        width: 84%;
-        padding: 0 12px;
-
-        .printMode {
-            padding: 0 8px;
-            font-size: 16px;
+            font-size: 15px;
         }
     }
 }
 
 .project__container {
-    margin: 12px 0;
+    margin: 8px 0;
     .list__item {
         display: flex;
         flex-wrap: wrap;
@@ -114,9 +135,13 @@
         font-weight: 700;
         font-size: 12px;
     }
-    .results {
+    .experience {
         display: flex;
         flex-direction: column;
+        .contents {
+            display: flex;
+            white-space: pre;
+        }
     }
 }
 
@@ -132,10 +157,13 @@
     }
     &__sub {
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 600;
     }
     &__plain {
         font-size: 14px;
+    }
+    &__bold {
+        font-weight: 700;
     }
     &__icon {
         &--pre {
@@ -157,11 +185,8 @@
         }
     }    
 }
-.hrBasic {
-    background:#dddddd;
-    height:1px;
-    width: 100%;
-}
+
+
 
 .dChip__label {
     font-weight: 700;

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
-  pointColor: '#00b8ff',
+  pointColor: '#7c4dff',
   isPrintMode: false,
 };
 

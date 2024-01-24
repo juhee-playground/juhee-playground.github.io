@@ -14,12 +14,12 @@ export async function getProjects() {
   return response.data;
 }
 
-export async function getStackOptions(data: MultiOptionsProperty) {
+export async function getSkillOptions(data: MultiOptionsProperty) {
   const response = await customAxios.get<NotionSelectOptions>('/options', { params: data });
   return response.data.multi_select.options;
 }
 
-export async function getMainStackOptions() {
+export async function getMainSkillptions() {
   const response = await customAxios.get<SelectProperty[]>('/mainOptions');
   return response.data;
 }

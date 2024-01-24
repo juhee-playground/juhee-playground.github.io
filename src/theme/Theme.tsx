@@ -1,12 +1,29 @@
-import { grey, blue, common } from '@mui/material/colors';
+import { grey, green, lime, deepPurple, purple, common } from '@mui/material/colors';
 import { Theme } from '@mui/material/styles';
 
 const palette = {
   light: {
     primary: {
-      main: '##00b8ff',
-      light: '##00b8ff',
-      dark: '##00b8ff',
+      light: deepPurple[300],
+      main: deepPurple['A200'],
+      dark: deepPurple[900],
+    },
+    secondary: {
+      light: green[300],
+      main: green[500],
+      dark: green[900],
+    },
+  },
+  dark: {
+    primary: {
+      light: purple[300],
+      main: purple[500],
+      dark: purple[900],
+    },
+    secondary: {
+      light: lime[300],
+      main: lime[500],
+      dark: lime[900],
     },
   },
 };
@@ -23,28 +40,33 @@ export const getDesignTokens = (mode: PaletteMode | undefined) =>
               main: palette.light.primary.main,
               light: palette.light.primary.light,
               dark: palette.light.primary.dark,
-              contrastText: '#fff',
+              contrastText: '#000',
+            },
+            // divider: '#000',
+            background: {
+              default: grey[50], // background
+              paper: grey[50],
             },
             text: {
-              primary: '#222222',
-              secondary: grey[800],
+              primary: grey[600], // project period, select text, chip text
+              secondary: '#000', // select form label
             },
           }
         : {
             primary: {
-              main: '#00b8ff',
-              light: '#00b8ff',
-              dark: '#00b8ff',
+              main: palette.dark.primary.main,
+              light: palette.dark.primary.light,
+              dark: palette.dark.primary.dark,
               contrastText: '#fff',
             },
-            divider: grey[700],
+            // divider: grey[400],
             background: {
-              default: grey[900],
+              default: grey[900], // background
               paper: grey[900],
             },
             text: {
-              primary: '#fff',
-              secondary: '#fff',
+              primary: grey[500],
+              secondary: grey[50],
             },
           }),
     },
@@ -132,7 +154,7 @@ export const getThemedComponents = (mode: PaletteMode | undefined) =>
             MuiAppBar: {
               styleOverrides: {
                 colorPrimary: {
-                  backgroundColor: blue[800],
+                  backgroundColor: deepPurple[800],
                 },
               },
             },

@@ -2,9 +2,8 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { useAppSelector } from 'redux/hooks';
 import type { RootState } from 'redux/store';
 import { AxiosError } from 'axios';
-import { format, differenceInYears, differenceInMonths } from 'date-fns';
 
-import { getCompanies, getProjects, getStackOptions } from 'api/notion';
+import { getCompanies, getProjects, getSkillOptions } from 'api/notion';
 import { useQuery } from 'react-query';
 
 import { useTheme } from '@mui/material/styles';
@@ -19,24 +18,26 @@ import CardListItem from 'pages/resume/card/CardListItem';
 import FilterOption from './filter/FilterOption';
 
 import COMPANY_DATA from 'data/DB_company.json';
-import DB_STACK from 'data/DB_stack.json';
+import DB_SKILL from 'data/DB_skill.json';
 import PROJECT_DATA from 'data/DB_project.json';
 import PointStackCard from './pointStack/Card';
 
 const filterDefault = {
   company: [],
-  stack: [],
+  skill: [],
 };
 
 export default function Main() {
+  const DB_COMPANY_DATAS = COMPANY_DATA as CompanyProperties[];
+  const DB_PROJECT_DATAS = PROJECT_DATA as ProjectProperties[];
   const [sortValue, setSortValue] = useState('N');
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
   const theme = useTheme();
-  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
-  const companyQuery = useQuery<NotionData[], AxiosError, NotionProperties[]>(
+  const companyQuery = useQuery<NotionData[], AxiosError, CompanyProperties[]>(
     ['getCompanies'],
     () => getCompanies(),
     {
@@ -50,7 +51,7 @@ export default function Main() {
     },
   );
 
-  const { data, isLoading } = useQuery<NotionData[], AxiosError, NotionProperties[]>(
+  const projectQuery = useQuery<NotionData[], AxiosError, ProjectProperties[]>(
     ['getProjects'],
     async () => {
       const response = await getProjects();
@@ -67,130 +68,58 @@ export default function Main() {
     },
   );
 
-  const mainStackSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
-    ['getStackOptions'],
-    () => getStackOptions({ property: 'mainStack' }),
+  const mainSkillSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
+    ['getSkillOptions'],
+    () => getSkillOptions({ property: 'mainSkill' }),
   );
 
-  const parseCompanyQuery: CompanyQuery[] = useMemo(() => {
-    if (!companyQuery.data) {
-      if (sortValue === 'O') {
-        COMPANY_DATA.reverse();
-      }
+  const companiesData = companyQuery.data === undefined ? DB_COMPANY_DATAS : companyQuery.data;
+  const projectsData = projectQuery.data === undefined ? DB_PROJECT_DATAS : projectQuery.data;
 
-      return COMPANY_DATA.filter((company) => {
-        const name = company.name;
-        const filtering = selectedChips.company?.includes(name);
-        return filtering;
-      }) as CompanyQuery[];
-    }
-
-    const companyData = companyQuery.data
-      .filter((company) => {
-        const name = company.name.title;
-        const filtering = selectedChips.company?.includes(name[0].plain_text);
+  const parseCompanyQuery: CompanyProperties[] = useMemo(() => {
+    const companyData = companiesData
+      .filter((company: CompanyProperties) => {
+        const filtering = selectedChips.company?.includes(company.name.title[0].plain_text);
         return filtering;
       })
-      .sort((firstObject: NotionProperties, secondObject: NotionProperties) => {
-        return firstObject.type.number > secondObject.type.number ? 1 : -1;
-      })
-      .map((company: NotionProperties) => {
-        const date = company.period.date;
-        let year = 0;
-        let month = 0;
-        let period = '';
-        if (date?.start) {
-          year = differenceInYears(new Date(date.end), new Date(date.start));
-          month = differenceInMonths(new Date(date.end), new Date(date.start));
-          const isZero = year !== 0 || month !== 0;
-          const noYear = year === 0;
-          const numberOfMonths = month - year * 12;
-          const noNumberOfMonths = numberOfMonths === 0;
-          period = `${isZero ? `(` : ''} 
-            ${noYear ? '' : `${year}년`}
-            ${noNumberOfMonths ? '' : `${numberOfMonths}개월`} 
-            ${isZero ? `)` : ''}`;
-        }
-        return {
-          id: company.id,
-          name: company.name.title[0].plain_text,
-          startDate: date?.start ? format(new Date(date.start), 'yyyy/MM') : '',
-          endDate: date?.start ? format(new Date(date.end), 'yyyy/MM') : '',
-          department: company.department.rich_text[0].plain_text,
-          role: company.role.select.name,
-          period,
-        } as CompanyQuery;
+      .sort((firstObject: CompanyProperties, secondObject: CompanyProperties) => {
+        return firstObject.order.number > secondObject.order.number ? 1 : -1;
       });
 
     if (sortValue === 'O') {
       return companyData.reverse();
     }
+
     return companyData;
   }, [companyQuery.data, sortValue, selectedChips]);
 
   const companyLength = parseCompanyQuery.length - 1;
 
-  const parseProjectQuery: ProjectQuery[] = useMemo(() => {
-    if (!data) {
-      return PROJECT_DATA.filter((project) => {
-        const stackInfo = JSON.stringify(project.stacks);
-        let isSelected = false;
+  const parseProjectQuery: ProjectProperties[] = useMemo(() => {
+    const projectData = projectsData.filter((project: ProjectProperties) => {
+      const skillInfo = JSON.stringify(project.mainSkill.multi_select);
+      let isSelected = false;
 
-        selectedChips.stack.forEach((item) => {
-          const stackRegex = new RegExp(item);
+      selectedChips.skill.forEach((item) => {
+        const skillRegex = new RegExp(item);
 
-          if (!isSelected) {
-            isSelected = stackRegex.test(stackInfo);
-          }
-        });
-        return isSelected;
-      }) as ProjectQuery[];
-    }
-
-    const projectData = data
-      .filter((project) => {
-        const stackInfo = JSON.stringify(project.mainStack.multi_select);
-        let isSelected = false;
-
-        selectedChips.stack.forEach((item) => {
-          const stackRegex = new RegExp(item);
-
-          if (!isSelected) {
-            isSelected = stackRegex.test(stackInfo);
-          }
-        });
-        return isSelected;
-      })
-      .map((project: NotionProperties) => {
-        const date = project.period.date;
-        const results = project.result.rich_text[0];
-        return {
-          id: project.id,
-          companyId: project.company.relation[0].id,
-          name: project.name.title[0].plain_text,
-          period: date.start ? `${date.start}~${date.end === null ? '' : date.end}` : '',
-          stacks: [...project.mainStack.multi_select, ...project.stack.multi_select],
-          explain: project.explain.rich_text[0].plain_text,
-          contents: results.text.content.split('\n'),
-          numberOfParticipants: project.numberOfParticipants.number,
-          url: project.url.url,
-        } as ProjectQuery;
+        if (!isSelected) {
+          isSelected = skillRegex.test(skillInfo);
+        }
       });
-
+      return isSelected;
+    });
     return projectData;
-  }, [data, selectedChips]);
+  }, [projectQuery, selectedChips]);
 
   const companies = useMemo(
-    () =>
-      companyQuery.data
-        ? companyQuery.data.map((company) => company.name.title[0].plain_text)
-        : COMPANY_DATA.map((company) => company.name),
-    [companyQuery.data, COMPANY_DATA],
+    () => companiesData.map((company) => company.name.title[0].plain_text),
+    [companyQuery.data, DB_COMPANY_DATAS],
   );
 
-  const stackOptions = useMemo(
-    () => (mainStackSelectOptions.data ? mainStackSelectOptions.data.map((select) => select.name) : DB_STACK),
-    [mainStackSelectOptions.data, DB_STACK],
+  const skillOptions = useMemo(
+    () => (mainSkillSelectOptions.data ? mainSkillSelectOptions.data.map((select) => select.name) : DB_SKILL),
+    [mainSkillSelectOptions.data, DB_SKILL],
   );
 
   const handleChange = (option: string, key: string) => {
@@ -213,9 +142,9 @@ export default function Main() {
     setSelectedChips((prev) => ({
       ...prev,
       company: [...companies],
-      stack: [...stackOptions],
+      skill: [...skillOptions],
     }));
-  }, [companies, stackOptions]);
+  }, [companies, skillOptions]);
 
   return (
     <div
@@ -223,14 +152,14 @@ export default function Main() {
         isPrintMode ? `section-right--${mode}` : ''
       }`}
     >
-      {isLoading ? <Loading /> : null}
+      {projectQuery.isLoading ? <Loading /> : null}
       <section className={isPrintMode ? `action--${mode}` : 'action'}>
         <ul className='filter__container'>
           <FilterOption options={companies} type='company' selected={selectedChips} onChange={handleChange} />
           <FilterOption
-            options={stackOptions}
-            colorOptions={mainStackSelectOptions.data}
-            type='stack'
+            options={skillOptions}
+            colorOptions={mainSkillSelectOptions.data}
+            type='skill'
             selected={selectedChips}
             onChange={handleChange}
           />
@@ -259,8 +188,14 @@ export default function Main() {
       </section>
       <PointStackCard />
       <hr className='hrBasic' />
-      <section className={isPrintMode ? `career--${mode}` : 'career'}>
-        {parseCompanyQuery.map((company: CompanyQuery, index: number) => {
+      <section className='career'>
+        <div className='group__header'>
+          <span className='box-icon'>⚽️</span>
+          <h4 style={{ color: pointColor }} className='box-title'>
+            CAREER
+          </h4>
+        </div>
+        {parseCompanyQuery.map((company: CompanyProperties, index: number) => {
           return (
             <CardListItem
               key={company.id}

@@ -8,6 +8,7 @@ export {};
 
 declare global {
   type ModeType = 'light' | 'dark';
+  type ProjectPropertiesType = 'rich_text' | number | 'date' | 'select' | 'text' | 'title' | 'select';
 
   interface Process {
     env: ProcessEnv;
@@ -18,7 +19,7 @@ declare global {
   interface NotionData {
     id: string;
     icon: NotionIcon;
-    properties: NotionProperties;
+    properties: CompanyProperties & ProjectProperties;
   }
 
   interface NotionPageIcon {
@@ -35,20 +36,31 @@ declare global {
     type: 'url';
     url: string;
   }
-  interface NotionProperties {
+  interface ProjectProperties {
     id: string;
-    name: NotionTitleName;
     period: NotionDate;
+    company: NotionRelation;
+    url: NotionURL;
+    role: NotionText;
+    description: NotionText;
+    experience: NotionText;
+    skill: NotionMultiSelect;
+    numberOfParticipants: NotionNumber;
+    mainSkill: NotionMultiSelect;
+    name: NotionTitleName;
+  }
+
+  interface CompanyProperties {
+    order: NotionNumber;
+    period: NotionDate;
+    type: NotionText;
+    year: NotionNumber;
+    description: NotionText;
+    scale: NotionText;
     role: NotionSelect;
     department: NotionText;
-    company: NotionRelation;
-    type: NotionNumber;
-    explain: NotionText;
-    result: NotionText;
-    mainStack: NotionMultiSelect;
-    stack: NotionMultiSelect;
-    numberOfParticipants: NotionNumber;
-    url: NotionURL;
+    name: NotionTitleName;
+    id: string;
   }
 
   interface CompanyQuery {
@@ -59,8 +71,13 @@ declare global {
     period: string;
     role: string;
     department: string;
-    type: number;
+    type: string;
+    year: number;
+    scale: string;
+    order: number;
+    description: string;
   }
+
   interface ProjectQuery {
     [x: string]: any;
     id: string;
@@ -71,20 +88,21 @@ declare global {
     explain: string;
     contents: string[];
     numberOfParticipants: number;
-    url: string;
+    url: string | null;
   }
   interface NotionDefaultProperties {
     id: string;
-    type: string;
+    type: ProjectPropertiesType;
+  }
+
+  interface PeriodDate {
+    start: string;
+    end: string;
+    time_zone: string | null;
   }
 
   interface NotionDate extends NotionDefaultProperties {
-    type: 'date';
-    date: {
-      start: string;
-      end: string;
-      time_zone: string;
-    };
+    date: PeriodDate;
   }
 
   interface NotionRelation extends NotionDefaultProperties {
@@ -97,11 +115,12 @@ declare global {
   }
 
   interface NotionText extends NotionDefaultProperties {
-    type: 'rich_text';
     rich_text: RichText[];
   }
 
   interface RichText {
+    type: ProjectPropertiesType;
+    text: TextProperty;
     annotations: {
       bold: boolean;
       italic: boolean;
@@ -110,10 +129,8 @@ declare global {
       code: boolean;
       color: string;
     };
-    href: null | string;
     plain_text: string;
-    text: TextProperty;
-    type: 'text';
+    href: null;
   }
 
   interface TextProperty {
@@ -122,9 +139,7 @@ declare global {
   }
 
   interface NotionSelect extends NotionDefaultProperties {
-    type: 'select';
     select: SelectProperty;
-    multi_select: SelectProperty[];
   }
 
   interface NotionSelectOptions {
@@ -142,12 +157,10 @@ declare global {
   }
 
   interface NotionTitleName extends NotionDefaultProperties {
-    type: 'title';
     title: RichText[];
   }
 
   interface NotionNumber extends NotionDefaultProperties {
-    type: 'number';
     number: number;
   }
 
@@ -166,14 +179,14 @@ declare global {
 
   interface CardListProps {
     key: string;
-    info: CompanyQuery;
-    subInfo: ProjectQuery[];
+    info: CompanyProperties;
+    subInfo: ProjectProperties[];
     isLastCompany: boolean;
   }
 
   interface SubListProps {
     key: string;
-    info: ProjectQuery;
+    info: ProjectProperties;
   }
 
   interface NavInfoItems {

@@ -82,7 +82,7 @@ function DChip({ selected, color, size, label, clickable, parentFunction }: Cust
           root: {
             backgroundColor: applyColor ? notionColor.bg : 'default',
             color: applyColor ? notionColor.text : 'grey',
-            borderColor: applyColor ? notionColor.text : 'grey',
+            borderColor: applyColor ? notionColor.bg : 'grey',
           },
         },
       },
@@ -92,6 +92,7 @@ function DChip({ selected, color, size, label, clickable, parentFunction }: Cust
   return (
     <ThemeProvider theme={customTheme}>
       <Chip
+        sx={{ borderRadius: 1 }}
         label={<div className='dChip__label'> {label}</div>}
         size={size}
         variant='outlined'

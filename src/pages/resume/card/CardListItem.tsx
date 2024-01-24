@@ -1,48 +1,91 @@
 import React, { useMemo } from 'react';
 import { useAppSelector } from 'redux/hooks';
+import { format } from 'date-fns';
 import type { RootState } from 'redux/store';
 
+import { parserPeriod } from 'utils/Parser';
 import SubListItem from './SubListItem';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
 function CardListItem(props: CardListProps) {
-  const { startDate, endDate, period, name, role, department, id }: CompanyQuery = props.info;
-  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const date = props.info.period.date;
+  const companyData = {
+    id: props.info.id,
+    name: props.info.name.title[0].plain_text,
+    description: props.info.description.rich_text[0].plain_text.split('- '),
+    startDate: date?.start ? format(new Date(date.start), 'yyyy/MM') : '',
+    endDate: date?.start ? format(new Date(date.end), 'yyyy/MM') : '',
+    year: props.info.year.number,
+    scale: props.info.scale.rich_text[0].plain_text,
+    department: props.info.department.rich_text[0].plain_text,
+    role: props.info.role.select.name,
+    period: date?.start ? parserPeriod(date) : '',
+  };
+
+  const { isPrintMode, pointColor } = useAppSelector((state: RootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
-  const isWave = useMemo(() => (startDate !== '' ? `~` : null), []);
-  const periodString = startDate !== '' ? `${startDate} ${isWave} ${endDate} / ${period}` : '';
+  const isWave = useMemo(() => (companyData.startDate !== '' ? `~` : null), []);
   return (
     <>
       <div
-        key={`company__${id}`}
+        key={`company__${companyData.id}`}
         className={isPrintMode ? `box__container box__container--${mode}` : 'box__container'}
-        id={id}
+        id={companyData.id}
       >
-        <div className={isPrintMode ? `left left--${mode}` : 'left'}>
-          <span className='text text__sub period'>{startDate}</span>
-          <span className='text text__plain period'> {isWave} </span>
-          <span className='text text__sub period'>{endDate}</span>
-          <div className='text text__plain'>{period}</div>
+        <div className='box__header'>
+          <div className='row row__first'>
+            <span className='text text__title'>{companyData.name}</span>
+            <Box className='period__groups'>
+              <Typography variant='caption' color='text.primary' className='text text__sub period'>
+                {companyData.startDate}
+              </Typography>
+              <Typography variant='caption' color='text.primary' className='text text__plain period'>
+                {isWave}
+              </Typography>
+              <Typography variant='caption' color='text.primary' className='text text__sub period'>
+                {companyData.endDate}
+              </Typography>
+              <Typography variant='caption' color='text.primary' className='text text__plain period'>
+                {companyData.period}
+              </Typography>
+            </Box>
+          </div>
+          <div className='row row__second'>
+            <span className='text text__sub'>{companyData.role}</span>
+            <span className='text text__plain'> | </span>
+            <span className='text text__sub'>{companyData.department}</span>
+            <span className='text text__plain'> | 설립년도:</span>
+            <span className='text text__sub'> {companyData.year}</span>
+            <span className='text text__plain'> | 회사규모: </span>
+            <span className='text text__sub'> {companyData.scale}</span>
+          </div>
+          <div className='row row__third'>
+            {companyData.description.map((description, index) => {
+              return (
+                <span key={`description_${index}`} className='text text__plain'>
+                  {description}
+                </span>
+              );
+            })}
+          </div>
         </div>
-        <div className='right'>
-          <span className='text text__title'>{name}</span>
-          {isPrintMode ? <span className='text text__sub printMode'>{periodString}</span> : ''}
-          <div className='list chip'>
-            <span className='text text__plain'>{role}</span>
-            <span className='text text__plain'> / </span>
-            <span className='text text__plain'>{department}</span>
-          </div>
-          <div className='projects'>
-            {props.subInfo
-              ? props.subInfo
-                  .filter((project: { companyId: string }) => project.companyId === id)
-                  .map((project: ProjectQuery) => {
-                    return <SubListItem key={project.id} info={project} />;
-                  })
-              : null}
-          </div>
+        <div className='group__header'>
+          <h4 style={{ color: pointColor }} className='box-title'>
+            WORK EXPERIENCE
+          </h4>
+        </div>
+        <div className='projects'>
+          {props.subInfo
+            ? props.subInfo
+                .filter((project) => project.company.relation[0].id === companyData.id)
+                .map((project: ProjectProperties) => {
+                  return <SubListItem key={project.id} info={project} />;
+                })
+            : null}
         </div>
       </div>
-
       {props.isLastCompany ? '' : <hr className='line--bottom' />}
     </>
   );
