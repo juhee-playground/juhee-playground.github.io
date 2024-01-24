@@ -2,6 +2,8 @@ import * as React from 'react';
 import type { RootState } from 'redux/store';
 import { useAppSelector } from 'redux/hooks';
 
+import Link from '@mui/material/Link';
+
 interface ContactProperties {
   [key: string]: string | undefined;
   phone_number: string | undefined;
@@ -45,10 +47,10 @@ const ProfileInfoBox = (props: NavProfileProps) => {
                 return (
                   <li className='list-item' key={`profile_subTitle_${index}`}>
                     <span className='subtitle'>{item.subTitle}</span>
-                    <span className='text--light'>
-                      <a className='text--link' href={contactInfo[key]}>
+                    <span className='text'>
+                      <Link href={contactInfo[key]} color='inherit'>
                         {contactInfo[key]}
-                      </a>
+                      </Link>
                     </span>
                   </li>
                 );
@@ -56,7 +58,7 @@ const ProfileInfoBox = (props: NavProfileProps) => {
                 return (
                   <li className='list-item' key={`profile_subTitle_${index}`}>
                     <span className='subtitle'>{item.subTitle}</span>
-                    <span className='text--light'>{contactInfo[key]}</span>
+                    <span className='text'>{contactInfo[key]}</span>
                   </li>
                 );
               }
