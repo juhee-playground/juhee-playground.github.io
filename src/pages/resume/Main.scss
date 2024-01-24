@@ -134,9 +134,13 @@
         font-weight: 700;
         font-size: 12px;
     }
-    .results {
+    .experience {
         display: flex;
         flex-direction: column;
+        .contents {
+            display: flex;
+            white-space: pre;
+        }
     }
 }
 

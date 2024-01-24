@@ -4,6 +4,8 @@ import type { RootState } from 'redux/store';
 
 import LabelIcon from '@mui/icons-material/Label';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import DChip from 'components/custom/DChip';
 
 function SubListItem(props: SubListProps) {
@@ -18,7 +20,7 @@ function SubListItem(props: SubListProps) {
     companyId: props.info.company.relation[0].id,
     name: props.info.name.title[0].plain_text,
     period: date.start ? `${date.start}~${date.end === null ? '' : date.end}` : '',
-    mainSkills: [...props.info.mainSkill.multi_select],
+    mainSkills: props.info.mainSkill.multi_select,
     skills: props.info.skill.multi_select,
     role: props.info.role.rich_text[0].plain_text,
     description: props.info.description.rich_text[0].plain_text,
@@ -35,14 +37,18 @@ function SubListItem(props: SubListProps) {
       <div className='list__item list__item--vertical'>
         <a className='title__link' href={projectData.url} target='_blank' rel='noreferrer'>
           <LabelIcon fontSize='small' className='text text__icon--pre' />
-          <span className='text text__subTitle'>{projectData.name}</span>
+          <Typography variant='subtitle1' className='text text__subTitle' gutterBottom>
+            {projectData.name}
+          </Typography>
         </a>
-        <span className='numbers text__sub'>
-          <span className='text text__plain period'>{projectData.period}</span>
-        </span>
+        <Box className='numbers text__sub'>
+          <Typography variant='caption' color='text.primary' className='text text__plain period' gutterBottom>
+            {projectData.period}
+          </Typography>
+        </Box>
       </div>
       <div>
-        <span className='text text__sub'>참여인원: </span>
+        <span className='text text__plain'>참여인원: </span>
         <span className='text__sub'>{projectData.numberOfParticipants}</span>
         <span className='text text__plain'> | 역활: </span>
         <span className='text text__sub'> {projectData.role}</span>
@@ -56,50 +62,50 @@ function SubListItem(props: SubListProps) {
           <Stack className='stacks' direction='row' spacing={1}>
             {projectData.mainSkills.map((select: SelectProperty) => (
               <DChip
-                key={`stacks__${select.id}`}
+                key={`mainSkill_${projectData.name}_${select.id}`}
                 size='small'
                 color={select.color}
                 label={select.name}
                 clickable={false}
               />
             ))}
-            {projectData.skills.map((skill: SelectProperty) => (
+            {projectData.skills.map((select: SelectProperty, index: number) => (
               <DChip
-                key={`stacks__${skill.id}`}
+                key={`skill_${projectData.name}_${select.name}_${index}`}
                 size='small'
                 color='grey'
-                label={skill.name}
+                label={select.name}
                 clickable={false}
               />
             ))}
           </Stack>
         </ul>
       </div>
-      <div className='list__item results'>
-        {projectData.experience.map((text: string, index) => {
+      <div className='list__item experience'>
+        {projectData.experience.map((text: string) => {
           const boldTexts = boldSentence.filter((bold) => text.includes(bold));
           const [first, last] = text.split(boldTexts[0]);
           if (boldTexts.length > 0) {
             return (
               <>
-                <div>
-                  <span key={`content_first_${index}`} className='text text__plain'>
+                <div key={text} className='contents'>
+                  <Typography variant='caption' className='text text__plain' gutterBottom>
                     {first}
-                  </span>
-                  <span key={`content_bold_${index}`} className='text text__plain text__bold'>
+                  </Typography>
+                  <Typography variant='caption' className='text text__plain text__bold' gutterBottom>
                     {boldTexts[0]}
-                  </span>
-                  <span key={`content_last${index}`} className='text text__plain'>
+                  </Typography>
+                  <Typography variant='caption' className='text text__plain' gutterBottom>
                     {last}
-                  </span>
+                  </Typography>
                 </div>
               </>
             );
           } else {
             return (
-              <span key={`result_content_${index}`} className='text text__plain'>
+              <Typography key={`content_${text}`} variant='caption' className='text text__plain' gutterBottom>
                 {text}
-              </span>
+              </Typography>
             );
           }
         })}
