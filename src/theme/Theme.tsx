@@ -5,7 +5,7 @@ const palette = {
   light: {
     primary: {
       light: deepPurple[300],
-      main: deepPurple[500],
+      main: deepPurple['A200'],
       dark: deepPurple[900],
     },
     secondary: {
