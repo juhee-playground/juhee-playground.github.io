@@ -188,12 +188,11 @@ export default function Main() {
       </section>
       <PointStackCard />
       <hr className='hrBasic' />
-      {/* <section className={isPrintMode ? `career--${mode}` : 'career'}> */}
       <section className='career'>
         <div className='group__header'>
           <span className='box-icon'>⚽️</span>
           <h3 style={{ color: pointColor }} className='box-title'>
-            Career
+            CAREER
           </h3>
         </div>
         {parseCompanyQuery.map((company: CompanyProperties, index: number) => {

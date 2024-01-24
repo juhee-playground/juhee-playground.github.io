@@ -1,4 +1,6 @@
 import React from 'react';
+import { useAppSelector } from 'redux/hooks';
+import type { RootState } from 'redux/store';
 
 import './card.scss';
 import CONTENT_MAIN from '../../../constants/StackContent';
@@ -12,9 +14,15 @@ interface CardContentProperty {
 const contents = CONTENT_MAIN;
 
 const PointStackCard = () => {
+  const { pointColor } = useAppSelector((state: RootState) => state.settings);
   return (
     <div className='card card__container'>
-      <h3 className='card__title'>간단 소개</h3>
+      <div className='group__header'>
+        <span className='box-icon'>⚽️</span>
+        <h3 style={{ color: pointColor }} className='box-title'>
+          OVERVIEW
+        </h3>
+      </div>
       <ul className='card__content'>
         {contents.map((card: CardContentProperty) => {
           const { content, link, bold } = card;

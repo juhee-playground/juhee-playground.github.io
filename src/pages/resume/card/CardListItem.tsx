@@ -62,7 +62,7 @@ function CardListItem(props: CardListProps) {
         </div>
         <div className='group__header'>
           <h3 style={{ color: pointColor }} className='box-title'>
-            Work Experience
+            WORK EXPERIENCE
           </h3>
         </div>
         <div className='projects'>
