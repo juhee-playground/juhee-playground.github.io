@@ -5,6 +5,9 @@ import type { RootState } from 'redux/store';
 
 import { parserPeriod } from 'utils/Parser';
 import SubListItem from './SubListItem';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
 function CardListItem(props: CardListProps) {
   const date = props.info.period.date;
   const companyData = {
@@ -34,12 +37,20 @@ function CardListItem(props: CardListProps) {
         <div className='box__header'>
           <div className='row row__first'>
             <span className='text text__title'>{companyData.name}</span>
-            <div className='period__groups'>
-              <span className='text text__sub period'>{companyData.startDate}</span>
-              <span className='text text__plain period'> {isWave} </span>
-              <span className='text text__sub period'>{companyData.endDate}</span>
-              <span className='text text__plain period'>{companyData.period}</span>
-            </div>
+            <Box className='period__groups'>
+              <Typography variant='caption' color='text.primary' className='text text__sub period'>
+                {companyData.startDate}
+              </Typography>
+              <Typography variant='caption' color='text.primary' className='text text__plain period'>
+                {isWave}
+              </Typography>
+              <Typography variant='caption' color='text.primary' className='text text__sub period'>
+                {companyData.endDate}
+              </Typography>
+              <Typography variant='caption' color='text.primary' className='text text__plain period'>
+                {companyData.period}
+              </Typography>
+            </Box>
           </div>
           <div className='row row__second'>
             <span className='text text__sub'>{companyData.role}</span>
