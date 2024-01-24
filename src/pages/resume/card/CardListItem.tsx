@@ -72,9 +72,9 @@ function CardListItem(props: CardListProps) {
           </div>
         </div>
         <div className='group__header'>
-          <h3 style={{ color: pointColor }} className='box-title'>
+          <h4 style={{ color: pointColor }} className='box-title'>
             WORK EXPERIENCE
-          </h3>
+          </h4>
         </div>
         <div className='projects'>
           {props.subInfo

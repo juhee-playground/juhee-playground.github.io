@@ -1,5 +1,4 @@
 .action {
-    padding: 12px;
     height: 20%;
     &--print {
         display: none;
@@ -64,8 +63,8 @@
     &__header {
         display: flex;
         align-items: center;
-        margin: 12px 0 0 0;
-        h3 {
+        // margin: 12px 0 0 0;
+        h4 {
             margin: 0;
             padding: 0 4px;
             line-height: 28px;
@@ -91,17 +90,18 @@
         flex-direction: column;
         .row {
             padding: 4px 0;
-        }
-        .row__first {
-            display: flex;
-            align-items: center;
-            .period__groups {
-                margin-left: 20px;
+            &__first {
+                display: flex;
+                align-items: center;
+                .period__groups {
+                    margin-left: 20px;
+                }
             }
-        }
-        .row__third {
-            display: flex;
-            flex-direction: column;
+            &__third {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 12px;
+            }
         }
         .period {
             font-size: 15px;

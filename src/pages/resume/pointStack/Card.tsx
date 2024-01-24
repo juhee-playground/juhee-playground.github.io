@@ -19,9 +19,9 @@ const PointStackCard = () => {
     <div className='card card__container'>
       <div className='group__header'>
         <span className='box-icon'>⚽️</span>
-        <h3 style={{ color: pointColor }} className='box-title'>
+        <h4 style={{ color: pointColor }} className='box-title'>
           OVERVIEW
-        </h3>
+        </h4>
       </div>
       <ul className='card__content'>
         {contents.map((card: CardContentProperty) => {

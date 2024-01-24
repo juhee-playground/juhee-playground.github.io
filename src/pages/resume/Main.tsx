@@ -191,9 +191,9 @@ export default function Main() {
       <section className='career'>
         <div className='group__header'>
           <span className='box-icon'>⚽️</span>
-          <h3 style={{ color: pointColor }} className='box-title'>
+          <h4 style={{ color: pointColor }} className='box-title'>
             CAREER
-          </h3>
+          </h4>
         </div>
         {parseCompanyQuery.map((company: CompanyProperties, index: number) => {
           return (
