@@ -3,7 +3,7 @@ import { useAppSelector } from 'redux/hooks';
 import type { RootState } from 'redux/store';
 import { AxiosError } from 'axios';
 
-import { getCompanies, getProjects, getStackOptions } from 'api/notion';
+import { getCompanies, getProjects, getSkillOptions } from 'api/notion';
 import { useQuery } from 'react-query';
 
 import { useTheme } from '@mui/material/styles';
@@ -18,13 +18,13 @@ import CardListItem from 'pages/resume/card/CardListItem';
 import FilterOption from './filter/FilterOption';
 
 import COMPANY_DATA from 'data/DB_company.json';
-import DB_STACK from 'data/DB_stack.json';
+import DB_SKILL from 'data/DB_skill.json';
 import PROJECT_DATA from 'data/DB_project.json';
 import PointStackCard from './pointStack/Card';
 
 const filterDefault = {
   company: [],
-  stack: [],
+  skill: [],
 };
 
 export default function Main() {
@@ -68,9 +68,9 @@ export default function Main() {
     },
   );
 
-  const mainStackSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
-    ['getStackOptions'],
-    () => getStackOptions({ property: 'mainSkill' }),
+  const mainSkillSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
+    ['getSkillOptions'],
+    () => getSkillOptions({ property: 'mainSkill' }),
   );
 
   const companiesData = companyQuery.data === undefined ? DB_COMPANY_DATAS : companyQuery.data;
@@ -97,14 +97,14 @@ export default function Main() {
 
   const parseProjectQuery: ProjectProperties[] = useMemo(() => {
     const projectData = projectsData.filter((project: ProjectProperties) => {
-      const stackInfo = JSON.stringify(project.mainSkill.multi_select);
+      const skillInfo = JSON.stringify(project.mainSkill.multi_select);
       let isSelected = false;
 
-      selectedChips.stack.forEach((item) => {
-        const stackRegex = new RegExp(item);
+      selectedChips.skill.forEach((item) => {
+        const skillRegex = new RegExp(item);
 
         if (!isSelected) {
-          isSelected = stackRegex.test(stackInfo);
+          isSelected = skillRegex.test(skillInfo);
         }
       });
       return isSelected;
@@ -117,9 +117,9 @@ export default function Main() {
     [companyQuery.data, DB_COMPANY_DATAS],
   );
 
-  const stackOptions = useMemo(
-    () => (mainStackSelectOptions.data ? mainStackSelectOptions.data.map((select) => select.name) : DB_STACK),
-    [mainStackSelectOptions.data, DB_STACK],
+  const skillOptions = useMemo(
+    () => (mainSkillSelectOptions.data ? mainSkillSelectOptions.data.map((select) => select.name) : DB_SKILL),
+    [mainSkillSelectOptions.data, DB_SKILL],
   );
 
   const handleChange = (option: string, key: string) => {
@@ -142,9 +142,9 @@ export default function Main() {
     setSelectedChips((prev) => ({
       ...prev,
       company: [...companies],
-      stack: [...stackOptions],
+      skill: [...skillOptions],
     }));
-  }, [companies, stackOptions]);
+  }, [companies, skillOptions]);
 
   return (
     <div
@@ -157,9 +157,9 @@ export default function Main() {
         <ul className='filter__container'>
           <FilterOption options={companies} type='company' selected={selectedChips} onChange={handleChange} />
           <FilterOption
-            options={stackOptions}
-            colorOptions={mainStackSelectOptions.data}
-            type='stack'
+            options={skillOptions}
+            colorOptions={mainSkillSelectOptions.data}
+            type='skill'
             selected={selectedChips}
             onChange={handleChange}
           />
