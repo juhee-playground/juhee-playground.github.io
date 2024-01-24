@@ -70,7 +70,7 @@ export default function Main() {
 
   const mainStackSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(
     ['getStackOptions'],
-    () => getStackOptions({ property: 'mainStack' }),
+    () => getStackOptions({ property: 'mainSkill' }),
   );
 
   const companiesData = companyQuery.data === undefined ? DB_COMPANY_DATAS : companyQuery.data;
