@@ -73,16 +73,14 @@ function DChip({ selected, color, size, label, clickable, parentFunction }: Cust
     notionColor = notionSelect[color];
   }
 
-  const applyColor = selected || !clickable;
-
   const customTheme = createTheme({
     components: {
       MuiChip: {
         styleOverrides: {
           root: {
-            backgroundColor: applyColor ? notionColor.bg : 'default',
-            color: applyColor ? notionColor.text : 'grey',
-            borderColor: applyColor ? notionColor.bg : 'grey',
+            backgroundColor: selected ? notionColor.bg : 'default',
+            color: selected ? notionColor.text : 'grey',
+            borderColor: selected ? notionColor.bg : 'grey',
           },
         },
       },

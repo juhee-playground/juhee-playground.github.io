@@ -14,6 +14,7 @@ function CardListItem(props: CardListProps) {
     id: props.info.id,
     name: props.info.name.title[0].plain_text,
     description: props.info.description.rich_text[0].plain_text.split('- '),
+    type: props.info.type.rich_text[0].plain_text,
     startDate: date?.start ? format(new Date(date.start), 'yyyy/MM') : '',
     endDate: date?.start ? format(new Date(date.end), 'yyyy/MM') : '',
     year: props.info.year.number,
@@ -52,15 +53,20 @@ function CardListItem(props: CardListProps) {
               </Typography>
             </Box>
           </div>
-          <div className='row row__second'>
-            <span className='text text__sub'>{companyData.role}</span>
-            <span className='text text__plain'> | </span>
-            <span className='text text__sub'>{companyData.department}</span>
-            <span className='text text__plain'> | 설립년도:</span>
-            <span className='text text__sub'> {companyData.year}</span>
-            <span className='text text__plain'> | 회사규모: </span>
-            <span className='text text__sub'> {companyData.scale}</span>
-          </div>
+          {companyData.type === 'C' ? (
+            <div className='row row__second'>
+              <span className='text text__sub'>{companyData.role}</span>
+              <span className='text text__plain'> | </span>
+              <span className='text text__sub'>{companyData.department}</span>
+              <span className='text text__plain'> | 설립년도:</span>
+              <span className='text text__sub'> {companyData.year}</span>
+              <span className='text text__plain'> | 회사규모: </span>
+              <span className='text text__sub'> {companyData.scale}</span>
+            </div>
+          ) : (
+            ''
+          )}
+
           <div className='row row__third'>
             {companyData.description.map((description, index) => {
               return (
