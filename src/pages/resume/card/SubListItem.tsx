@@ -64,6 +64,7 @@ function SubListItem(props: SubListProps) {
               <DChip
                 key={`mainSkill_${projectData.name}_${select.id}`}
                 size='small'
+                selected
                 color={select.color}
                 label={select.name}
                 clickable={false}
