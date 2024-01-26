@@ -75,6 +75,7 @@ export default function Main() {
 
   const companiesData = companyQuery.data === undefined ? DB_COMPANY_DATAS : companyQuery.data;
   const projectsData = projectQuery.data === undefined ? DB_PROJECT_DATAS : projectQuery.data;
+  const toyProjectData = companiesData.filter((company) => company.type.rich_text[0].plain_text === 'T');
 
   const parseCompanyQuery: CompanyProperties[] = useMemo(() => {
     const companyData = companiesData
@@ -113,7 +114,10 @@ export default function Main() {
   }, [projectQuery, selectedChips]);
 
   const companies = useMemo(
-    () => companiesData.map((company) => company.name.title[0].plain_text),
+    () =>
+      companiesData
+        .filter((company) => company.type.rich_text[0].plain_text === 'C')
+        .map((company) => company.name.title[0].plain_text),
     [companyQuery.data, DB_COMPANY_DATAS],
   );
 
@@ -205,6 +209,27 @@ export default function Main() {
             />
           );
         })}
+      </section>
+      <hr className='hrBasic' />
+      <section className='career'>
+        <div className='group__header'>
+          <span className='box-icon'>⚽️</span>
+          <h4 style={{ color: pointColor }} className='box-title'>
+            SIDE PROJECT
+          </h4>
+        </div>
+        {toyProjectData
+          .filter((company) => company.type.rich_text[0].plain_text === 'T')
+          .map((company: CompanyProperties, index: number) => {
+            return (
+              <CardListItem
+                key={company.id}
+                info={company}
+                subInfo={parseProjectQuery}
+                isLastCompany={index === companyLength}
+              />
+            );
+          })}
       </section>
     </div>
   );
