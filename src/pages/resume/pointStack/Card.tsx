@@ -1,9 +1,9 @@
-import React from "react";
-import { useAppSelector } from "redux/hooks";
-import type { RootState } from "redux/store";
+import React from 'react';
+import { useAppSelector } from 'redux/hooks';
+import type { RootState } from 'redux/store';
 
-import "./card.scss";
-import CONTENT_MAIN from "../../../constants/StackContent";
+import './card.scss';
+import CONTENT_MAIN from '../../../constants/StackContent';
 
 interface CardContentProperty {
   content: string;
@@ -27,13 +27,13 @@ const PointStackCard = () => {
         {contents.map((card: CardContentProperty) => {
           const { content, link, bold } = card;
           const [prefix, suffix] = content.split(bold);
-          if (bold !== "") {
+          if (bold !== '') {
             return (
               <li className='content__li' key={content}>
-                {prefix}{" "}
+                {prefix}{' '}
                 <a href={link}>
                   <b>{bold}</b>
-                </a>{" "}
+                </a>{' '}
                 {suffix}
               </li>
             );

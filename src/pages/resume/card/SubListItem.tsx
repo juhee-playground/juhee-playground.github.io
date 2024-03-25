@@ -1,12 +1,12 @@
-import React from "react";
-import { useAppSelector } from "redux/hooks";
-import type { RootState } from "redux/store";
+import React from 'react';
+import { useAppSelector } from 'redux/hooks';
+import type { RootState } from 'redux/store';
 
-import LabelIcon from "@mui/icons-material/Label";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import DChip from "components/custom/DChip";
+import LabelIcon from '@mui/icons-material/Label';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import DChip from 'components/custom/DChip';
 
 function SubListItem(props: SubListProps) {
   const date = props.info.period.date;
@@ -14,13 +14,13 @@ function SubListItem(props: SubListProps) {
     .filter(rich => rich.annotations.bold)
     .map(rich => rich.plain_text);
   const experience = props.info.experience.rich_text.map(rich => rich.text.content);
-  const content = experience.join("").split("\n");
+  const content = experience.join('').split('\n');
   // FIXME: 비어 있을 경우 에러처리 해야함.
   const projectData = {
     id: props.info.id,
     companyId: props.info.company.relation[0].id,
     name: props.info.name.title[0].plain_text,
-    period: date.start ? `${date.start}~${date.end === null ? "" : date.end}` : "",
+    period: date.start ? `${date.start}~${date.end === null ? '' : date.end}` : '',
     mainSkills: props.info.mainSkill.multi_select,
     skills: props.info.skill.multi_select,
     role: props.info.role.rich_text[0].plain_text,
@@ -31,7 +31,7 @@ function SubListItem(props: SubListProps) {
   };
 
   const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
-  const mode = isPrintMode ? "print" : "";
+  const mode = isPrintMode ? 'print' : '';
 
   return (
     <div className='project__container' key={`project__${projectData.id}`}>
@@ -59,7 +59,7 @@ function SubListItem(props: SubListProps) {
       </div>
       <div className='list__item period'></div>
       <div className='list__item stacks'>
-        <ul className={isPrintMode ? `list__container--${mode}` : "list__container"}>
+        <ul className={isPrintMode ? `list__container--${mode}` : 'list__container'}>
           <Stack className='stacks' direction='row' spacing={1}>
             {projectData.mainSkills.map((select: SelectProperty) => (
               <DChip

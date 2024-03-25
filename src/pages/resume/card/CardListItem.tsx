@@ -1,38 +1,38 @@
-import React, { useMemo } from "react";
-import { useAppSelector } from "redux/hooks";
-import { format } from "date-fns";
-import type { RootState } from "redux/store";
+import React, { useMemo } from 'react';
+import { useAppSelector } from 'redux/hooks';
+import { format } from 'date-fns';
+import type { RootState } from 'redux/store';
 
-import { parserPeriod } from "utils/Parser";
-import SubListItem from "./SubListItem";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { parserPeriod } from 'utils/Parser';
+import SubListItem from './SubListItem';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 function CardListItem(props: CardListProps) {
   const date = props.info.period.date;
   const companyData = {
     id: props.info.id,
     name: props.info.name.title[0].plain_text,
-    description: props.info.description.rich_text[0].plain_text.split("- "),
+    description: props.info.description.rich_text[0].plain_text.split('- '),
     type: props.info.type.rich_text[0].plain_text,
-    startDate: date?.start ? format(new Date(date.start), "yyyy/MM") : "",
-    endDate: date?.start ? format(new Date(date.end), "yyyy/MM") : "",
+    startDate: date?.start ? format(new Date(date.start), 'yyyy/MM') : '',
+    endDate: date?.start ? format(new Date(date.end), 'yyyy/MM') : '',
     year: props.info.year.number,
     scale: props.info.scale.rich_text[0].plain_text,
     department: props.info.department.rich_text[0].plain_text,
     role: props.info.role.select.name,
-    period: date?.start ? parserPeriod(date) : "",
+    period: date?.start ? parserPeriod(date) : '',
   };
 
   const { isPrintMode, pointColor } = useAppSelector((state: RootState) => state.settings);
-  const mode = isPrintMode ? "print" : "";
+  const mode = isPrintMode ? 'print' : '';
 
-  const isWave = useMemo(() => (companyData.startDate !== "" ? `~` : null), []);
+  const isWave = useMemo(() => (companyData.startDate !== '' ? `~` : null), []);
   return (
     <>
       <div
         key={`company__${companyData.id}`}
-        className={isPrintMode ? `box__container box__container--${mode}` : "box__container"}
+        className={isPrintMode ? `box__container box__container--${mode}` : 'box__container'}
         id={companyData.id}
       >
         <div className='box__header'>
@@ -53,7 +53,7 @@ function CardListItem(props: CardListProps) {
               </Typography>
             </Box>
           </div>
-          {companyData.type === "C" ? (
+          {companyData.type === 'C' ? (
             <div className='row row__second'>
               <span className='text text__sub'>{companyData.role}</span>
               <span className='text text__plain'> | </span>
@@ -64,7 +64,7 @@ function CardListItem(props: CardListProps) {
               <span className='text text__sub'> {companyData.scale}</span>
             </div>
           ) : (
-            ""
+            ''
           )}
 
           <div className='row row__third'>
@@ -92,7 +92,7 @@ function CardListItem(props: CardListProps) {
             : null}
         </div>
       </div>
-      {props.isLastCompany ? "" : <hr className='line--bottom' />}
+      {props.isLastCompany ? '' : <hr className='line--bottom' />}
     </>
   );
 }
