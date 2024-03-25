@@ -75,6 +75,7 @@
     "@types/react": "^18.2.69",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18.2.22",
+    "@types/redux": "^3.6.0",
     "@types/webpack-env": "^1.18.4",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
