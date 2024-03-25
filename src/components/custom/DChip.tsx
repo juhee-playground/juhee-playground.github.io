@@ -1,9 +1,9 @@
-import React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Chip from '@mui/material/Chip';
-import CheckIcon from '@mui/icons-material/Check';
+import React from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Chip from "@mui/material/Chip";
+import CheckIcon from "@mui/icons-material/Check";
 
-import { red, purple, yellow, orange, blueGrey, pink, cyan, green, blue, brown } from '@mui/material/colors';
+import { red, purple, yellow, orange, blueGrey, pink, cyan, green, blue, brown } from "@mui/material/colors";
 interface SelectChipColor {
   [color: string]: ActionComponentColor;
 }
@@ -68,7 +68,7 @@ function DChip({ selected, color, size, label, clickable, parentFunction }: Cust
   if (selected) {
     icon = <CheckIcon />;
   }
-  let notionColor = { bg: 'default', text: 'grey' };
+  let notionColor = { bg: "default", text: "grey" };
   if (notionSelect[color]) {
     notionColor = notionSelect[color];
   }
@@ -78,9 +78,9 @@ function DChip({ selected, color, size, label, clickable, parentFunction }: Cust
       MuiChip: {
         styleOverrides: {
           root: {
-            backgroundColor: selected ? notionColor.bg : 'default',
-            color: selected ? notionColor.text : 'grey',
-            borderColor: selected ? notionColor.bg : 'grey',
+            backgroundColor: selected ? notionColor.bg : "default",
+            color: selected ? notionColor.text : "grey",
+            borderColor: selected ? notionColor.bg : "grey",
           },
         },
       },

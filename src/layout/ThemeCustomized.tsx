@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from 'redux/hooks';
-import type { RootState } from 'redux/store';
-import { changePointColor } from 'redux/modules/settings';
-import { ColorResult, ChromePicker } from 'react-color';
+import React, { useState } from "react";
+import { useAppSelector, useAppDispatch } from "redux/hooks";
+import type { RootState } from "redux/store";
+import { changePointColor } from "redux/modules/settings";
+import { ColorResult, ChromePicker } from "react-color";
 
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
 
-import { ColorModeContext } from 'context/ColorModeContext';
+import { ColorModeContext } from "context/ColorModeContext";
 
-import './ThemeCustomized.scss';
+import "./ThemeCustomized.scss";
 
 const ThemeCustomized = () => {
-  const [color, setColor] = useState<string>('');
+  const [color, setColor] = useState<string>("");
   const colorMode = React.useContext(ColorModeContext);
   const { pointColor } = useAppSelector((state: RootState) => state.settings);
   const dispatch = useAppDispatch();

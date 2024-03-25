@@ -1,17 +1,17 @@
-import * as React from 'react';
+import * as React from "react";
 
-import IconButton from '@mui/material/IconButton';
-import SettingsIcon from '@mui/icons-material/Settings';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import IconButton from "@mui/material/IconButton";
+import SettingsIcon from "@mui/icons-material/Settings";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
 const MenuPopupState = () => {
   return (
     <PopupState variant='popper' popupId='demo-popup-menu'>
-      {(popupState) => (
+      {popupState => (
         <React.Fragment>
           <Button variant='contained' {...bindTrigger(popupState)}>
             <IconButton aria-label='setting'>
@@ -21,8 +21,8 @@ const MenuPopupState = () => {
 
           <Menu
             className='aaaa'
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            transformOrigin={{ vertical: "top", horizontal: "right" }}
             {...bindMenu(popupState)}
           >
             <MenuItem onClick={popupState.close}>Profile</MenuItem>

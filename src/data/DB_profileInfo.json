@@ -1,52 +1,50 @@
 [
-    {
-        "icon": "⚽️",
-        "title": "CONTACT",
-        "isBasic": false,
-        "basic": [],
-        "isSubTitle": true,
-        "subTitle" : [
-            {"icon": "📞","subTitle": "Phone", "value": "phone_number"},
-            {"icon": "📧", "subTitle": "Email",  "value": "email" },
-            {"icon": "⚽️", "subTitle": "Github",  "value": "github" },
-            {"icon": "🦖", "subTitle": "Portfolio",  "value": "portfolio" }
-        ],
-        "isSpaceBetween": false,
-        "spaceBetween": []
-    },
-    {
-        "icon": "⚽️",
-        "title": "HOBBY",
-        "isBasic": true,
-        "basic": ["풋살", "공룡"],
-        "isSubTitle": false,
-        "subTitle" : [],
-        "isSpaceBetween": false,
-        "spaceBetween": []
-    },
-    {
-        "icon": "⚽️",
-        "title": "EDUCATION",
-        "isBasic": false,
-        "basic": [],
-        "isSubTitle": false,
-        "subTitle" : [],
-        "isSpaceBetween": true,
-        "spaceBetween": [
-            {"text": "한양여자 대학교", "date": "2014.02"}
-        ]
-    },
-    {
-        "icon": "⚽️",
-        "title": "CERTIFICATION",
-        "isBasic": false,
-        "basic": [],
-        "isSubTitle": false,
-        "subTitle" : [],
-        "isSpaceBetween": true,
-        "spaceBetween": [
-            {"text": "정보처리기사", "date": "2017.02"},
-            {"text": "컴퓨터활용능력 1급", "date": "2016.07"}
-        ]
-    }
+  {
+    "icon": "⚽️",
+    "title": "CONTACT",
+    "isBasic": false,
+    "basic": [],
+    "isSubTitle": true,
+    "subTitle": [
+      { "icon": "📞", "subTitle": "Phone", "value": "phone_number" },
+      { "icon": "📧", "subTitle": "Email", "value": "email" },
+      { "icon": "⚽️", "subTitle": "Github", "value": "github" },
+      { "icon": "🦖", "subTitle": "Portfolio", "value": "portfolio" }
+    ],
+    "isSpaceBetween": false,
+    "spaceBetween": []
+  },
+  {
+    "icon": "⚽️",
+    "title": "HOBBY",
+    "isBasic": true,
+    "basic": ["풋살", "공룡"],
+    "isSubTitle": false,
+    "subTitle": [],
+    "isSpaceBetween": false,
+    "spaceBetween": []
+  },
+  {
+    "icon": "⚽️",
+    "title": "EDUCATION",
+    "isBasic": false,
+    "basic": [],
+    "isSubTitle": false,
+    "subTitle": [],
+    "isSpaceBetween": true,
+    "spaceBetween": [{ "text": "한양여자 대학교", "date": "2014.02" }]
+  },
+  {
+    "icon": "⚽️",
+    "title": "CERTIFICATION",
+    "isBasic": false,
+    "basic": [],
+    "isSubTitle": false,
+    "subTitle": [],
+    "isSpaceBetween": true,
+    "spaceBetween": [
+      { "text": "정보처리기사", "date": "2017.02" },
+      { "text": "컴퓨터활용능력 1급", "date": "2016.07" }
+    ]
+  }
 ]

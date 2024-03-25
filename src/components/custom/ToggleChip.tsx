@@ -1,10 +1,10 @@
-import React from 'react';
-import { useAppSelector } from 'redux/hooks';
-import type { RootState } from 'redux/store';
+import React from "react";
+import { useAppSelector } from "redux/hooks";
+import type { RootState } from "redux/store";
 
-import { useTheme } from '@mui/material/styles';
-import Chip from '@mui/material/Chip';
-import CheckIcon from '@mui/icons-material/Check';
+import { useTheme } from "@mui/material/styles";
+import Chip from "@mui/material/Chip";
+import CheckIcon from "@mui/icons-material/Check";
 
 const ToggleChip = ({ selected, label, clickable, parentFunction }: CustomChip) => {
   const handleClick = () => {
@@ -25,11 +25,11 @@ const ToggleChip = ({ selected, label, clickable, parentFunction }: CustomChip) 
     <Chip
       className={`chip__toggle chip__toggle--${theme.palette.mode}`}
       sx={{ borderRadius: 1 }}
-      style={selected ? { color: pointColor, borderColor: pointColor } : { color: 'grey' }}
+      style={selected ? { color: pointColor, borderColor: pointColor } : { color: "grey" }}
       label={<div className='dChip__label'> {label}</div>}
       size='small'
       variant='outlined'
-      color={selected ? 'primary' : 'default'}
+      color={selected ? "primary" : "default"}
       icon={icon}
       clickable={clickable}
       onClick={handleClick}

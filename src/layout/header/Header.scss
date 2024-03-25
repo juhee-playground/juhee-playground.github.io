@@ -1,17 +1,17 @@
 .header {
-    padding: 0 45px;
-    height: 40px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    &--print {
-        .button__groups {
-            display: none;
-        }
-        &:hover {
-            .button__groups {
-                display: inline;
-            }
-        }
+  padding: 0 45px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  &--print {
+    .button__groups {
+      display: none;
     }
+    &:hover {
+      .button__groups {
+        display: inline;
+      }
+    }
+  }
 }

@@ -10,6 +10,7 @@
     "eject": "craco eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "format": "prettier --write --cache .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

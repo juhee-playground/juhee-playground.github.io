@@ -1,8 +1,8 @@
-import * as React from 'react';
-import type { RootState } from 'redux/store';
-import { useAppSelector } from 'redux/hooks';
+import * as React from "react";
+import type { RootState } from "redux/store";
+import { useAppSelector } from "redux/hooks";
 
-import Link from '@mui/material/Link';
+import Link from "@mui/material/Link";
 
 interface ContactProperties {
   [key: string]: string | undefined;
@@ -22,13 +22,11 @@ const ProfileInfoBox = (props: NavProfileProps) => {
   };
   const profile = props.info;
   const profileClass = profile.title.toLowerCase();
-  const mode = isPrintMode ? 'print' : '';
+  const mode = isPrintMode ? "print" : "";
 
   return (
     <section
-      className={
-        isPrintMode ? `profile__box profile__box--${mode} ${profileClass}` : `profile__box ${profileClass}`
-      }
+      className={isPrintMode ? `profile__box profile__box--${mode} ${profileClass}` : `profile__box ${profileClass}`}
     >
       <div className='profile__box__header'>
         <span className='box-icon'>{profile.icon}</span>
@@ -43,7 +41,7 @@ const ProfileInfoBox = (props: NavProfileProps) => {
             {/* subtitle이 있는 list item */}
             {profile.subTitle.map((item: SubTitleItem, index: number) => {
               const key = item.value;
-              if (key === 'github' || key === 'portfolio') {
+              if (key === "github" || key === "portfolio") {
                 return (
                   <li className='list-item' key={`profile_subTitle_${index}`}>
                     <span className='subtitle'>{item.subTitle}</span>

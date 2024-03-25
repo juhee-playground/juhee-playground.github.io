@@ -2,19 +2,19 @@
 
 react - typescript app 생성
 
-``` code
+```code
 npx create-react-app 프로젝트명 --template typescript
 
 또는
 
-yarn create react-app 프로젝트명 --template typescript 
+yarn create react-app 프로젝트명 --template typescript
 ```
 
 프로젝트 폴더로 이동  
 `cd 프로젝트명`
 
 - 정상 설치되었는지 확인  
-`npm start` 또는 `yarn start`  
+  `npm start` 또는 `yarn start`
 - github와 연결
 
 ```code
@@ -28,7 +28,7 @@ git push -u origin main
 ```text
 /public
     index.html 주석 삭제 및 noscript 태그 삭제
-    robots.txt 사용하지 않는 경우 삭제 
+    robots.txt 사용하지 않는 경우 삭제
     logo192.png, logo512.png 삭제
 ```
 
@@ -42,17 +42,17 @@ git push -u origin main
     에러 위치 확인 후 import 코드 삭제
 ```
 
-*환경변수 설정*
+_환경변수 설정_
 root 위치에 .. 파일 생성  
-    .gitignore에 .env 추가  
-    .env에 key 추가
+ .gitignore에 .env 추가  
+ .env에 key 추가
 
-``` javascript
+```javascript
     REACT_APP_DEVELOPMENT = https://api.sample.com
     REACT_APP_PRODUCTION = https://api.sample.com
 ```
 
-*절대경로 사용을 위한 설정*
+_절대경로 사용을 위한 설정_
 `@craco/craco` 및 `craco-alias` 설치
 
 ```code
@@ -60,7 +60,7 @@ root 위치에 .. 파일 생성
     npm install -D craco-alias
 ```
 
-*root 위치에 `tsconfig.path.json` 파일 생성 및 아래 내용 저장*
+_root 위치에 `tsconfig.path.json` 파일 생성 및 아래 내용 저장_
 
 ```javascript
  //tsconfig.path.json
@@ -74,26 +74,26 @@ root 위치에 .. 파일 생성
     }
 ```
 
-*root 위치에 `craco.config.js` 파일 생성 및 아래 내용 저장*
+_root 위치에 `craco.config.js` 파일 생성 및 아래 내용 저장_
 
 ```javascript
-    //craco.config.js
-    const CracoAlias = require("craco-alias");
-    
-    module.exports = {
-      plugins: [
-        {
-          plugin: CracoAlias,
-          options: {
-            source: "tsconfig",
-            tsConfigPath: "tsconfig.paths.json",
-          },
-        },
-      ],
-    };
+//craco.config.js
+const CracoAlias = require("craco-alias");
+
+module.exports = {
+  plugins: [
+    {
+      plugin: CracoAlias,
+      options: {
+        source: "tsconfig",
+        tsConfigPath: "tsconfig.paths.json",
+      },
+    },
+  ],
+};
 ```
 
-*`tsconfig.json` 파일에 extends 추가*
+_`tsconfig.json` 파일에 extends 추가_
 
 ```javascript
     //tsconfig.json
@@ -109,7 +109,7 @@ root 위치에 .. 파일 생성
 }
 ```
 
-*`package.json` 파일 수정*
+_`package.json` 파일 수정_
 
 ```javascript
     //package.json
@@ -138,22 +138,21 @@ root 위치에 .. 파일 생성
 
 ## ESLint 설치 및 설정
 
-> `npm install -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser`
->`npm install -D eslint-config-airbnb eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-prettier`
+> `npm install -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser` >`npm install -D eslint-config-airbnb eslint-config-airbnb-typescript eslint-config-prettier eslint-plugin-prettier`
 
 ### ESLint 설정 옵션 알아보기
 
 - env
   - 사전 정의된 전역 변수 사용을 정의합니다.
   - 옵션들에 대한 설명은 [여기](https://eslint.org/docs/user-guide/configuring#specifying-environments)에서 확인해주세요.
-- parser  
+- parser
   - ESLint는 구문 분석을 위해 기본적으로 Espree 파서를 사용합니다.
   - `@typescript-eslint/parser`는 Typescript의 구문 분석을 합니다.
-- plugin  
+- plugin
   - 원하는 규칙 집합을 확장해주는 역할을 합니다.
   - 플러그인 만으로는 규칙이 적용되지 않습니다.
   - ES6에서 제공되는 import를 추가
-- extends  
+- extends
   - 추가한 플러그인에서 사용할 규칙을 설정합니다.
 - globals
   - 선언되지 않은 전역변수를 사용하는 경우 ESLin 경고가 발생하지 않도록 사용자 전역 변수를 추가할 수 있습니다.
@@ -166,8 +165,8 @@ root 위치에 .. 파일 생성
   - ESLin에는 프로젝트에서 사용하는 규칙을 수정할 수 있습니다.
 - settings
   - ESLint 구성 파일에 설정 개체를 추가할 수 있으며, 실행될 모든 규칙에 제공됩니다.
-  
-*`.eslintrc` 파일을 ESLint 적용을 원하는 프로젝트의 root 경로에 생성(FE or BE 폴더)*
+
+_`.eslintrc` 파일을 ESLint 적용을 원하는 프로젝트의 root 경로에 생성(FE or BE 폴더)_
 
 ```javascript
 {
@@ -189,7 +188,7 @@ root 위치에 .. 파일 생성
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
-  }, 
+  },
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
@@ -205,11 +204,11 @@ root 위치에 .. 파일 생성
     "global-require": 0,
     "import/no-extraneous-dependencies": 0,
     "jsx-quotes": ["error", "prefer-single"],
-    "react/jsx-props-no-spreading": 0, 
+    "react/jsx-props-no-spreading": 0,
     "react/forbid-prop-types": 0,
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "import/extensions": 0,
-    "no-use-before-define": 0, 
+    "no-use-before-define": 0,
     "@typescript-eslint/no-empty-interface": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-var-requires": 0,
@@ -219,12 +218,12 @@ root 위치에 .. 파일 생성
     "no-alert": 0,
     "react-hooks/exhaustive-deps": 0
   },
-  "settings": { 
+  "settings": {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx", ".js"] 
-    }, 
-    "import/resolver": { 
-      "typescript": "./tsconfig.json" 
+      "@typescript-eslint/parser": [".ts", ".tsx", ".js"]
+    },
+    "import/resolver": {
+      "typescript": "./tsconfig.json"
     }
   }
 }
@@ -234,7 +233,7 @@ root 위치에 .. 파일 생성
 
 > .eslintrc 와 똑같이 적용되길 원하는 프로젝트의 디렉토리에 `.prettierc` 파일을 만들어준다.
 
-``` code
+```code
 npm -D install prettier prettier-eslint
 ```
 
@@ -258,12 +257,12 @@ npm -D install prettier prettier-eslint
   "requirePragma": false,
   "insertPragma": false,
   "proseWrap": "preserve",
-  "vueIndentScriptAndStyle": false 
+  "vueIndentScriptAndStyle": false
 }
 ```
 
-*scss 사용*
+_scss 사용_
 `npm install node-sass`
 
-*react router dom*
+_react router dom_
 `npm install react-router-dom`
