@@ -15,6 +15,7 @@ function SubListItem(props: SubListProps) {
     .map(rich => rich.plain_text);
   const experience = props.info.experience.rich_text.map(rich => rich.text.content);
   const content = experience.join("").split("\n");
+  // FIXME: 비어 있을 경우 에러처리 해야함.
   const projectData = {
     id: props.info.id,
     companyId: props.info.company.relation[0].id,
