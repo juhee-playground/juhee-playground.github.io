@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import CheckIcon from '@mui/icons-material/Check';
 
-import { red, purple, yellow, orange, blueGrey, pink, cyan, green, blue, brown } from '@mui/material/colors';
+import { red, purple, yellow, orange, lightGreen, pink, grey, green, blue, brown } from '@mui/material/colors';
 interface SelectChipColor {
   [color: string]: ActionComponentColor;
 }
@@ -31,8 +31,8 @@ const notionSelect: SelectChipColor = {
     text: yellow[900],
   },
   green: {
-    bg: green[100],
-    text: green[600],
+    bg: lightGreen[100],
+    text: lightGreen[600],
   },
   blue: {
     bg: blue[100],
@@ -43,12 +43,12 @@ const notionSelect: SelectChipColor = {
     text: orange[600],
   },
   default: {
-    bg: cyan[100],
-    text: cyan[600],
+    bg: grey[100],
+    text: grey[600],
   },
   gray: {
-    bg: blueGrey[100],
-    text: blueGrey[600],
+    bg: green[100],
+    text: green[600],
   },
   pink: {
     bg: pink[100],
