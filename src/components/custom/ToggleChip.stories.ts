@@ -23,9 +23,9 @@ const meta = {
       description: 'Chip 클릭을 할 수 있는지 없는지 알려주는 역할을 합니다.',
       defaultValue: true,
     },
-    color: {
+    pointColor: {
       control: 'none',
-      description: 'color값은 포인트컬러값을 넣어준다. 부모만 바꿀 수 있다.',
+      description: '말그래도 포인트컬러값 입니다. 부모에서만 바꿀 수 있습니다.',
     },
     handleChipSelect: {
       control: 'function',

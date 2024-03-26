@@ -170,7 +170,8 @@ declare global {
 
   interface CustomChip {
     selected?: boolean;
-    color: string;
+    pointColor?: string;
+    color?: string;
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     label: string;
     clickable?: boolean;

@@ -56,7 +56,7 @@ const notionSelect: SelectChipColor = {
   },
 };
 
-function DChip({ selected, color, size, label, clickable, handleChipSelect }: CustomChip) {
+function DChip({ selected, color = 'deafult', size, label, clickable, handleChipSelect }: CustomChip) {
   const handleClick = (): void => {
     if (handleChipSelect) {
       handleChipSelect(label);
