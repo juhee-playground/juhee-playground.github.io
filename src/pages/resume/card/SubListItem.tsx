@@ -63,9 +63,9 @@ function SubListItem({ info, filters }: SubListProps) {
               <DChip
                 key={`mainSkill_${projectData.name}_${select.id}`}
                 size='small'
-                selected
                 color={select.color}
                 label={select.name}
+                selectedItems={filters['skill']}
                 clickable={false}
               />
             ))}

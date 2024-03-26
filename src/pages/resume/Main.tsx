@@ -204,6 +204,7 @@ export default function Main() {
               key={company.id}
               info={company}
               subInfo={parseProjectQuery}
+              filters={selectedChips}
               isLastCompany={index === companyLength}
             />
           );
@@ -224,6 +225,7 @@ export default function Main() {
               <CardListItem
                 key={company.id}
                 info={company}
+                filters={selectedChips}
                 subInfo={parseProjectQuery}
                 isLastCompany={index === companyLength}
               />

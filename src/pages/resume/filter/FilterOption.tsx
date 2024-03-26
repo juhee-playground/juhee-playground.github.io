@@ -33,10 +33,11 @@ const FilterOption = ({ type, options, colorOptions, pointColor = 'primary', sel
                 return (
                   <DChip
                     key={id}
-                    selected={selected[type].indexOf(name) !== -1}
+                    selectedItems={selected[type]}
                     label={name}
                     size='small'
                     color={color}
+                    clickable
                     handleChipSelect={clickedChip}
                   />
                 );

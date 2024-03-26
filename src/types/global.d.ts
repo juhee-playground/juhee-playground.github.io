@@ -169,7 +169,7 @@ declare global {
   }
 
   interface CustomChip {
-    selected?: boolean;
+    selectedItems?: string[];
     pointColor?: string;
     color?: string;
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
@@ -182,11 +182,13 @@ declare global {
     key: string;
     info: CompanyProperties;
     subInfo: ProjectProperties[];
+    filters: FilterSelected;
     isLastCompany: boolean;
   }
 
   interface SubListProps {
     key: string;
+    filters: FilterSelected;
     info: ProjectProperties;
   }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import CheckIcon from '@mui/icons-material/Check';
@@ -55,9 +55,15 @@ const notionSelect: SelectChipColor = {
     text: pink[600],
   },
 };
+function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, handleChipSelect }: CustomChip) {
+  const isSelected = selectedItems.indexOf(label) > -1;
+  const [selected, setSelected] = useState(isSelected);
 
-function DChip({ selected, color = 'deafult', size, label, clickable, handleChipSelect }: CustomChip) {
   const handleClick = (): void => {
+    if (clickable) {
+      setSelected(prevState => !prevState);
+    }
+
     if (handleChipSelect) {
       handleChipSelect(label);
     }
@@ -66,7 +72,7 @@ function DChip({ selected, color = 'deafult', size, label, clickable, handleChip
   let icon;
 
   if (selected) {
-    icon = <CheckIcon />;
+    icon = <CheckIcon data-testid='check-icon' />;
   }
   let notionColor = { bg: 'default', text: 'grey' };
   if (notionSelect[color]) {

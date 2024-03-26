@@ -16,6 +16,7 @@ const meta = {
     label: {
       control: 'text',
       description: 'Chip의 이름을 설정해주는 역할을 합니다.',
+      defaultValue: 'Chip',
     },
     color: {
       control: 'select',
@@ -27,13 +28,13 @@ const meta = {
       description: 'Chip의 사이즈를 결정해주는 역활을 합니다.',
       options: ['small', 'medium'],
     },
-    selected: {
-      control: 'boolean',
-      description: 'Chip에 체크 표시가 되었는지를 알려주는 역할을 합니다.',
-    },
     clickable: {
       control: 'boolean',
       description: 'Chip 클릭을 할 수 있는지 없는지 알려주는 역할을 합니다.',
+    },
+    selectedItems: {
+      control: 'none',
+      description: '필터에 값이 있으면 체크표시가 보입니다.',
     },
   },
 } satisfies Meta<typeof DChip>;
@@ -41,13 +42,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SmallChip: Story = {
+export const Playground: Story = {
+  args: {
+    label: 'chip',
+    color: 'red',
+    size: 'small',
+    selectedItems: ['chip'],
+    clickable: true,
+  },
+};
+
+export const Smallhip: Story = {
   args: {
     label: 'Small Chip',
     color: 'blue',
     size: 'small',
-    clickable: false,
-    selected: true,
+    selectedItems: ['Small Chip'],
+    clickable: true,
   },
 };
 
@@ -56,37 +67,26 @@ export const MediumChip: Story = {
     label: 'Medium Chip',
     color: 'blue',
     size: 'medium',
-    clickable: false,
-    selected: true,
+    selectedItems: ['Medium Chip'],
+    clickable: true,
   },
 };
 
-export const Selected: Story = {
+export const Clickable: Story = {
   args: {
-    label: 'Selected Chip',
+    label: 'Clickeable Chip',
+    color: 'orange',
+    size: 'medium',
+    selectedItems: ['Clickeable Chip'],
+    clickable: true,
+  },
+};
+
+export const NotClickableChip: Story = {
+  args: {
+    label: 'Not clickable Chip',
     color: 'orange',
     size: 'medium',
     clickable: false,
-    selected: true,
-  },
-};
-
-export const NotSelected: Story = {
-  args: {
-    label: 'Not Selected Chip',
-    color: 'orange',
-    size: 'medium',
-    clickable: false,
-    selected: false,
-  },
-};
-
-export const RedChip: Story = {
-  args: {
-    label: 'Red Chip',
-    color: 'red',
-    size: 'medium',
-    clickable: false,
-    selected: true,
   },
 };

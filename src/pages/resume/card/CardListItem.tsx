@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 
 function CardListItem(props: CardListProps) {
   const date = props.info.period.date;
+  const filters = props.filters;
   const companyData = {
     id: props.info.id,
     name: props.info.name.title[0].plain_text,
@@ -87,7 +88,7 @@ function CardListItem(props: CardListProps) {
             ? props.subInfo
                 .filter(project => project.company.relation[0].id === companyData.id)
                 .map((project: ProjectProperties) => {
-                  return <SubListItem key={project.id} info={project} />;
+                  return <SubListItem key={project.id} filters={filters} info={project} />;
                 })
             : null}
         </div>
