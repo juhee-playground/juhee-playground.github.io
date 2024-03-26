@@ -22,7 +22,7 @@ describe('ToggleChip 테스트', () => {
     expect(checkIcon).not.toBeVisible();
   });
 
-  it('체크 표시가 없는 상태일 때 칩을 클릭하면 체크표시가 보인다..', () => {
+  it('체크 표시가 없는 상태일 때 칩을 클릭하면 체크표시가 보인다.', () => {
     const button = screen.getByRole('button', { name: 'chip' });
     const checkIcon = screen.getByTestId('check-icon');
     fireEvent.click(button);

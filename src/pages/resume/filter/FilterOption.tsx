@@ -42,14 +42,7 @@ const FilterOption = ({ type, options, colorOptions, pointColor = 'primary', sel
                 );
               })
             : options.map((name: string, index: number) => (
-                <ToggleChip
-                  key={`${type}_${index}`}
-                  selected={selected[type].indexOf(name) !== -1}
-                  label={name}
-                  color={pointColor}
-                  clickable={true}
-                  handleChipSelect={clickedChip}
-                />
+                <ToggleChip key={`${type}_${index}`} label={name} color={pointColor} handleChipSelect={clickedChip} />
               ))}
         </Stack>
       </div>
