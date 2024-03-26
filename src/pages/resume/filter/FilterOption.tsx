@@ -10,11 +10,12 @@ interface Props {
   type: string;
   options: string[];
   colorOptions?: SelectProperty[];
+  pointColor?: string;
   selected: FilterSelected;
   onChange(option: string, key: string): void;
 }
 
-const FilterOption = ({ type, options, colorOptions, selected, onChange }: Props) => {
+const FilterOption = ({ type, options, colorOptions, pointColor = 'primary', selected, onChange }: Props) => {
   const clickedChip = (state: string) => {
     onChange(state, type);
   };
@@ -36,7 +37,7 @@ const FilterOption = ({ type, options, colorOptions, selected, onChange }: Props
                     label={name}
                     size='small'
                     color={color}
-                    parentFunction={clickedChip}
+                    handleChipSelect={clickedChip}
                   />
                 );
               })
@@ -45,9 +46,9 @@ const FilterOption = ({ type, options, colorOptions, selected, onChange }: Props
                   key={`${type}_${index}`}
                   selected={selected[type].indexOf(name) !== -1}
                   label={name}
-                  color='primary'
+                  color={pointColor}
                   clickable={true}
-                  parentFunction={clickedChip}
+                  handleChipSelect={clickedChip}
                 />
               ))}
         </Stack>

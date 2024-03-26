@@ -152,7 +152,13 @@ export default function Main() {
       {projectQuery.isLoading ? <Loading /> : null}
       <section className={isPrintMode ? `action--${mode}` : 'action'}>
         <ul className='filter__container'>
-          <FilterOption options={companies} type='company' selected={selectedChips} onChange={handleChange} />
+          <FilterOption
+            options={companies}
+            type='company'
+            selected={selectedChips}
+            pointColor={pointColor}
+            onChange={handleChange}
+          />
           <FilterOption
             options={skillOptions}
             colorOptions={mainSkillSelectOptions.data}
