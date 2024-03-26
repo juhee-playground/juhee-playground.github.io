@@ -8,26 +8,24 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import DChip from 'components/custom/DChip';
 
-function SubListItem(props: SubListProps) {
-  const date = props.info.period.date;
-  const boldSentence = props.info.experience.rich_text
-    .filter(rich => rich.annotations.bold)
-    .map(rich => rich.plain_text);
-  const experience = props.info.experience.rich_text.map(rich => rich.text.content);
+function SubListItem({ info, filters }: SubListProps) {
+  const date = info.period.date;
+  const boldSentence = info.experience.rich_text.filter(rich => rich.annotations.bold).map(rich => rich.plain_text);
+  const experience = info.experience.rich_text.map(rich => rich.text.content);
   const content = experience.join('').split('\n');
   // FIXME: 비어 있을 경우 에러처리 해야함.
   const projectData = {
-    id: props.info.id,
-    companyId: props.info.company.relation[0].id,
-    name: props.info.name.title[0].plain_text,
+    id: info.id,
+    companyId: info.company.relation[0].id,
+    name: info.name.title[0].plain_text,
     period: date.start ? `${date.start}~${date.end === null ? '' : date.end}` : '',
-    mainSkills: props.info.mainSkill.multi_select,
-    skills: props.info.skill.multi_select,
-    role: props.info.role.rich_text[0].plain_text,
-    description: props.info.description.rich_text[0].plain_text,
+    mainSkills: info.mainSkill.multi_select,
+    skills: info.skill.multi_select,
+    role: info.role.rich_text[0].plain_text,
+    description: info.description.rich_text[0].plain_text,
     experience: content,
-    numberOfParticipants: props.info.numberOfParticipants.number,
-    url: props.info.url.url,
+    numberOfParticipants: info.numberOfParticipants.number,
+    url: info.url.url,
   };
 
   const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
