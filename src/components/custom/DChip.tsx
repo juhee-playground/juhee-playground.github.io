@@ -2,59 +2,8 @@ import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import CheckIcon from '@mui/icons-material/Check';
+import { notionColorSet } from 'constants/NotionColorSet';
 
-import { red, purple, yellow, orange, lightGreen, pink, grey, green, blue, brown } from '@mui/material/colors';
-interface SelectChipColor {
-  [color: string]: ActionComponentColor;
-}
-interface ActionComponentColor {
-  bg: string;
-  text: string;
-}
-
-// TODO: module화 해서 밖으로 빼기;;;
-const notionSelect: SelectChipColor = {
-  red: {
-    bg: red[100],
-    text: red[600],
-  },
-  brown: {
-    bg: brown[100],
-    text: brown[600],
-  },
-  purple: {
-    bg: purple[100],
-    text: purple[600],
-  },
-  yellow: {
-    bg: yellow[100],
-    text: yellow[900],
-  },
-  green: {
-    bg: lightGreen[100],
-    text: lightGreen[600],
-  },
-  blue: {
-    bg: blue[100],
-    text: blue[600],
-  },
-  orange: {
-    bg: orange[100],
-    text: orange[600],
-  },
-  default: {
-    bg: grey[100],
-    text: grey[600],
-  },
-  gray: {
-    bg: green[100],
-    text: green[600],
-  },
-  pink: {
-    bg: pink[100],
-    text: pink[600],
-  },
-};
 function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, handleChipSelect }: CustomChip) {
   const isSelected = selectedItems.indexOf(label) > -1;
   const [selected, setSelected] = useState(isSelected);
@@ -75,8 +24,8 @@ function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, 
     icon = <CheckIcon data-testid='check-icon' />;
   }
   let notionColor = { bg: 'default', text: 'grey' };
-  if (notionSelect[color]) {
-    notionColor = notionSelect[color];
+  if (notionColorSet[color]) {
+    notionColor = notionColorSet[color];
   }
 
   const customTheme = createTheme({
