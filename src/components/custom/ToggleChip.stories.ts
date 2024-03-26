@@ -41,7 +41,6 @@ export const Selected: Story = {
   args: {
     label: 'Selected Chip',
     selected: true,
-    color: '#8c538d',
   },
 };
 
@@ -49,6 +48,5 @@ export const NotSelected: Story = {
   args: {
     label: 'Not Selected Chip',
     selected: false,
-    color: '',
   },
 };

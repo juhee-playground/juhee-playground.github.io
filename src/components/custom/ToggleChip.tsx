@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import CheckIcon from '@mui/icons-material/Check';
 
-const ToggleChip = ({ selected, label, pointColor, clickable, handleChipSelect }: CustomChip) => {
+const ToggleChip = ({ label, pointColor, clickable, handleChipSelect }: CustomChip) => {
+  const [selected, setSelected] = useState(true);
   const handleClick = () => {
+    setSelected(prevState => !prevState);
     if (handleChipSelect) {
       handleChipSelect(label);
     }
@@ -23,7 +25,7 @@ const ToggleChip = ({ selected, label, pointColor, clickable, handleChipSelect }
       className={`chip__toggle chip__toggle--${theme.palette.mode}`}
       sx={{ borderRadius: 1 }}
       style={selected ? { color: pointColor, borderColor: pointColor } : { color: 'grey' }}
-      label={<div className='dChip__label'> {label}</div>}
+      label={label}
       size='small'
       variant='outlined'
       color={selected ? 'primary' : 'default'}
