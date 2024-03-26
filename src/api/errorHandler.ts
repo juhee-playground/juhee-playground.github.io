@@ -1,4 +1,4 @@
-import { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
 // https://dev.to/vikirobles/how-to-create-an-auth-login-system-with-axios-interceptors-typescript-2k11
 interface ResponseData {
@@ -6,14 +6,14 @@ interface ResponseData {
 }
 
 const logOnDev = (message: string) => {
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     console.log(message);
   }
 };
 
 function handleError(serverError: ResponseData) {
   if (serverError?.data) {
-    console.log("handleError", serverError);
+    console.log('handleError', serverError);
   }
 }
 
