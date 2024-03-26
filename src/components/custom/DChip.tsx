@@ -20,7 +20,7 @@ function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, 
 
   let icon;
 
-  if (selected) {
+  if (selected && clickable) {
     icon = <CheckIcon data-testid='check-icon' />;
   }
   let notionColor = { bg: 'default', text: 'grey' };
@@ -28,14 +28,15 @@ function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, 
     notionColor = notionColorSet[color];
   }
 
+  const isMainSkillChip = color !== 'grey' && !clickable;
   const customTheme = createTheme({
     components: {
       MuiChip: {
         styleOverrides: {
           root: {
-            backgroundColor: selected ? notionColor.bg : 'default',
-            color: selected ? notionColor.text : 'grey',
-            borderColor: selected ? notionColor.bg : 'grey',
+            backgroundColor: selected || isMainSkillChip ? notionColor.bg : 'default',
+            color: selected || isMainSkillChip ? notionColor.text : 'grey',
+            borderColor: selected || isMainSkillChip ? notionColor.bg : 'grey',
           },
         },
       },
