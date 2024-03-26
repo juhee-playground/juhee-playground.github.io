@@ -174,7 +174,7 @@ declare global {
     size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     label: string;
     clickable?: boolean;
-    parentFunction?: (label: string) => void;
+    handleChipSelect?: (label: string) => void;
   }
 
   interface CardListProps {
