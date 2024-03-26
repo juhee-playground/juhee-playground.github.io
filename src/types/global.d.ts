@@ -7,8 +7,8 @@
 export {};
 
 declare global {
-  type ModeType = "light" | "dark";
-  type ProjectPropertiesType = "rich_text" | number | "date" | "select" | "text" | "title" | "select";
+  type ModeType = 'light' | 'dark';
+  type ProjectPropertiesType = 'rich_text' | number | 'date' | 'select' | 'text' | 'title' | 'select';
 
   interface Process {
     env: ProcessEnv;
@@ -23,7 +23,7 @@ declare global {
   }
 
   interface NotionPageIcon {
-    type: "file";
+    type: 'file';
     file: NotionFile;
   }
 
@@ -33,7 +33,7 @@ declare global {
   }
   interface NotionURL {
     id: string;
-    type: "url";
+    type: 'url';
     url: string;
   }
   interface ProjectProperties {
@@ -106,7 +106,7 @@ declare global {
   }
 
   interface NotionRelation extends NotionDefaultProperties {
-    type: "relation";
+    type: 'relation';
     relation: Relation[];
   }
 
@@ -145,7 +145,7 @@ declare global {
   interface NotionSelectOptions {
     id: string;
     name: string;
-    type: "multi_select";
+    type: 'multi_select';
     multi_select: {
       options: SelectProperty[];
     };
@@ -169,23 +169,26 @@ declare global {
   }
 
   interface CustomChip {
-    selected?: boolean;
-    color: string;
-    size?: OverridableStringUnion<"small" | "medium", ChipPropsSizeOverrides>;
+    selectedItems?: string[];
+    pointColor?: string;
+    color?: string;
+    size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     label: string;
     clickable?: boolean;
-    parentFunction?: (label: string) => void;
+    handleChipSelect?: (label: string) => void;
   }
 
   interface CardListProps {
     key: string;
     info: CompanyProperties;
     subInfo: ProjectProperties[];
+    filters: FilterSelected;
     isLastCompany: boolean;
   }
 
   interface SubListProps {
     key: string;
+    filters: FilterSelected;
     info: ProjectProperties;
   }
 
@@ -205,7 +208,7 @@ declare global {
     key: string;
   }
 
-  type errorType = "success" | "warning" | "error" | "info";
+  type errorType = 'success' | 'warning' | 'error' | 'info';
 
   interface SnackBarProps {
     message: string;

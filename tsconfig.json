@@ -5,7 +5,7 @@
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["node", "webpack-env"],
-    "typeRoots": ["./node_modules/@types", "./src/types/global.d.ts"],
+    "typeRoots": ["node_modules/@types", "src/types"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,5 +20,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

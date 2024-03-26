@@ -1,86 +1,42 @@
-import React from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Chip from "@mui/material/Chip";
-import CheckIcon from "@mui/icons-material/Check";
+import React, { useState } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Chip from '@mui/material/Chip';
+import CheckIcon from '@mui/icons-material/Check';
+import { notionColorSet } from 'constants/NotionColorSet';
 
-import { red, purple, yellow, orange, blueGrey, pink, cyan, green, blue, brown } from "@mui/material/colors";
-interface SelectChipColor {
-  [color: string]: ActionComponentColor;
-}
-interface ActionComponentColor {
-  bg: string;
-  text: string;
-}
+function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, handleChipSelect }: CustomChip) {
+  const isSelected = selectedItems.indexOf(label) > -1;
+  const [selected, setSelected] = useState(isSelected);
 
-// TODO: module화 해서 밖으로 빼기;;;
-const notionSelect: SelectChipColor = {
-  red: {
-    bg: red[100],
-    text: red[600],
-  },
-  brown: {
-    bg: brown[100],
-    text: brown[600],
-  },
-  purple: {
-    bg: purple[100],
-    text: purple[600],
-  },
-  yellow: {
-    bg: yellow[100],
-    text: yellow[900],
-  },
-  green: {
-    bg: green[100],
-    text: green[600],
-  },
-  blue: {
-    bg: blue[100],
-    text: blue[600],
-  },
-  orange: {
-    bg: orange[100],
-    text: orange[600],
-  },
-  default: {
-    bg: cyan[100],
-    text: cyan[600],
-  },
-  gray: {
-    bg: blueGrey[100],
-    text: blueGrey[600],
-  },
-  pink: {
-    bg: pink[100],
-    text: pink[600],
-  },
-};
-
-function DChip({ selected, color, size, label, clickable, parentFunction }: CustomChip) {
   const handleClick = (): void => {
-    if (parentFunction) {
-      parentFunction(label);
+    if (clickable) {
+      setSelected(prevState => !prevState);
+    }
+
+    if (handleChipSelect) {
+      handleChipSelect(label);
     }
   };
 
   let icon;
 
-  if (selected) {
-    icon = <CheckIcon />;
+  if (selected && clickable) {
+    icon = <CheckIcon data-testid='check-icon' />;
   }
-  let notionColor = { bg: "default", text: "grey" };
-  if (notionSelect[color]) {
-    notionColor = notionSelect[color];
+  let notionColor = { bg: 'default', text: 'grey' };
+  if (notionColorSet[color]) {
+    notionColor = notionColorSet[color];
   }
 
+  const isMainSkillChip = color !== 'grey' && !clickable;
   const customTheme = createTheme({
     components: {
       MuiChip: {
         styleOverrides: {
           root: {
-            backgroundColor: selected ? notionColor.bg : "default",
-            color: selected ? notionColor.text : "grey",
-            borderColor: selected ? notionColor.bg : "grey",
+            backgroundColor: selected || isMainSkillChip ? notionColor.bg : 'default',
+            color: selected || isMainSkillChip ? notionColor.text : 'grey',
+            borderColor: selected || isMainSkillChip ? notionColor.bg : 'grey',
           },
         },
       },

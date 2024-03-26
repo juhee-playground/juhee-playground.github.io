@@ -1,37 +1,36 @@
-import React from "react";
-import { useAppSelector } from "redux/hooks";
-import type { RootState } from "redux/store";
+import React, { useState } from 'react';
 
-import { useTheme } from "@mui/material/styles";
-import Chip from "@mui/material/Chip";
-import CheckIcon from "@mui/icons-material/Check";
+import { useTheme } from '@mui/material/styles';
+import Chip from '@mui/material/Chip';
+import CheckIcon from '@mui/icons-material/Check';
 
-const ToggleChip = ({ selected, label, clickable, parentFunction }: CustomChip) => {
+const ToggleChip = ({ label, pointColor, handleChipSelect }: CustomChip) => {
+  const [selected, setSelected] = useState(true);
   const handleClick = () => {
-    if (parentFunction) {
-      parentFunction(label);
+    setSelected(prevState => !prevState);
+    if (handleChipSelect) {
+      handleChipSelect(label);
     }
   };
-  const { pointColor } = useAppSelector((state: RootState) => state.settings);
   const theme = useTheme();
 
   let icon;
 
   if (selected) {
-    icon = <CheckIcon />;
+    icon = <CheckIcon data-testid='check-icon' />;
   }
 
   return (
     <Chip
       className={`chip__toggle chip__toggle--${theme.palette.mode}`}
       sx={{ borderRadius: 1 }}
-      style={selected ? { color: pointColor, borderColor: pointColor } : { color: "grey" }}
-      label={<div className='dChip__label'> {label}</div>}
+      style={selected ? { color: pointColor, borderColor: pointColor } : { color: 'grey' }}
+      label={label}
       size='small'
       variant='outlined'
-      color={selected ? "primary" : "default"}
+      color={selected ? 'primary' : 'default'}
       icon={icon}
-      clickable={clickable}
+      clickable
       onClick={handleClick}
     />
   );

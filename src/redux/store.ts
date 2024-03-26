@@ -1,7 +1,7 @@
-import { configureStore, MiddlewareArray } from "@reduxjs/toolkit";
-import reducer from "./rootReducer";
-import ReduxThunk from "redux-thunk";
-import { Middleware } from "redux";
+import { configureStore, MiddlewareArray } from '@reduxjs/toolkit';
+import reducer from './rootReducer';
+import ReduxThunk from 'redux-thunk';
+import { Middleware } from 'redux';
 
 const middlewareList: Middleware[] = [ReduxThunk];
 
@@ -9,7 +9,7 @@ const middleware = new MiddlewareArray().concat(...middlewareList);
 const store = configureStore({
   reducer,
   middleware,
-  devTools: process.env.NODE_ENV == "test",
+  devTools: process.env.NODE_ENV == 'test',
 });
 // useSelector 사용시 타입으로 사용하기 위함
 export type RootState = ReturnType<typeof store.getState>;
