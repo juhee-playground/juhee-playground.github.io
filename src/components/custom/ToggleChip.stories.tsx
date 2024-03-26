@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 
 export const PlayGround: Story = {
   args: {
-    label: 'chip',
+    label: 'toggle',
     pointColor: 'orange',
   },
 };
