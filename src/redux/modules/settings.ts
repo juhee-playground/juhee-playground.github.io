@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
-  pointColor: "#7c4dff",
+  pointColor: '#7c4dff',
   isPrintMode: false,
 };
 
 const SettingSlice = createSlice({
-  name: "setting",
+  name: 'setting',
   initialState,
   reducers: {
     changePointColor(state, action: PayloadAction<string>) {

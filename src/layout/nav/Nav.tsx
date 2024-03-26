@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { useAppSelector } from "redux/hooks";
-import type { RootState } from "redux/store";
-import ProfileInfo from "../../data/DB_profileInfo.json";
+import { useAppSelector } from 'redux/hooks';
+import type { RootState } from 'redux/store';
+import ProfileInfo from '../../data/DB_profileInfo.json';
 
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from '@mui/material/styles';
 
-import "./Nav.scss";
-import ProfileInfoBox from "./ProfileInfoBox";
+import './Nav.scss';
+import ProfileInfoBox from './ProfileInfoBox';
 
 const LeftNav = () => {
   const theme = useTheme();
@@ -15,12 +15,12 @@ const LeftNav = () => {
 
   const infos = ProfileInfo;
 
-  const mode = isPrintMode ? "print" : "";
+  const mode = isPrintMode ? 'print' : '';
 
   return (
     <nav
       id='profileInfo'
-      className={`nav__container nav__container--${theme.palette.mode} ${isPrintMode ? `nav__container--${mode}` : ""}`}
+      className={`nav__container nav__container--${theme.palette.mode} ${isPrintMode ? `nav__container--${mode}` : ''}`}
     >
       <div className='profile'>
         <section className={`profile__info profile__info--${theme.palette.mode}`}>

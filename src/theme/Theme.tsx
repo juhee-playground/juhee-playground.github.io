@@ -1,11 +1,11 @@
-import { grey, green, lime, deepPurple, purple, common } from "@mui/material/colors";
-import { Theme } from "@mui/material/styles";
+import { grey, green, lime, deepPurple, purple, common } from '@mui/material/colors';
+import { Theme } from '@mui/material/styles';
 
 const palette = {
   light: {
     primary: {
       light: deepPurple[300],
-      main: deepPurple["A200"],
+      main: deepPurple['A200'],
       dark: deepPurple[900],
     },
     secondary: {
@@ -28,19 +28,19 @@ const palette = {
   },
 };
 
-type PaletteMode = "light" | "dark";
+type PaletteMode = 'light' | 'dark';
 
 export const getDesignTokens = (mode: PaletteMode | undefined) =>
   ({
     palette: {
       mode,
-      ...(mode === "light"
+      ...(mode === 'light'
         ? {
             primary: {
               main: palette.light.primary.main,
               light: palette.light.primary.light,
               dark: palette.light.primary.dark,
-              contrastText: "#000",
+              contrastText: '#000',
             },
             // divider: '#000',
             background: {
@@ -49,7 +49,7 @@ export const getDesignTokens = (mode: PaletteMode | undefined) =>
             },
             text: {
               primary: grey[600], // project period, select text, chip text
-              secondary: "#000", // select form label
+              secondary: '#000', // select form label
             },
           }
         : {
@@ -57,7 +57,7 @@ export const getDesignTokens = (mode: PaletteMode | undefined) =>
               main: palette.dark.primary.main,
               light: palette.dark.primary.light,
               dark: palette.dark.primary.dark,
-              contrastText: "#fff",
+              contrastText: '#fff',
             },
             // divider: grey[400],
             background: {
@@ -71,9 +71,9 @@ export const getDesignTokens = (mode: PaletteMode | undefined) =>
           }),
     },
     typography: {
-      fontFamily: ["Oswald", "Roboto", '"Helvetica Neue"', "Arial", "sans-serif"].join(","),
+      fontFamily: ['Oswald', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'].join(','),
       body1: {
-        fontFamily: "Poppins, Arial, sans-serif",
+        fontFamily: 'Poppins, Arial, sans-serif',
       },
     },
   } as Theme);
@@ -81,7 +81,7 @@ export const getDesignTokens = (mode: PaletteMode | undefined) =>
 export const getThemedComponents = (mode: PaletteMode | undefined) =>
   ({
     components: {
-      ...(mode === "light"
+      ...(mode === 'light'
         ? {
             MuiAppBar: {
               styleOverrides: {
@@ -91,7 +91,7 @@ export const getThemedComponents = (mode: PaletteMode | undefined) =>
               },
             },
             MuiLink: {
-              variant: "h3",
+              variant: 'h3',
             },
             MuiButton: {
               styleOverrides: {
@@ -101,28 +101,28 @@ export const getThemedComponents = (mode: PaletteMode | undefined) =>
                   fontFamily: "Oswald, Roboto, 'Helvetica Neue', Arial, sans-serif",
                   fontSize: 20,
                   borderWidth: 2,
-                  "&:hover": {
+                  '&:hover': {
                     borderWidth: 2,
                   },
                 },
               },
               variants: [
                 {
-                  props: { variant: "contained" },
+                  props: { variant: 'contained' },
                   style: {
                     fontFamily: "Oswald, Roboto, 'Helvetica Neue', Arial, sans-serif",
                   },
                 },
                 {
-                  props: { variant: "outlined" },
+                  props: { variant: 'outlined' },
                   style: {
                     color: palette.light.primary.main,
                   },
                 },
                 {
-                  props: { variant: "primary", color: "primary" },
+                  props: { variant: 'primary', color: 'primary' },
                   style: {
-                    border: "4px dashed blue",
+                    border: '4px dashed blue',
                   },
                 },
               ],
@@ -136,7 +136,7 @@ export const getThemedComponents = (mode: PaletteMode | undefined) =>
               styleOverrides: {
                 root: {
                   color: common.white,
-                  alignItems: "stretch",
+                  alignItems: 'stretch',
                   fontFamily: "Oswald, Roboto, 'Helvetica Neue', Arial, sans-serif",
                 },
               },

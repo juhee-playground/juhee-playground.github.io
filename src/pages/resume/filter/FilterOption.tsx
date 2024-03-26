@@ -1,20 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import Stack from "@mui/material/Stack";
-import DChip from "components/custom/DChip";
-import ToggleChip from "components/custom/ToggleChip";
+import Stack from '@mui/material/Stack';
+import DChip from 'components/custom/DChip';
+import ToggleChip from 'components/custom/ToggleChip';
 
-import { firstLetterToUpper } from "utils/String";
+import { firstLetterToUpper } from 'utils/String';
 
 interface Props {
   type: string;
   options: string[];
   colorOptions?: SelectProperty[];
+  pointColor?: string;
   selected: FilterSelected;
   onChange(option: string, key: string): void;
 }
 
-const FilterOption = ({ type, options, colorOptions, selected, onChange }: Props) => {
+const FilterOption = ({ type, options, colorOptions, pointColor = 'primary', selected, onChange }: Props) => {
   const clickedChip = (state: string) => {
     onChange(state, type);
   };
@@ -32,23 +33,17 @@ const FilterOption = ({ type, options, colorOptions, selected, onChange }: Props
                 return (
                   <DChip
                     key={id}
-                    selected={selected[type].indexOf(name) !== -1}
+                    selectedItems={selected[type]}
                     label={name}
                     size='small'
                     color={color}
-                    parentFunction={clickedChip}
+                    clickable
+                    handleChipSelect={clickedChip}
                   />
                 );
               })
             : options.map((name: string, index: number) => (
-                <ToggleChip
-                  key={`${type}_${index}`}
-                  selected={selected[type].indexOf(name) !== -1}
-                  label={name}
-                  color='primary'
-                  clickable={true}
-                  parentFunction={clickedChip}
-                />
+                <ToggleChip key={`${type}_${index}`} label={name} color={pointColor} handleChipSelect={clickedChip} />
               ))}
         </Stack>
       </div>

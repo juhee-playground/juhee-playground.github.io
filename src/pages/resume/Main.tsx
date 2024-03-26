@@ -1,26 +1,26 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { useAppSelector } from "redux/hooks";
-import type { RootState } from "redux/store";
-import { AxiosError } from "axios";
+import React, { useEffect, useState, useMemo } from 'react';
+import { useAppSelector } from 'redux/hooks';
+import type { RootState } from 'redux/store';
+import { AxiosError } from 'axios';
 
-import { getCompanies, getProjects, getSkillOptions } from "api/notion";
-import { useQuery } from "react-query";
+import { getCompanies, getProjects, getSkillOptions } from 'api/notion';
+import { useQuery } from 'react-query';
 
-import { useTheme } from "@mui/material/styles";
-import MenuItem from "@mui/material/MenuItem";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
+import { useTheme } from '@mui/material/styles';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
-import "./Main.scss";
-import Loading from "components/Loading";
-import CardListItem from "pages/resume/card/CardListItem";
-import FilterOption from "./filter/FilterOption";
+import './Main.scss';
+import Loading from 'components/Loading';
+import CardListItem from 'pages/resume/card/CardListItem';
+import FilterOption from './filter/FilterOption';
 
-import COMPANY_DATA from "data/DB_company.json";
-import DB_SKILL from "data/DB_skill.json";
-import PROJECT_DATA from "data/DB_project.json";
-import PointStackCard from "./pointStack/Card";
+import COMPANY_DATA from 'data/DB_company.json';
+import DB_SKILL from 'data/DB_skill.json';
+import PROJECT_DATA from 'data/DB_project.json';
+import PointStackCard from './pointStack/Card';
 
 const filterDefault = {
   company: [],
@@ -30,14 +30,14 @@ const filterDefault = {
 export default function Main() {
   const DB_COMPANY_DATAS = COMPANY_DATA as CompanyProperties[];
   const DB_PROJECT_DATAS = PROJECT_DATA as ProjectProperties[];
-  const [sortValue, setSortValue] = useState("N");
+  const [sortValue, setSortValue] = useState('N');
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
 
   const theme = useTheme();
   const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
-  const mode = isPrintMode ? "print" : "";
+  const mode = isPrintMode ? 'print' : '';
 
-  const companyQuery = useQuery<NotionData[], AxiosError, CompanyProperties[]>(["getCompanies"], () => getCompanies(), {
+  const companyQuery = useQuery<NotionData[], AxiosError, CompanyProperties[]>(['getCompanies'], () => getCompanies(), {
     select: query =>
       query.map(data => {
         return {
@@ -48,7 +48,7 @@ export default function Main() {
   });
 
   const projectQuery = useQuery<NotionData[], AxiosError, ProjectProperties[]>(
-    ["getProjects"],
+    ['getProjects'],
     async () => {
       const response = await getProjects();
       return response;
@@ -64,13 +64,13 @@ export default function Main() {
     },
   );
 
-  const mainSkillSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(["getSkillOptions"], () =>
-    getSkillOptions({ property: "mainSkill" }),
+  const mainSkillSelectOptions = useQuery<SelectProperty[], AxiosError, SelectProperty[]>(['getSkillOptions'], () =>
+    getSkillOptions({ property: 'mainSkill' }),
   );
 
   const companiesData = companyQuery.data === undefined ? DB_COMPANY_DATAS : companyQuery.data;
   const projectsData = projectQuery.data === undefined ? DB_PROJECT_DATAS : projectQuery.data;
-  const toyProjectData = companiesData.filter(company => company.type.rich_text[0].plain_text === "T");
+  const toyProjectData = companiesData.filter(company => company.type.rich_text[0].plain_text === 'T');
 
   const parseCompanyQuery: CompanyProperties[] = useMemo(() => {
     const companyData = companiesData
@@ -82,7 +82,7 @@ export default function Main() {
         return firstObject.order.number > secondObject.order.number ? 1 : -1;
       });
 
-    if (sortValue === "O") {
+    if (sortValue === 'O') {
       return companyData.reverse();
     }
 
@@ -111,7 +111,7 @@ export default function Main() {
   const companies = useMemo(
     () =>
       companiesData
-        .filter(company => company.type.rich_text[0].plain_text === "C")
+        .filter(company => company.type.rich_text[0].plain_text === 'C')
         .map(company => company.name.title[0].plain_text),
     [companyQuery.data, DB_COMPANY_DATAS],
   );
@@ -147,12 +147,18 @@ export default function Main() {
 
   return (
     <div
-      className={`section-right section-right--${theme.palette.mode} ${isPrintMode ? `section-right--${mode}` : ""}`}
+      className={`section-right section-right--${theme.palette.mode} ${isPrintMode ? `section-right--${mode}` : ''}`}
     >
       {projectQuery.isLoading ? <Loading /> : null}
-      <section className={isPrintMode ? `action--${mode}` : "action"}>
+      <section className={isPrintMode ? `action--${mode}` : 'action'}>
         <ul className='filter__container'>
-          <FilterOption options={companies} type='company' selected={selectedChips} onChange={handleChange} />
+          <FilterOption
+            options={companies}
+            type='company'
+            selected={selectedChips}
+            pointColor={pointColor}
+            onChange={handleChange}
+          />
           <FilterOption
             options={skillOptions}
             colorOptions={mainSkillSelectOptions.data}
@@ -172,10 +178,10 @@ export default function Main() {
               label='정렬방법'
               onChange={handleChangeSelect}
             >
-              <MenuItem sx={{ color: `${theme.palette.mode === "dark" ? "white" : "black"}` }} value={"N"}>
+              <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'N'}>
                 최신순
               </MenuItem>
-              <MenuItem sx={{ color: `${theme.palette.mode === "dark" ? "white" : "black"}` }} value={"O"}>
+              <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'O'}>
                 오래된순
               </MenuItem>
             </Select>
@@ -198,6 +204,7 @@ export default function Main() {
               key={company.id}
               info={company}
               subInfo={parseProjectQuery}
+              filters={selectedChips}
               isLastCompany={index === companyLength}
             />
           );
@@ -212,12 +219,13 @@ export default function Main() {
           </h4>
         </div>
         {toyProjectData
-          .filter(company => company.type.rich_text[0].plain_text === "T")
+          .filter(company => company.type.rich_text[0].plain_text === 'T')
           .map((company: CompanyProperties, index: number) => {
             return (
               <CardListItem
                 key={company.id}
                 info={company}
+                filters={selectedChips}
                 subInfo={parseProjectQuery}
                 isLastCompany={index === companyLength}
               />
