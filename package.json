@@ -3,6 +3,10 @@
   "name": "juhee-playground",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
@@ -97,5 +101,9 @@
     "sass-loader": "^13.2.2",
     "storybook": "^7.6.10",
     "webpack": "^5.91.0"
-  }
+  },
+  "main": "index.tsx",
+  "repository": "git@github.com:juhee-playground/juhee-playground.github.io.git",
+  "author": "JUHEEBAEK <bjh9287@naver.com>",
+  "license": "MIT"
 }
