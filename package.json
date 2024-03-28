@@ -97,5 +97,9 @@
     "sass-loader": "^13.2.2",
     "storybook": "^7.6.10",
     "webpack": "^5.91.0"
-  }
+  },
+  "main": "index.tsx",
+  "repository": "git@github.com:juhee-playground/juhee-playground.github.io.git",
+  "author": "JUHEEBAEK <bjh9287@naver.com>",
+  "license": "MIT"
 }
