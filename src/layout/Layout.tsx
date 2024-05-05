@@ -1,30 +1,31 @@
-import React, { lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './header/Header';
-import Nav from './nav/Nav';
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
 
-import SettingsIcon from '@mui/icons-material/Settings';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import SettingsIcon from '@mui/icons-material/Settings';
+import ThemeCustomized from '@/layout/ThemeCustomized';
 
 import './Layout.scss';
 import './FixButton.scss';
-import ThemeCustomized from './ThemeCustomized';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const Main = lazy(() => import('../pages/resume/Main'));
+const Portfolio = lazy(() => import('../pages/portfolio/Main'));
 
 const renderLoader = () => <p>Loading</p>;
-const Layout = () => {
-  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
-  const [state, setState] = React.useState({
+export default function Layout() {
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
+  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const mode = isPrintMode ? 'print' : '';
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -37,38 +38,35 @@ const Layout = () => {
 
     setState({ ...state, [anchor]: open });
   };
+  
   const anchor = 'right';
-
-  const mode = isPrintMode ? 'print' : '';
 
   return (
     <div className='container'>
       <Header />
+      <button
+        style={{ backgroundColor: pointColor }}
+        className={`fixButton half-left toggler ripple ${isPrintMode ? `fixButton--${mode}` : ''}`}
+        onClick={toggleDrawer(anchor, true)}
+      >
+        <SettingsIcon />
+      </button>
+      <SwipeableDrawer
+        anchor={anchor}
+        open={state[anchor]}
+        onClose={toggleDrawer(anchor, false)}
+        onOpen={toggleDrawer(anchor, true)}
+      >
+        <ThemeCustomized />
+      </SwipeableDrawer>
       <main className={isPrintMode ? `main__container main__container--${mode}` : 'main__container'}>
-        <button
-          style={{ backgroundColor: pointColor }}
-          className={`fixButton half-left toggler ripple ${isPrintMode ? `fixButton--${mode}` : ''}`}
-          onClick={toggleDrawer(anchor, true)}
-        >
-          <SettingsIcon />
-        </button>
-        <SwipeableDrawer
-          anchor={anchor}
-          open={state[anchor]}
-          onClose={toggleDrawer(anchor, false)}
-          onOpen={toggleDrawer(anchor, true)}
-        >
-          <ThemeCustomized />
-        </SwipeableDrawer>
-        <Nav />
         <Suspense fallback={renderLoader()}>
           <Routes>
             <Route path='' element={<Main />} />
+            <Route path='/portfolio' element={<Portfolio />} />
           </Routes>
         </Suspense>
       </main>
     </div>
   );
 };
-
-export default Layout;

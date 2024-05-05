@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
-import ProfileInfo from '../../data/DB_profileInfo.json';
+import ProfileInfo from '../../../data/DB_profileInfo.json';
 
 import { useTheme } from '@mui/material/styles';
 
