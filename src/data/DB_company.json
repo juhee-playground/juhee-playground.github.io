@@ -1,0 +1,436 @@
+[
+  {
+    "order": {
+      "id": "Bl%5E%5C",
+      "type": "number",
+      "number": 3
+    },
+    "period": {
+      "id": "JUrG",
+      "type": "date",
+      "date": null
+    },
+    "type": {
+      "id": "L_q%3B",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "A",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "A",
+          "href": null
+        }
+      ]
+    },
+    "year": {
+      "id": "PbKf",
+      "type": "number",
+      "number": 2019
+    },
+    "description": {
+      "id": "fs%7C%3D",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "좋아하는 것을 개발에 접목시켜 꾸준하게 무언가를 만들어내기 위한 취미생활.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "좋아하는 것을 개발에 접목시켜 꾸준하게 무언가를 만들어내기 위한 취미생활.",
+          "href": null
+        }
+      ]
+    },
+    "scale": {
+      "id": "lJzh",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "2",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "2",
+          "href": null
+        }
+      ]
+    },
+    "role": {
+      "id": "oB_p",
+      "type": "select",
+      "select": {
+        "id": "UXQP",
+        "name": "웹 개발자",
+        "color": "yellow"
+      }
+    },
+    "department": {
+      "id": "q%3A~g",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "백주희팀",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "백주희팀",
+          "href": null
+        }
+      ]
+    },
+    "name": {
+      "id": "title",
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": "토이프로젝트",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "토이프로젝트",
+          "href": null
+        }
+      ]
+    },
+    "id": "02458f34-9632-4ee9-9363-ec9b4dd9af2f"
+  },
+  {
+    "order": {
+      "id": "Bl%5E%5C",
+      "type": "number",
+      "number": 1
+    },
+    "period": {
+      "id": "JUrG",
+      "type": "date",
+      "date": {
+        "start": "2018-07-02",
+        "end": "2022-11-30",
+        "time_zone": null
+      }
+    },
+    "type": {
+      "id": "L_q%3B",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "C",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "C",
+          "href": null
+        }
+      ]
+    },
+    "year": {
+      "id": "PbKf",
+      "type": "number",
+      "number": 2016
+    },
+    "description": {
+      "id": "fs%7C%3D",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "- 웨어러블 EPTS를 기반으로 스포츠 데이터를 분석하여 다양한 데이터시각화로 전문가용 서비스를 제공하는 회사.- 스포츠데이터를 수집하여 축구팀의 경기력 향상을 위한 데이터를 여러각도로 제공하여 주는 회사.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "- 웨어러블 EPTS를 기반으로 스포츠 데이터를 분석하여 다양한 데이터시각화로 전문가용 서비스를 제공하는 회사.- 스포츠데이터를 수집하여 축구팀의 경기력 향상을 위한 데이터를 여러각도로 제공하여 주는 회사.",
+          "href": null
+        }
+      ]
+    },
+    "scale": {
+      "id": "lJzh",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "30",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "30",
+          "href": null
+        }
+      ]
+    },
+    "role": {
+      "id": "oB_p",
+      "type": "select",
+      "select": {
+        "id": "LgOg",
+        "name": "프런트 개발자",
+        "color": "green"
+      }
+    },
+    "department": {
+      "id": "q%3A~g",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "소프트웨어팀",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "소프트웨어팀",
+          "href": null
+        }
+      ]
+    },
+    "name": {
+      "id": "title",
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": "핏투게더",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "핏투게더",
+          "href": null
+        }
+      ]
+    },
+    "id": "ac39715c-45de-4b35-9daa-30cf52a10664"
+  },
+  {
+    "order": {
+      "id": "Bl%5E%5C",
+      "type": "number",
+      "number": 2
+    },
+    "period": {
+      "id": "JUrG",
+      "type": "date",
+      "date": {
+        "start": "2017-03-15",
+        "end": "2018-02-28",
+        "time_zone": null
+      }
+    },
+    "type": {
+      "id": "L_q%3B",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "C",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "C",
+          "href": null
+        }
+      ]
+    },
+    "year": {
+      "id": "PbKf",
+      "type": "number",
+      "number": 2014
+    },
+    "description": {
+      "id": "fs%7C%3D",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "- 펀딩서비스와 건강기능 식품을 주요 서비스로 사용하여 각 각의 서비스를판매하여 매출을 올리는 회사.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "- 펀딩서비스와 건강기능 식품을 주요 서비스로 사용하여 각 각의 서비스를판매하여 매출을 올리는 회사.",
+          "href": null
+        }
+      ]
+    },
+    "scale": {
+      "id": "lJzh",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "20",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "20",
+          "href": null
+        }
+      ]
+    },
+    "role": {
+      "id": "oB_p",
+      "type": "select",
+      "select": {
+        "id": "UXQP",
+        "name": "웹 개발자",
+        "color": "yellow"
+      }
+    },
+    "department": {
+      "id": "q%3A~g",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "소프트웨어팀",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "소프트웨어팀",
+          "href": null
+        }
+      ]
+    },
+    "name": {
+      "id": "title",
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": "와이유파트너스",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "와이유파트너스",
+          "href": null
+        }
+      ]
+    },
+    "id": "f194e7b4-3174-4fd2-8dfc-17ea186dd8ed"
+  }
+]

@@ -1,0 +1,155 @@
+.action {
+  height: 20%;
+  &--print {
+    display: none;
+  }
+
+  .sort {
+    &__container {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.hrBasic {
+  background: #dddddd;
+  height: 1px;
+  width: 100%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 8px auto;
+  &__header {
+    display: flex;
+    align-items: center;
+    // margin: 12px 0 0 0;
+    h4 {
+      margin: 0;
+      padding: 0 4px;
+      line-height: 28px;
+    }
+    .box-icon {
+      padding: 0 4px;
+    }
+  }
+  hr {
+    width: 100%;
+    margin: 2px;
+  }
+}
+
+// CardListItem.tsx section
+.box__container {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 12px;
+
+  .box__header {
+    display: flex;
+    flex-direction: column;
+    .row {
+      padding: 4px 0;
+      &__first {
+        display: flex;
+        align-items: center;
+        .period__groups {
+          margin-left: 20px;
+        }
+      }
+      &__third {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 12px;
+      }
+    }
+    .period {
+      font-size: 15px;
+    }
+  }
+}
+
+.project__container {
+  margin: 12px 0;
+  .list__item {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 4px 0;
+    &--vertical {
+      align-items: center;
+    }
+  }
+  .title__link {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: inherit;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .numbers {
+    padding: 0 4px;
+  }
+  .period {
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .experience {
+    display: flex;
+    flex-direction: column;
+    .contents {
+      display: flex;
+      white-space: pre;
+    }
+  }
+}
+
+.text {
+  line-height: normal;
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  &__subTitle {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  &__sub {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  &__plain {
+    font-size: 14px;
+  }
+  &__bold {
+    font-weight: 700;
+  }
+  &__icon {
+    &--pre {
+      padding-right: 4px;
+    }
+  }
+}
+
+.list__container {
+  list-style: none;
+  margin: 4px 0;
+  padding: 0;
+  .stacks {
+    &--print {
+      flex-wrap: wrap;
+    }
+    @include tablet-down {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.dChip__label {
+  font-weight: 700;
+}

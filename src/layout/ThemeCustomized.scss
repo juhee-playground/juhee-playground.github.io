@@ -1,0 +1,17 @@
+.card__container {
+  padding: 8px 24px;
+
+  .paper__list {
+    display: flex;
+  }
+
+  .paper--radio {
+    width: 45px;
+    height: 45px;
+    margin: 4px;
+    cursor: pointer;
+  }
+  .active {
+    border: solid 3px black;
+  }
+}
