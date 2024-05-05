@@ -17,7 +17,7 @@
         {
           "type": "text",
           "text": {
-            "content": "A",
+            "content": "T",
             "link": null
           },
           "annotations": {
@@ -28,7 +28,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "A",
+          "plain_text": "T",
           "href": null
         }
       ]
