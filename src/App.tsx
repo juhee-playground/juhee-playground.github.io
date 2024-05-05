@@ -59,12 +59,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <CssBaseline />
-          <div className='container'>
-            <div className={`labeling__wrapper labeling__wrapper--${theme.palette.mode}`}>
-              <ToastContainer />
-              <Layout />
-            </div>
-          </div>
+          <ToastContainer />
+          <Layout />
         </QueryClientProvider>
       </ThemeProvider>
     </ColorModeContext.Provider>
