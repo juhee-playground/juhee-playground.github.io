@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
 import { AxiosError } from 'axios';
@@ -6,21 +6,23 @@ import { AxiosError } from 'axios';
 import { getCompanies, getProjects, getSkillOptions } from '@/api/notion';
 import { useQuery } from 'react-query';
 
+import COMPANY_DATA from '@/data/DB_company.json';
+import DB_SKILL from '@/data/DB_skill.json';
+import PROJECT_DATA from '@/data/DB_project.json';
+
 import { useTheme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
-import './Main.scss';
 import Loading from '@/components/Loading';
+import LeftSection from '@/pages/resume/left/Nav';
 import CardListItem from '@/pages/resume/card/CardListItem';
 import FilterOption from './filter/FilterOption';
-
-import COMPANY_DATA from '@/data/DB_company.json';
-import DB_SKILL from '@/data/DB_skill.json';
-import PROJECT_DATA from '@/data/DB_project.json';
 import PointStackCard from './pointStack/Card';
+
+import './Main.scss';
 
 const filterDefault = {
   company: [],
@@ -32,7 +34,7 @@ export default function Main() {
   const DB_PROJECT_DATAS = PROJECT_DATA as ProjectProperties[];
   const [sortValue, setSortValue] = useState('N');
   const [selectedChips, setSelectedChips] = useState<FilterSelected>(filterDefault);
-
+ 
   const theme = useTheme();
   const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
@@ -145,93 +147,98 @@ export default function Main() {
     }));
   }, [companies, skillOptions]);
 
+
+
   return (
-    <div
-      className={`section-right section-right--${theme.palette.mode} ${isPrintMode ? `section-right--${mode}` : ''}`}
-    >
-      {projectQuery.isLoading ? <Loading /> : null}
-      <section className={isPrintMode ? `action--${mode}` : 'action'}>
-        <ul className='filter__container'>
-          <FilterOption
-            options={companies}
-            type='company'
-            selected={selectedChips}
-            pointColor={pointColor}
-            onChange={handleChange}
-          />
-          <FilterOption
-            options={skillOptions}
-            colorOptions={mainSkillSelectOptions.data}
-            type='skill'
-            selected={selectedChips}
-            onChange={handleChange}
-          />
-        </ul>
-        <div className='sort__container'>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
-            <InputLabel id='demo-select-small-label'>정렬방법</InputLabel>
-            <Select
-              className='sort__select-input'
-              labelId='demo-simple-select-label'
-              id='demo-select-small'
-              value={sortValue}
-              label='정렬방법'
-              onChange={handleChangeSelect}
-            >
-              <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'N'}>
-                최신순
-              </MenuItem>
-              <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'O'}>
-                오래된순
-              </MenuItem>
-            </Select>
-          </FormControl>
-        </div>
-        <hr className='hrBasic' />
-      </section>
-      <PointStackCard />
-      <hr className='hrBasic' />
-      <section className='career'>
-        <div className='group__header'>
-          <span className='box-icon'>⚽️</span>
-          <h4 style={{ color: pointColor }} className='box-title'>
-            CAREER
-          </h4>
-        </div>
-        {parseCompanyQuery.map((company: CompanyProperties, index: number) => {
-          return (
-            <CardListItem
-              key={company.id}
-              info={company}
-              subInfo={parseProjectQuery}
-              filters={selectedChips}
-              isLastCompany={index === companyLength}
+    <>
+      <LeftSection />
+      <div
+        className={`section-right section-right--${theme.palette.mode} ${isPrintMode ? `section-right--${mode}` : ''}`}
+      >
+        {projectQuery.isLoading ? <Loading /> : null}
+        <section className={isPrintMode ? `action--${mode}` : 'action'}>
+          <ul className='filter__container'>
+            <FilterOption
+              options={companies}
+              type='company'
+              selected={selectedChips}
+              pointColor={pointColor}
+              onChange={handleChange}
             />
-          );
-        })}
-      </section>
-      <hr className='hrBasic' />
-      <section className='career'>
-        <div className='group__header'>
-          <span className='box-icon'>⚽️</span>
-          <h4 style={{ color: pointColor }} className='box-title'>
-            SIDE PROJECT
-          </h4>
-        </div>
-        {toyProjectData
-          .filter(company => company.type.rich_text[0].plain_text === 'T')
-          .map((company: CompanyProperties, index: number) => {
+            <FilterOption
+              options={skillOptions}
+              colorOptions={mainSkillSelectOptions.data}
+              type='skill'
+              selected={selectedChips}
+              onChange={handleChange}
+            />
+          </ul>
+          <div className='sort__container'>
+            <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+              <InputLabel id='demo-select-small-label'>정렬방법</InputLabel>
+              <Select
+                className='sort__select-input'
+                labelId='demo-simple-select-label'
+                id='demo-select-small'
+                value={sortValue}
+                label='정렬방법'
+                onChange={handleChangeSelect}
+              >
+                <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'N'}>
+                  최신순
+                </MenuItem>
+                <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'O'}>
+                  오래된순
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <hr className='hrBasic' />
+        </section>
+        <PointStackCard />
+        <hr className='hrBasic' />
+        <section className='career'>
+          <div className='group__header'>
+            <span className='box-icon'>⚽️</span>
+            <h4 style={{ color: pointColor }} className='box-title'>
+              CAREER
+            </h4>
+          </div>
+          {parseCompanyQuery.map((company: CompanyProperties, index: number) => {
             return (
               <CardListItem
                 key={company.id}
                 info={company}
-                filters={selectedChips}
                 subInfo={parseProjectQuery}
+                filters={selectedChips}
                 isLastCompany={index === companyLength}
               />
             );
           })}
-      </section>
-    </div>
+        </section>
+        <hr className='hrBasic' />
+        <section className='career'>
+          <div className='group__header'>
+            <span className='box-icon'>⚽️</span>
+            <h4 style={{ color: pointColor }} className='box-title'>
+              SIDE PROJECT
+            </h4>
+          </div>
+          {toyProjectData
+            .filter(company => company.type.rich_text[0].plain_text === 'T')
+            .map((company: CompanyProperties, index: number) => {
+              return (
+                <CardListItem
+                  key={company.id}
+                  info={company}
+                  filters={selectedChips}
+                  subInfo={parseProjectQuery}
+                  isLastCompany={index === companyLength}
+                />
+              );
+            })}
+        </section>
+      </div>
+    </>
   );
 }
