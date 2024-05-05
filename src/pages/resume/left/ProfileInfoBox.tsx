@@ -1,4 +1,3 @@
-import * as React from 'react';
 import type { RootState } from '@/redux/store';
 import { useAppSelector } from '@/redux/hooks';
 

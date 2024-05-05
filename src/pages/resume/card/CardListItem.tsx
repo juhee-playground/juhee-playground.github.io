@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useAppSelector } from '@/redux/hooks';
 import { format } from 'date-fns';
 import type { RootState } from '@/redux/store';

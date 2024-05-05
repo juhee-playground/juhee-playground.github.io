@@ -1,7 +1,6 @@
-import React from 'react';
+import loadingImage from '@/assets/images/apng_loader-ball.png';
 
 import './Loading.scss';
-import loadingImage from '@/assets/images/apng_loader-ball.png';
 
 const Loading = () => {
   return (

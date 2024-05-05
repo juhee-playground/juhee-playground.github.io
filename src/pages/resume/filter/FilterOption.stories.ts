@@ -48,5 +48,6 @@ export const Playground: Story = {
     options: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue'],
     pointColor: 'red',
     selected: { color: ['red', 'purple'] },
+    onChange: () => {}
   },
 };

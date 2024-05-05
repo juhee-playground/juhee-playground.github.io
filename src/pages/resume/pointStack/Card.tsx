@@ -1,9 +1,8 @@
-import React from 'react';
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
 
 import './card.scss';
-import CONTENT_MAIN from '../../../constants/StackContent';
+import CONTENT_MAIN from '@/constants/StackContent';
 
 interface CardContentProperty {
   content: string;

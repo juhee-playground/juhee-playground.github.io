@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';

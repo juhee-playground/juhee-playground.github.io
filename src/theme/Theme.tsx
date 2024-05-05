@@ -1,4 +1,4 @@
-import { grey, green, lime, deepPurple, purple, common } from '@mui/material/colors';
+import { grey, lime, deepPurple, purple, common } from '@mui/material/colors';
 import { Theme } from '@mui/material/styles';
 
 const palette = {
