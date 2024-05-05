@@ -1,10 +1,21 @@
 .header {
-  padding: 0 45px;
+  padding: 0;
   height: 40px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  @include tablet-down {
+    padding-right: 45px;
+  }
+  .links {
+    display: flex;
+    gap: 12px;
+    a {
+      color: inherit;
+    }
+  }
   &--print {
+    background-color: red;
     .button__groups {
       display: none;
     }
