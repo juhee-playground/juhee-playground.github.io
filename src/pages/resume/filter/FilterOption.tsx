@@ -17,7 +17,7 @@ interface Props {
   onChange(option: string, key: string): void;
 }
 
-const FilterOption = ({ type, options, colorOptions, pointColor = 'primary', selected, onChange }: Props) => {
+const FilterOption = ({ type, options, colorOptions, pointColor, selected, onChange }: Props) => {
   const clickedChip = (state: string) => {
     onChange(state, type);
   };
