@@ -1,0 +1,22 @@
+.card {
+  width: 27.5rem;
+  background-color: #ddd;
+  border-radius: .75rem;
+  padding: .75rem;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    section {
+      display: flex;
+      gap: .25rem;
+    }
+
+  }
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
