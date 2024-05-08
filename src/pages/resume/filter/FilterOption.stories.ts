@@ -23,11 +23,6 @@ const meta = {
       description: 'Chip의 색깔을 결정해주는 역활을 합니다.',
       options: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue', 'brown', 'default'],
     },
-    colorOptions: {
-      control: 'radio',
-      description: 'Chip의 사이즈를 결정해주는 역활을 합니다.',
-      options: ['small', 'medium'],
-    },
     pointColor: {
       control: 'none',
       description: 'Redux 포인트컬러',
