@@ -1,15 +1,32 @@
+$js-color: #FFE165;
+$ts-color: #2A6AE7;
+$card-bg-color: #043D45;
+
+
 .card {
-  width: 27.5rem;
-  background-color: #ddd;
+  width: 15.6738rem;
+  height: 21.8296rem;
+  background-color: $card-bg-color;
+  color: #ffffff;
   border-radius: .75rem;
-  padding: .75rem;
+  border: solid .875rem $js-color;
+  padding: .5rem;
 
   &__content {
     display: flex;
     flex-direction: column;
+    gap: .5rem;
+
+    img {
+      object-fit: contain;
+      background-color: #dddddd;
+    }
+
     section {
       display: flex;
+      flex-wrap: wrap;
       gap: .25rem;
+      font-size: .5625rem;
     }
 
   }
@@ -19,4 +36,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  h2 {
+    font-size: 1.125rem;
+    margin: .5rem .25rem;
+  }
+
+  p {
+    font-size: .6rem;
+  }
 }
