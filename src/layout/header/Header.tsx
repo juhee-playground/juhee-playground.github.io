@@ -40,15 +40,13 @@ export default function DenseAppBar() {
 
   return (
     <header className={isPrintMode ? 'header header--print' : 'header'}>
-      <div className='links'>
-        {
-        !isPrintMode ? 
-          <> 
-            <a href='/'>이력서</a>
-            <a href='/portfolio'>포트폴리오</a>
-          </> : null 
-        }
-      </div>
+      {
+      !isPrintMode ? 
+      <ul className='links'> 
+        <li role='menuItem'><a href='/'>이력서</a></li>
+        <li role='menuItem'><a href='/portfolio'>포트폴리오</a></li>
+      </ul> : null 
+      }
       <div className='button__groups'>
         {isPrintMode ? (
           <>

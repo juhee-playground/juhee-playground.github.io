@@ -1,22 +1,73 @@
+$js-color: #FFE165;
+$ts-color: #2A6AE7;
+$card-bg-color: #043D45;
+
+
 .card {
-  width: 27.5rem;
-  background-color: #ddd;
-  border-radius: .75rem;
-  padding: .75rem;
+  width: 15.6738rem;
+  height: 21.8296rem;
+  background-color: $card-bg-color;
+  color: #ffffff;
+  border-radius: .75em;
+  border: solid .875em $js-color;
+  padding: .5em;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      font-size: 1em;
+      margin: 0.5em 0;
+    }
+  
+    p {
+      font-size: 0.6em;
+    }
+  }
+  
 
   &__content {
     display: flex;
     flex-direction: column;
+    gap: 0.6em;
+
+    img {
+      object-fit: contain;
+      background-color: #dddddd;
+    }
+
     section {
       display: flex;
-      gap: .25rem;
+      flex-wrap: wrap;
+      gap: 0.4em;
+      font-size: .6875em;
+      
+      .chipList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+        font-size: .6875em;
+        margin-left: .25em
+      }
+
+      h3 {
+        margin: 0;
+      }
+
+      h4 {
+        margin: 0;
+        color: #d4d4d4;
+      }
+
+      p {
+        color: ghostwhite;
+        margin-left: .25em
+      }
+
+     
     }
 
   }
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
