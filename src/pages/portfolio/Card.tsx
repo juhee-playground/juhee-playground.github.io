@@ -14,7 +14,7 @@ export default function ProjectCard({mainSkills, skills}: Props) {
   return (
     <article className="card">
       <header>
-        <h2>OHCOACH Ultimate</h2>
+        <h3>OHCOACH Ultimate</h3>
         <p>2020.01 ~ 2022.11</p>
       </header>
       <div className='card__content'>
