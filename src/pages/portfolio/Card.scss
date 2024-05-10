@@ -30,7 +30,7 @@ $card-bg-color: #043D45;
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 0.25em;
+    gap: 0.6em;
 
     img {
       object-fit: contain;
@@ -40,8 +40,32 @@ $card-bg-color: #043D45;
     section {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.25em;
-      font-size: 0.5625em;
+      gap: 0.4em;
+      font-size: .6875em;
+      
+      .chipList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+        font-size: .6875em;
+        margin-left: .25em
+      }
+
+      h3 {
+        margin: 0;
+      }
+
+      h4 {
+        margin: 0;
+        color: #d4d4d4;
+      }
+
+      p {
+        color: ghostwhite;
+        margin-left: .25em
+      }
+
+     
     }
 
   }
