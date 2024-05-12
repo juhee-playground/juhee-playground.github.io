@@ -2,7 +2,8 @@
   padding: 0;
   height: 40px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  // justify-content: space-between;
   align-items: center;
   @include tablet-down {
     padding-right: 45px;
@@ -15,7 +16,6 @@
     }
   }
   &--print {
-    background-color: red;
     .button__groups {
       display: none;
     }
