@@ -168,6 +168,7 @@ export default function Main() {
             <FilterOption
               options={skillOptions}
               colorOptions={mainSkillSelectOptions.data}
+              pointColor={pointColor}
               type='skill'
               selected={selectedChips}
               onChange={handleChange}
