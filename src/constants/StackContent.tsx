@@ -10,7 +10,7 @@ const CONTENT_MAIN = [
     bold: '(Javascript)',
   },
   {
-    content: '토이 프로젝트와 과제를 통해 작은 단위의 테스트 코드를 작성하고, React Testing Library와 Storybook을 활용',
+    content: 'React Testing Library와 Storybook을 활용하여 코드 작성',
     bold: 'React Testing Library와 Storybook',
   },
   {
