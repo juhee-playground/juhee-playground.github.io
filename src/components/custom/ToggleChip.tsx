@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import CheckIcon from '@mui/icons-material/Check';
 
-const ToggleChip = ({ label, pointColor, handleChipSelect }: CustomChip) => {
+const ToggleChip = ({ label, color, handleChipSelect }: CustomChip) => {
   const [selected, setSelected] = useState(true);
   const handleClick = () => {
     setSelected(prevState => !prevState);
@@ -19,12 +19,13 @@ const ToggleChip = ({ label, pointColor, handleChipSelect }: CustomChip) => {
   if (selected) {
     icon = <CheckIcon data-testid='check-icon' />;
   }
+  
 
   return (
     <Chip
       className={`chip__toggle chip__toggle--${theme.palette.mode}`}
       sx={{ borderRadius: 1 }}
-      style={selected ? { color: pointColor, borderColor: pointColor } : { color: 'grey' }}
+      style={selected ? { color: color, borderColor: color } : { color: 'grey' }}
       label={label}
       size='small'
       variant='outlined'
