@@ -9,12 +9,9 @@ interface Props {
   name: string;
   period: string;
   description: string;
-  mainSkills: any;
-  skills: any;
   keywords: any;
 }
-export default function ProjectCard({name, period, description, mainSkills, skills, keywords}: Props) {
-
+export default function ProjectCard({name, period, description, keywords}: Props) {
   return (
     <article className="card">
       <header>
