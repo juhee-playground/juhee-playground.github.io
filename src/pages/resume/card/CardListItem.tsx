@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
+import dayjs from 'dayjs';
 import { useAppSelector } from '@/redux/hooks';
-import { format } from 'date-fns';
 import type { RootState } from '@/redux/store';
 
 import { parserPeriod } from '@/utils/Parser';
@@ -16,8 +16,8 @@ function CardListItem(props: CardListProps) {
     name: props.info.name.title[0].plain_text,
     description: props.info.description.rich_text[0].plain_text.split('- '),
     type: props.info.type.rich_text[0].plain_text,
-    startDate: date?.start ? format(new Date(date.start), 'yyyy/MM') : '',
-    endDate: date?.start ? format(new Date(date.end), 'yyyy/MM') : '',
+    startDate: date?.start ? dayjs(date.start).format('YYYY/MM') : '',
+    endDate: date?.start ? dayjs(date.end).format('YYYY/MM') : '',
     year: props.info.year.number,
     scale: props.info.scale.rich_text[0].plain_text,
     department: props.info.department.rich_text[0].plain_text,
