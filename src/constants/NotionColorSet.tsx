@@ -50,4 +50,8 @@ export const notionColorSet: SelectChipColor = {
     bg: pink[100],
     text: pink[600],
   },
+  white: {
+    bg: 'inherit',
+    text: 'white'
+  }
 };
