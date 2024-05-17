@@ -26,7 +26,6 @@
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/user-event": "^14.5.2",
     "axios": "^1.6.8",
-    "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
     "node-sass": "^9.0.0",
     "notion-client": "^6.16.0",
