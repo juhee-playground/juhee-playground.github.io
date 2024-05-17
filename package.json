@@ -38,7 +38,8 @@
     "react-toastify": "^10.0.5",
     "redux": "^5.0.1",
     "styled-components": "^6.1.11",
-    "ts-deepmerge": "^7.0.0"
+    "ts-deepmerge": "^7.0.0",
+    "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.2.25",
