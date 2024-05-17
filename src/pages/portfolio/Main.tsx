@@ -35,7 +35,6 @@ export default function MainPage() {
   );
 
   const projectsData = projectQuery.data === undefined ? DB_PROJECT_DATAS : projectQuery.data;
-
   return (
     <div className='wrapper'>
       <h1>Projects</h1>
@@ -44,12 +43,17 @@ export default function MainPage() {
       { projectsData ? projectsData.map((project: ProjectProperties) => {
           const date = project.period.date;
           const period = date.start ? `${dayjs(date.start).format('YY/MM')}~${date.end === null ? '' : dayjs(date.end).format('YY/MM')}` : '';
+          const mainSkill = project.mainSkill.multi_select.map((select: SelectProperty) => select.name);
+          const scriptType = mainSkill.includes('Typescript') ? 'typescript' : 'javascript';
           return (
             <ProjectCard
               key={project.id}
               name={project.name.title[0].plain_text}
               period={period}
               description={project.description.rich_text[0].plain_text}
+              borderType={scriptType}
+              skill={project.skill.multi_select}
+              mainSkill={mainSkill}
               keywords={project.keywords && project.keywords.multi_select}
             />
           );
