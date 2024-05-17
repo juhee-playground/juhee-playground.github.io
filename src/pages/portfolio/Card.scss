@@ -9,8 +9,14 @@ $card-bg-color: #043D45;
   background-color: $card-bg-color;
   color: #ffffff;
   border-radius: .75em;
-  border: solid .875em $js-color;
+ 
   padding: .5em;
+  &.javascript {
+    border: solid .875em $js-color;
+  }
+  &.typescript {
+    border: solid .875em $ts-color;
+  }
 
   header {
     display: flex;
@@ -48,8 +54,14 @@ $card-bg-color: #043D45;
         flex-wrap: wrap;
         gap: 0.5em;
         font-size: .6875em;
-        margin-left: .25em
+        margin-left: .25em;
+
+        .icon {
+          background-color: inherit;
+        }
       }
+
+     
 
       h3 {
         margin: 0;
