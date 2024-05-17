@@ -43,15 +43,12 @@ export default function ProjectCard({name, period, description, borderType, skil
               <li><DChip
                 key={`skill_${select.name}_${index}`}
                 size='small'
-                color='grey'
+                color='white'
                 label={select.name}
                 clickable={false}
               /></li>
             )): ''}
           </ul>
-        </section>
-        <section>
-          <h4>상황</h4>
         </section>
       </div>
     </article>
