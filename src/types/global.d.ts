@@ -45,7 +45,7 @@ declare global {
     description: NotionText;
     experience: NotionText;
     skill: NotionMultiSelect;
-    keyword?: NotionMultiSelect;
+    keywords?: NotionMultiSelect;
     numberOfParticipants: NotionNumber;
     mainSkill: NotionMultiSelect;
     name: NotionTitleName;
