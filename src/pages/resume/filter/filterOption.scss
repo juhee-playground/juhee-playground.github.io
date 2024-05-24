@@ -1,35 +1,45 @@
-.filter__container {
-  .list__item {
-    display: flex;
-    margin: 8px;
-    @include tablet-down {
-      flex-direction: column;
-    }
-    .filter__left {
-      margin-right: 12px;
+.list__item {
+  @include flex-center;
+  margin: $margin-small;
+
+  @include tablet-down {
+    flex-direction: column;
+  }
+
+  .filter {
+    &__left {
+      margin-right: $margin-medium;
       width: 15%;
-      border-right: solid 2px #676767;
-      padding: 4px;
-      display: flex;
-      align-self: center;
+      border-right: solid 2px $border-color;
+      padding: $padding;
+      @include flex-center;
+
       @include tablet-down {
         align-self: flex-start;
         border-right: none;
       }
+
       .text {
-        font-size: 16px;
-        font-weight: 600;
+        font-size: $font-size;
+        font-weight: $font-weight-bold;
       }
     }
-    .filter__chips {
+
+    &__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
       width: 75%;
-      padding: 4px;
-      .chip__toggle {
-        &--light {
-          background-color: $white-color;
-        }
-        &--dark {
-          background-color: $light-text-color;
+      padding: $padding;
+
+      .chip {
+        &__toggle {
+          &--light {
+            background-color: $white-color;
+          }
+          &--dark {
+            background-color: $grey-color;
+          }
         }
       }
     }
