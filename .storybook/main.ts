@@ -28,6 +28,7 @@ const config: StorybookConfig = {
                         @import "${path.resolve(__dirname, '../src/styles/variables')}";
                         @import "${path.resolve(__dirname, '../src/styles/reset')}";
                         @import "${path.resolve(__dirname, '../src/styles/mediaQueries')}";
+                        @import "${path.resolve(__dirname, '../src/styles/mixins')}";
                     `,
           },
         },
