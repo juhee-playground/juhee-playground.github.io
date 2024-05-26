@@ -1,4 +1,5 @@
-import Stack from '@mui/material/Stack';
+import { useState } from 'react';
+
 import DChip from '@/components/custom/DChip';
 import ToggleChip from '@/components/custom/ToggleChip';
 
@@ -7,45 +8,59 @@ import { firstLetterToUpper } from '@/utils/String';
 import './filterOption.scss';
 
 interface Props {
-  type: string;
+  title: string;
   options: string[];
   colorOptions?: SelectProperty[];
   pointColor?: string;
-  selected: FilterSelected;
+  selected: string[];
   onChange(option: string, key: string): void;
 }
 
-const FilterOption = ({ type, options, colorOptions, pointColor, selected, onChange }: Props) => {
-  const clickedChip = (state: string) => {
-    onChange(state, type);
+const FilterOption = ({ title, options, colorOptions, pointColor, selected, onChange }: Props) => {
+  const [selectedChips, setSelectedChips] = useState(selected);
+  
+  const clickedChip = (chipLabel: string) => {
+    onChange(chipLabel, title);
+    onChangeSelected(chipLabel);
   };
+
+  const onChangeSelected = (label: string) => {
+    setSelectedChips((prevState: string[]) => {
+      const copyState = [...prevState];
+      if(copyState.includes(label)) {
+        copyState.splice(copyState.indexOf(label), 1);
+      }else {
+        copyState.push(label);
+      }
+      return copyState;
+    });
+  }
 
   return (
     <li className='list__item'>
       <div className='filter__left'>
-        <span className='text'>{firstLetterToUpper(type)}</span>
+        <span className='text'>{firstLetterToUpper(title)}</span>
       </div>
       <div className='filter__chips'>
-        <Stack direction='row' flexWrap='wrap' spacing={1} useFlexGap>
-          {colorOptions
-            ? colorOptions.map((select: SelectProperty) => {
-                const { id, name, color } = select;
-                return (
-                  <DChip
-                    key={id}
-                    selectedItems={selected[type]}
-                    label={name}
-                    size='small'
-                    color={color}
-                    clickable
-                    handleChipSelect={clickedChip}
-                  />
-                );
-              })
-            : options.map((name: string, index: number) => (
-                <ToggleChip key={`${type}_${index}`} label={name} color={pointColor} handleChipSelect={clickedChip} />
-              ))}
-        </Stack>
+        {colorOptions
+          ? colorOptions.map((select: SelectProperty) => {
+              const { id, name, color } = select;
+              return (
+                <DChip
+                  key={id}
+                  selectedItems={selectedChips}
+                  label={name}
+                  size='small'
+                  color={color}
+                  clickable
+                  handleChipSelect={clickedChip}
+                />
+              );
+            })
+          : options.map((name: string, index: number) => (
+              <ToggleChip key={`${title}_${index}`} label={name} checked={selectedChips.includes(name)} color={pointColor} handleChipSelect={clickedChip} />
+            )
+        )}
       </div>
     </li>
   );

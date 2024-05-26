@@ -13,23 +13,28 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
-    type: {
+    title: {
       control: 'text',
-      description: '필터의 타입을 설정해주는 역할을 합니다.',
+      description: '필터의 이름을 설정해주는 역할을 합니다.',
       defaultValue: 'Color',
     },
     options: {
       control: 'array',
-      description: 'Chip의 색깔을 결정해주는 역활을 합니다.',
+      description: '나타낼 chip의 리스트를 나타냅니다.',
       options: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue', 'brown', 'default'],
     },
+    colorOptions: {
+      control: "none",
+      description: 'chip의 색을 지정해주는 역활.',
+      options: [{ id: '1', name: 'javascript', color: 'yellow', }, { id: '2', name: 'typescript', color: 'blue', }, { id: '3', name: 'Vue', color: 'green', }]
+    },
     pointColor: {
-      control: 'none',
-      description: 'Redux 포인트컬러',
+      control: 'color',
+      description: 'chip의 컬러를 표시합니다.',
     },
     selected: {
-      control: 'none',
-      description: '필터에 값이 있으면 체크표시가 보입니다.',
+      control: 'array',
+      description: '선택된 칩이 리스트를 나타냅니다..',
     },
   },
 } satisfies Meta<typeof FilterOption>;
@@ -37,12 +42,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = {
+export const ToggleChip: Story = {
   args: {
-    type: 'Color',
+    title: 'Color',
     options: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue'],
     pointColor: 'red',
-    selected: { color: ['red', 'purple'] },
+    selected: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue'],
+    onChange: () => {}
+  },
+};
+
+export const CustonChip: Story = {
+  args: {
+    title: 'Skill',
+    options: ['javascript', 'Vue', 'typescript'],
+    colorOptions: [{ id: '1', name: 'javascript', color: 'yellow', }, { id: '2', name: 'typescript', color: 'blue', }, { id: '3', name: 'Vue', color: 'green', }],
+    selected: ['javascript', 'Vue', 'typescript'],
     onChange: () => {}
   },
 };
