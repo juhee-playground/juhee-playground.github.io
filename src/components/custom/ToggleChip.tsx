@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import CheckIcon from '@mui/icons-material/Check';
 
-const ToggleChip = ({ label, color, handleChipSelect }: CustomChip) => {
+const ToggleChip = ({ label, color, checked, handleChipSelect }: ToggleChip) => {
   const [selected, setSelected] = useState(true);
+
+  useEffect(() => {
+    setSelected(checked);
+  }, [checked]);
+
   const handleClick = () => {
     setSelected(prevState => !prevState);
     if (handleChipSelect) {
