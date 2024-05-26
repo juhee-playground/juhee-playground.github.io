@@ -33,5 +33,6 @@ export const PlayGround: Story = {
   args: {
     label: 'toggle',
     pointColor: 'orange',
+    checked: true,
   },
 };

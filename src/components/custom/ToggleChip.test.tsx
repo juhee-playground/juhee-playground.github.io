@@ -7,7 +7,7 @@ const pointColor = '#8c538d';
 
 describe('ToggleChip 테스트', () => {
   beforeEach(() =>
-    render(<ToggleChip label='chip' pointColor={pointColor} clickable handleChipSelect={onChipSelect} />),
+    render(<ToggleChip label='chip' pointColor={pointColor} checked={true} clickable handleChipSelect={onChipSelect} />),
   );
 
   it('칩의 기본값은 선택이므로 체크 표시가 보이는지 확인한다.', () => {

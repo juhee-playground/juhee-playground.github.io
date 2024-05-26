@@ -160,8 +160,8 @@ export default function Main() {
           <ul className='filter__container'>
             <FilterOption
               options={companies}
-              type='company'
-              selected={selectedChips}
+              title='company'
+              selected={selectedChips['company']}
               pointColor={pointColor}
               onChange={handleChange}
             />
@@ -169,8 +169,8 @@ export default function Main() {
               options={skillOptions}
               colorOptions={mainSkillSelectOptions.data}
               pointColor={pointColor}
-              type='skill'
-              selected={selectedChips}
+              title='skill'
+              selected={selectedChips['skill']}
               onChange={handleChange}
             />
           </ul>
