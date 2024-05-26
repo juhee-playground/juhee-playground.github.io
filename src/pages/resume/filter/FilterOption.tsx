@@ -10,9 +10,9 @@ import './filterOption.scss';
 interface Props {
   title: string;
   options: string[];
-  colorOptions?: SelectProperty[];
-  pointColor?: string;
   selected: string[];
+  pointColor?: string;
+  colorOptions?: SelectProperty[];
   onChange(option: string, key: string): void;
 }
 
