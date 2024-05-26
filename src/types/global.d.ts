@@ -179,6 +179,17 @@ declare global {
     handleChipSelect?: (label: string) => void;
   }
 
+  interface ToggleChip {
+    pointColor?: string;
+    checked: boolean;
+    color?: string;
+    size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
+    label: string;
+    clickable?: boolean;
+    handleChipSelect?: (label: string) => void;
+  }
+
+
   interface CardListProps {
     key: string;
     info: CompanyProperties;
