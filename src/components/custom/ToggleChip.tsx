@@ -29,6 +29,7 @@ const ToggleChip = ({ label, color, checked, handleChipSelect }: ToggleChip) => 
   return (
     <Chip
       className={`chip__toggle chip__toggle--${theme.palette.mode}`}
+      aria-pressed={selected}
       sx={{ borderRadius: 1 }}
       style={selected ? { color: color, borderColor: color } : { color: 'grey' }}
       label={label}
