@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import DChip from '@/components/custom/DChip';
 import ToggleChip from '@/components/custom/ToggleChip';
@@ -18,7 +18,11 @@ interface Props {
 
 const FilterOption = ({ title, options, colorOptions, pointColor, selected, onChange }: Props) => {
   const [selectedChips, setSelectedChips] = useState(selected);
-  
+
+  useEffect(() => {
+    setSelectedChips(selected);
+  }, [selected]);
+
   const clickedChip = (chipLabel: string) => {
     onChange(chipLabel, title);
     onChangeSelected(chipLabel);
