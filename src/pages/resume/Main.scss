@@ -79,13 +79,14 @@
     display: flex;
     flex-wrap: wrap;
     margin: 4px 0;
+    align-items: flex-start;
     &--vertical {
-      align-items: center;
+      align-items: flex-start;
     }
   }
   .title__link {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
     color: inherit;
     &:hover {
