@@ -23,8 +23,8 @@ import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useSkillOptionQuery from '@/hooks/queries/useSkillOptionsQuery';
 
-const DB_COMPANY_DATAS = COMPANY_DATA as CompanyProperties[];
-const DB_PROJECT_DATAS = PROJECT_DATA as ProjectProperties[];
+const DB_COMPANY_DATAS = COMPANY_DATA as ICompanyProperties[];
+const DB_PROJECT_DATAS = PROJECT_DATA as IProjectProperties[];
 
 export default function Main() {
   const [sortValue, setSortValue] = useState('N');
@@ -70,23 +70,23 @@ export default function Main() {
   );
 
   const skillOptions = useMemo(
-    () => (mainSkillSelectOptions.data ? mainSkillSelectOptions.data.map(select => select.name) : DB_SKILL),
+    () => (mainSkillSelectOptions.data ? mainSkillSelectOptions.data.map((select: ISelectProperty) => select.name) : DB_SKILL),
     [mainSkillSelectOptions.data],
   );
 
-  const parseCompanyQuery: CompanyProperties[] = useMemo(() => {
+  const parseCompanyQuery: ICompanyProperties[] = useMemo(() => {
     const companyData = (companyQuery.data || DB_COMPANY_DATAS)
-      .filter((company: CompanyProperties) => selectedCompanies?.includes(company.name.title[0].plain_text))
-      .sort((firstObject: CompanyProperties, secondObject: CompanyProperties) =>
+      .filter((company: ICompanyProperties) => selectedCompanies?.includes(company.name.title[0].plain_text))
+      .sort((firstObject: ICompanyProperties, secondObject: ICompanyProperties) =>
         firstObject.order.number > secondObject.order.number ? 1 : -1,
       );
 
     return /O/.test(sortValue) ? companyData.reverse() : companyData;
   }, [companyQuery.data, sortValue, selectedCompanies]);
 
-  const parseProjectQuery: ProjectProperties[] = useMemo(
+  const parseProjectQuery: IProjectProperties[] = useMemo(
     () =>
-      (projectQuery.data || DB_PROJECT_DATAS).filter((project: ProjectProperties) => {
+      (projectQuery.data || DB_PROJECT_DATAS).filter((project: IProjectProperties) => {
         const skillInfo = JSON.stringify(project.mainSkill.multi_select);
 
         return selectedSkillOptions?.some(item => {
@@ -169,7 +169,7 @@ export default function Main() {
             </h4>
           </div>
 
-          {parseCompanyQuery.map((company: CompanyProperties, index: number) => (
+          {parseCompanyQuery.map((company: ICompanyProperties, index: number) => (
             <CardListItem
               key={company.id}
               info={company}
@@ -192,7 +192,7 @@ export default function Main() {
 
           {toyProjectData
             .filter(company => company.type.rich_text[0].plain_text === 'T')
-            .map((company: CompanyProperties, index: number) => (
+            .map((company: ICompanyProperties, index: number) => (
               <CardListItem
                 key={company.id}
                 info={company}

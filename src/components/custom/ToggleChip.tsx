@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import CheckIcon from '@mui/icons-material/Check';
 
-const ToggleChip = ({ label, color, checked, handleChipSelect }: ToggleChip) => {
+const ToggleChip = ({ label, color, checked, handleChipSelect }: IToggleChipProps) => {
   const [selected, setSelected] = useState(true);
 
   const theme = useTheme();

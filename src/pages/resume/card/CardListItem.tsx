@@ -23,7 +23,7 @@ function CardListItem({
   },
   subInfo,
   filters,
-}: CardListProps) {
+}: ICardListProps) {
   const companyData = {
     id,
     name: name.title[0].plain_text,

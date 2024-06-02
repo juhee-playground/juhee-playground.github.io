@@ -63,7 +63,7 @@ function SubListItem({ info, filters }: SubListProps) {
       <div className='list__item stacks'>
         <ul className={isPrintMode ? `list__container--${mode}` : 'list__container'}>
           <Stack className='stacks' direction='row' spacing={1}>
-            {projectData.mainSkills.map((select: SelectProperty) => (
+            {projectData.mainSkills.map((select: ISelectProperty) => (
               <DChip
                 key={`mainSkill_${projectData.name}_${select.id}`}
                 size='small'
@@ -73,7 +73,7 @@ function SubListItem({ info, filters }: SubListProps) {
                 clickable={false}
               />
             ))}
-            {projectData.skills.map((select: SelectProperty, index: number) => (
+            {projectData.skills.map((select: ISelectProperty, index: number) => (
               <DChip
                 key={`skill_${projectData.name}_${select.name}_${index}`}
                 size='small'

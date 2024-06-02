@@ -5,16 +5,16 @@ import { firstLetterToUpper } from '@/utils/formatter';
 
 import './filterOption.scss';
 
-interface Props {
+interface IFilterOptionProps {
   title: string;
   options: string[];
   selected?: string[];
   pointColor?: string;
-  colorOptions?: SelectProperty[];
+  colorOptions?: ISelectProperty[];
   onChange(option: string): void;
 }
 
-const FilterOption = ({ title, options, colorOptions, pointColor, selected, onChange }: Props) => {
+const FilterOption = ({ title, options, colorOptions, pointColor, selected, onChange }: IFilterOptionProps) => {
   return (
     <li className='list__item'>
       <p className='filter__left'>
@@ -23,7 +23,7 @@ const FilterOption = ({ title, options, colorOptions, pointColor, selected, onCh
 
       <div className='filter__chips'>
         {colorOptions
-          ? colorOptions.map(({ id, name, color }: SelectProperty) => (
+          ? colorOptions.map(({ id, name, color }: ISelectProperty) => (
               <DChip
                 key={id}
                 selectedItems={selected}

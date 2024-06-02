@@ -11,7 +11,7 @@ interface ContactProperties {
   portfolio: string | undefined;
 }
 
-const ProfileInfoBox = (props: NavProfileProps) => {
+const ProfileInfoBox = (props: INavProfileProps) => {
   const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
   const contactInfo: ContactProperties = {
     phone_number: import.meta.env.VITE_APP_PHONE_NUMBER,

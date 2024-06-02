@@ -5,7 +5,7 @@ import ultimate from '@/assets/screenshot/ultimate.png';
 import './Card.scss';
 import { SKILL_ICON } from '@/constants/icon';
 
-interface Props {
+interface ICardProps {
   name: string;
   period: string;
   description: string;
@@ -14,7 +14,7 @@ interface Props {
   mainSkill: string[];
   keywords?: SelectProperty[];
 }
-export default function ProjectCard({ name, period, description, borderType, skill, mainSkill, keywords }: Props) {
+export default function ProjectCard({ name, period, description, borderType, skill, mainSkill, keywords }: ICardProps) {
   return (
     <article className={`card ${borderType === 'javascript' ? 'javascript' : 'typescript'}`}>
       <header>
