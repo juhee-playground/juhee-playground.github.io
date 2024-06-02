@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import CheckIcon from '@mui/icons-material/Check';
-import { notionColorSet } from '@/constants/NotionColorSet';
+
+import { NOTION_COLOR_SET } from '@/constants/notion';
+
+const DEFAULT_NOTION_COLOR = {
+  bg: 'default',
+  text: 'grey',
+};
 
 function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, handleChipSelect }: CustomChip) {
-  const isSelected = selectedItems.indexOf(label) > -1;
-  const [selected, setSelected] = useState(isSelected);
+  const [selected, setSelected] = useState(false);
 
   const handleClick = (): void => {
     if (clickable) {
@@ -18,31 +23,28 @@ function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, 
     }
   };
 
-  let icon;
-
-  if (selected && clickable) {
-    icon = <CheckIcon data-testid='check-icon' />;
-  }
-  let notionColor = { bg: 'default', text: 'grey' };
-  if (notionColorSet[color]) {
-    notionColor = notionColorSet[color];
-  }
-
   const isMainSkillChip = color !== 'grey' && !clickable;
+  const colorSet = selected || isMainSkillChip ? NOTION_COLOR_SET[color] : DEFAULT_NOTION_COLOR;
+
   const customTheme = createTheme({
     components: {
       MuiChip: {
         styleOverrides: {
           root: {
-            backgroundColor: selected || isMainSkillChip ? notionColor.bg : 'default',
-            color: selected || isMainSkillChip ? notionColor.text : 'grey',
-            borderColor: selected || isMainSkillChip ? notionColor.bg : 'grey',
+            backgroundColor: colorSet.bg,
+            color: colorSet.text,
+            borderColor: colorSet.bg,
           },
         },
       },
     },
   });
 
+  useEffect(() => {
+    setSelected(selectedItems.indexOf(label) > -1);
+  }, [selectedItems, label]);
+
+  // FIXME: 여기에 따로 theme provider를 붙인 이유가 궁금합니다.
   return (
     <ThemeProvider theme={customTheme}>
       <Chip
@@ -50,7 +52,7 @@ function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, 
         label={<div className='dChip__label'> {label}</div>}
         size={size}
         variant='outlined'
-        icon={icon}
+        icon={selected && clickable ? <CheckIcon data-testid='check-icon' /> : undefined}
         clickable={clickable}
         onClick={handleClick}
       />

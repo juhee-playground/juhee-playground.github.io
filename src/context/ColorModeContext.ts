@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { PaletteMode } from '@/theme';
+
 export const ColorModeContext = React.createContext({
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  toggleColorMode: () => {},
+  currentMode: 'light',
+  toggleColorMode: (theme: PaletteMode) => {},
 });

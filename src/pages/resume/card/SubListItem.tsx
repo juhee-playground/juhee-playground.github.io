@@ -31,7 +31,7 @@ function SubListItem({ info, filters }: SubListProps) {
   const mode = isPrintMode ? 'print' : '';
 
   return (
-    <div className='project__container' key={`project__${projectData.id}`}>
+    <section className='project__container' key={`project__${projectData.id}`}>
       <div className='list__item list__item--vertical'>
         <a className='title__link' href={projectData.url} target='_blank' rel='noreferrer'>
           <LabelIcon fontSize='small' className='text text__icon--pre' />
@@ -39,22 +39,27 @@ function SubListItem({ info, filters }: SubListProps) {
             {projectData.name}
           </Typography>
         </a>
+
         <Box className='numbers text__sub'>
           <Typography variant='caption' color='text.primary' className='text text__plain period' gutterBottom>
             {projectData.period}
           </Typography>
         </Box>
       </div>
-      <div>
+
+      <p>
         <span className='text text__plain'>참여인원: </span>
         <span className='text__sub'>{projectData.numberOfParticipants}</span>
         <span className='text text__plain'> | 역활: </span>
         <span className='text text__sub'> {projectData.role}</span>
-      </div>
-      <div className='list__item description'>
+      </p>
+
+      <p className='list__item description'>
         <span className='text text__plain'>{projectData.description}</span>
-      </div>
+      </p>
+
       <div className='list__item period'></div>
+
       <div className='list__item stacks'>
         <ul className={isPrintMode ? `list__container--${mode}` : 'list__container'}>
           <Stack className='stacks' direction='row' spacing={1}>
@@ -64,7 +69,7 @@ function SubListItem({ info, filters }: SubListProps) {
                 size='small'
                 color={select.color}
                 label={select.name}
-                selectedItems={filters['skill']}
+                selectedItems={filters}
                 clickable={false}
               />
             ))}
@@ -80,34 +85,32 @@ function SubListItem({ info, filters }: SubListProps) {
           </Stack>
         </ul>
       </div>
+
       <div className='list__item experience'>
         {projectData.experience.map((text: string, index: number) => {
           const boldTexts = boldSentence.filter(bold => text.includes(bold));
           const [first, last] = text.split(boldTexts[0]);
-          if (boldTexts.length > 0) {
-            return (
-              <div key={`${projectData.id}_${index}`} className='contents'>
-                <Typography variant='caption' className='text text__plain' gutterBottom>
-                  {first}
-                </Typography>
-                <Typography variant='caption' className='text text__plain text__bold' gutterBottom>
-                  {boldTexts[0]}
-                </Typography>
-                <Typography variant='caption' className='text text__plain' gutterBottom>
-                  {last}
-                </Typography>
-              </div>
-            );
-          } else {
-            return (
-              <Typography key={`${projectData.id}_${index}`} variant='caption' className='text text__plain' gutterBottom>
-                {text}
+
+          return boldTexts.length > 0 ? (
+            <div key={`${projectData.id}_${index}`} className='contents'>
+              <Typography variant='caption' className='text text__plain' gutterBottom>
+                {first}
               </Typography>
-            );
-          }
+              <Typography variant='caption' className='text text__plain text__bold' gutterBottom>
+                {boldTexts[0]}
+              </Typography>
+              <Typography variant='caption' className='text text__plain' gutterBottom>
+                {last}
+              </Typography>
+            </div>
+          ) : (
+            <Typography key={`${projectData.id}_${index}`} variant='caption' className='text text__plain' gutterBottom>
+              {text}
+            </Typography>
+          );
         })}
       </div>
-    </div>
+    </section>
   );
 }
 

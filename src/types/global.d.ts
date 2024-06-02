@@ -165,9 +165,7 @@ declare global {
     number: number;
   }
 
-  interface FilterSelected {
-    [key: string]: string[];
-  }
+  type FilterSelected = string[];
 
   interface CustomChip {
     selectedItems?: string[];
@@ -188,7 +186,6 @@ declare global {
     clickable?: boolean;
     handleChipSelect?: (label: string) => void;
   }
-
 
   interface CardListProps {
     key: string;

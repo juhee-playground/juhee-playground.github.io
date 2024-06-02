@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { merge } from 'ts-deepmerge';
 import { AxiosError } from 'axios';
 
@@ -12,7 +12,7 @@ import { QueryClient, QueryClientProvider, QueryCache } from 'react-query';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider, responsiveFontSizes, Theme } from '@mui/material/styles';
-import { getDesignTokens, getThemedComponents } from './theme/Theme';
+import { PaletteMode, getDesignTokens, getThemedComponents } from './theme';
 import { ColorModeContext } from './context/ColorModeContext';
 
 import './App.css';
@@ -21,6 +21,7 @@ const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
       if ((error as AxiosError).code == 'ERR_NETWORK') {
+        // TODO: FIXME를 좀 더 업무 투로 적어주시면 좋을 것 같아요
         //FIXME: 한번만 나오면 참 좋겠다~
         toast.error(`서버와 연결되지 않습니다`);
       }
@@ -39,24 +40,29 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const [mode, setMode] = useState<PaletteMode>('light');
+
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const [mode, setMode] = useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light');
 
   const colorMode = useMemo(
     () => ({
-      toggleColorMode: () => {
-        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+      currentMode: mode,
+      toggleColorMode: (theme: PaletteMode) => {
+        setMode(theme);
       },
     }),
-    [],
+    [mode],
   );
 
-  let theme: Theme = useMemo(() => createTheme(merge(getDesignTokens(mode), getThemedComponents(mode))), [mode]);
-  theme = responsiveFontSizes(theme);
+  const theme: Theme = useMemo(() => createTheme(merge(getDesignTokens(mode), getThemedComponents(mode))), [mode]);
+
+  useEffect(() => {
+    setMode(!prefersDarkMode ? 'dark' : 'light');
+  }, [prefersDarkMode]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={responsiveFontSizes(theme)}>
         <QueryClientProvider client={queryClient}>
           <CssBaseline />
           <ToastContainer />

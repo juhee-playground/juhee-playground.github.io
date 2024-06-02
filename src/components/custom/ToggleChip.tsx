@@ -7,24 +7,19 @@ import CheckIcon from '@mui/icons-material/Check';
 const ToggleChip = ({ label, color, checked, handleChipSelect }: ToggleChip) => {
   const [selected, setSelected] = useState(true);
 
-  useEffect(() => {
-    setSelected(checked);
-  }, [checked]);
+  const theme = useTheme();
 
   const handleClick = () => {
     setSelected(prevState => !prevState);
+
     if (handleChipSelect) {
       handleChipSelect(label);
     }
   };
-  const theme = useTheme();
 
-  let icon;
-
-  if (selected) {
-    icon = <CheckIcon data-testid='check-icon' />;
-  }
-  
+  useEffect(() => {
+    setSelected(checked);
+  }, [checked]);
 
   return (
     <Chip
@@ -36,7 +31,7 @@ const ToggleChip = ({ label, color, checked, handleChipSelect }: ToggleChip) => 
       size='small'
       variant='outlined'
       color={selected ? 'primary' : 'default'}
-      icon={icon}
+      icon={selected ? <CheckIcon data-testid='check-icon' /> : undefined}
       clickable
       onClick={handleClick}
     />

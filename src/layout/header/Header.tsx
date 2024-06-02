@@ -59,7 +59,12 @@ export default function DenseAppBar() {
           </>
         ) : (
           <>
-            <IconButton aria-label='lightMode' onClick={colorMode.toggleColorMode}>
+            <IconButton
+              aria-label='lightMode'
+              onClick={() => {
+                colorMode.toggleColorMode(theme.palette.mode === 'light' ? 'dark' : 'light');
+              }}
+            >
               {theme.palette.mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
             <IconButton aria-label='printMode' onClick={handleClickOpen}>

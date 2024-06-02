@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import { ColorModeContext } from '../context/ColorModeContext';
 
 import './ThemeCustomized.scss';
+import { PaletteMode } from '@mui/material';
 
 const ThemeCustomized = () => {
   const [color, setColor] = useState<string>('');
@@ -28,8 +29,8 @@ const ThemeCustomized = () => {
     dispatch(changePointColor(color));
   };
 
-  const changeHandler = () => {
-    colorMode.toggleColorMode();
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
+    colorMode.toggleColorMode(value as PaletteMode);
   };
 
   return (
@@ -43,7 +44,7 @@ const ThemeCustomized = () => {
           <RadioGroup
             row
             aria-labelledby='demo-row-radio-buttons-group-label'
-            defaultValue='light'
+            value={colorMode.currentMode}
             name='row-radio-buttons-group'
             onChange={changeHandler}
           >

@@ -33,8 +33,10 @@ const ProfileInfoBox = (props: NavProfileProps) => {
           {profile.title}
         </h4>
       </div>
+
       <hr />
-      {profile.isSubTitle && profile.subTitle ? (
+
+      {profile.isSubTitle && profile.subTitle && (
         <div className='profile__box__content'>
           <ul className='list list-subtitle'>
             {/* subtitle이 있는 list item */}
@@ -62,8 +64,9 @@ const ProfileInfoBox = (props: NavProfileProps) => {
             })}
           </ul>
         </div>
-      ) : null}
-      {profile.isBasic && profile.basic ? (
+      )}
+
+      {profile.isBasic && profile.basic && (
         <div className='profile__box__content'>
           <ul className='list list-row'>
             {/* 기본 list item row 정렬 */}
@@ -74,8 +77,9 @@ const ProfileInfoBox = (props: NavProfileProps) => {
             ))}
           </ul>
         </div>
-      ) : null}
-      {profile.isSpaceBetween && profile.spaceBetween ? (
+      )}
+
+      {profile.isSpaceBetween && profile.spaceBetween && (
         <div className='profile__box__content'>
           <ul className='list list-date'>
             {/* 기본 list item row 정렬 */}
@@ -87,7 +91,7 @@ const ProfileInfoBox = (props: NavProfileProps) => {
             ))}
           </ul>
         </div>
-      ) : null}
+      )}
     </section>
   );
 };

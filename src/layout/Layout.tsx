@@ -13,10 +13,12 @@ import './FixButton.scss';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-const Main = lazy(() => import('../pages/resume/Main'));
-const Portfolio = lazy(() => import('../pages/portfolio/Main'));
+const Main = lazy(() => import('../pages/resume'));
+const Portfolio = lazy(() => import('../pages/portfolio'));
 
+// TODO: components/custom/Loading으로 변경
 const renderLoader = () => <p>Loading</p>;
+
 export default function Layout() {
   const [state, setState] = useState({
     top: false,
@@ -38,12 +40,13 @@ export default function Layout() {
 
     setState({ ...state, [anchor]: open });
   };
-  
+
   const anchor = 'right';
 
   return (
-    <div className='container'>
+    <main className='container'>
       <Header />
+
       <button
         style={{ backgroundColor: pointColor }}
         className={`fixButton half-left toggler ripple ${isPrintMode ? `fixButton--${mode}` : ''}`}
@@ -51,6 +54,7 @@ export default function Layout() {
       >
         <SettingsIcon />
       </button>
+
       <SwipeableDrawer
         anchor={anchor}
         open={state[anchor]}
@@ -59,14 +63,15 @@ export default function Layout() {
       >
         <ThemeCustomized />
       </SwipeableDrawer>
-      <main className={isPrintMode ? `main__container main__container--${mode}` : 'main__container'}>
+
+      <div className={isPrintMode ? `main__container main__container--${mode}` : 'main__container'}>
         <Suspense fallback={renderLoader()}>
           <Routes>
             <Route path='' element={<Main />} />
             <Route path='/portfolio' element={<Portfolio />} />
           </Routes>
         </Suspense>
-      </main>
-    </div>
+      </div>
+    </main>
   );
-};
+}

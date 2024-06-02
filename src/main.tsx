@@ -8,6 +8,7 @@ import './index.css';
 
 import store from './redux/store';
 
+// FIXME: provider는 App.tsx에서 감싸줘도 좋을 것 같아요.
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <BrowserRouter>

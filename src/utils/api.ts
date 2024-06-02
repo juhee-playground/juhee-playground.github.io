@@ -1,9 +1,11 @@
-import { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
 // https://dev.to/vikirobles/how-to-create-an-auth-login-system-with-axios-interceptors-typescript-2k11
 interface ResponseData {
   data?: string;
 }
+
+const SERVER_ADDRESS = import.meta.env.VITE_APP_BACK_END_POINT;
 
 const logOnDev = (message: string) => {
   if (import.meta.env.VITE_APP_NODE_ENV === 'dev') {
@@ -23,11 +25,11 @@ const onRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConf
   return config;
 };
 
-const onResponse = (response: AxiosResponse): AxiosResponse => {
+const onResponse = (response: AxiosResponse): AxiosResponse['data'] => {
   const { method, url } = response.config;
   const { status } = response;
   logOnDev(`🚀 [API] ${method?.toUpperCase()} ${url} | Response ${status}`);
-  return response;
+  return response.data;
 };
 
 const onResponseError = (error: AxiosError): Promise<AxiosError> => {
@@ -35,9 +37,15 @@ const onResponseError = (error: AxiosError): Promise<AxiosError> => {
   return Promise.reject(error);
 };
 
-export default function setupInterceptorsTo(axiosInstance: AxiosInstance): AxiosInstance {
-  axiosInstance.interceptors.request.use(onRequest);
-  axiosInstance.interceptors.response.use(onResponse, onResponseError);
+const requestAPI: AxiosInstance = axios.create({
+  baseURL: SERVER_ADDRESS, // 기본 서버 주소 입력
+  timeout: 6000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
-  return axiosInstance;
-}
+requestAPI.interceptors.request.use(onRequest);
+requestAPI.interceptors.response.use(onResponse, onResponseError);
+
+export default requestAPI;

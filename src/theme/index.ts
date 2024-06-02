@@ -28,9 +28,9 @@ const palette = {
   },
 };
 
-type PaletteMode = 'light' | 'dark';
+export type PaletteMode = 'light' | 'dark';
 
-export const getDesignTokens = (mode: PaletteMode | undefined) =>
+export const getDesignTokens = (mode?: PaletteMode) =>
   ({
     palette: {
       mode,
@@ -76,9 +76,9 @@ export const getDesignTokens = (mode: PaletteMode | undefined) =>
         fontFamily: 'Poppins, Arial, sans-serif',
       },
     },
-  } as Theme);
+  }) as Theme;
 
-export const getThemedComponents = (mode: PaletteMode | undefined) =>
+export const getThemedComponents = (mode?: PaletteMode) =>
   ({
     components: {
       ...(mode === 'light'
@@ -160,4 +160,4 @@ export const getThemedComponents = (mode: PaletteMode | undefined) =>
             },
           }),
     },
-  } as Theme);
+  }) as Theme;
