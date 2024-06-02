@@ -87,28 +87,11 @@ function SubListItem({ info, filters }: SubListProps) {
       </div>
 
       <div className='list__item experience'>
-        {projectData.experience.map((text: string, index: number) => {
-          const boldTexts = boldSentence.filter(bold => text.includes(bold));
-          const [first, last] = text.split(boldTexts[0]);
-
-          return boldTexts.length > 0 ? (
-            <div key={`${projectData.id}_${index}`} className='contents'>
-              <Typography variant='caption' className='text text__plain' gutterBottom>
-                {first}
-              </Typography>
-              <Typography variant='caption' className='text text__plain text__bold' gutterBottom>
-                {boldTexts[0]}
-              </Typography>
-              <Typography variant='caption' className='text text__plain' gutterBottom>
-                {last}
-              </Typography>
-            </div>
-          ) : (
-            <Typography key={`${projectData.id}_${index}`} variant='caption' className='text text__plain' gutterBottom>
-              {text}
-            </Typography>
-          );
-        })}
+        {projectData.experience.map((text: string, index: number) => (
+          <Typography key={`${projectData.id}_${index}`} variant='caption' className='text text__plain' gutterBottom>
+            {text}
+          </Typography>
+        ))}
       </div>
     </section>
   );
