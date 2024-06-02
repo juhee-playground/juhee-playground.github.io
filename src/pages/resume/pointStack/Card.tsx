@@ -28,24 +28,6 @@ const PointStackCard = () => {
         {contents.map((card: CardContentProperty) => {
           const { content, link, bold } = card;
           const [prefix, suffix] = content.split(bold);
-          // if (bold !== '') {
-          //   return (
-          //     <li className='content__li' key={content}>
-          //       {prefix}
-          //       <a href={link}>
-          //         <b>{bold}</b>
-          //       </a>
-          //       {suffix}
-          //     </li>
-          //   );
-          // } else {
-          //   return (
-          //     <li className='content__li' key={content}>
-          //       {content}
-          //     </li>
-          //   );
-          // }
-
           return (
             <li key={content} className='content__li'>
               {bold ? (
