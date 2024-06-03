@@ -113,21 +113,29 @@
 
 ## ✔ 개발스택
 
-<!-- FIXME: 프로젝트를 만든 node version도 필요 -->
-
-> Front
+> Node Version:  v20.12.0
 >
-> > React: 구조를 자유롭게 내가 원하는대로 짤 수 있고 많은 라이브러리와 수많은 커뮤니티로 유지보수하기 쉬워서 선택했다.
-> >
-> > TypeScript: 에러체크를 미리 해주기 때문에 실수할 일이 많이 줄고 편하기 때문에 선택했다.
-> >
-> > Backend
-> > Lambda: 처음엔 node.js로 백엔드 서버를 따로 둘까도 생각했는데 아무래도 요즘 서버리스를 하는 추세이기도 하고
-> > 서버 하나 더 두면 비용적인 측면에서 따져봐도 더 적은 금액으로 할 수 있을 것 같아서 처음 써보았다.
-> >
-> > Notion API: Notion에 정보를 몰아 넣고 요것 하나만 수정해서 database처럼 사용하기로 했다.
+> 코어 스택: TypeScript, React
+>
+> 상태 관리: React Context, React Query, Redux
+>
+> 스타일링: Storybook, Scss
+>
+> 빌드: yarn, vite
+>
+> CI/CD: GitHub Actions
+>
+> test: jest, react-testing-library
 
-<!-- FIXME: 프로젝트를 클론받아 설치하여 확인할 수 있는 방법에 대해서 추가 -->
+## ✔ 실행방법
+
+> 로컬 실행
+> 
+> cd juhee-playground
+> yarn dev
+>
+> 스토리북 실행
+> yarn storybook
 
 ## ✔ 구현 목록
 
@@ -141,7 +149,7 @@
 ### 추가 기능
 
     1. 테스트코드 붙이기
-    2. 스토리북 붙이기
+    2. 컴포넌트에 스토리북
 
 ### UI
 
@@ -152,13 +160,21 @@
 ### 리펙토링
 
     1. 컴포넌트화 시키기(프로젝트 카드, 필터 등)
+    2. api 폴더안 파일 정리
+        - 사용하지 않는 함수 지우기
+        - api handling 하는 파일 utils로 옮기기
+    3. Reacy-Query 사용 하는 방법 수정 
+        - 재사용 가능하도록 hooks로 파일로 관리
+    4. interface, type 이름 통일
+    5. 컴포넌트 props 넘길 때 `{ name, email }: DataProps` 이런식으로 넘기기
+    6. react 구조 관련 lint 추가
+    0. 폴더 구조 변경
 
 ### 추후 작업 예정 목록
 
     1. 경력 요약 그래프(차트 페이지로 대체될 것 같음.)
-    2. 번역기능
-    3. 문서화
-    4. 페이지 나누기
+    2. 문서화
+    3. 페이지 나누기
         - 포폴 페이지와 이력서 페이지 분리
         - 차트 수치화 할 수 있는 데이터 따로 빼기
         - 블로그(이건 진짜 추후)
