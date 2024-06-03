@@ -1,7 +1,7 @@
 import DChip from '@/components/custom/DChip';
 import ToggleChip from '@/components/custom/ToggleChip';
 
-import { firstLetterToUpper } from '@/utils/formatter';
+import { formatFirstLetterToUpper } from '@/utils/formatter';
 
 import './filterOption.scss';
 
@@ -18,7 +18,7 @@ const FilterOption = ({ title, options, colorOptions, pointColor, selected, onCh
   return (
     <li className='list__item'>
       <p className='filter__left'>
-        <span className='text'>{firstLetterToUpper(title)}</span>
+        <span className='text'>{formatFirstLetterToUpper(title)}</span>
       </p>
 
       <div className='filter__chips'>
