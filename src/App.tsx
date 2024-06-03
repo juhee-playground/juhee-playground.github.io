@@ -1,6 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import { merge } from 'ts-deepmerge';
 import { AxiosError } from 'axios';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -61,15 +63,17 @@ function App() {
   }, [prefersDarkMode]);
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={responsiveFontSizes(theme)}>
-        <QueryClientProvider client={queryClient}>
-          <CssBaseline />
-          <ToastContainer />
-          <Layout />
-        </QueryClientProvider>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <Provider store={store}>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={responsiveFontSizes(theme)}>
+          <QueryClientProvider client={queryClient}>
+            <CssBaseline />
+            <ToastContainer />
+            <Layout />
+          </QueryClientProvider>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </Provider>
   );
 }
 
