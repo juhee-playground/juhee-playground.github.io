@@ -13,7 +13,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
 import Loading from '@/components/Loading';
-import LeftSection from '@/pages/resume/lnb/Nav';
+import LeftSection from '@/pages/resume/panel/LeftInfoPanel';
 import CardListItem from '@/pages/resume/card/CardListItem';
 import FilterOption from './filter/FilterOption';
 import PointStackCard from './pointStack/Card';

@@ -4,10 +4,10 @@ import ProfileInfo from '../../../data/DB_profileInfo.json';
 
 import { useTheme } from '@mui/material/styles';
 
-import './Nav.scss';
+import './LeftInfoPanel.scss';
 import ProfileInfoBox from './ProfileInfoBox';
 
-const LeftNav = () => {
+const LeftInfoPanel = () => {
   const theme = useTheme();
   const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
 
@@ -42,4 +42,4 @@ const LeftNav = () => {
   );
 };
 
-export default LeftNav;
+export default LeftInfoPanel;
