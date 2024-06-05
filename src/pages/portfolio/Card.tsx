@@ -10,11 +10,11 @@ interface ICardProps {
   period: string;
   description: string;
   borderType: 'javascript' | 'typescript';
-  skill: SelectProperty[];
+  skill: ISelectProperty[];
   mainSkill: string[];
-  keywords?: SelectProperty[];
+  keywords?: ISelectProperty[];
 }
-export default function ProjectCard({ name, period, description, borderType, skill, mainSkill, keywords }: ICardProps) {
+export default function ProjectCard({ name, period, description, borderType, mainSkill, keywords }: ICardProps) {
   return (
     <article className={`card ${borderType === 'javascript' ? 'javascript' : 'typescript'}`}>
       <header>
@@ -41,10 +41,9 @@ export default function ProjectCard({ name, period, description, borderType, ski
 
         <section>
           <ul className='chipList'>
-            {keywords?.map((select: SelectProperty, index: number) => (
-              <li>
+            {keywords?.map((select: ISelectProperty, index: number) => (
+              <li key={`skill_${select.name}_${index}`}>
                 <DChip
-                  key={`skill_${select.name}_${index}`}
                   size='small'
                   color='white'
                   label={select.name}

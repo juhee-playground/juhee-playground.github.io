@@ -4,7 +4,7 @@ import type { RootState } from '@/redux/store';
 import './card.scss';
 import CONTENT_MAIN from '@/constants/description';
 
-interface CardContentProperty {
+interface ICardContentProperty {
   content: string;
   link?: string;
   bold: string;
@@ -25,7 +25,7 @@ const PointStackCard = () => {
       </div>
 
       <ul className='card__content'>
-        {contents.map((card: CardContentProperty) => {
+        {contents.map((card: ICardContentProperty) => {
           const { content, link, bold } = card;
           const [prefix, suffix] = content.split(bold);
           return (
