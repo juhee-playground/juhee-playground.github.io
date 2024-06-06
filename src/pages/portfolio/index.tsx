@@ -18,10 +18,10 @@ export default function MainPage() {
 
       <div className='container'>
         {isSuccess ? (
-          (projectQueryData || PROJECT_DATA).map((project: ProjectProperties) => {
+          (projectQueryData || PROJECT_DATA).map((project: IProjectProperties) => {
             const date = project.period.date;
             const period = date.start ? `${dayjs(date.start).format('YY/MM')}~${dayjs(date.end).format('YY/MM')}` : '';
-            const mainSkill = project.mainSkill.multi_select.map((select: SelectProperty) => select.name);
+            const mainSkill = project.mainSkill.multi_select.map((select: ISelectProperty) => select.name);
             const scriptType = mainSkill.includes('Typescript') ? 'typescript' : 'javascript';
 
             return (

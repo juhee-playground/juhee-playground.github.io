@@ -34,7 +34,7 @@ const LeftInfoPanel = () => {
       </section>
 
       <section className={isPrintMode ? `infos infos--${mode}` : `infos`}>
-        {infos.map((info: NavInfoItems) => (
+        {infos.map((info: INavInfoItems) => (
           <ProfileInfoBox info={info} key={info.title} />
         ))}
       </section>

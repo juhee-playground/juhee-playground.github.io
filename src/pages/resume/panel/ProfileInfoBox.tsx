@@ -39,7 +39,7 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
         <div className='profile__box__content'>
           <ul className='list list-subtitle'>
             {/* subtitle이 있는 list item */}
-            {info.subTitle.map((item: SubTitleItem, index: number) => {
+            {info.subTitle.map((item: ISubTitleItem, index: number) => {
               const key = item.value;
               if (key === 'github' || key === 'portfolio') {
                 return (
@@ -82,7 +82,7 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
         <div className='profile__box__content'>
           <ul className='list list-date'>
             {/* 기본 list item row 정렬 */}
-            {info.spaceBetween.map((item: DateItem, index: number) => (
+            {info.spaceBetween.map((item: IDateItem, index: number) => (
               <li className='list-item list-item__between' key={`spaceBetween_${index}`}>
                 <span className='text'>{item.text}</span>
                 <span className='date'>{item.date}</span>

@@ -101,7 +101,7 @@ function CardListItem({
           {subInfo &&
             subInfo
               .filter(project => project.company.relation[0].id === companyData.id)
-              .map((project: ProjectProperties, index: number) => (
+              .map((project: IProjectProperties, index: number) => (
                 <SubListItem key={`${index}_${project.id}`} filters={filters} info={project} />
               ))}
         </div>
