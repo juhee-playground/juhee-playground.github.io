@@ -7,7 +7,7 @@
 export {};
 
 declare global {
-  type ModeType = 'light' | 'dark';
+  type TModeType = 'light' | 'dark';
   type TProjectProperties = 'rich_text' | number | 'date' | 'select' | 'text' | 'title' | 'select';
 
   interface IProcess {
@@ -82,7 +82,7 @@ declare global {
   }
 
   interface IProjectQuery {
-    [x: string]: any;
+    // [x: string]: any;
     id: string;
     companyId: string;
     name: string;
@@ -169,7 +169,7 @@ declare global {
 
   type TFilterSelected = string[];
 
-  interface CustomChip {
+  interface ICustomChip {
     selectedItems?: string[];
     pointColor?: string;
     color?: string;
@@ -197,43 +197,43 @@ declare global {
     isLastCompany: boolean;
   }
 
-  interface SubListProps {
+  interface ISubListProps {
     key: string | number;
     filters: TFilterSelected;
     info: IProjectProperties;
   }
 
-  interface NavInfoItems {
+  interface INavInfoItems {
     icon: string;
     title: string;
     isBasic: boolean;
     basic?: string[];
     isSubTitle: boolean;
-    subTitle?: SubTitleItem[];
+    subTitle?: ISubTitleItem[];
     isSpaceBetween: boolean;
-    spaceBetween?: DateItem[];
+    spaceBetween?: IDateItem[];
   }
 
   interface INavProfileProps {
-    info: NavInfoItems;
+    info: INavInfoItems;
     key: string;
   }
 
-  type errorType = 'success' | 'warning' | 'error' | 'info';
+  type TErrorType = 'success' | 'warning' | 'error' | 'info';
 
-  interface SnackBarProps {
+  interface ISnackBarProps {
     message: string;
-    type: errorType;
+    type: TErrorType;
     isOpen: boolean;
   }
 
-  interface SubTitleItem {
+  interface ISubTitleItem {
     subTitle: string;
     value: string;
     icon?: string;
   }
 
-  interface DateItem {
+  interface IDateItem {
     text: string;
     date: string;
   }

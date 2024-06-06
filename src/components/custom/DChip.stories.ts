@@ -7,7 +7,7 @@ const meta = {
   title: 'Components/Chip',
   component: DChip,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
+    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/TStory-layout
     layout: 'centered',
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
@@ -33,16 +33,15 @@ const meta = {
       description: 'Chip 클릭을 할 수 있는지 없는지 알려주는 역할을 합니다.',
     },
     selectedItems: {
-      control: 'none',
       description: '필터에 값이 있으면 체크표시가 보입니다.',
     },
   },
 } satisfies Meta<typeof DChip>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type TStory = StoryObj<typeof meta>;
 
-export const Playground: Story = {
+export const Playground: TStory = {
   args: {
     label: 'chip',
     color: 'red',
@@ -52,7 +51,7 @@ export const Playground: Story = {
   },
 };
 
-export const Smallhip: Story = {
+export const Smallhip: TStory = {
   args: {
     label: 'Small Chip',
     color: 'blue',
@@ -62,7 +61,7 @@ export const Smallhip: Story = {
   },
 };
 
-export const MediumChip: Story = {
+export const MediumChip: TStory = {
   args: {
     label: 'Medium Chip',
     color: 'blue',
@@ -72,7 +71,7 @@ export const MediumChip: Story = {
   },
 };
 
-export const Clickable: Story = {
+export const Clickable: TStory = {
   args: {
     label: 'Clickeable Chip',
     color: 'orange',
@@ -82,7 +81,7 @@ export const Clickable: Story = {
   },
 };
 
-export const NotClickableChip: Story = {
+export const NotClickableChip: TStory = {
   args: {
     label: 'Not clickable Chip',
     color: 'orange',

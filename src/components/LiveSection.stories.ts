@@ -22,9 +22,9 @@ const meta = {
 } satisfies Meta<typeof LiveSection>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type TStory = StoryObj<typeof meta>;
 
-export const Playground: Story = {
+export const Playground: TStory = {
   args: {
     message: 'Please wait. Loading products',
   },

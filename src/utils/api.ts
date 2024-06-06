@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
 // https://dev.to/vikirobles/how-to-create-an-auth-login-system-with-axios-interceptors-typescript-2k11
-interface ResponseData {
+interface IResponseData {
   data?: string;
 }
 
@@ -13,7 +13,7 @@ const logOnDev = (message: string) => {
   }
 };
 
-function handleError(serverError: ResponseData) {
+function handleError(serverError: IResponseData) {
   if (serverError?.data) {
     console.log('handleError', serverError);
   }
@@ -33,7 +33,7 @@ const onResponse = (response: AxiosResponse): AxiosResponse['data'] => {
 };
 
 const onResponseError = (error: AxiosError): Promise<AxiosError> => {
-  handleError(error?.response as ResponseData);
+  handleError(error?.response as IResponseData);
   return Promise.reject(error);
 };
 
