@@ -4,5 +4,7 @@ import { PaletteMode } from '@mui/material';
 
 export const ColorModeContext = React.createContext({
   currentMode: 'light',
-  toggleColorMode: (theme: PaletteMode) => {},
+  toggleColorMode: (theme: PaletteMode) => {
+    console.log(theme);
+  },
 });
