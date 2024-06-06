@@ -7,64 +7,66 @@
 export {};
 
 declare global {
-  type ModeType = 'light' | 'dark';
-  type ProjectPropertiesType = 'rich_text' | number | 'date' | 'select' | 'text' | 'title' | 'select';
+  type TModeType = 'light' | 'dark';
+  type TProjectProperties = 'rich_text' | number | 'date' | 'select' | 'text' | 'title' | 'select';
 
-  interface Process {
-    env: ProcessEnv;
+  interface IProcess {
+    env: IProcessEnv;
   }
-  interface ProcessEnv {
+
+  interface IProcessEnv {
     [key: string]: string | undefined;
   }
-  interface NotionData {
+
+  interface INotionData {
     id: string;
     icon: NotionIcon;
-    properties: CompanyProperties & ProjectProperties;
+    properties: ICompanyProperties & IProjectProperties;
   }
 
-  interface NotionPageIcon {
+  interface INotionPageIcon {
     type: 'file';
-    file: NotionFile;
+    file: INotionFile;
   }
 
-  interface NotionFile {
+  interface INotionFile {
     url: string;
     expiry_time: string;
   }
-  interface NotionURL {
+  interface INotionURL {
     id: string;
     type: 'url';
     url: string;
   }
-  interface ProjectProperties {
+  interface IProjectProperties {
     id: string;
-    period: NotionDate;
-    company: NotionRelation;
-    url: NotionURL;
-    role: NotionText;
-    description: NotionText;
-    experience: NotionText;
-    skill: NotionMultiSelect;
-    keywords?: NotionMultiSelect;
-    numberOfParticipants: NotionNumber;
-    mainSkill: NotionMultiSelect;
-    name: NotionTitleName;
+    period: INotionDate;
+    company: INotionRelation;
+    url: INotionURL;
+    role: INotionText;
+    description: INotionText;
+    experience: INotionText;
+    skill: INotionMultiSelect;
+    keywords?: INotionMultiSelect;
+    numberOfParticipants: INotionNumber;
+    mainSkill: INotionMultiSelect;
+    name: INotionTitleName;
   }
 
-  interface CompanyProperties {
-    order: NotionNumber;
-    period: NotionDate;
-    type: NotionText;
-    year: NotionNumber;
-    description: NotionText;
-    scale: NotionText;
-    role: NotionSelect;
-    department: NotionText;
-    name: NotionTitleName;
+  interface ICompanyProperties {
+    order: INotionNumber;
+    period: INotionDate;
+    type: INotionText;
+    year: INotionNumber;
+    description: INotionText;
+    scale: INotionText;
+    role: INotionSelect;
+    department: INotionText;
+    name: INotionTitleName;
     id: string;
   }
 
-  interface CompanyQuery {
+  interface ICompanyQuery {
     id: string;
     name: string;
     startDate: string;
@@ -79,49 +81,49 @@ declare global {
     description: string;
   }
 
-  interface ProjectQuery {
-    [x: string]: any;
+  interface IProjectQuery {
+    // [x: string]: any;
     id: string;
     companyId: string;
     name: string;
     period: string;
-    stacks: SelectProperty[];
+    stacks: ISelectProperty[];
     explain: string;
     contents: string[];
     numberOfParticipants: number;
     url: string | null;
   }
-  interface NotionDefaultProperties {
+  interface INotionDefaultProperties {
     id: string;
-    type: ProjectPropertiesType;
+    type: TProjectProperties;
   }
 
-  interface PeriodDate {
+  interface IPeriodDate {
     start: string;
     end: string;
     time_zone: string | null;
   }
 
-  interface NotionDate extends NotionDefaultProperties {
-    date: PeriodDate;
+  interface INotionData extends INotionDefaultProperties {
+    date: IPeriodDate;
   }
 
-  interface NotionRelation extends NotionDefaultProperties {
+  interface INotionRelation extends INotionDefaultProperties {
     type: 'relation';
-    relation: Relation[];
+    relation: IRelation[];
   }
 
-  interface Relation {
+  interface IRelation {
     id: string;
   }
 
-  interface NotionText extends NotionDefaultProperties {
-    rich_text: RichText[];
+  interface INotionText extends INotionDefaultProperties {
+    rich_text: IRichText[];
   }
 
-  interface RichText {
-    type: ProjectPropertiesType;
-    text: TextProperty;
+  interface IRichText {
+    type: TProjectProperties;
+    text: ITextProperty;
     annotations: {
       bold: boolean;
       italic: boolean;
@@ -134,42 +136,40 @@ declare global {
     href: null;
   }
 
-  interface TextProperty {
+  interface ITextProperty {
     content: string;
     link: null | string;
   }
 
-  interface NotionSelect extends NotionDefaultProperties {
-    select: SelectProperty;
+  interface INotionSelect extends INotionDefaultProperties {
+    select: ISelectProperty;
   }
 
-  interface NotionSelectOptions {
+  interface INotionSelectOptions {
     id: string;
     name: string;
     type: 'multi_select';
     multi_select: {
-      options: SelectProperty[];
+      options: ISelectProperty[];
     };
   }
-  interface SelectProperty {
+  interface ISelectProperty {
     id: string;
     name: string;
     color: string;
   }
 
-  interface NotionTitleName extends NotionDefaultProperties {
-    title: RichText[];
+  interface INotionTitleName extends INotionDefaultProperties {
+    title: IRichText[];
   }
 
-  interface NotionNumber extends NotionDefaultProperties {
+  interface INotionNumber extends INotionDefaultProperties {
     number: number;
   }
 
-  interface FilterSelected {
-    [key: string]: string[];
-  }
+  type TFilterSelected = string[];
 
-  interface CustomChip {
+  interface ICustomChip {
     selectedItems?: string[];
     pointColor?: string;
     color?: string;
@@ -179,7 +179,7 @@ declare global {
     handleChipSelect?: (label: string) => void;
   }
 
-  interface ToggleChip {
+  interface IToggleChipProps {
     pointColor?: string;
     checked: boolean;
     color?: string;
@@ -189,52 +189,51 @@ declare global {
     handleChipSelect?: (label: string) => void;
   }
 
-
-  interface CardListProps {
+  interface ICardListProps {
     key: string;
-    info: CompanyProperties;
-    subInfo: ProjectProperties[];
-    filters: FilterSelected;
+    info: ICompanyProperties;
+    subInfo: IProjectProperties[];
+    filters: TFilterSelected;
     isLastCompany: boolean;
   }
 
-  interface SubListProps {
+  interface ISubListProps {
     key: string | number;
-    filters: FilterSelected;
-    info: ProjectProperties;
+    filters: TFilterSelected;
+    info: IProjectProperties;
   }
 
-  interface NavInfoItems {
+  interface INavInfoItems {
     icon: string;
     title: string;
     isBasic: boolean;
     basic?: string[];
     isSubTitle: boolean;
-    subTitle?: SubTitleItem[];
+    subTitle?: ISubTitleItem[];
     isSpaceBetween: boolean;
-    spaceBetween?: DateItem[];
+    spaceBetween?: IDateItem[];
   }
 
-  interface NavProfileProps {
-    info: NavInfoItems;
+  interface INavProfileProps {
+    info: INavInfoItems;
     key: string;
   }
 
-  type errorType = 'success' | 'warning' | 'error' | 'info';
+  type TErrorType = 'success' | 'warning' | 'error' | 'info';
 
-  interface SnackBarProps {
+  interface ISnackBarProps {
     message: string;
-    type: errorType;
+    type: TErrorType;
     isOpen: boolean;
   }
 
-  interface SubTitleItem {
+  interface ISubTitleItem {
     subTitle: string;
     value: string;
     icon?: string;
   }
 
-  interface DateItem {
+  interface IDateItem {
     text: string;
     date: string;
   }

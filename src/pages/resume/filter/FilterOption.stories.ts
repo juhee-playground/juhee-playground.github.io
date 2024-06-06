@@ -1,6 +1,7 @@
+import FilterOption from './FilterOption';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
-import FilterOption from './FilterOption';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -19,12 +20,12 @@ const meta = {
       defaultValue: 'Color',
     },
     options: {
-      control: 'array',
+      control: 'object',
       description: '나타낼 chip의 리스트를 나타냅니다.',
       options: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue', 'brown', 'default'],
     },
     colorOptions: {
-      control: "none",
+      control: "object",
       description: 'chip의 색을 지정해주는 역활.',
       options: [{ id: '1', name: 'javascript', color: 'yellow', }, { id: '2', name: 'typescript', color: 'blue', }, { id: '3', name: 'Vue', color: 'green', }]
     },
@@ -33,16 +34,16 @@ const meta = {
       description: 'chip의 컬러를 표시합니다.',
     },
     selected: {
-      control: 'array',
+      control: 'object',
       description: '선택된 칩이 리스트를 나타냅니다..',
     },
   },
 } satisfies Meta<typeof FilterOption>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type TStory = StoryObj<typeof meta>;
 
-export const ToggleChip: Story = {
+export const ToggleChip: TStory = {
   args: {
     title: 'Color',
     options: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue'],
@@ -52,7 +53,7 @@ export const ToggleChip: Story = {
   },
 };
 
-export const CustonChip: Story = {
+export const CustonChip: TStory = {
   args: {
     title: 'Skill',
     options: ['javascript', 'Vue', 'typescript'],

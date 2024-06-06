@@ -1,9 +1,10 @@
-import type { RootState } from '@/redux/store';
+
 import { useAppSelector } from '@/redux/hooks';
+import type { RootState } from '@/redux/store';
 
 import Link from '@mui/material/Link';
 
-interface ContactProperties {
+interface IContactProperties {
   [key: string]: string | undefined;
   phone_number: string | undefined;
   email: string | undefined;
@@ -11,16 +12,15 @@ interface ContactProperties {
   portfolio: string | undefined;
 }
 
-const ProfileInfoBox = (props: NavProfileProps) => {
+const ProfileInfoBox = ({ info }: INavProfileProps) => {
   const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
-  const contactInfo: ContactProperties = {
+  const contactInfo: IContactProperties = {
     phone_number: import.meta.env.VITE_APP_PHONE_NUMBER,
     email: import.meta.env.VITE_APP_EMAIL,
     github: import.meta.env.VITE_APP_GITHUB,
     portfolio: import.meta.env.VITE_APP_PORTFOLIO,
   };
-  const profile = props.info;
-  const profileClass = profile.title.toLowerCase();
+  const profileClass = info.title.toLowerCase();
   const mode = isPrintMode ? 'print' : '';
 
   return (
@@ -28,17 +28,19 @@ const ProfileInfoBox = (props: NavProfileProps) => {
       className={isPrintMode ? `profile__box profile__box--${mode} ${profileClass}` : `profile__box ${profileClass}`}
     >
       <div className='profile__box__header'>
-        <span className='box-icon'>{profile.icon}</span>
+        <span className='box-icon'>{info.icon}</span>
         <h4 style={{ color: pointColor }} className='box-title'>
-          {profile.title}
+          {info.title}
         </h4>
       </div>
+
       <hr />
-      {profile.isSubTitle && profile.subTitle ? (
+
+      {info.isSubTitle && info.subTitle && (
         <div className='profile__box__content'>
           <ul className='list list-subtitle'>
             {/* subtitle이 있는 list item */}
-            {profile.subTitle.map((item: SubTitleItem, index: number) => {
+            {info.subTitle.map((item: ISubTitleItem, index: number) => {
               const key = item.value;
               if (key === 'github' || key === 'portfolio') {
                 return (
@@ -62,24 +64,26 @@ const ProfileInfoBox = (props: NavProfileProps) => {
             })}
           </ul>
         </div>
-      ) : null}
-      {profile.isBasic && profile.basic ? (
+      )}
+
+      {info.isBasic && info.basic && (
         <div className='profile__box__content'>
           <ul className='list list-row'>
             {/* 기본 list item row 정렬 */}
-            {profile.basic.map((item: string, index: number) => (
+            {info.basic.map((item: string, index: number) => (
               <li className='list-item' key={`profile_basic_${index}`}>
                 <span className='text'>{item}</span>
               </li>
             ))}
           </ul>
         </div>
-      ) : null}
-      {profile.isSpaceBetween && profile.spaceBetween ? (
+      )}
+
+      {info.isSpaceBetween && info.spaceBetween && (
         <div className='profile__box__content'>
           <ul className='list list-date'>
             {/* 기본 list item row 정렬 */}
-            {profile.spaceBetween.map((item: DateItem, index: number) => (
+            {info.spaceBetween.map((item: IDateItem, index: number) => (
               <li className='list-item list-item__between' key={`spaceBetween_${index}`}>
                 <span className='text'>{item.text}</span>
                 <span className='date'>{item.date}</span>
@@ -87,7 +91,7 @@ const ProfileInfoBox = (props: NavProfileProps) => {
             ))}
           </ul>
         </div>
-      ) : null}
+      )}
     </section>
   );
 };

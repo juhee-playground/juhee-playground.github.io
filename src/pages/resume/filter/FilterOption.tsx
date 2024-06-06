@@ -1,70 +1,47 @@
-import { useEffect, useState } from 'react';
-
 import DChip from '@/components/custom/DChip';
 import ToggleChip from '@/components/custom/ToggleChip';
-
-import { firstLetterToUpper } from '@/utils/String';
+import { formatFirstLetterToUpper } from '@/utils/formatter';
 
 import './filterOption.scss';
 
-interface Props {
+interface IFilterOptionProps {
   title: string;
   options: string[];
-  selected: string[];
+  selected?: string[];
   pointColor?: string;
-  colorOptions?: SelectProperty[];
-  onChange(option: string, key: string): void;
+  colorOptions?: ISelectProperty[];
+  onChange(option: string): void;
 }
 
-const FilterOption = ({ title, options, colorOptions, pointColor, selected, onChange }: Props) => {
-  const [selectedChips, setSelectedChips] = useState(selected);
-
-  useEffect(() => {
-    setSelectedChips(selected);
-  }, [selected]);
-
-  const clickedChip = (chipLabel: string) => {
-    onChange(chipLabel, title);
-    onChangeSelected(chipLabel);
-  };
-
-  const onChangeSelected = (label: string) => {
-    setSelectedChips((prevState: string[]) => {
-      const copyState = [...prevState];
-      if(copyState.includes(label)) {
-        copyState.splice(copyState.indexOf(label), 1);
-      }else {
-        copyState.push(label);
-      }
-      return copyState;
-    });
-  }
-
+const FilterOption = ({ title, options, colorOptions, pointColor, selected, onChange }: IFilterOptionProps) => {
   return (
     <li className='list__item'>
-      <div className='filter__left'>
-        <span className='text'>{firstLetterToUpper(title)}</span>
-      </div>
+      <p className='filter__left'>
+        <span className='text'>{formatFirstLetterToUpper(title)}</span>
+      </p>
+
       <div className='filter__chips'>
         {colorOptions
-          ? colorOptions.map((select: SelectProperty) => {
-              const { id, name, color } = select;
-              return (
-                <DChip
-                  key={id}
-                  selectedItems={selectedChips}
-                  label={name}
-                  size='small'
-                  color={color}
-                  clickable
-                  handleChipSelect={clickedChip}
-                />
-              );
-            })
+          ? colorOptions.map(({ id, name, color }: ISelectProperty) => (
+              <DChip
+                key={id}
+                selectedItems={selected}
+                label={name}
+                size='small'
+                color={color}
+                clickable
+                handleChipSelect={onChange}
+              />
+            ))
           : options.map((name: string, index: number) => (
-              <ToggleChip key={`${title}_${index}`} label={name} checked={selectedChips.includes(name)} color={pointColor} handleChipSelect={clickedChip} />
-            )
-        )}
+              <ToggleChip
+                key={`${title}_${index}`}
+                label={name}
+                checked={(selected || []).includes(name)}
+                color={pointColor}
+                handleChipSelect={onChange}
+              />
+            ))}
       </div>
     </li>
   );

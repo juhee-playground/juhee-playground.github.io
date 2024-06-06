@@ -1,25 +1,12 @@
-import customAxios from './customAxios';
+import requestAPI from '../utils/api';
 
-interface MultiOptionsProperty {
+export interface IMultiOptionsProperty {
   property: string;
 }
 
-export async function getCompanies() {
-  const response = await customAxios.get<NotionData[]>('/company');
-  return response.data;
-}
+export const requestCompanies = (): Promise<INotionData[]> => requestAPI.get('/company');
 
-export async function getProjects() {
-  const response = await customAxios.get<NotionData[]>('/project');
-  return response.data;
-}
+export const requestProjects = (): Promise<INotionData[]> => requestAPI.get('/project');
 
-export async function getSkillOptions(data: MultiOptionsProperty) {
-  const response = await customAxios.get<NotionSelectOptions>('/options', { params: data });
-  return response.data.multi_select.options;
-}
-
-export async function getMainSkillptions() {
-  const response = await customAxios.get<SelectProperty[]>('/mainOptions');
-  return response.data;
-}
+export const requestSkillOptions = (params: IMultiOptionsProperty): Promise<INotionSelectOptions> =>
+  requestAPI.get('/options', { params });

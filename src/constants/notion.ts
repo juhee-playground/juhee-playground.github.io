@@ -1,15 +1,15 @@
 import { red, purple, yellow, orange, lightGreen, pink, grey, green, blue, brown } from '@mui/material/colors';
 
-interface ActionComponentColor {
+interface IActionComponentColor {
   bg: string;
   text: string;
 }
 
-interface SelectChipColor {
-  [color: string]: ActionComponentColor;
+interface ISelectChipColor {
+  [color: string]: IActionComponentColor;
 }
 
-export const notionColorSet: SelectChipColor = {
+export const NOTION_COLOR_SET: ISelectChipColor = {
   red: {
     bg: red[100],
     text: red[600],
@@ -52,6 +52,6 @@ export const notionColorSet: SelectChipColor = {
   },
   white: {
     bg: 'inherit',
-    text: 'white'
-  }
+    text: 'white',
+  },
 };

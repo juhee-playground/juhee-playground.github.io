@@ -1,17 +1,20 @@
+
 import React, { useEffect } from 'react';
+
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
-import { changePrintMode } from '@/redux/modules/settings';
 
-import './Header.scss';
-import IconButton from '@mui/material/IconButton';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ClearIcon from '@mui/icons-material/Clear';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import PrintIcon from '@mui/icons-material/Print';
+import IconButton from '@mui/material/IconButton';
 import { useTheme } from '@mui/material/styles';
 
 import { ColorModeContext } from '@/context/ColorModeContext';
+import { changePrintMode } from '@/redux/modules/settings';
+
+import './Header.scss';
 
 export default function DenseAppBar() {
   const dispatch = useAppDispatch();
@@ -59,7 +62,12 @@ export default function DenseAppBar() {
           </>
         ) : (
           <>
-            <IconButton aria-label='lightMode' onClick={colorMode.toggleColorMode}>
+            <IconButton
+              aria-label='lightMode'
+              onClick={() => {
+                colorMode.toggleColorMode(theme.palette.mode === 'light' ? 'dark' : 'light');
+              }}
+            >
               {theme.palette.mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
             <IconButton aria-label='printMode' onClick={handleClickOpen}>
