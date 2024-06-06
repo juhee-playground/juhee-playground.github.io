@@ -7,9 +7,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import DChip from '@/components/custom/DChip';
 
-function SubListItem({ info, filters }: SubListProps) {
+function SubListItem({ info, filters }: ISubListProps) {
   const date = info.period.date;
-  const boldSentence = info.experience.rich_text.filter(rich => rich.annotations.bold).map(rich => rich.plain_text);
   const experience = info.experience.rich_text.map(rich => rich.text.content);
   const content = experience.join('').split('\n');
   // FIXME: 비어 있을 경우 에러처리 해야함.
