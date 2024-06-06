@@ -1,4 +1,4 @@
-import { grey, lime, deepPurple, purple, common } from '@mui/material/colors';
+import { grey, deepPurple, common } from '@mui/material/colors';
 import { Theme } from '@mui/material/styles';
 
 const palette = {
@@ -16,14 +16,14 @@ const palette = {
   },
   dark: {
     primary: {
-      light: purple[300],
-      main: purple[500],
-      dark: purple[900],
+      light: '#07b53b',
+      main: '#07b53b',
+      dark: '#07b53b',
     },
     secondary: {
-      light: lime[300],
-      main: lime[500],
-      dark: lime[900],
+      light: deepPurple[300],
+      main: deepPurple[500],
+      dark: deepPurple[900],
     },
   },
 };
@@ -42,7 +42,6 @@ export const getDesignTokens = (mode?: PaletteMode) =>
               dark: palette.light.primary.dark,
               contrastText: '#000',
             },
-            // divider: '#000',
             background: {
               default: grey[50], // background
               paper: grey[50],
@@ -59,7 +58,6 @@ export const getDesignTokens = (mode?: PaletteMode) =>
               dark: palette.dark.primary.dark,
               contrastText: '#fff',
             },
-            // divider: grey[400],
             background: {
               default: grey[900], // background
               paper: grey[900],
@@ -116,7 +114,7 @@ export const getThemedComponents = (mode?: PaletteMode) =>
                 {
                   props: { variant: 'outlined' },
                   style: {
-                    color: palette.light.primary.main,
+                    // color: palette.light.primary.main,
                   },
                 },
                 {
