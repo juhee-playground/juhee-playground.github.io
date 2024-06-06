@@ -1,22 +1,24 @@
-import { useState, useMemo, useEffect } from 'react';
-import { merge } from 'ts-deepmerge';
-import { AxiosError } from 'axios';
-import { Provider } from 'react-redux';
-import store from './redux/store';
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+
+import { useState, useMemo, useEffect } from 'react';
+import { QueryClient, QueryClientProvider, QueryCache } from 'react-query';
+import { Provider } from 'react-redux';
+import { toast , ToastContainer } from 'react-toastify';
+
+import store from '@/redux/store';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import Layout from './layout/Layout';
-import { QueryClient, QueryClientProvider, QueryCache } from 'react-query';
-
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider, responsiveFontSizes, Theme } from '@mui/material/styles';
-import { PaletteMode, getDesignTokens, getThemedComponents } from './theme';
-import { ColorModeContext } from './context/ColorModeContext';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { AxiosError } from 'axios';
+import { merge } from 'ts-deepmerge';
 
+
+import { ColorModeContext } from '@/context/ColorModeContext';
+import Layout from '@/layout/Layout';
+import { PaletteMode, getDesignTokens, getThemedComponents } from '@/theme';
+
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 const queryClient = new QueryClient({
@@ -55,9 +57,8 @@ function App() {
   );
 
   const theme: Theme = useMemo(() => createTheme(merge(getDesignTokens(mode), getThemedComponents(mode))), [mode]);
-
   useEffect(() => {
-    setMode(!prefersDarkMode ? 'dark' : 'light');
+    setMode(prefersDarkMode ? 'dark' : 'light');
   }, [prefersDarkMode]);
 
   return (

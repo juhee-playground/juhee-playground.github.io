@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Chip from '@mui/material/Chip';
+
 import CheckIcon from '@mui/icons-material/Check';
+import Chip from '@mui/material/Chip';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { NOTION_COLOR_SET } from '@/constants/notion';
 

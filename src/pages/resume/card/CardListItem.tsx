@@ -1,12 +1,14 @@
-import dayjs from 'dayjs';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
 
-import { parserPeriod } from '@/utils/parser';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import dayjs from 'dayjs';
+
 import SubListItem from './SubListItem';
+
+import { parserPeriod } from '@/utils/parser';
 
 function CardListItem({
   isLastCompany,

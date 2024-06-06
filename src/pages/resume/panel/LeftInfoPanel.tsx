@@ -1,11 +1,14 @@
+
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
-import ProfileInfo from '../../../data/DB_profileInfo.json';
 
 import { useTheme } from '@mui/material/styles';
 
-import './LeftInfoPanel.scss';
 import ProfileInfoBox from './ProfileInfoBox';
+
+import ProfileInfo from '@/data/DB_profileInfo.json';
+
+import './LeftInfoPanel.scss';
 
 const LeftInfoPanel = () => {
   const theme = useTheme();

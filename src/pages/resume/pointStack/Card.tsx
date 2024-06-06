@@ -1,8 +1,9 @@
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
 
-import './card.scss';
 import CONTENT_MAIN from '@/constants/description';
+
+import './card.scss';
 
 interface ICardContentProperty {
   content: string;

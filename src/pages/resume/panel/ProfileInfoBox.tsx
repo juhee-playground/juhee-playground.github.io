@@ -1,5 +1,6 @@
-import type { RootState } from '@/redux/store';
+
 import { useAppSelector } from '@/redux/hooks';
+import type { RootState } from '@/redux/store';
 
 import Link from '@mui/material/Link';
 

@@ -1,27 +1,28 @@
 import { useState, useMemo, useEffect } from 'react';
+
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
 
-import COMPANY_DATA from '@/data/DB_company.json';
-import DB_SKILL from '@/data/DB_skill.json';
-import PROJECT_DATA from '@/data/DB_project.json';
-
-import { useTheme } from '@mui/material/styles';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
+import { useTheme } from '@mui/material/styles';
 
-import Loading from '@/components/Loading';
-import LeftSection from '@/pages/resume/panel/LeftInfoPanel';
-import CardListItem from '@/pages/resume/card/CardListItem';
 import FilterOption from './filter/FilterOption';
 import PointStackCard from './pointStack/Card';
 
-import './Main.scss';
-import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
+import Loading from '@/components/Loading';
+import COMPANY_DATA from '@/data/DB_company.json';
+import PROJECT_DATA from '@/data/DB_project.json';
+import DB_SKILL from '@/data/DB_skill.json';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
+import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import useSkillOptionQuery from '@/hooks/queries/useSkillOptionsQuery';
+import CardListItem from '@/pages/resume/card/CardListItem';
+import LeftSection from '@/pages/resume/panel/LeftInfoPanel';
+
+import './Main.scss';
 
 const DB_COMPANY_DATAS = COMPANY_DATA as ICompanyProperties[];
 const DB_PROJECT_DATAS = PROJECT_DATA as IProjectProperties[];

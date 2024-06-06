@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent, queryByTestId } from '@testing-library/react';
+
 import DChip from './DChip';
 
 const onChipSelect = jest.fn();

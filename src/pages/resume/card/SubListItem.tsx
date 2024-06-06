@@ -2,9 +2,10 @@ import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
 
 import LabelIcon from '@mui/icons-material/Label';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+
 import DChip from '@/components/custom/DChip';
 
 function SubListItem({ info, filters }: ISubListProps) {

@@ -1,9 +1,9 @@
-import DChip from '@/components/custom/DChip';
 
 import ultimate from '@/assets/screenshot/ultimate.png';
+import DChip from '@/components/custom/DChip';
+import { SKILL_ICON } from '@/constants/icon';
 
 import './Card.scss';
-import { SKILL_ICON } from '@/constants/icon';
 
 interface ICardProps {
   name: string;

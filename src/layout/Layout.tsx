@@ -1,11 +1,15 @@
+
 import React, { useState, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './header/Header';
+
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
 
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import SettingsIcon from '@mui/icons-material/Settings';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+
+import Header from './header/Header';
+
 import ThemeCustomized from '@/layout/ThemeCustomized';
 
 import './Layout.scss';

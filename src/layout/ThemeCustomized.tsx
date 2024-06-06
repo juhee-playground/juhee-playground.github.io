@@ -1,18 +1,21 @@
+
 import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
-import { changePointColor } from '@/redux/modules/settings';
 import { ColorResult, ChromePicker } from 'react-color';
 
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+import type { RootState } from '@/redux/store';
+
+import { PaletteMode } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
 
 import { ColorModeContext } from '../context/ColorModeContext';
 
+import { changePointColor } from '@/redux/modules/settings';
+
 import './ThemeCustomized.scss';
-import { PaletteMode } from '@mui/material';
 
 const ThemeCustomized = () => {
   const [color, setColor] = useState<string>('');
@@ -29,7 +32,7 @@ const ThemeCustomized = () => {
     dispatch(changePointColor(color));
   };
 
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
+  const changeHandler = (_event: React.ChangeEvent<HTMLInputElement>, value: string) => {
     colorMode.toggleColorMode(value as PaletteMode);
   };
 

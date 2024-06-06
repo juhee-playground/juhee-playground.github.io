@@ -1,6 +1,5 @@
 import DChip from '@/components/custom/DChip';
 import ToggleChip from '@/components/custom/ToggleChip';
-
 import { formatFirstLetterToUpper } from '@/utils/formatter';
 
 import './filterOption.scss';

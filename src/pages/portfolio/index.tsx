@@ -1,11 +1,12 @@
 import dayjs from 'dayjs';
 
-import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
-import LiveSection from '@/components/LiveSection';
 import ProjectCard from './Card';
 
-import './Main.scss';
+import LiveSection from '@/components/LiveSection';
 import PROJECT_DATA from '@/data/DB_project.json';
+import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
+
+import './Main.scss';
 
 export default function MainPage() {
   const { isSuccess, data: projectQueryData } = useProjectsQuery();
