@@ -11,7 +11,7 @@ const DEFAULT_NOTION_COLOR = {
   text: 'grey',
 };
 
-function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, handleChipSelect }: CustomChip) {
+function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, handleChipSelect }: ICustomChip) {
   const [selected, setSelected] = useState(false);
 
   const handleClick = (): void => {
