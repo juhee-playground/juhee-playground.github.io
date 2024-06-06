@@ -10,7 +10,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useTheme } from '@mui/material/styles';
 
 import FilterOption from './filter/FilterOption';
-import PointStackCard from './pointStack/Card';
+import PointStackCard from './overview/Card';
 
 import Loading from '@/components/Loading';
 import COMPANY_DATA from '@/data/DB_company.json';
