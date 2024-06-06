@@ -167,8 +167,6 @@
         - 재사용 가능하도록 hooks로 파일로 관리
     4. interface, type 이름 통일
     5. 컴포넌트 props 넘길 때 `{ name, email }: DataProps` 이런식으로 넘기기
-    6. react 구조 관련 lint 추가
-    0. 폴더 구조 변경
 
 ### 추후 작업 예정 목록
 
