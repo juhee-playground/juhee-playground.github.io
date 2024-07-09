@@ -132,7 +132,9 @@
 > 로컬 실행
 >
 > cd juhee-playground
+>
 > yarn install
+>
 > yarn dev
 >
 > 스토리북 실행
