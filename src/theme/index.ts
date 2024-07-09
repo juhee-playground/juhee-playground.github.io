@@ -4,9 +4,9 @@ import { Theme } from '@mui/material/styles';
 const palette = {
   light: {
     primary: {
-      light: '#07b53b',
-      main: '#07b53b',
-      dark: '#07b53b',
+      light: '#5467f5',
+      main: '#5467f5',
+      dark: '#5467f5',
     },
     secondary: {
       light: deepPurple[300],
@@ -16,9 +16,9 @@ const palette = {
   },
   dark: {
     primary: {
-      light: '#07b53b',
-      main: '#07b53b',
-      dark: '#07b53b',
+      light: '#5467f5',
+      main: '#5467f5',
+      dark: '#5467f5',
     },
     secondary: {
       light: deepPurple[300],
