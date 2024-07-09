@@ -113,7 +113,7 @@
 
 ## ✔ 개발스택
 
-> Node Version:  v20.12.0
+> Node Version: v20.12.0
 >
 > 코어 스택: TypeScript, React
 >
@@ -130,8 +130,9 @@
 ## ✔ 실행방법
 
 > 로컬 실행
-> 
+>
 > cd juhee-playground
+> yarn install
 > yarn dev
 >
 > 스토리북 실행
@@ -163,7 +164,7 @@
     2. api 폴더안 파일 정리
         - 사용하지 않는 함수 지우기
         - api handling 하는 파일 utils로 옮기기
-    3. Reacy-Query 사용 하는 방법 수정 
+    3. Reacy-Query 사용 하는 방법 수정
         - 재사용 가능하도록 hooks로 파일로 관리
     4. interface, type 이름 통일
     5. 컴포넌트 props 넘길 때 `{ name, email }: DataProps` 이런식으로 넘기기
@@ -171,8 +172,7 @@
 ### 추후 작업 예정 목록
 
     1. 경력 요약 그래프(차트 페이지로 대체될 것 같음.)
-    2. 문서화
-    3. 페이지 나누기
+    2. 페이지 나누기
         - 포폴 페이지와 이력서 페이지 분리
         - 차트 수치화 할 수 있는 데이터 따로 빼기
         - 블로그(이건 진짜 추후)
