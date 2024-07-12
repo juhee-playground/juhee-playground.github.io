@@ -9,15 +9,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out code
+        uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Set up Node.js 20.x
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
 
-      - uses: actions/cache@v3
-        id: cache
+      - name: Cache dependencies
+        uses: actions/cache@v3
         with:
           path: '**/node_modules' # node_modules 폴더를 캐싱합니다
           # package-lock.json 파일이 변경되었을 때 캐시될 수 있게 합니다
@@ -35,18 +36,18 @@ jobs:
           echo "VITE_APP_EMAIL=${{ vars.REACT_APP_EMAIL }}" >> $GITHUB_ENV
           echo "VITE_APP_PHONE_NUMBER=${{ vars.REACT_APP_PHONE_NUMBER }}" >> $GITHUB_ENV
 
-      - run: yarn install --immutable --immutable-cache --check-cache
-        # 이게 무거운 작업입니다.
-        # cache hit이 발생한 경우 (즉 package-lock.json이 변경되지 않은 경우)
-        # npm ci 실행은 skip합니다.
+      - name: Install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
         if: steps.cache.outputs.cache-hit != 'true'
 
-      - run: yarn run build
+      - name: Build project
+        run: yarn run build
         env:
           CI: false
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GIT_TOKEN }}
           publish_branch: gh-pages
+          publish_dir: ./dist # 빌드된 파일이 있는 디렉토리
