@@ -22,7 +22,7 @@ import useSkillOptionQuery from '@/hooks/queries/useSkillOptionsQuery';
 import CardListItem from '@/pages/resume/card/CardListItem';
 import LeftSection from '@/pages/resume/panel/LeftInfoPanel';
 
-import './Main.scss';
+import './index.scss';
 
 const DB_COMPANY_DATAS = COMPANY_DATA as ICompanyProperties[];
 const DB_PROJECT_DATAS = PROJECT_DATA as IProjectProperties[];
@@ -71,7 +71,10 @@ export default function Main() {
   );
 
   const skillOptions = useMemo(
-    () => (mainSkillSelectOptions.data ? mainSkillSelectOptions.data.map((select: ISelectProperty) => select.name) : DB_SKILL),
+    () =>
+      mainSkillSelectOptions.data
+        ? mainSkillSelectOptions.data.map((select: ISelectProperty) => select.name)
+        : DB_SKILL,
     [mainSkillSelectOptions.data],
   );
 

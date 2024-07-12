@@ -27,7 +27,6 @@
   &__header {
     display: flex;
     align-items: center;
-    // margin: 12px 0 0 0;
     h4 {
       margin: 0;
       padding: 0 4px;
@@ -133,6 +132,7 @@
   &__icon {
     &--pre {
       padding-right: 4px;
+      margin: 0px 0px 0.35em;
     }
   }
 }
