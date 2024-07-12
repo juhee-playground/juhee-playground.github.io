@@ -35,12 +35,13 @@ jobs:
           echo "VITE_APP_EMAIL=${{ vars.REACT_APP_EMAIL }}" >> $GITHUB_ENV
           echo "VITE_APP_PHONE_NUMBER=${{ vars.REACT_APP_PHONE_NUMBER }}" >> $GITHUB_ENV
 
-      - run: npm ci # 이게 무거운 작업입니다.
+      - run: yarn install --immutable --immutable-cache --check-cache
+        # 이게 무거운 작업입니다.
         # cache hit이 발생한 경우 (즉 package-lock.json이 변경되지 않은 경우)
         # npm ci 실행은 skip합니다.
         if: steps.cache.outputs.cache-hit != 'true'
 
-      - run: npm run build
+      - run: yarn run build
         env:
           CI: false
 
