@@ -1,9 +1,7 @@
-
-
 import { useState, useMemo, useEffect } from 'react';
 import { QueryClient, QueryClientProvider, QueryCache } from 'react-query';
 import { Provider } from 'react-redux';
-import { toast , ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import store from '@/redux/store';
 
@@ -12,7 +10,6 @@ import { createTheme, ThemeProvider, responsiveFontSizes, Theme } from '@mui/mat
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { AxiosError } from 'axios';
 import { merge } from 'ts-deepmerge';
-
 
 import { ColorModeContext } from '@/context/ColorModeContext';
 import Layout from '@/layout/Layout';
@@ -30,6 +27,7 @@ const queryClient = new QueryClient({
       query.state.data;
     },
   }),
+
   defaultOptions: {
     queries: {
       // ✅ globally default to 600 seconds
