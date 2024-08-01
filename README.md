@@ -18,11 +18,11 @@
   ┃ ┣ 📜manifest.json
   ┃ ┗ 📜robots.txt
   ┣ 📂src
-  ┃ ┣ 📂api
+  ┃ ┣ 📂api: api 관련
   ┃ ┃ ┣ 📜customAxios.ts
   ┃ ┃ ┣ 📜errorHandler.ts
   ┃ ┃ ┗ 📜notion.ts
-  ┃ ┣ 📂assets
+  ┃ ┣ 📂assets: image, scss 관련
   ┃ ┃ ┣ 📂images
   ┃ ┃ ┃ ┗ 📜apng_loader-ball.png
   ┃ ┃ ┗ 📂scss
@@ -34,25 +34,25 @@
   ┃ ┃ ┃ ┣ 📜_mixins.scss
   ┃ ┃ ┃ ┣ 📜_reset.scss
   ┃ ┃ ┃ ┗ 📜_variables.scss
-  ┃ ┣ 📂components
+  ┃ ┣ 📂components: 공통으로 사용하는 컴포넌트들
   ┃ ┃ ┣ 📂custom
   ┃ ┃ ┃ ┣ 📜DChip.tsx
   ┃ ┃ ┃ ┗ 📜ToggleChip.tsx
   ┃ ┃ ┣ 📂utils
   ┃ ┃ ┣ 📜Loading.scss
   ┃ ┃ ┗ 📜Loading.tsx
-  ┃ ┣ 📂constants
+  ┃ ┣ 📂constants: 상수 모아놓는 곳.
   ┃ ┃ ┗ 📜MainStack.tsx
   ┃ ┣ 📂context
   ┃ ┃ ┗ 📜ColorModeContext.ts
-  ┃ ┣ 📂data
+  ┃ ┣ 📂data: mock Data
   ┃ ┃ ┣ 📜DB_company.json
   ┃ ┃ ┣ 📜DB_profileInfo.json
   ┃ ┃ ┣ 📜DB_project.json
   ┃ ┃ ┣ 📜DB_role.json
   ┃ ┃ ┗ 📜DB_stack.json
   ┃ ┣ 📂hooks
-  ┃ ┣ 📂layout
+  ┃ ┣ 📂layout: layout관련
   ┃ ┃ ┣ 📂header
   ┃ ┃ ┃ ┣ 📜Header.scss
   ┃ ┃ ┃ ┣ 📜Header.tsx
@@ -66,7 +66,7 @@
   ┃ ┃ ┣ 📜Layout.tsx
   ┃ ┃ ┣ 📜ThemeCustomized.scss
   ┃ ┃ ┗ 📜ThemeCustomized.tsx
-  ┃ ┣ 📂pages
+  ┃ ┣ 📂pages: page관련
   ┃ ┃ ┣ 📂resume
   ┃ ┃ ┃ ┣ 📂card
   ┃ ┃ ┃ ┃ ┣ 📜CardListItem.tsx
@@ -76,18 +76,18 @@
   ┃ ┃ ┃ ┣ 📜Main.scss
   ┃ ┃ ┃ ┗ 📜Main.tsx
   ┃ ┃ ┗ 📜MainForProject.tsx
-  ┃ ┣ 📂redux
+  ┃ ┣ 📂redux: redux
   ┃ ┃ ┣ 📂modules
   ┃ ┃ ┃ ┗ 📜pointColor.ts
   ┃ ┃ ┣ 📜actions.ts
   ┃ ┃ ┣ 📜rootReducer.ts
   ┃ ┃ ┗ 📜store.ts
-  ┃ ┣ 📂theme
+  ┃ ┣ 📂theme: theme 적용 하기 위한
   ┃ ┃ ┗ 📜Theme.tsx
-  ┃ ┣ 📂types
+  ┃ ┣ 📂types: type 관련
   ┃ ┃ ┣ 📜global.d.ts
   ┃ ┃ ┗ 📜images.d.ts
-  ┃ ┣ 📂utils
+  ┃ ┣ 📂utils: 공통으로 사용하는 함수들
   ┃ ┃ ┗ 📜String.tsx
   ┃ ┣ 📜App.scss
   ┃ ┣ 📜App.tsx
@@ -134,7 +134,7 @@
 >
 > yarn install
 >
-> yarn dev
+> yarn run dev
 >
 > 스토리북 실행
 > yarn storybook
