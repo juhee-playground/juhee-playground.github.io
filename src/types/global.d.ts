@@ -49,6 +49,9 @@ declare global {
     skill: INotionMultiSelect;
     keywords?: INotionMultiSelect;
     numberOfParticipants: INotionNumber;
+    asls: INotionText;
+    challenge: INotionText;
+    tobe: INotionText;
     mainSkill: INotionMultiSelect;
     name: INotionTitleName;
   }
