@@ -25,7 +25,7 @@
       }
 
       &.open {
-        transform: rotate(180deg);
+        transform: rotate(270deg);
       }
     }
 
@@ -36,7 +36,6 @@
 
   .accordion-content {
     padding: 10px;
-    background: #fff;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
