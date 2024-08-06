@@ -1,10 +1,9 @@
-
 interface ILiveSectionProps {
   message: string;
 }
-const LiveSection = ({ message = 'Please wait. Loading products' } : ILiveSectionProps) => {
+const LiveSection = ({ message }: ILiveSectionProps) => {
   return (
-    <div aria-live="assertive" role="alert">
+    <div aria-live='assertive' role='alert'>
       {message}
     </div>
   );

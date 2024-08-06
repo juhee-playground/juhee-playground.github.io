@@ -1,8 +1,5 @@
-
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
-
-import Link from '@mui/material/Link';
 
 interface IContactProperties {
   [key: string]: string | undefined;
@@ -47,9 +44,9 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
                   <li className='list-item' key={`profile_subTitle_${index}`}>
                     <span className='subtitle'>{item.subTitle}</span>
                     <span className='text'>
-                      <Link href={contactInfo[key]} color='inherit'>
+                      <a href={contactInfo[key]} color='inherit'>
                         {contactInfo[key]}
-                      </Link>
+                      </a>
                     </span>
                   </li>
                 );
