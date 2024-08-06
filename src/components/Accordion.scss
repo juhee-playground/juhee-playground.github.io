@@ -1,0 +1,48 @@
+.accordion {
+  border: none;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  .accordion-header {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+
+    .arrow {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin-right: 10px;
+      display: inline-block;
+      transform-origin: center;
+      transform: rotate(0deg);
+
+      &:hover {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+
+    .title {
+      flex-grow: 1;
+    }
+  }
+
+  .accordion-content {
+    padding: 10px;
+    background: #fff;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+
+    &.open {
+      max-height: 1000px; /* 충분히 큰 값으로 설정 */
+    }
+  }
+}
