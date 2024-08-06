@@ -6,12 +6,13 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import RenderText from '../RenderText';
+
+import Accordion from '@/components/Accordion';
 import DChip from '@/components/custom/DChip';
 
 function SubListItem({ info, filters }: ISubListProps) {
   const date = info.period.date;
-  const experience = info.experience.rich_text.map(rich => rich.text.content);
-  const content = experience.join('').split('\n');
   // FIXME: 비어 있을 경우 에러처리 해야함.
   const projectData = {
     id: info.id,
@@ -22,7 +23,10 @@ function SubListItem({ info, filters }: ISubListProps) {
     skills: info.skill.multi_select,
     role: info.role.rich_text[0].plain_text,
     description: info.description.rich_text[0].plain_text,
-    experience: content,
+    asls: info.asls.rich_text,
+    challenge: info.challenge.rich_text,
+    tobe: info.tobe.rich_text,
+    experience: info.experience.rich_text,
     numberOfParticipants: info.numberOfParticipants.number,
     url: info.url.url,
   };
@@ -87,11 +91,22 @@ function SubListItem({ info, filters }: ISubListProps) {
       </div>
 
       <div className='list__item experience'>
-        {projectData.experience.map((text: string, index: number) => (
-          <Typography key={`${projectData.id}_${index}`} variant='caption' className='text text__plain' gutterBottom>
-            {text}
-          </Typography>
-        ))}
+        <div className='list__item experience'>
+          <Accordion title={<RenderText richTextArray={projectData.tobe} />}>
+            <Typography variant='h6' color='textSecondary'>
+              문제사항
+            </Typography>
+            <Typography variant='body2'>
+              <RenderText richTextArray={projectData.asls} />
+            </Typography>
+            <Typography variant='h6' color='textSecondary'>
+              해결방안
+            </Typography>
+            <Typography variant='body2'>
+              <RenderText richTextArray={projectData.challenge} />
+            </Typography>
+          </Accordion>
+        </div>
       </div>
     </section>
   );

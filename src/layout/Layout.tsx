@@ -1,4 +1,3 @@
-
 import React, { useState, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -19,9 +18,6 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const Main = lazy(() => import('../pages/resume'));
 const Portfolio = lazy(() => import('../pages/portfolio'));
-
-// TODO: components/custom/Loading으로 변경
-const renderLoader = () => <p>Loading</p>;
 
 export default function Layout() {
   const [state, setState] = useState({
@@ -69,7 +65,7 @@ export default function Layout() {
       </SwipeableDrawer>
 
       <div className={isPrintMode ? `main__container main__container--${mode}` : 'main__container'}>
-        <Suspense fallback={renderLoader()}>
+        <Suspense>
           <Routes>
             <Route path='' element={<Main />} />
             <Route path='/portfolio' element={<Portfolio />} />
