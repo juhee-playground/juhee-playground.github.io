@@ -2,9 +2,9 @@
   @include flex-center;
   margin: $margin-small;
 
-  @include tablet-down {
-    flex-direction: column;
-  }
+  // @include tablet-down {
+  //   flex-direction: column;
+  // }
 
   .filter {
     &__left {

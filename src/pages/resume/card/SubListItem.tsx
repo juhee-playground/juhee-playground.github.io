@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useAppSelector } from '@/redux/hooks';
 import type { RootState } from '@/redux/store';
 
@@ -92,7 +94,18 @@ function SubListItem({ info, filters }: ISubListProps) {
 
       <div className='list__item experience'>
         <div className='list__item experience'>
-          <Accordion title={<RenderText richTextArray={projectData.tobe} />}>
+          <Accordion
+            title={
+              <React.Fragment>
+                <Typography variant='h6' color='textSecondary'>
+                  결과
+                </Typography>
+                <Typography variant='body2'>
+                  <RenderText richTextArray={projectData.tobe} />
+                </Typography>
+              </React.Fragment>
+            }
+          >
             <Typography variant='h6' color='textSecondary'>
               문제사항
             </Typography>

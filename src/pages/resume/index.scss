@@ -78,10 +78,10 @@
     display: flex;
     flex-wrap: wrap;
     margin: 4px 0;
-    align-items: flex-start;
-    &--vertical {
-      align-items: flex-start;
-    }
+    align-items: center;
+    // @include tablet-down {
+    //   align-items: flex-start;
+    // }
   }
   .title__link {
     display: flex;
@@ -102,6 +102,7 @@
   .experience {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     .contents {
       display: flex;
       white-space: pre;
@@ -132,7 +133,6 @@
   &__icon {
     &--pre {
       padding-right: 4px;
-      margin: 0px 0px 0.35em;
     }
   }
 }
