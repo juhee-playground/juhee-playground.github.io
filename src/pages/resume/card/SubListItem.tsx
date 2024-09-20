@@ -41,9 +41,7 @@ function SubListItem({ info, filters }: ISubListProps) {
       <div className='list__item list__item--vertical'>
         <a className='title__link' href={projectData.url} target='_blank' rel='noreferrer'>
           <LabelIcon fontSize='small' className='text text__icon--pre' />
-          <Typography variant='subtitle1' className='text text__subTitle' gutterBottom>
-            {projectData.name}
-          </Typography>
+          <h6 className='text text__subTitle'>{projectData.name}</h6>
         </a>
 
         <Box className='numbers text__sub'>
