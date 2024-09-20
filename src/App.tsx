@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 import store from '@/redux/store';
 
-import CssBaseline from '@mui/material/CssBaseline';
+// import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider, responsiveFontSizes, Theme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { AxiosError } from 'axios';
@@ -64,7 +64,7 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={responsiveFontSizes(theme)}>
           <QueryClientProvider client={queryClient}>
-            <CssBaseline />
+            {/* <CssBaseline /> */}
             <ToastContainer />
             <Layout />
           </QueryClientProvider>
