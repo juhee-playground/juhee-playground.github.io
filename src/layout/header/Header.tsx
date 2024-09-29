@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
@@ -43,14 +42,17 @@ export default function DenseAppBar() {
 
   return (
     <header className={isPrintMode ? 'header header--print' : 'header'}>
-      {/* {
-      !isPrintMode ? 
-      <ul className='links'> 
-        <li role='menuItem'><a href='/'>이력서</a></li>
-        <li role='menuItem'><a href='/portfolio'>포트폴리오</a></li>
-      </ul> : null 
-      } */}
-      <div className='button__groups'>
+      {!isPrintMode ? (
+        <ul className='links'>
+          <li role='menuItem'>
+            <a href='/'>이력서</a>
+          </li>
+          <li role='menuItem'>
+            <a href='/portfolio'>대시보드</a>
+          </li>
+        </ul>
+      ) : null}
+      <div className='menu__groups'>
         {isPrintMode ? (
           <>
             <IconButton aria-label='printMode' onClick={openPrint}>
