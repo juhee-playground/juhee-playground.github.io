@@ -10,6 +10,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Header from './header/Header';
 
 import ThemeCustomized from '@/layout/ThemeCustomized';
+import UnderConstruction from '@/pages/resume/UnderConstruction';
 
 import './Layout.scss';
 import './FixButton.scss';
@@ -17,7 +18,7 @@ import './FixButton.scss';
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const Main = lazy(() => import('../pages/resume'));
-const Portfolio = lazy(() => import('../pages/portfolio'));
+// const Portfolio = lazy(() => import('../pages/portfolio'));
 
 export default function Layout() {
   const [state, setState] = useState({
@@ -68,7 +69,8 @@ export default function Layout() {
         <Suspense>
           <Routes>
             <Route path='' element={<Main />} />
-            <Route path='/portfolio' element={<Portfolio />} />
+            <Route path='/dashboard' element={<UnderConstruction />} />
+            {/* <Route path='/portfolio' element={<Portfolio />} /> */}
           </Routes>
         </Suspense>
       </div>

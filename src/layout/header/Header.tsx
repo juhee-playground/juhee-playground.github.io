@@ -48,7 +48,7 @@ export default function DenseAppBar() {
             <a href='/'>이력서</a>
           </li>
           <li role='menuItem'>
-            <a href='/portfolio'>대시보드</a>
+            <a href='/dashboard'>대시보드</a>
           </li>
         </ul>
       ) : null}
