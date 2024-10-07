@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ColorResult, ChromePicker } from 'react-color';
 
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
+import type { TRootState } from '@/redux/store';
 
 import { PaletteMode } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
@@ -19,7 +19,7 @@ import './ThemeCustomized.scss';
 const ThemeCustomized = () => {
   const [color, setColor] = useState<string>('');
   const colorMode = React.useContext(ColorModeContext);
-  const { pointColor } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
   const dispatch = useAppDispatch();
 
   const handleChangeComplete = (color: ColorResult) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAppSelector } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
+import type { TRootState } from '@/redux/store';
 
 import LabelIcon from '@mui/icons-material/Label';
 import Box from '@mui/material/Box';
@@ -33,7 +33,7 @@ function SubListItem({ info, filters }: ISubListProps) {
     url: info.url.url,
   };
 
-  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { isPrintMode } = useAppSelector((state: TRootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
   return (

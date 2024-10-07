@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 
 import { useAppSelector } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
+import type { TRootState } from '@/redux/store';
 
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -33,7 +33,7 @@ export default function Main() {
   const [selectedSkillOptions, setSelectedSkillOptions] = useState<Array<string>>();
 
   const theme = useTheme();
-  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: TRootState) => state.settings);
 
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();

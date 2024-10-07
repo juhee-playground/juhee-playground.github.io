@@ -1,6 +1,5 @@
-
 import { useAppSelector } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
+import type { TRootState } from '@/redux/store';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -40,7 +39,7 @@ function CardListItem({
     period: date?.start ? parserPeriod(date) : '',
   };
 
-  const { isPrintMode, pointColor } = useAppSelector((state: RootState) => state.settings);
+  const { isPrintMode, pointColor } = useAppSelector((state: TRootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
   return (

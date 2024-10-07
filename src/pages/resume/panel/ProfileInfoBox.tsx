@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
+import type { TRootState } from '@/redux/store';
 
 interface IContactProperties {
   [key: string]: string | undefined;
@@ -10,7 +10,7 @@ interface IContactProperties {
 }
 
 const ProfileInfoBox = ({ info }: INavProfileProps) => {
-  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: TRootState) => state.settings);
   const contactInfo: IContactProperties = {
     phone_number: import.meta.env.VITE_APP_PHONE_NUMBER,
     email: import.meta.env.VITE_APP_EMAIL,

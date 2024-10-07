@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
+import type { TRootState } from '@/redux/store';
 
 import ClearIcon from '@mui/icons-material/Clear';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -19,7 +19,7 @@ export default function DenseAppBar() {
   const dispatch = useAppDispatch();
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
-  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { isPrintMode } = useAppSelector((state: TRootState) => state.settings);
 
   const handleClickOpen = async () => {
     // change print mode
