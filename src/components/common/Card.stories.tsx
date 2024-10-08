@@ -1,8 +1,8 @@
-import Card from './Card';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
 import ReactIcon from '@/assets/icon/React.svg';
+
+import Card from './Card';
 
 const meta = {
   title: 'components/Card',
@@ -15,26 +15,16 @@ const meta = {
     name: {
       control: 'text',
       description: 'The name of the character',
-      defaultValue: 'Bulbasaur',
+      defaultValue: 'React',
     },
-    type: {
-      control: 'text',
-      description: 'The type of the character (e.g., Plant, Fire, Aqua)',
-      defaultValue: 'Plant',
+    count: {
+      control: 'number',
+      description: 'count on number',
+      defaultValue: '4',
     },
     image: {
       control: 'text',
       description: 'The image URL or path for the character',
-    },
-    stats: {
-      control: 'object',
-      description: 'An array of stats with name and value',
-      defaultValue: [
-        { name: 'Strength', value: 80 },
-        { name: 'Speed', value: 60 },
-        { name: 'Weight', value: 50 },
-        { name: 'Skill', value: 70 },
-      ],
     },
   },
 } satisfies Meta<typeof Card>;
@@ -47,12 +37,6 @@ export const Playground: TStory = {
   args: {
     image: ReactIcon,
     name: 'React',
-    type: 'Plant',
-    stats: [
-      { name: 'Strength', value: 80 },
-      { name: 'Speed', value: 60 },
-      { name: 'Weight', value: 50 },
-      { name: 'Skill', value: 70 },
-    ],
+    count: 4,
   },
 };
