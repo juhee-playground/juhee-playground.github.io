@@ -1,7 +1,6 @@
-import FilterOption from './FilterOption';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
+import FilterOption from './FilterOption';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -25,9 +24,13 @@ const meta = {
       options: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue', 'brown', 'default'],
     },
     colorOptions: {
-      control: "object",
+      control: 'object',
       description: 'chip의 색을 지정해주는 역활.',
-      options: [{ id: '1', name: 'javascript', color: 'yellow', }, { id: '2', name: 'typescript', color: 'blue', }, { id: '3', name: 'Vue', color: 'green', }]
+      options: [
+        { id: '1', name: 'javascript', color: 'yellow' },
+        { id: '2', name: 'typescript', color: 'blue' },
+        { id: '3', name: 'Vue', color: 'green' },
+      ],
     },
     pointColor: {
       control: 'color',
@@ -49,7 +52,7 @@ export const ToggleChip: TStory = {
     options: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue'],
     pointColor: 'red',
     selected: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue'],
-    onChange: () => {}
+    onChange: () => {},
   },
 };
 
@@ -57,8 +60,12 @@ export const CustonChip: TStory = {
   args: {
     title: 'Skill',
     options: ['javascript', 'Vue', 'typescript'],
-    colorOptions: [{ id: '1', name: 'javascript', color: 'yellow', }, { id: '2', name: 'typescript', color: 'blue', }, { id: '3', name: 'Vue', color: 'green', }],
+    colorOptions: [
+      { id: '1', name: 'javascript', color: 'yellow' },
+      { id: '2', name: 'typescript', color: 'blue' },
+      { id: '3', name: 'Vue', color: 'green' },
+    ],
     selected: ['javascript', 'Vue', 'typescript'],
-    onChange: () => {}
+    onChange: () => {},
   },
 };

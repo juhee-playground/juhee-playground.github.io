@@ -1,13 +1,12 @@
-import { useAppSelector } from '@/redux/hooks';
-import type { TRootState } from '@/redux/store';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 
-import SubListItem from './SubListItem';
-
+import { useAppSelector } from '@/redux/hooks';
+import type { TRootState } from '@/redux/store';
 import { parserPeriod } from '@/utils/parser';
+
+import SubListItem from './SubListItem';
 
 function CardListItem({
   isLastCompany,
@@ -84,9 +83,9 @@ function CardListItem({
           )}
 
           <p className='row row__third'>
-            {companyData.description.map((description, index) => (
+            {companyData.description.map((text, index) => (
               <span key={`description_${index}`} className='text text__plain'>
-                {description}
+                {text}
               </span>
             ))}
           </p>

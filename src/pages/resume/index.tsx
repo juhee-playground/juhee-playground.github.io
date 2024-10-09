@@ -1,16 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
 
-import { useAppSelector } from '@/redux/hooks';
-import type { TRootState } from '@/redux/store';
-
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useTheme } from '@mui/material/styles';
-
-import FilterOption from './filter/FilterOption';
-import PointStackCard from './overview/Card';
 
 import Loading from '@/components/Loading';
 import COMPANY_DATA from '@/data/DB_company.json';
@@ -20,7 +14,12 @@ import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import useSkillOptionQuery from '@/hooks/queries/useSkillOptionsQuery';
 import CardListItem from '@/pages/resume/card/CardListItem';
+import FilterOption from '@/pages/resume/filter/FilterOption';
+import PointStackCard from '@/pages/resume/overview/Card';
 import LeftSection from '@/pages/resume/panel/LeftInfoPanel';
+
+import { useAppSelector } from '@/redux/hooks';
+import type { TRootState } from '@/redux/store';
 
 import './index.scss';
 
