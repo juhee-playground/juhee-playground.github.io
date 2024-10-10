@@ -1,7 +1,6 @@
-import ToggleChip from './ToggleChip';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
+import ToggleChip from './ToggleChip';
 
 const meta = {
   title: 'Components/ToggleChip',

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './Accordion.scss';
 
-interface AccordionProps {
+interface IAccordionProps {
   title: React.ReactNode | string; // title 타입을 React.ReactNode로 변경
   children: React.ReactNode;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
+const Accordion: React.FC<IAccordionProps> = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleToggle = () => {

@@ -16,6 +16,9 @@ import { TPaletteMode, getDesignTokens, getThemedComponents } from '@/theme';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
+const MILISECOND = 1000;
+const SECOND = 600;
+
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
@@ -29,7 +32,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       // ✅ globally default to 600 seconds
-      staleTime: 1000 * 600,
+      staleTime: MILISECOND * SECOND,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
       retry: false,

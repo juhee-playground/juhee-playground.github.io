@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react';
 
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import type { TRootState } from '@/redux/store';
-
 import ClearIcon from '@mui/icons-material/Clear';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
@@ -11,7 +8,9 @@ import IconButton from '@mui/material/IconButton';
 import { useTheme } from '@mui/material/styles';
 
 import { ColorModeContext } from '@/context/ColorModeContext';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { changePrintMode } from '@/redux/modules/settings';
+import type { TRootState } from '@/redux/store';
 
 import './Header.scss';
 

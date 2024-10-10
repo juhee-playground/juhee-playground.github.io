@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface RichText {
+interface IRichText {
   text: {
     content: string;
   };
@@ -14,11 +14,11 @@ interface RichText {
   };
 }
 
-interface RenderTextProps {
-  richTextArray: RichText[];
+interface IRenderTextProps {
+  richTextArray: IRichText[];
 }
 
-const RenderText: React.FC<RenderTextProps> = ({ richTextArray }) => {
+const RenderText: React.FC<IRenderTextProps> = ({ richTextArray }) => {
   const renderText = () => {
     return richTextArray
       .map(richText => {

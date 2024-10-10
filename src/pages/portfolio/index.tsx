@@ -1,10 +1,10 @@
 import dayjs from 'dayjs';
 
-import ProjectCard from './Card';
-
 import LiveSection from '@/components/LiveSection';
 import PROJECT_DATA from '@/data/DB_project.json';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
+
+import ProjectCard from './Card';
 
 import './Main.scss';
 
