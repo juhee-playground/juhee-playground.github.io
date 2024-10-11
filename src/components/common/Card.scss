@@ -1,15 +1,15 @@
 .card {
-  background-color: #efefef; // Background color that works well with Neumorphism
   border-radius: 20px;
   padding: 20px;
   width: 80px;
   height: 100px;
   text-align: center;
   position: relative;
+  border-radius: 8px;
+  background: #efefef;
   box-shadow:
-    8px 8px 15px rgba(0, 0, 0, 0.2),
-    // Dark shadow for depth
-    -8px -8px 15px rgba(255, 255, 255, 0.7); // Light shadow for a raised effect
+    6px 6px 13px #a7a7a7,
+    -6px -6px 13px #ffffff;
 
   &__image {
     background-color: #efefef;
@@ -20,11 +20,9 @@
     margin: 0 auto 20px;
     box-shadow:
       inset 8px 8px 15px rgba(0, 0, 0, 0.2),
-      // Inner dark shadow for depth
-      inset -8px -8px 15px rgba(255, 255, 255, 0.7); // Inner light shadow for a pressed look
+      inset -8px -8px 15px rgba(255, 255, 255, 0.7);
 
     img {
-      // width: 100%;
       height: auto;
       display: block;
     }
