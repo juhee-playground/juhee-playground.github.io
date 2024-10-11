@@ -25,6 +25,8 @@ import './index.scss';
 
 const DB_COMPANY_DATAS = COMPANY_DATA as ICompanyProperties[];
 const DB_PROJECT_DATAS = PROJECT_DATA as IProjectProperties[];
+const ASCENDING_ORDER = 1;
+const DESCENDING_ORDER = -1;
 
 export default function Main() {
   const [sortValue, setSortValue] = useState('N');
@@ -81,7 +83,7 @@ export default function Main() {
     const companyData = (companyQuery.data || DB_COMPANY_DATAS)
       .filter((company: ICompanyProperties) => selectedCompanies?.includes(company.name.title[0].plain_text))
       .sort((firstObject: ICompanyProperties, secondObject: ICompanyProperties) =>
-        firstObject.order.number > secondObject.order.number ? 1 : -1,
+        firstObject.order.number > secondObject.order.number ? ASCENDING_ORDER : DESCENDING_ORDER,
       );
 
     return /O/.test(sortValue) ? companyData.reverse() : companyData;
