@@ -1,6 +1,7 @@
 import ReactIcon from '@/assets/icon/React.svg';
 import VueIcon from '@/assets/icon/Vue.svg';
 import Card from '@/components/common/Card';
+import CardV2 from '@/components/common/CardVersion2';
 
 import './Main.scss';
 
@@ -14,11 +15,11 @@ export default function MainPage() {
           <Card image={VueIcon} name='Vue' count={6} />
         </div>
       </div>
-      <div className='widget__container'>
-        <h3 className='widget__title'>COMPANY</h3>
-        <div className='widget__wrapper'>
-          <Card name='Fitogether' count={4} />
-          <Card name='YU partners' count={1} />
+      <div className='widget'>
+        <h3 className='title'>COMPANY</h3>
+        <div className='wrapper'>
+          <CardV2 name='Fitogether' count={4} />
+          <CardV2 name='YU partners' count={1} />
         </div>
       </div>
     </article>
