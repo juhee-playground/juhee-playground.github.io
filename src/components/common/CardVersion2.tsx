@@ -8,18 +8,18 @@ interface ICardProps {
 
 const CardV2 = ({ image, name, count }: ICardProps) => {
   return (
-    <div className='card2'>
+    <div className='card'>
       {image ? (
-        <div className='card2__image'>
+        <div className='card__image'>
           <img src={image} alt={name} width={40} height={40} />
         </div>
       ) : (
-        <div className='card2__name'>
+        <div className='card__name'>
           <h4>{name}</h4>
         </div>
       )}
 
-      <div className='card2__content'>
+      <div className='card__content'>
         <h3>{count}</h3>
       </div>
     </div>
