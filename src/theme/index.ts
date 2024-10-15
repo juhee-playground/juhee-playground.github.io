@@ -28,9 +28,9 @@ const palette = {
   },
 };
 
-export type PaletteMode = 'light' | 'dark';
+export type TPaletteMode = 'light' | 'dark';
 
-export const getDesignTokens = (mode?: PaletteMode) =>
+export const getDesignTokens = (mode?: TPaletteMode) =>
   ({
     palette: {
       mode,
@@ -76,7 +76,7 @@ export const getDesignTokens = (mode?: PaletteMode) =>
     },
   }) as Theme;
 
-export const getThemedComponents = (mode?: PaletteMode) =>
+export const getThemedComponents = (mode?: TPaletteMode) =>
   ({
     components: {
       ...(mode === 'light'

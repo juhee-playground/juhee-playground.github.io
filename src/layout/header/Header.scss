@@ -2,8 +2,7 @@
   padding: 0;
   height: 40px;
   display: flex;
-  justify-content: flex-end;
-  // justify-content: space-between;
+  justify-content: space-between;
   align-items: center;
   @include tablet-down {
     padding-right: 45px;
@@ -16,11 +15,11 @@
     }
   }
   &--print {
-    .button__groups {
+    .menu__groups {
       display: none;
     }
     &:hover {
-      .button__groups {
+      .menu__groups {
         display: inline;
       }
     }

@@ -1,7 +1,6 @@
-import LiveSection from './LiveSection';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
+import LiveSection from './LiveSection';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

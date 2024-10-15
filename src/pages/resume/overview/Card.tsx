@@ -1,7 +1,6 @@
-import { useAppSelector } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
-
 import CONTENT_MAIN from '@/constants/description';
+import { useAppSelector } from '@/redux/hooks';
+import type { TRootState } from '@/redux/store';
 
 import './card.scss';
 
@@ -14,7 +13,7 @@ interface ICardContentProperty {
 const contents = CONTENT_MAIN;
 
 const PointStackCard = () => {
-  const { pointColor } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
   return (
     <div className='card card__container'>
       <div className='group__header'>

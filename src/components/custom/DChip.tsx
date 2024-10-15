@@ -11,6 +11,8 @@ const DEFAULT_NOTION_COLOR = {
   text: 'grey',
 };
 
+const NOT_FOUND = -1;
+
 function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, handleChipSelect }: ICustomChip) {
   const [selected, setSelected] = useState(false);
 
@@ -42,7 +44,7 @@ function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, 
   });
 
   useEffect(() => {
-    setSelected(selectedItems.indexOf(label) > -1);
+    setSelected(selectedItems.indexOf(label) > NOT_FOUND);
   }, [selectedItems, label]);
 
   // FIXME: 여기에 따로 theme provider를 붙인 이유가 궁금합니다.

@@ -1,35 +1,35 @@
 import React, { useState, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { useAppSelector } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
-
 import SettingsIcon from '@mui/icons-material/Settings';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
-import Header from './header/Header';
-
 import ThemeCustomized from '@/layout/ThemeCustomized';
+import UnderConstruction from '@/pages/resume/UnderConstruction';
+import { useAppSelector } from '@/redux/hooks';
+import type { TRootState } from '@/redux/store';
+
+import Header from './header/Header';
 
 import './Layout.scss';
 import './FixButton.scss';
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
+type TAnchor = 'top' | 'left' | 'bottom' | 'right';
 
 const Main = lazy(() => import('../pages/resume'));
-const Portfolio = lazy(() => import('../pages/portfolio'));
+const Dashboard = lazy(() => import('../pages/dashboard'));
 
 export default function Layout() {
-  const [state, setState] = useState({
+  const [menuDirection, setMenuDirection] = useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
-  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: TRootState) => state.settings);
   const mode = isPrintMode ? 'print' : '';
 
-  const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+  const toggleDrawer = (anchor: TAnchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
       event &&
       event.type === 'keydown' &&
@@ -38,7 +38,7 @@ export default function Layout() {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
+    setMenuDirection({ ...menuDirection, [anchor]: open });
   };
 
   const anchor = 'right';
@@ -57,7 +57,7 @@ export default function Layout() {
 
       <SwipeableDrawer
         anchor={anchor}
-        open={state[anchor]}
+        open={menuDirection[anchor]}
         onClose={toggleDrawer(anchor, false)}
         onOpen={toggleDrawer(anchor, true)}
       >
@@ -68,7 +68,9 @@ export default function Layout() {
         <Suspense>
           <Routes>
             <Route path='' element={<Main />} />
-            <Route path='/portfolio' element={<Portfolio />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+            {/* <Route path='/dashboard' element={<UnderConstruction />} /> */}
+            <Route path='/portfolio' element={<UnderConstruction />} />
           </Routes>
         </Suspense>
       </div>

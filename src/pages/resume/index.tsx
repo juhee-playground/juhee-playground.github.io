@@ -1,16 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
 
-import { useAppSelector } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
-
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useTheme } from '@mui/material/styles';
-
-import FilterOption from './filter/FilterOption';
-import PointStackCard from './overview/Card';
 
 import Loading from '@/components/Loading';
 import COMPANY_DATA from '@/data/DB_company.json';
@@ -20,12 +14,19 @@ import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import useSkillOptionQuery from '@/hooks/queries/useSkillOptionsQuery';
 import CardListItem from '@/pages/resume/card/CardListItem';
+import FilterOption from '@/pages/resume/filter/FilterOption';
+import PointStackCard from '@/pages/resume/overview/Card';
 import LeftSection from '@/pages/resume/panel/LeftInfoPanel';
+
+import { useAppSelector } from '@/redux/hooks';
+import type { TRootState } from '@/redux/store';
 
 import './index.scss';
 
 const DB_COMPANY_DATAS = COMPANY_DATA as ICompanyProperties[];
 const DB_PROJECT_DATAS = PROJECT_DATA as IProjectProperties[];
+const ASCENDING_ORDER = 1;
+const DESCENDING_ORDER = -1;
 
 export default function Main() {
   const [sortValue, setSortValue] = useState('N');
@@ -33,7 +34,7 @@ export default function Main() {
   const [selectedSkillOptions, setSelectedSkillOptions] = useState<Array<string>>();
 
   const theme = useTheme();
-  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: TRootState) => state.settings);
 
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
@@ -82,7 +83,7 @@ export default function Main() {
     const companyData = (companyQuery.data || DB_COMPANY_DATAS)
       .filter((company: ICompanyProperties) => selectedCompanies?.includes(company.name.title[0].plain_text))
       .sort((firstObject: ICompanyProperties, secondObject: ICompanyProperties) =>
-        firstObject.order.number > secondObject.order.number ? 1 : -1,
+        firstObject.order.number > secondObject.order.number ? ASCENDING_ORDER : DESCENDING_ORDER,
       );
 
     return /O/.test(sortValue) ? companyData.reverse() : companyData;

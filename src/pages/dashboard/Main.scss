@@ -1,0 +1,52 @@
+.dashbaord {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    .widget {
+      &__container {
+        display: flex;
+        flex-direction: column;
+
+        align-items: flex-start;
+        justify-content: center;
+        padding: 20px;
+        border-radius: 8px;
+        background: #efefef;
+        box-shadow:
+          inset 5px 5px 10px #a7a7a7,
+          inset -5px -5px 10px #ffffff;
+      }
+      &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+      }
+    }
+  }
+}
+
+.widget {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 24px;
+  border-radius: 8px;
+  background: #efefef;
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .title {
+    margin-bottom: 24px;
+  }
+}

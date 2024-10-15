@@ -1,4 +1,3 @@
-
 import ultimate from '@/assets/screenshot/ultimate.png';
 import DChip from '@/components/custom/DChip';
 import { SKILL_ICON } from '@/constants/icon';
@@ -33,7 +32,7 @@ export default function ProjectCard({ name, period, description, borderType, mai
           <ul className='chipList'>
             {mainSkill.map((skill: string, index: number) => (
               <li key={`${index}_${skill}`}>
-                <img src={SKILL_ICON[skill]} className='icon' width={24} height={24} alt={`icon-${skill}`} />
+                <img src={SKILL_ICON[skill]} className='icon' width={12} height={24} alt={`icon-${skill}`} />
               </li>
             ))}
           </ul>
@@ -43,12 +42,7 @@ export default function ProjectCard({ name, period, description, borderType, mai
           <ul className='chipList'>
             {keywords?.map((select: ISelectProperty, index: number) => (
               <li key={`skill_${select.name}_${index}`}>
-                <DChip
-                  size='small'
-                  color='white'
-                  label={select.name}
-                  clickable={false}
-                />
+                <DChip size='small' color='white' label={select.name} clickable={false} />
               </li>
             ))}
           </ul>

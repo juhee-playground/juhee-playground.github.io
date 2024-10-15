@@ -1,8 +1,4 @@
-
 import React, { useEffect } from 'react';
-
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
 
 import ClearIcon from '@mui/icons-material/Clear';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -12,7 +8,9 @@ import IconButton from '@mui/material/IconButton';
 import { useTheme } from '@mui/material/styles';
 
 import { ColorModeContext } from '@/context/ColorModeContext';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { changePrintMode } from '@/redux/modules/settings';
+import type { TRootState } from '@/redux/store';
 
 import './Header.scss';
 
@@ -20,7 +18,7 @@ export default function DenseAppBar() {
   const dispatch = useAppDispatch();
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
-  const { isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { isPrintMode } = useAppSelector((state: TRootState) => state.settings);
 
   const handleClickOpen = async () => {
     // change print mode
@@ -43,14 +41,17 @@ export default function DenseAppBar() {
 
   return (
     <header className={isPrintMode ? 'header header--print' : 'header'}>
-      {/* {
-      !isPrintMode ? 
-      <ul className='links'> 
-        <li role='menuItem'><a href='/'>이력서</a></li>
-        <li role='menuItem'><a href='/portfolio'>포트폴리오</a></li>
-      </ul> : null 
-      } */}
-      <div className='button__groups'>
+      {!isPrintMode ? (
+        <ul className='links'>
+          <li role='menuItem'>
+            <a href='/'>이력서</a>
+          </li>
+          <li role='menuItem'>
+            <a href='/dashboard'>대시보드</a>
+          </li>
+        </ul>
+      ) : null}
+      <div className='menu__groups'>
         {isPrintMode ? (
           <>
             <IconButton aria-label='printMode' onClick={openPrint}>

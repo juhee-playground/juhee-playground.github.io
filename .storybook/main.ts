@@ -33,6 +33,11 @@ const config: StorybookConfig = {
           },
         },
       },
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, '../src'), // Add alias for '@'
+        },
+      },
     });
   },
 };

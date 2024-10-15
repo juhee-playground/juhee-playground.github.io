@@ -1,34 +1,33 @@
 import React, { useState } from 'react';
 import { ColorResult, ChromePicker } from 'react-color';
 
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
-
 import { PaletteMode } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 
-import { ColorModeContext } from '../context/ColorModeContext';
-
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { changePointColor } from '@/redux/modules/settings';
+import type { TRootState } from '@/redux/store';
+
+import { ColorModeContext } from '../context/ColorModeContext';
 
 import './ThemeCustomized.scss';
 
 const ThemeCustomized = () => {
   const [color, setColor] = useState<string>('');
   const colorMode = React.useContext(ColorModeContext);
-  const { pointColor } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
   const dispatch = useAppDispatch();
 
-  const handleChangeComplete = (color: ColorResult) => {
-    setColor(color.hex);
-    handlePointColor(color.hex);
+  const handleChangeComplete = (selectedColor: ColorResult) => {
+    setColor(selectedColor.hex);
+    handlePointColor(selectedColor.hex);
   };
 
-  const handlePointColor = (color: string) => {
-    dispatch(changePointColor(color));
+  const handlePointColor = (changeColor: string) => {
+    dispatch(changePointColor(changeColor));
   };
 
   const changeHandler = (_event: React.ChangeEvent<HTMLInputElement>, value: string) => {

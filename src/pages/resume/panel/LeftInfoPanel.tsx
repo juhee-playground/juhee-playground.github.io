@@ -1,18 +1,16 @@
-
-import { useAppSelector } from '@/redux/hooks';
-import type { RootState } from '@/redux/store';
-
 import { useTheme } from '@mui/material/styles';
 
-import ProfileInfoBox from './ProfileInfoBox';
-
 import ProfileInfo from '@/data/DB_profileInfo.json';
+import { useAppSelector } from '@/redux/hooks';
+import type { TRootState } from '@/redux/store';
+
+import ProfileInfoBox from './ProfileInfoBox';
 
 import './LeftInfoPanel.scss';
 
 const LeftInfoPanel = () => {
   const theme = useTheme();
-  const { pointColor, isPrintMode } = useAppSelector((state: RootState) => state.settings);
+  const { pointColor, isPrintMode } = useAppSelector((state: TRootState) => state.settings);
 
   const infos = ProfileInfo;
 

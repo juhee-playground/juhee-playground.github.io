@@ -2,9 +2,12 @@ import React from 'react';
 
 import { PaletteMode } from '@mui/material';
 
-export const ColorModeContext = React.createContext({
+interface IColorModeContextType {
+  currentMode: PaletteMode;
+  toggleColorMode: (theme: PaletteMode) => void;
+}
+
+export const ColorModeContext = React.createContext<IColorModeContextType>({
   currentMode: 'light',
-  toggleColorMode: (theme: PaletteMode) => {
-    console.log(theme);
-  },
+  toggleColorMode: () => {},
 });
