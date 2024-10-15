@@ -36,15 +36,17 @@
 
   align-items: flex-start;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 24px;
   border-radius: 8px;
   background: #efefef;
-
-  border: solid 1px #242424;
 
   .wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .title {
+    margin-bottom: 24px;
   }
 }
