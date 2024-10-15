@@ -1,3 +1,4 @@
+import PhpIcon from '@/assets/icon/PHP-Dark.svg';
 import ReactIcon from '@/assets/icon/React.svg';
 import VueIcon from '@/assets/icon/Vue.svg';
 import CardV2 from '@/components/common/CardVersion2';
@@ -10,8 +11,9 @@ export default function MainPage() {
       <div className='widget'>
         <h3 className='title'>PROJECTS</h3>
         <div className='wrapper'>
-          <CardV2 image={ReactIcon} name='React' count={4} />
-          <CardV2 image={VueIcon} name='Vue' count={6} />
+          <CardV2 image={ReactIcon} name='React' count={3} />
+          <CardV2 image={VueIcon} name='Vue' count={5} />
+          <CardV2 image={PhpIcon} name='Php' count={2} />
         </div>
       </div>
       <div className='widget'>
