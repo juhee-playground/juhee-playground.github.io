@@ -53,24 +53,6 @@
         color: #555;
         margin-bottom: 5px;
       }
-
-      .progress-bar {
-        background-color: #e0e0e0;
-        border-radius: 10px;
-        height: 10px;
-        position: relative;
-        box-shadow:
-          inset 8px 8px 15px rgba(0, 0, 0, 0.2),
-          inset -8px -8px 15px rgba(255, 255, 255, 0.7);
-
-        &__fill {
-          background-color: #4caf50;
-          border-radius: 10px;
-          height: 100%;
-          width: 0;
-          transition: width 0.3s ease-in-out;
-        }
-      }
     }
   }
 }
