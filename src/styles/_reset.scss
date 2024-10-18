@@ -1,3 +1,5 @@
+@use 'variables';
+
 h1,
 h2,
 h3,
@@ -122,7 +124,7 @@ blockquote:after,
 blockquote:before,
 q:after,
 q:before {
-  content: "";
+  content: '';
   content: none;
 }
 table {
@@ -131,5 +133,5 @@ table {
 }
 
 * {
-  font-family: $body-font-family;
+  font-family: variables.$body-font-family;
 }
