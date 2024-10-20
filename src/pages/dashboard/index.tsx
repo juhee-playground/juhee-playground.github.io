@@ -1,6 +1,7 @@
 import PhpIcon from '@/assets/icon/PHP-Dark.svg';
 import ReactIcon from '@/assets/icon/React.svg';
 import VueIcon from '@/assets/icon/Vue.svg';
+import MyLineAreaChart from '@/components/chart/LineAreaChart';
 import MyPieChart from '@/components/chart/PieChart';
 import MyStackedBarChart from '@/components/chart/StackedBarChart';
 import CardV2 from '@/components/common/CardVersion2';
@@ -39,6 +40,13 @@ export default function MainPage() {
           <h3 className='dashboard__widget-title'>경력그래프</h3>
           <div className='dashboard__widget-content'>
             <MyStackedBarChart />
+          </div>
+        </div>
+
+        <div className='dashboard__widget'>
+          <h3 className='dashboard__widget-title'>라인차트</h3>
+          <div className='dashboard__widget-content'>
+            <MyLineAreaChart />
           </div>
         </div>
       </article>
