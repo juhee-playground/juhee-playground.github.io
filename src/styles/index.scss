@@ -1,4 +1,4 @@
-@import './reset';
-@import './variables.scss';
-@import './mediaQueries.scss';
-@import './mixins.scss';
+@forward 'reset';
+@forward 'variables';
+@forward 'mediaQueries';
+@forward 'mixins';
