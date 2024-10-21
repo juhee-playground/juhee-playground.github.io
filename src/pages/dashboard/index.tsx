@@ -1,9 +1,9 @@
 import PhpIcon from '@/assets/icon/PHP-Dark.svg';
 import ReactIcon from '@/assets/icon/React.svg';
 import VueIcon from '@/assets/icon/Vue.svg';
-import MyLineAreaChart from '@/components/chart/LineAreaChart';
+// import MyLineAreaChart from '@/components/chart/LineAreaChart';
 import MyPieChart from '@/components/chart/PieChart';
-import MyStackedBarChart from '@/components/chart/StackedBarChart';
+// import MyStackedBarChart from '@/components/chart/StackedBarChart';
 import CardV2 from '@/components/common/CardVersion2';
 
 import './Main.scss';
@@ -30,13 +30,13 @@ export default function MainPage() {
       </article>
       <article className='dashboard__row'>
         <div className='dashboard__widget'>
-          <h3 className='dashboard__widget-title'>사용량</h3>
+          <h3 className='dashboard__widget-title'>STACK USAGE</h3>
           <div className='dashboard__widget-content'>
             <MyPieChart />
           </div>
         </div>
 
-        <div className='dashboard__widget'>
+        {/* <div className='dashboard__widget'>
           <h3 className='dashboard__widget-title'>경력그래프</h3>
           <div className='dashboard__widget-content'>
             <MyStackedBarChart />
@@ -48,7 +48,7 @@ export default function MainPage() {
           <div className='dashboard__widget-content'>
             <MyLineAreaChart />
           </div>
-        </div>
+        </div> */}
       </article>
     </div>
   );
