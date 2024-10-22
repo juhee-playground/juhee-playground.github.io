@@ -1,7 +1,14 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { IColor } from 'react-color-palette';
 
-const initialState = {
-  pointColor: '#5467f5',
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+interface ISettingState {
+  pointColor: IColor;
+  isPrintMode: boolean;
+}
+
+const initialState: ISettingState = {
+  pointColor: { hex: '#5467f5', rgb: { r: 84, g: 103, b: 245, a: 1 }, hsv: { h: 231, s: 65, v: 96, a: 1 } },
   isPrintMode: false,
 };
 
@@ -9,7 +16,7 @@ const SettingSlice = createSlice({
   name: 'setting',
   initialState,
   reducers: {
-    changePointColor(state, action: PayloadAction<string>) {
+    changePointColor(state, action: PayloadAction<IColor>) {
       state.pointColor = action.payload;
     },
     changePrintMode(state) {
