@@ -35,7 +35,7 @@
     "dayjs": "^1.11.11",
     "notion-client": "^6.16.0",
     "react": "^18.2.0",
-    "react-color": "^2.19.3",
+    "react-color-palette": "^7.3.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-redux": "^9.1.0",

@@ -26,7 +26,7 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
     >
       <div className='profile__box__header'>
         <span className='box-icon'>{info.icon}</span>
-        <h4 style={{ color: pointColor }} className='box-title'>
+        <h4 style={{ color: pointColor.hex }} className='box-title'>
           {info.title}
         </h4>
       </div>

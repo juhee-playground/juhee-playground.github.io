@@ -19,7 +19,7 @@ const PointStackCard = () => {
       <div className='group__header'>
         <span className='box-icon'>⚽️</span>
 
-        <h4 style={{ color: pointColor }} className='box-title'>
+        <h4 style={{ color: pointColor.hex }} className='box-title'>
           OVERVIEW
         </h4>
       </div>

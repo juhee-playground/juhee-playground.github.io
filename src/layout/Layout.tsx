@@ -48,7 +48,7 @@ export default function Layout() {
       <Header />
 
       <button
-        style={{ backgroundColor: pointColor }}
+        style={{ backgroundColor: pointColor.hex }}
         className={`fixButton half-left toggler ripple ${isPrintMode ? `fixButton--${mode}` : ''}`}
         onClick={toggleDrawer(anchor, true)}
       >

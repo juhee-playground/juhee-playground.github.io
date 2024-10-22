@@ -32,7 +32,7 @@ const meta = {
         { id: '3', name: 'Vue', color: 'green' },
       ],
     },
-    pointColor: {
+    color: {
       control: 'color',
       description: 'chip의 컬러를 표시합니다.',
     },
@@ -50,7 +50,7 @@ export const ToggleChip: TStory = {
   args: {
     title: 'Color',
     options: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue'],
-    pointColor: 'red',
+    color: 'red',
     selected: ['red', 'purple', 'yellow', 'orange', 'blueGrey', 'pink', 'cyan', 'green', 'blue'],
     onChange: () => {},
   },
