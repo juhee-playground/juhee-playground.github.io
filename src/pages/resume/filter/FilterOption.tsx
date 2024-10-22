@@ -8,12 +8,12 @@ interface IFilterOptionProps {
   title: string;
   options: string[];
   selected?: string[];
-  pointColor?: string;
+  color?: string;
   colorOptions?: ISelectProperty[];
   onChange(option: string): void;
 }
 
-const FilterOption = ({ title, options, colorOptions, pointColor, selected, onChange }: IFilterOptionProps) => {
+const FilterOption = ({ title, options, colorOptions, color, selected, onChange }: IFilterOptionProps) => {
   return (
     <li className='list__item'>
       <p className='filter__left'>
@@ -38,7 +38,7 @@ const FilterOption = ({ title, options, colorOptions, pointColor, selected, onCh
                 key={`${title}_${index}`}
                 label={name}
                 checked={(selected || []).includes(name)}
-                color={pointColor}
+                color={color}
                 handleChipSelect={onChange}
               />
             ))}

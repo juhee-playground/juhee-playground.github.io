@@ -125,13 +125,13 @@ export default function Main() {
               options={companies}
               title='company'
               selected={selectedCompanies}
-              pointColor={pointColor}
+              color={pointColor.hex}
               onChange={handleChangeSelectedCompanies}
             />
             <FilterOption
               options={skillOptions}
               colorOptions={mainSkillSelectOptions.data}
-              pointColor={pointColor}
+              color={pointColor.hex}
               title='skill'
               selected={selectedSkillOptions}
               onChange={handleChangeSelectedSkillOptions}
@@ -169,7 +169,7 @@ export default function Main() {
         <section className='career'>
           <div className='group__header'>
             <span className='box-icon'>⚽️</span>
-            <h4 style={{ color: pointColor }} className='box-title'>
+            <h4 style={{ color: pointColor.hex }} className='box-title'>
               CAREER
             </h4>
           </div>
@@ -190,7 +190,7 @@ export default function Main() {
         <section className='career'>
           <div className='group__header'>
             <span className='box-icon'>⚽️</span>
-            <h4 style={{ color: pointColor }} className='box-title'>
+            <h4 style={{ color: pointColor.hex }} className='box-title'>
               SIDE PROJECT
             </h4>
           </div>

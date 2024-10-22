@@ -92,7 +92,7 @@ function CardListItem({
         </div>
 
         <div className='group__header'>
-          <h4 style={{ color: pointColor }} className='box-title'>
+          <h4 style={{ color: pointColor.hex }} className='box-title'>
             WORK EXPERIENCE
           </h4>
         </div>

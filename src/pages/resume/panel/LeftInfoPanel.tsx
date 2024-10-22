@@ -24,7 +24,7 @@ const LeftInfoPanel = () => {
       <section className='profile'>
         {/* FIXME: dl, dt, dd 로 대체 가능한지 */}
         <section className={`profile__info profile__info--${theme.palette.mode}`}>
-          <h2 style={{ color: pointColor }} className='profile__info-first-name'>
+          <h2 style={{ color: pointColor.hex }} className='profile__info-first-name'>
             BAEK
           </h2>
 
