@@ -1,12 +1,32 @@
+import dayjs from 'dayjs';
+
 import PhpIcon from '@/assets/icon/PHP-Dark.svg';
 import ReactIcon from '@/assets/icon/React.svg';
 import VueIcon from '@/assets/icon/Vue.svg';
-// import MyLineAreaChart from '@/components/chart/LineAreaChart';
+
 import MyPieChart from '@/components/chart/PieChart';
-// import MyStackedBarChart from '@/components/chart/StackedBarChart';
+import TimelineChart from '@/components/chart/TimelineChart';
 import CardV2 from '@/components/common/CardVersion2';
 
 import './Main.scss';
+
+const tasks: ITask[] = [
+  {
+    name: 'YU파트너스',
+    startDate: dayjs('2017-05-02').format('YYYY-MM-DD'),
+    endDate: dayjs('2018-02-28').format('YYYY-MM-DD'),
+  },
+  {
+    name: 'Fitogether',
+    startDate: dayjs('2018-07-01').format('YYYY-MM-DD'),
+    endDate: dayjs('2022-11-30').format('YYYY-MM-DD'),
+  },
+  {
+    name: '프리랜서',
+    startDate: dayjs('2023-09-01').format('YYYY-MM-DD'),
+    endDate: dayjs('2023-12-30').format('YYYY-MM-DD'),
+  },
+];
 
 export default function MainPage() {
   return (
@@ -33,7 +53,7 @@ export default function MainPage() {
               <CardV2 name='Fitogether' count={4} unit='year' />
             </li>
             <li>
-              <CardV2 name='YU partners' count={1} unit='year' />
+              <CardV2 name='YU 파트너스' count={1} unit='year' />
             </li>
           </ul>
         </article>
@@ -46,19 +66,12 @@ export default function MainPage() {
           </div>
         </article>
 
-        {/* <article className='dashboard__widget'>
-          <h3 className='dashboard__widget-title'>경력그래프</h3>
+        <article className='dashboard__widget'>
+          <h3 className='dashboard__widget-title'>CAREER TIMELINE</h3>
           <div className='dashboard__widget-content'>
-            <MyStackedBarChart />
+            <TimelineChart tasks={tasks} width={500} height={300} />
           </div>
         </article>
-
-        <article className='dashboard__widget'>
-          <h3 className='dashboard__widget-title'>라인차트</h3>
-          <div className='dashboard__widget-content'>
-            <MyLineAreaChart />
-          </div>
-        </article> */}
       </section>
     </div>
   );
