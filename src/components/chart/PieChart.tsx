@@ -28,7 +28,7 @@ const MyPieChart = () => {
         data={data}
         margin={{ top: 20, right: 60, bottom: 60, left: 60 }}
         innerRadius={0.4} // 도넛 모양을 위해 중앙이 비도록 설정
-        padAngle={2} // 각 데이터 조각 간의 패딩
+        padAngle={4} // 각 데이터 조각 간의 패딩
         cornerRadius={3} // 각 조각의 모서리를 둥글게
         colors={{ datum: 'data.color' }} // 각 데이터의 color 필드를 사용
         borderWidth={1} // 데이터 조각의 테두리 두께
