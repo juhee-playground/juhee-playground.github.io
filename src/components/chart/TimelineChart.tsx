@@ -18,7 +18,7 @@ const firstDay = dayjs('2017-05-02');
 
 const TimelineChart = ({ width, height, tasks }: ITimeScaleChartProps) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
-  const margin = { top: 40, right: 20, bottom: 50, left: 20 };
+  const margin = { top: 40, right: 30, bottom: 50, left: 30 };
 
   const [tooltip, setTooltip] = useState<{ content: string; x: number; y: number; color: string } | null>(null);
 
@@ -56,7 +56,7 @@ const TimelineChart = ({ width, height, tasks }: ITimeScaleChartProps) => {
           <Bars
             tasks={tasks}
             xScale={xScale}
-            yPosition={50}
+            yPosition={75}
             barHeight={20}
             onMouseEnter={handleMouseEnter}
             onMouseMove={handleMouseMove}
