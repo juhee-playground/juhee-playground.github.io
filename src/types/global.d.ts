@@ -240,4 +240,10 @@ declare global {
     text: string;
     date: string;
   }
+
+  interface ITask {
+    name: string;
+    startDate: string;
+    endDate: string;
+  }
 }

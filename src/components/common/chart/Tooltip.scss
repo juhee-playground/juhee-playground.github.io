@@ -1,0 +1,10 @@
+.tooltip {
+  position: absolute;
+  background-color: white;
+  padding: 5px;
+  pointer-events: none;
+  z-index: 1000;
+  font-size: 14px; /* 원하는 폰트 크기 */
+  border-radius: 4px; /* 둥근 모서리 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 약간의 그림자 */
+}
