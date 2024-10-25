@@ -1178,22 +1178,6 @@
     "@types/d3-scale" "^4.0.8"
     d3-scale "^4.0.2"
 
-"@nivo/line@^0.87.0":
-  version "0.87.0"
-  resolved "https://registry.yarnpkg.com/@nivo/line/-/line-0.87.0.tgz#ea59b285a54b90602a5f765bcbf13845b978e47a"
-  integrity sha512-Ki/WDd8ZU8VWScW4ZeKUFCXRdAEg8nrS+F+jdfJDPxyxUMHZJCAbrXrnsExcEQLOaDQ2aU/bijEMiDS8/dJzuA==
-  dependencies:
-    "@nivo/annotations" "0.87.0"
-    "@nivo/axes" "0.87.0"
-    "@nivo/colors" "0.87.0"
-    "@nivo/core" "0.87.0"
-    "@nivo/legends" "0.87.0"
-    "@nivo/scales" "0.87.0"
-    "@nivo/tooltip" "0.87.0"
-    "@nivo/voronoi" "0.87.0"
-    "@react-spring/web" "9.4.5 || ^9.7.2"
-    d3-shape "^3.2.0"
-
 "@nivo/pie@^0.87.0":
   version "0.87.0"
   resolved "https://registry.yarnpkg.com/@nivo/pie/-/pie-0.87.0.tgz#cb07171500167861cd0652f9a37e26131612ea05"
