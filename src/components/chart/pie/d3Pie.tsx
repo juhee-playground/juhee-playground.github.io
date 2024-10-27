@@ -14,7 +14,6 @@ interface IPieChartProps {
 
 const PieChart = ({ data, width, height }: IPieChartProps) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
-  //   const margin = { top: 40, right: 30, bottom: 50, left: 30 };
 
   const [tooltip, setTooltip] = useState<{ content: string; x: number; y: number; color: string } | null>(null);
 
