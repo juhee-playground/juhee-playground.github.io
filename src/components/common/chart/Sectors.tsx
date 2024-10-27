@@ -22,7 +22,7 @@ const Sectors = ({ data, onMouseEnter, onMouseMove, onMouseLeave }: ISectorProps
   const pieGenerator = d3.pie<IPieData>().value(d => d.value);
   const radius = 100;
 
-  const INNER_RADIUS_RATIO = 0.3;
+  const INNER_RADIUS_RATIO = 0.4;
   const OUTER_RADIUS = radius;
   const ARC_PADDING = 0.06;
   const CORNER_RADIUS = 4;
@@ -64,7 +64,7 @@ const Sectors = ({ data, onMouseEnter, onMouseMove, onMouseLeave }: ISectorProps
             <text
               transform={`translate(${arcGenerator.centroid(d)})`}
               textAnchor='middle'
-              style={{ fill: 'black', fontSize: '14px' }}
+              style={{ fill: '#242424', fontSize: '11px' }}
             >
               {d.data.value}
             </text>
@@ -73,14 +73,14 @@ const Sectors = ({ data, onMouseEnter, onMouseMove, onMouseLeave }: ISectorProps
                 outerArc.centroid(d)[1]
               } ${polylineX},${polylineY} ${labelX},${labelY}`}
               fill='none'
-              stroke='grey'
+              stroke='#242424'
               strokeWidth='1'
             />
             <text
               transform={`translate(${textX}, ${textY})`}
               textAnchor={labelAnchor}
               dominantBaseline='middle'
-              style={{ fill: 'grey', fontSize: '11px' }}
+              style={{ fill: '#242424', fontSize: '11px' }}
             >
               {d.data.label}
             </text>
