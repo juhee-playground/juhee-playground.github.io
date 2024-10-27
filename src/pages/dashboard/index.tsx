@@ -76,7 +76,7 @@ export default function MainPage() {
         <article className='dashboard__widget'>
           <h3 className='dashboard__widget-title'>MAIN TECH</h3>
           <div className='dashboard__widget-content'>
-            <PieChart data={stackData} width={500} height={300} />
+            <PieChart data={stackData} width={410} height={250} />
           </div>
         </article>
 

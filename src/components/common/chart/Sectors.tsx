@@ -20,15 +20,15 @@ interface ISectorProps {
 
 const Sectors = ({ data, onMouseEnter, onMouseMove, onMouseLeave }: ISectorProps) => {
   const pieGenerator = d3.pie<IPieData>().value(d => d.value);
-  const radius = 100;
+  const radius = 105;
 
   const INNER_RADIUS_RATIO = 0.4;
   const OUTER_RADIUS = radius;
   const ARC_PADDING = 0.06;
   const CORNER_RADIUS = 4;
-  const LABEL_POSITION_MULTIPLIER = 1.3; // 라벨 위치 배율 (파이에 가깝게)
+  const LABEL_POSITION_MULTIPLIER = 1.3;
   const TEXT_OFFSET = 5;
-  const POLYLINE_OFFSET = 1.05; // 폴리라인 끝 위치 배율 (파이에 가깝게)
+  const POLYLINE_OFFSET = 1.05;
 
   const arcGenerator = d3
     .arc<d3.PieArcDatum<IPieData>>()
