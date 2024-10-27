@@ -18,15 +18,18 @@ interface ISectorProps {
   onMouseLeave: () => void;
 }
 
-const INNER_RADIUS_RATIO = 0.3;
-const ARC_PADDING = 0.06;
-const CORNER_RADIUS = 4;
-const LABEL_POSITION_MULTIPLIER = 1.3;
-const POLYLINE_OFFSET = 0.9;
-
 const Sectors = ({ data, onMouseEnter, onMouseMove, onMouseLeave }: ISectorProps) => {
   const pieGenerator = d3.pie<IPieData>().value(d => d.value);
   const radius = 100;
+
+  const INNER_RADIUS_RATIO = 0.3;
+  const OUTER_RADIUS = radius;
+  const ARC_PADDING = 0.06;
+  const CORNER_RADIUS = 4;
+  const LABEL_POSITION_MULTIPLIER = 1.3; // 라벨 위치 배율 (파이에 가깝게)
+  const TEXT_OFFSET = 5;
+  const POLYLINE_OFFSET = 1.05; // 폴리라인 끝 위치 배율 (파이에 가깝게)
+
   const arcGenerator = d3
     .arc<d3.PieArcDatum<IPieData>>()
     .innerRadius(radius * INNER_RADIUS_RATIO)
@@ -34,7 +37,7 @@ const Sectors = ({ data, onMouseEnter, onMouseMove, onMouseLeave }: ISectorProps
     .padAngle(ARC_PADDING)
     .cornerRadius(CORNER_RADIUS);
 
-  const outerArc = d3.arc<d3.PieArcDatum<IPieData>>().outerRadius(radius).innerRadius(radius);
+  const outerArc = d3.arc<d3.PieArcDatum<IPieData>>().outerRadius(OUTER_RADIUS).innerRadius(OUTER_RADIUS);
 
   return (
     <>
@@ -42,6 +45,10 @@ const Sectors = ({ data, onMouseEnter, onMouseMove, onMouseLeave }: ISectorProps
         const [x, y] = outerArc.centroid(d);
         const labelX = x * LABEL_POSITION_MULTIPLIER;
         const labelY = y * LABEL_POSITION_MULTIPLIER;
+        const polylineX = x * POLYLINE_OFFSET;
+        const polylineY = y * POLYLINE_OFFSET;
+        const textX = labelX + (x > 0 ? TEXT_OFFSET : -TEXT_OFFSET);
+        const textY = labelY;
         const midAngle = (d.startAngle + d.endAngle) / 2;
 
         const labelAnchor = midAngle < Math.PI ? 'start' : 'end';
@@ -62,18 +69,18 @@ const Sectors = ({ data, onMouseEnter, onMouseMove, onMouseLeave }: ISectorProps
               {d.data.value}
             </text>
             <polyline
-              points={`${outerArc.centroid(d)[0]},${outerArc.centroid(d)[1]} ${labelX * POLYLINE_OFFSET},${
-                labelY * POLYLINE_OFFSET
-              } ${labelX},${labelY}`}
+              points={`${outerArc.centroid(d)[0]},${
+                outerArc.centroid(d)[1]
+              } ${polylineX},${polylineY} ${labelX},${labelY}`}
               fill='none'
-              stroke='gray'
+              stroke='grey'
               strokeWidth='1'
             />
             <text
-              transform={`translate(${labelX}, ${labelY})`}
+              transform={`translate(${textX}, ${textY})`}
               textAnchor={labelAnchor}
               dominantBaseline='middle'
-              style={{ fill: 'gray', fontSize: '11px' }}
+              style={{ fill: 'grey', fontSize: '11px' }}
             >
               {d.data.label}
             </text>
