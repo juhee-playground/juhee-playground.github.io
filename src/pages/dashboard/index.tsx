@@ -23,8 +23,8 @@ const tasks: ITask[] = [
   },
   {
     name: '프리랜서',
-    startDate: dayjs('2023-09-01').format('YYYY-MM-DD'),
-    endDate: dayjs('2023-12-30').format('YYYY-MM-DD'),
+    startDate: dayjs('2023-07-03').format('YYYY-MM-DD'),
+    endDate: dayjs('2023-10-13').format('YYYY-MM-DD'),
   },
 ];
 
