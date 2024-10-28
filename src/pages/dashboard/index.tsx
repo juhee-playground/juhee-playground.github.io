@@ -4,7 +4,7 @@ import PhpIcon from '@/assets/icon/PHP-Dark.svg';
 import ReactIcon from '@/assets/icon/React.svg';
 import VueIcon from '@/assets/icon/Vue.svg';
 
-import MyPieChart from '@/components/chart/PieChart';
+import PieChart from '@/components/chart/pie/d3Pie';
 import TimelineChart from '@/components/chart/TimelineChart';
 import CardV2 from '@/components/common/CardVersion2';
 
@@ -23,9 +23,15 @@ const tasks: ITask[] = [
   },
   {
     name: '프리랜서',
-    startDate: dayjs('2023-09-01').format('YYYY-MM-DD'),
-    endDate: dayjs('2023-12-30').format('YYYY-MM-DD'),
+    startDate: dayjs('2023-07-03').format('YYYY-MM-DD'),
+    endDate: dayjs('2023-10-13').format('YYYY-MM-DD'),
   },
+];
+
+const stackData = [
+  { id: 'Vue', label: 'Vue', value: 50, color: 'hsl(153.5, 40%, 70%)' },
+  { id: 'React', label: 'React', value: 30, color: 'hsl(188.98, 60%, 70%)' },
+  { id: 'PHP', label: 'PHP', value: 20, color: 'hsl(235.93, 35%, 70%)' },
 ];
 
 export default function MainPage() {
@@ -62,7 +68,7 @@ export default function MainPage() {
         <article className='dashboard__widget'>
           <h3 className='dashboard__widget-title'>MAIN TECH USAGE</h3>
           <div className='dashboard__widget-content'>
-            <MyPieChart />
+            <PieChart data={stackData} width={410} height={280} />
           </div>
         </article>
 
