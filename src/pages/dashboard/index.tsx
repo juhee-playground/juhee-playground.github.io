@@ -5,7 +5,6 @@ import ReactIcon from '@/assets/icon/React.svg';
 import VueIcon from '@/assets/icon/Vue.svg';
 
 import PieChart from '@/components/chart/pie/d3Pie';
-import MyPieChart from '@/components/chart/PieChart';
 import TimelineChart from '@/components/chart/TimelineChart';
 import CardV2 from '@/components/common/CardVersion2';
 
@@ -69,14 +68,7 @@ export default function MainPage() {
         <article className='dashboard__widget'>
           <h3 className='dashboard__widget-title'>MAIN TECH USAGE</h3>
           <div className='dashboard__widget-content'>
-            <MyPieChart />
-          </div>
-        </article>
-
-        <article className='dashboard__widget'>
-          <h3 className='dashboard__widget-title'>MAIN TECH</h3>
-          <div className='dashboard__widget-content'>
-            <PieChart data={stackData} width={410} height={250} />
+            <PieChart data={stackData} width={410} height={280} />
           </div>
         </article>
 
