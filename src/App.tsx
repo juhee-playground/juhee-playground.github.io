@@ -11,6 +11,7 @@ import { merge } from 'ts-deepmerge';
 import { ColorModeContext } from '@/context/ColorModeContext';
 import Layout from '@/layout/Layout';
 import store from '@/redux/store';
+import Router from '@/router';
 import { TPaletteMode, getDesignTokens, getThemedComponents } from '@/theme';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -65,9 +66,10 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={responsiveFontSizes(theme)}>
           <QueryClientProvider client={queryClient}>
-            {/* <CssBaseline /> */}
             <ToastContainer />
-            <Layout />
+            <Layout>
+              <Router />
+            </Layout>
           </QueryClientProvider>
         </ThemeProvider>
       </ColorModeContext.Provider>
