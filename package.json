@@ -1,7 +1,8 @@
 {
+  "homepage": "https://juhee-playground.github.io/trex",
   "name": "juhee-playground",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +10,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "shx cp build/index.html build/404.html && gh-pages -d build",
     "test": "jest --watch",
     "test:coverage": "npm run test -- --coverage --watchAll=false",
     "storybook": "storybook dev -p 6006",
@@ -38,6 +39,7 @@
     "react-router-dom": "^6.22.3",
     "react-toastify": "^10.0.5",
     "redux": "^5.0.1",
+    "shx": "^0.3.4",
     "styled-components": "^6.1.11",
     "ts-deepmerge": "^7.0.0",
     "vite-plugin-svgr": "^4.2.0"
