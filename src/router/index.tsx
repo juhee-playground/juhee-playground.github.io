@@ -12,9 +12,9 @@ export default function Router() {
   return (
     <Suspense fallback={renderLoader()}>
       <Routes>
-        <Route path='' element={<Main />} />
-        <Route path='dashboard' element={<Dashboard />} />
-        <Route path='portfolio' element={<UnderConstruction />} />
+        <Route path='/' element={<Main />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/portfolio' element={<UnderConstruction />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
     </Suspense>
