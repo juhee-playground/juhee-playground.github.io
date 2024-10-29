@@ -10,6 +10,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), svgr()],
+  base: '/trex/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'), // src 디렉토리를 @로 설정
