@@ -1,11 +1,10 @@
-import React, { useState, lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { ReactNode, useState } from 'react';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 import ThemeCustomized from '@/layout/ThemeCustomized';
-import UnderConstruction from '@/pages/resume/UnderConstruction';
+
 import { useAppSelector } from '@/redux/hooks';
 import type { TRootState } from '@/redux/store';
 
@@ -16,10 +15,11 @@ import './FixButton.scss';
 
 type TAnchor = 'top' | 'left' | 'bottom' | 'right';
 
-const Main = lazy(() => import('../pages/resume'));
-const Dashboard = lazy(() => import('../pages/dashboard'));
+interface IMainLayoutProps {
+  children: ReactNode;
+}
 
-export default function Layout() {
+export default function Layout({ children }: IMainLayoutProps) {
   const [menuDirection, setMenuDirection] = useState({
     top: false,
     left: false,
@@ -64,16 +64,7 @@ export default function Layout() {
         <ThemeCustomized />
       </SwipeableDrawer>
 
-      <div className={isPrintMode ? `main__container main__container--${mode}` : 'main__container'}>
-        <Suspense>
-          <Routes>
-            <Route path='' element={<Main />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            {/* <Route path='/dashboard' element={<UnderConstruction />} /> */}
-            <Route path='/portfolio' element={<UnderConstruction />} />
-          </Routes>
-        </Suspense>
-      </div>
+      <div className={isPrintMode ? `main__container main__container--${mode}` : 'main__container'}>{children}</div>
     </main>
   );
 }
