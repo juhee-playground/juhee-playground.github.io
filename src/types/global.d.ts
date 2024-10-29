@@ -9,6 +9,7 @@ export {};
 declare global {
   type TModeType = 'light' | 'dark';
   type TProjectProperties = 'rich_text' | number | 'date' | 'select' | 'text' | 'title' | 'select';
+  type TAnchor = 'top' | 'left' | 'bottom' | 'right';
 
   interface IProcess {
     env: IProcessEnv;
