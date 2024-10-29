@@ -10,7 +10,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "shx cp build/index.html build/404.html && gh-pages -d build",
+    "deploy": "shx cp dist/index.html dist/404.html && gh-pages -d dist",
     "test": "jest --watch",
     "test:coverage": "npm run test -- --coverage --watchAll=false",
     "storybook": "storybook dev -p 6006",
