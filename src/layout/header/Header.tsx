@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import ClearIcon from '@mui/icons-material/Clear';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -68,10 +69,10 @@ export default function DenseAppBar() {
       {!isPrintMode ? (
         <ul className='links'>
           <li role='menuItem'>
-            <a href='/'>이력서</a>
+            <Link to='/'>이력서</Link>
           </li>
           <li role='menuItem'>
-            <a href='/dashboard'>대시보드</a>
+            <Link to='/dashboard'>대시보드</Link>
           </li>
         </ul>
       ) : null}
