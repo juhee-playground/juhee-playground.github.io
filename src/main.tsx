@@ -7,7 +7,7 @@ import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <BrowserRouter basename={import.meta.env.VITE_APP_BASE_URL}>
+  <BrowserRouter basename={import.meta.env.VITE_APP_PUBLIC_URL}>
     <App />
   </BrowserRouter>,
 );
