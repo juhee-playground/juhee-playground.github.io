@@ -6,8 +6,9 @@ import App from './App';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const publicUrl = import.meta.env.VITE_APP_PUBLIC_URL;
 root.render(
-  <BrowserRouter basename={import.meta.env.VITE_APP_PUBLIC_URL}>
+  <BrowserRouter basename={publicUrl}>
     <App />
   </BrowserRouter>,
 );
