@@ -35,6 +35,7 @@ jobs:
           echo "VITE_APP_BACK_END_POINT=${{ secrets.REACT_APP_BACK_END_POINT }}" >> $GITHUB_ENV
           echo "VITE_APP_EMAIL=${{ vars.REACT_APP_EMAIL }}" >> $GITHUB_ENV
           echo "VITE_APP_PHONE_NUMBER=${{ vars.REACT_APP_PHONE_NUMBER }}" >> $GITHUB_ENV
+          echo "VITE_APP_PUBLIC_URL=${{ vars.REACT_APP_PUBLIC_URL }}" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache --check-cache
