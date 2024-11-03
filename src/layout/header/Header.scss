@@ -4,6 +4,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
   @include tablet-down {
     padding-right: 45px;
   }
