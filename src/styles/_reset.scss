@@ -1,4 +1,4 @@
-@use 'variables';
+@use './variables';
 
 h1,
 h2,
@@ -133,5 +133,5 @@ table {
 }
 
 * {
-  font-family: $body-font-family;
+  font-family: 'Montserrat';
 }
