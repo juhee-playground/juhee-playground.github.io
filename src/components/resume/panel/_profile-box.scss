@@ -1,0 +1,85 @@
+@use '@/styles/index' as *;
+
+.profile__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 8px auto;
+  width: 80%;
+
+  &--print {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .profile__box.profile {
+    grid-area: profile;
+  }
+
+  .profile {
+    &__picture-img {
+      vertical-align: middle;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: $white-color;
+    }
+    &__info {
+      text-align: center;
+      margin-top: 11px;
+      &--light {
+        color: $light-text-color;
+      }
+      &--dark {
+        color: $dark-text-color;
+      }
+      h2 {
+        margin: 16px 0 0 0;
+        font-size: 30px;
+      }
+      &-first-name {
+        color: $point-color;
+      }
+      &-role {
+        margin: 8px;
+      }
+    }
+  }
+
+  .profile__box.contact {
+    grid-area: contact;
+  }
+
+  .profile__box.aside {
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+
+    h3 {
+      margin: 0;
+      padding: 0 4px;
+      line-height: 28px;
+      color: $point-color;
+    }
+
+    .box-icon {
+      padding: 0 4px;
+    }
+  }
+
+  hr {
+    width: 100%;
+    margin: 2px;
+  }
+
+  &__content {
+    display: flex;
+    width: 100%;
+  }
+}

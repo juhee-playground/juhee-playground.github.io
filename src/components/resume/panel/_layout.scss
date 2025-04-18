@@ -1,0 +1,42 @@
+@use '@/styles/index' as *;
+
+.nav__container {
+  grid-area: profile;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 12px 18px 10px;
+
+  background-color: $black-color;
+
+  &--light {
+    background-color: $light-background-color;
+    color: $light-text-color;
+  }
+
+  &--dark {
+    background-color: $dark-background-color;
+    color: $dark-text-color;
+  }
+}
+
+.infos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  &--print {
+    display: grid;
+    column-gap: 16px;
+    grid-template-columns: 0.5fr 1fr 1fr;
+    grid-template-areas: 'profile contact aside';
+  }
+
+  @include tablet-down {
+    display: grid;
+    column-gap: 16px;
+    grid-template-columns: 0.5fr 1fr 1fr;
+    grid-template-areas: 'profile contact aside';
+  }
+}

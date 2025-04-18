@@ -1,51 +1,23 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import dayjs from 'dayjs';
 
+import usePrintMode from '@/hooks/usePrintMode';
 import { useAppSelector } from '@/redux/hooks';
 import type { TRootState } from '@/redux/store';
-import { parserPeriod } from '@/utils/parser';
+import { parseCompanyData } from '@/utils/parser';
 
 import SubListItem from './SubListItem';
 
-function CardListItem({
-  isLastCompany,
-  info: {
-    id,
-    name,
-    description,
-    type,
-    period: { date },
-    year,
-    scale,
-    department,
-    role,
-  },
-  subInfo,
-  filters,
-}: ICardListProps) {
-  const companyData = {
-    id,
-    name: name.title[0].plain_text,
-    description: description.rich_text[0].plain_text.split('- '),
-    type: type.rich_text[0].plain_text,
-    startDate: date?.start ? dayjs(date.start).format('YYYY/MM') : '',
-    endDate: date?.start ? dayjs(date.end).format('YYYY/MM') : '',
-    year: year.number,
-    scale: scale.rich_text[0].plain_text,
-    department: department.rich_text[0].plain_text,
-    role: role.select.name,
-    period: date?.start ? parserPeriod(date) : '',
-  };
-
-  const { isPrintMode, pointColor } = useAppSelector((state: TRootState) => state.settings);
-  const mode = isPrintMode ? 'print' : '';
+const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps) => {
+  const companyData = parseCompanyData(info);
+  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
+  const { mode, isPrintMode } = usePrintMode();
 
   return (
     <>
       <div
         key={`company__${companyData.id}`}
-        className={isPrintMode ? `box__container box__container--${mode}` : 'box__container'}
+        className={`box__container${isPrintMode ? ` box__container--${mode}` : ''}`}
         id={companyData.id}
       >
         <div className='box__header'>
@@ -98,18 +70,17 @@ function CardListItem({
         </div>
 
         <div className='projects'>
-          {subInfo &&
-            subInfo
-              .filter(project => project.company.relation[0].id === companyData.id)
-              .map((project: IProjectProperties, index: number) => (
-                <SubListItem key={`${index}_${project.id}`} filters={filters} info={project} />
-              ))}
+          {subInfo
+            ?.filter(project => project.company?.relation?.[0]?.id === companyData.id)
+            .map((project: IProjectProperties, index: number) => (
+              <SubListItem key={`${index}_${project.id}`} filters={filters} info={project} />
+            ))}
         </div>
       </div>
 
       {!isLastCompany && <hr className='line--bottom' />}
     </>
   );
-}
+};
 
 export default CardListItem;

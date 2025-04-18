@@ -22,13 +22,13 @@ const FilterOption = ({ title, options, colorOptions, color, selected, onChange 
 
       <div className='filter__chips'>
         {colorOptions
-          ? colorOptions.map(({ id, name, color }: ISelectProperty) => (
+          ? colorOptions.map(({ id, name, color: chipColor }: ISelectProperty) => (
               <DChip
                 key={id}
                 selectedItems={selected}
                 label={name}
                 size='small'
-                color={color}
+                color={chipColor}
                 clickable
                 handleChipSelect={onChange}
               />

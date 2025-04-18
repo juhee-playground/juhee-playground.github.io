@@ -11,6 +11,8 @@ import PointStackCard from '@/components/resume/overview/Card';
 import LeftSection from '@/components/resume/panel/LeftInfoPanel';
 import SideProjectSection from '@/components/resume/SideProjectSection';
 
+import './index.scss';
+
 interface IResumeViewProps {
   isLoading: boolean;
   sortValue: string;
@@ -62,9 +64,9 @@ const ResumeView = ({
               onChange={onChangeCompany}
             />
             <FilterOption
+              title='skill'
               options={skillOptions}
               color={pointColorHex}
-              title='skill'
               selected={selectedSkillOptions}
               onChange={onChangeSkill}
             />

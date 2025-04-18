@@ -9,6 +9,16 @@
   @include tablet-down {
     padding-right: 45px;
   }
+
+  &--light {
+    background-color: $light-background-color;
+    color: $light-text-color;
+  }
+  &--dark {
+    background-color: $dark-background-color;
+    color: $dark-text-color;
+  }
+
   .links {
     display: flex;
     gap: 12px;

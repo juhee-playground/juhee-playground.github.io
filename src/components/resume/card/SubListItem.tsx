@@ -7,33 +7,15 @@ import Typography from '@mui/material/Typography';
 
 import Accordion from '@/components/Accordion';
 import DChip from '@/components/custom/DChip';
-import { useAppSelector } from '@/redux/hooks';
-import type { TRootState } from '@/redux/store';
+import usePrintMode from '@/hooks/usePrintMode';
+import { parseProjectData } from '@/utils/parser';
 
 import RenderText from '../RenderText';
 
-function SubListItem({ info, filters }: ISubListProps) {
-  const date = info.period.date;
-  // FIXME: 비어 있을 경우 에러처리 해야함.
-  const projectData = {
-    id: info.id,
-    companyId: info.company.relation[0].id,
-    name: info.name.title[0].plain_text,
-    period: date.start ? `${date.start}~${date.end === null ? '' : date.end}` : '',
-    mainSkills: info.mainSkill.multi_select,
-    skills: info.skill.multi_select,
-    role: info.role.rich_text[0].plain_text,
-    description: info.description.rich_text[0].plain_text,
-    asls: info.asls.rich_text,
-    challenge: info.challenge.rich_text,
-    tobe: info.tobe.rich_text,
-    experience: info.experience.rich_text,
-    numberOfParticipants: info.numberOfParticipants.number,
-    url: info.url.url,
-  };
+const SubListItem = ({ info, filters }: ISubListProps) => {
+  const projectData = parseProjectData(info);
 
-  const { isPrintMode } = useAppSelector((state: TRootState) => state.settings);
-  const mode = isPrintMode ? 'print' : '';
+  const { mode, isPrintMode } = usePrintMode();
 
   return (
     <section className='project__container' key={`project__${projectData.id}`}>
@@ -68,7 +50,7 @@ function SubListItem({ info, filters }: ISubListProps) {
           <Stack className='stacks' direction='row' spacing={1}>
             {projectData.mainSkills.map((select: ISelectProperty) => (
               <DChip
-                key={`mainSkill_${projectData.name}_${select.id}`}
+                key={`mainSkill_${projectData.id}_${select.id}`}
                 size='small'
                 color={select.color}
                 label={select.name}
@@ -90,36 +72,34 @@ function SubListItem({ info, filters }: ISubListProps) {
       </div>
 
       <div className='list__item experience'>
-        <div className='list__item experience'>
-          <Accordion
-            title={
-              <React.Fragment>
-                <Typography variant='h6' color='textSecondary'>
-                  결과
-                </Typography>
-                <Typography variant='body2'>
-                  <RenderText richTextArray={projectData.tobe} />
-                </Typography>
-              </React.Fragment>
-            }
-          >
-            <Typography variant='h6' color='textSecondary'>
-              문제사항
-            </Typography>
-            <Typography variant='body2'>
-              <RenderText richTextArray={projectData.asls} />
-            </Typography>
-            <Typography variant='h6' color='textSecondary'>
-              해결방안
-            </Typography>
-            <Typography variant='body2'>
-              <RenderText richTextArray={projectData.challenge} />
-            </Typography>
-          </Accordion>
-        </div>
+        <Accordion
+          title={
+            <React.Fragment>
+              <Typography variant='h6' color='textSecondary'>
+                결과
+              </Typography>
+              <Typography variant='body2'>
+                <RenderText richTextArray={projectData.tobe} />
+              </Typography>
+            </React.Fragment>
+          }
+        >
+          <Typography variant='h6' color='textSecondary'>
+            문제사항
+          </Typography>
+          <Typography variant='body2'>
+            <RenderText richTextArray={projectData.asls} />
+          </Typography>
+          <Typography variant='h6' color='textSecondary'>
+            해결방안
+          </Typography>
+          <Typography variant='body2'>
+            <RenderText richTextArray={projectData.challenge} />
+          </Typography>
+        </Accordion>
       </div>
     </section>
   );
-}
+};
 
 export default SubListItem;

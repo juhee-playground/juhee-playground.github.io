@@ -1,5 +1,5 @@
 .fixButton {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-appearance: none;
   border: none;
   text-transform: none;
@@ -37,7 +37,7 @@
   &:before {
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.6);
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -66,6 +66,6 @@
   inset-inline-end: 0;
   transform: translateY(-50%);
   @include tablet-down {
-    inset-block-start: 2%;
+    inset-block-start: 2.6%;
   }
 }

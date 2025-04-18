@@ -18,7 +18,7 @@
     "icon": "⚽️",
     "title": "HOBBY",
     "isBasic": true,
-    "basic": ["풋살", "공룡"],
+    "basic": [{ "ko": "풋살", "en": "Futsal" }],
     "isSubTitle": false,
     "subTitle": [],
     "isSpaceBetween": false,
@@ -32,7 +32,12 @@
     "isSubTitle": false,
     "subTitle": [],
     "isSpaceBetween": true,
-    "spaceBetween": [{ "text": "한양여자 대학교", "date": "2014.02" }]
+    "spaceBetween": [
+      {
+        "text": { "ko": "한양여자 대학교", "en": "Hanyang Women's University" },
+        "date": "2014.02"
+      }
+    ]
   },
   {
     "icon": "⚽️",
@@ -43,8 +48,14 @@
     "subTitle": [],
     "isSpaceBetween": true,
     "spaceBetween": [
-      { "text": "정보처리기사", "date": "2017.02" },
-      { "text": "컴퓨터활용능력 1급", "date": "2016.07" }
+      {
+        "text": { "ko": "정보처리기사", "en": "Information Processing Engineer" },
+        "date": "2017.02"
+      },
+      {
+        "text": { "ko": "컴퓨터활용능력 1급", "en": "Computer Proficiency Level 1" },
+        "date": "2016.07"
+      }
     ]
   }
 ]

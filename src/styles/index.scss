@@ -1,4 +1,4 @@
-@forward 'reset';
-@forward 'variables';
-@forward 'mediaQueries';
-@forward 'mixins';
+@forward './variables';
+@forward './reset';
+@forward './mediaQueries';
+@forward './mixins';

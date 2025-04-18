@@ -9,21 +9,23 @@ interface IContactProperties {
   portfolio: string | undefined;
 }
 
+interface INavProfileProps {
+  info: INavInfoItems;
+}
+
 const ProfileInfoBox = ({ info }: INavProfileProps) => {
-  const { pointColor, isPrintMode } = useAppSelector((state: TRootState) => state.settings);
+  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
+  const lang = 'ko';
+
   const contactInfo: IContactProperties = {
     phone_number: import.meta.env.VITE_APP_PHONE_NUMBER,
     email: import.meta.env.VITE_APP_EMAIL,
     github: import.meta.env.VITE_APP_GITHUB,
     portfolio: import.meta.env.VITE_APP_PORTFOLIO,
   };
-  const profileClass = info.title.toLowerCase();
-  const mode = isPrintMode ? 'print' : '';
 
   return (
-    <section
-      className={isPrintMode ? `profile__box profile__box--${mode} ${profileClass}` : `profile__box ${profileClass}`}
-    >
+    <>
       <div className='profile__box__header'>
         <span className='box-icon'>{info.icon}</span>
         <h4 style={{ color: pointColor.hex }} className='box-title'>
@@ -35,41 +37,34 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
 
       {info.isSubTitle && info.subTitle && (
         <div className='profile__box__content'>
-          <ul className='list list-subtitle'>
-            {/* subtitle이 있는 list item */}
+          <dl className='list list-subtitle'>
             {info.subTitle.map((item: ISubTitleItem, index: number) => {
               const key = item.value;
-              if (key === 'github' || key === 'portfolio') {
-                return (
-                  <li className='list-item' key={`profile_subTitle_${index}`}>
-                    <span className='subtitle'>{item.subTitle}</span>
-                    <span className='text'>
+              return (
+                <div className='list-item' key={`profile_subTitle_${index}`}>
+                  <dt className='subtitle'>{item.subTitle}</dt>
+                  <dd className='text'>
+                    {key === 'github' || key === 'portfolio' ? (
                       <a href={contactInfo[key]} color='inherit'>
                         {contactInfo[key]}
                       </a>
-                    </span>
-                  </li>
-                );
-              } else {
-                return (
-                  <li className='list-item' key={`profile_subTitle_${index}`}>
-                    <span className='subtitle'>{item.subTitle}</span>
-                    <span className='text'>{contactInfo[key]}</span>
-                  </li>
-                );
-              }
+                    ) : (
+                      contactInfo[key]
+                    )}
+                  </dd>
+                </div>
+              );
             })}
-          </ul>
+          </dl>
         </div>
       )}
 
       {info.isBasic && info.basic && (
         <div className='profile__box__content'>
           <ul className='list list-row'>
-            {/* 기본 list item row 정렬 */}
-            {info.basic.map((item: string, index: number) => (
+            {info.basic.map((item: IMultilangText, index: number) => (
               <li className='list-item' key={`profile_basic_${index}`}>
-                <span className='text'>{item}</span>
+                <span className='text'>{item[lang]}</span>
               </li>
             ))}
           </ul>
@@ -79,17 +74,16 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
       {info.isSpaceBetween && info.spaceBetween && (
         <div className='profile__box__content'>
           <ul className='list list-date'>
-            {/* 기본 list item row 정렬 */}
             {info.spaceBetween.map((item: IDateItem, index: number) => (
               <li className='list-item list-item__between' key={`spaceBetween_${index}`}>
-                <span className='text'>{item.text}</span>
+                <span className='text'>{item.text[lang]}</span>
                 <span className='date'>{item.date}</span>
               </li>
             ))}
           </ul>
         </div>
       )}
-    </section>
+    </>
   );
 };
 
