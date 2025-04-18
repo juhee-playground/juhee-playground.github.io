@@ -10,6 +10,9 @@ declare global {
   type TModeType = 'light' | 'dark';
   type TProjectProperties = 'rich_text' | number | 'date' | 'select' | 'text' | 'title' | 'select';
   type TAnchor = 'top' | 'left' | 'bottom' | 'right';
+  type TErrorType = 'success' | 'warning' | 'error' | 'info';
+  type TLanguage = 'ko' | 'en';
+  type TFilterSelected = string[];
 
   interface IProcess {
     env: IProcessEnv;
@@ -145,6 +148,11 @@ declare global {
     link: null | string;
   }
 
+  interface INotionTextField {
+    rich_text?: IRichText[];
+    title?: IRichText[];
+  }
+
   interface INotionSelect extends INotionDefaultProperties {
     select: ISelectProperty;
   }
@@ -170,8 +178,6 @@ declare global {
   interface INotionNumber extends INotionDefaultProperties {
     number: number;
   }
-
-  type TFilterSelected = string[];
 
   interface ICustomChip {
     selectedItems?: string[];
@@ -211,24 +217,11 @@ declare global {
     icon: string;
     title: string;
     isBasic: boolean;
-    basic?: string[];
+    basic?: IMultilangText[];
     isSubTitle: boolean;
     subTitle?: ISubTitleItem[];
     isSpaceBetween: boolean;
     spaceBetween?: IDateItem[];
-  }
-
-  interface INavProfileProps {
-    info: INavInfoItems;
-    key: string;
-  }
-
-  type TErrorType = 'success' | 'warning' | 'error' | 'info';
-
-  interface ISnackBarProps {
-    message: string;
-    type: TErrorType;
-    isOpen: boolean;
   }
 
   interface ISubTitleItem {
@@ -238,8 +231,14 @@ declare global {
   }
 
   interface IDateItem {
-    text: string;
+    text: IMultilangText;
     date: string;
+  }
+
+  interface ISnackBarProps {
+    message: string;
+    type: TErrorType;
+    isOpen: boolean;
   }
 
   interface ITask {
@@ -253,5 +252,10 @@ declare global {
     label: string;
     value: number;
     color: string;
+  }
+
+  interface IMultilangText {
+    ko: string;
+    en: string;
   }
 }

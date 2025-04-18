@@ -28,10 +28,14 @@ const DB_PROJECT_DATAS = PROJECT_DATA as IProjectProperties[];
 const ASCENDING_ORDER = 1;
 const DESCENDING_ORDER = -1;
 
+const getPlainText = (field: INotionTextField | undefined, key: 'rich_text' | 'title'): string => {
+  const list = field?.[key];
+  return Array.isArray(list) && list[0]?.plain_text ? list[0].plain_text : '';
+};
 export default function Main() {
   const [sortValue, setSortValue] = useState('N');
-  const [selectedCompanies, setSelectedCompanies] = useState<Array<string>>();
-  const [selectedSkillOptions, setSelectedSkillOptions] = useState<Array<string>>();
+  const [selectedCompanies, setSelectedCompanies] = useState<string[]>();
+  const [selectedSkillOptions, setSelectedSkillOptions] = useState<string[]>();
 
   const theme = useTheme();
   const { pointColor, isPrintMode } = useAppSelector((state: TRootState) => state.settings);
@@ -40,76 +44,62 @@ export default function Main() {
   const projectQuery = useProjectsQuery();
   const mainSkillSelectOptions = useSkillOptionQuery('mainSkill');
 
-  const handleChangeSelectedCompanies = (company: string) => {
-    setSelectedCompanies(prev =>
-      prev?.includes(company) ? prev.filter(companyName => companyName !== company) : [...(prev || []), company],
-    );
-  };
-
-  const handleChangeSelectedSkillOptions = (skill: string) => {
-    setSelectedSkillOptions(prev =>
-      prev?.includes(skill) ? prev.filter(skillName => skillName !== skill) : [...(prev || []), skill],
-    );
-  };
-
-  const handleChangeSelect = (event: SelectChangeEvent) => {
-    setSortValue(event.target.value);
-  };
-
   const mode = isPrintMode ? 'print' : '';
 
-  const toyProjectData = useMemo(
-    () => (companyQuery.data || DB_COMPANY_DATAS).filter(company => company.type.rich_text[0].plain_text === 'T'),
-    [companyQuery.data],
-  );
+  const toyProjectData = useMemo(() => {
+    const data = companyQuery.data || DB_COMPANY_DATAS;
+    return data.filter(company => getPlainText(company.type, 'rich_text') === 'T');
+  }, [companyQuery.data]);
 
-  const companies = useMemo(
-    () =>
-      (companyQuery.data || DB_COMPANY_DATAS)
-        .filter(company => company.type.rich_text[0].plain_text === 'C')
-        .map(company => company.name.title[0].plain_text),
-    [companyQuery.data],
-  );
+  const companies = useMemo(() => {
+    const data = companyQuery.data || DB_COMPANY_DATAS;
+    return data
+      .filter(company => getPlainText(company.type, 'rich_text') === 'C')
+      .map(company => getPlainText(company.name, 'title'))
+      .filter(Boolean);
+  }, [companyQuery.data]);
 
   const skillOptions = useMemo(
-    () =>
-      mainSkillSelectOptions.data
-        ? mainSkillSelectOptions.data.map((select: ISelectProperty) => select.name)
-        : DB_SKILL,
+    () => mainSkillSelectOptions.data?.map((select: ISelectProperty) => select.name) || DB_SKILL,
     [mainSkillSelectOptions.data],
   );
 
   const parseCompanyQuery: ICompanyProperties[] = useMemo(() => {
     const companyData = (companyQuery.data || DB_COMPANY_DATAS)
-      .filter((company: ICompanyProperties) => selectedCompanies?.includes(company.name.title[0].plain_text))
-      .sort((firstObject: ICompanyProperties, secondObject: ICompanyProperties) =>
-        firstObject.order.number > secondObject.order.number ? ASCENDING_ORDER : DESCENDING_ORDER,
-      );
+      .filter(company => selectedCompanies?.includes(getPlainText(company.name, 'title')))
+      .sort((a, b) => (a.order.number > b.order.number ? ASCENDING_ORDER : DESCENDING_ORDER));
 
     return /O/.test(sortValue) ? companyData.reverse() : companyData;
   }, [companyQuery.data, sortValue, selectedCompanies]);
 
-  const parseProjectQuery: IProjectProperties[] = useMemo(
-    () =>
-      (projectQuery.data || DB_PROJECT_DATAS).filter((project: IProjectProperties) => {
-        const skillInfo = JSON.stringify(project.mainSkill.multi_select);
-
-        return selectedSkillOptions?.some(item => {
-          const regex = new RegExp(item);
-
-          return regex.test(skillInfo);
-        });
-      }),
-    [projectQuery.data, selectedSkillOptions],
-  );
+  const parseProjectQuery: IProjectProperties[] = useMemo(() => {
+    return (projectQuery.data || DB_PROJECT_DATAS).filter(project => {
+      const skillInfo = JSON.stringify(project.mainSkill.multi_select);
+      return selectedSkillOptions?.some(item => new RegExp(item).test(skillInfo));
+    });
+  }, [projectQuery.data, selectedSkillOptions]);
 
   useEffect(() => {
-    !selectedCompanies && setSelectedCompanies(companies);
+    if (!selectedCompanies) setSelectedCompanies(companies);
   }, [companies, selectedCompanies]);
 
   useEffect(() => {
-    !selectedSkillOptions && setSelectedSkillOptions(skillOptions);
+    if (!selectedSkillOptions) setSelectedSkillOptions(skillOptions);
   }, [skillOptions, selectedSkillOptions]);
+
+  const handleChangeSelect = (event: SelectChangeEvent) => setSortValue(event.target.value);
+
+  const handleChangeSelectedCompanies = (company: string) => {
+    setSelectedCompanies(prev =>
+      prev?.includes(company) ? prev.filter(name => name !== company) : [...(prev || []), company],
+    );
+  };
+
+  const handleChangeSelectedSkillOptions = (skill: string) => {
+    setSelectedSkillOptions(prev =>
+      prev?.includes(skill) ? prev.filter(name => name !== skill) : [...(prev || []), skill],
+    );
+  };
 
   return (
     <>
@@ -117,7 +107,7 @@ export default function Main() {
       <div
         className={`section-right section-right--${theme.palette.mode} ${isPrintMode ? `section-right--${mode}` : ''}`}
       >
-        {projectQuery.isLoading ? <Loading /> : null}
+        {projectQuery.isLoading && <Loading />}
 
         <section className={isPrintMode ? `action--${mode}` : 'action'}>
           <ul className='filter__container'>
@@ -149,10 +139,10 @@ export default function Main() {
                 label='정렬방법'
                 onChange={handleChangeSelect}
               >
-                <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'N'}>
+                <MenuItem sx={{ color: theme.palette.mode === 'dark' ? 'white' : 'black' }} value='N'>
                   최신순
                 </MenuItem>
-                <MenuItem sx={{ color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}` }} value={'O'}>
+                <MenuItem sx={{ color: theme.palette.mode === 'dark' ? 'white' : 'black' }} value='O'>
                   오래된순
                 </MenuItem>
               </Select>
@@ -174,7 +164,7 @@ export default function Main() {
             </h4>
           </div>
 
-          {parseCompanyQuery.map((company: ICompanyProperties, index: number) => (
+          {parseCompanyQuery.map((company, index) => (
             <CardListItem
               key={company.id}
               info={company}
@@ -195,17 +185,15 @@ export default function Main() {
             </h4>
           </div>
 
-          {toyProjectData
-            .filter(company => company.type.rich_text[0].plain_text === 'T')
-            .map((company: ICompanyProperties, index: number) => (
-              <CardListItem
-                key={company.id}
-                info={company}
-                filters={skillOptions}
-                subInfo={parseProjectQuery}
-                isLastCompany={!companies[index + 1]}
-              />
-            ))}
+          {toyProjectData.map((company, index) => (
+            <CardListItem
+              key={company.id}
+              info={company}
+              filters={skillOptions}
+              subInfo={parseProjectQuery}
+              isLastCompany={!companies[index + 1]}
+            />
+          ))}
         </section>
       </div>
     </>
