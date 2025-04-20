@@ -39,4 +39,7 @@
     grid-template-columns: 0.5fr 1fr 1fr;
     grid-template-areas: 'profile contact aside';
   }
+  @include mobile {
+    display: flex;
+  }
 }

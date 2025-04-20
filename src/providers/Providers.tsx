@@ -1,43 +1,27 @@
-import { useMemo, useState, useEffect, PropsWithChildren } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 import { QueryClientProvider } from 'react-query';
 
 import { ThemeProvider, responsiveFontSizes, createTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { ColorModeContext } from '@/context/ColorModeContext';
 import queryClient from '@/lib/queryClient';
-import { getDesignTokens, getThemedComponents, TPaletteMode } from '@/theme';
+import { useSettings } from '@/stores/useSettings';
+import { getDesignTokens, getThemedComponents } from '@/theme';
 
 export default function Providers({ children }: PropsWithChildren) {
-  const [mode, setMode] = useState<TPaletteMode>('light');
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  useEffect(() => {
-    setMode(prefersDarkMode ? 'dark' : 'light');
-  }, [prefersDarkMode]);
-
-  const colorMode = useMemo(
-    () => ({
-      currentMode: mode,
-      toggleColorMode: (theme: TPaletteMode) => setMode(theme),
-    }),
-    [mode],
-  );
+  const { themeMode } = useSettings();
 
   const theme = useMemo(() => {
     const baseTheme = createTheme({
-      ...getDesignTokens(mode),
-      ...getThemedComponents(mode),
+      ...getDesignTokens(themeMode),
+      ...getThemedComponents(themeMode),
     });
 
     return responsiveFontSizes(baseTheme);
-  }, [mode]);
+  }, [themeMode]);
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <ThemeProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </ThemeProvider>
   );
 }

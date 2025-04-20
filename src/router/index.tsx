@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 import NotFound from '@/components/NotFound';
-import UnderConstruction from '@/pages/resume/UnderConstruction';
+import UnderConstruction from '@/pages/UnderConstruction';
 
 const Main = lazy(() => import('../pages/resume'));
 const Dashboard = lazy(() => import('../pages/dashboard'));
