@@ -16,6 +16,9 @@ import { useSettings } from '@/stores/useSettings';
 
 import './Header.scss';
 
+const anchor = 'right';
+const PRINT_TIMEOUT_MS = 100;
+
 export default function DenseAppBar() {
   const [menuDirection, setMenuDirection] = useState({
     top: false,
@@ -23,8 +26,6 @@ export default function DenseAppBar() {
     bottom: false,
     right: false,
   });
-
-  const anchor = 'right';
 
   const { pointColor, isPrintMode, togglePrintMode, themeMode, toggleThemeMode } = useSettings();
 
@@ -50,7 +51,15 @@ export default function DenseAppBar() {
   };
 
   useEffect(() => {
-    if (isPrintMode) openPrint();
+    if (!isPrintMode) return undefined;
+
+    const timeout = window.setTimeout(() => {
+      window.print();
+    }, PRINT_TIMEOUT_MS);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
   }, [isPrintMode]);
 
   return (

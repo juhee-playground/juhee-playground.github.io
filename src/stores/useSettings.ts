@@ -22,7 +22,7 @@ const defaultColor: IColor = {
 };
 
 export const useSettings = create<ISettingsStore>(set => ({
-  themeMode: 'dark',
+  themeMode: 'light',
   isPrintMode: false,
   pointColor: defaultColor,
 
