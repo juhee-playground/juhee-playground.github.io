@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 
-import { useAppSelector } from '@/redux/hooks';
-import type { TRootState } from '@/redux/store';
+import { useTheme } from '@mui/material/styles';
+
+import usePrintMode from '@/hooks/usePrintMode';
 
 import './Layout.scss';
 import './FixButton.scss';
@@ -11,12 +12,13 @@ interface IMainLayoutProps {
 }
 
 export default function Layout({ children }: IMainLayoutProps) {
-  const { isPrintMode } = useAppSelector((state: TRootState) => state.settings);
-  const mode = isPrintMode ? 'print' : '';
+  const { mode, isPrintMode } = usePrintMode();
+  const theme = useTheme();
+  const themeMode = theme.palette.mode;
 
   return (
-    <main className='container'>
-      <div className={isPrintMode ? `main__container main__container--${mode}` : 'main__container'}>{children}</div>
+    <main className={`container container--${themeMode}`}>
+      <div className={`main__container ${isPrintMode ? `main__container--${mode}` : ''}`}>{children}</div>
     </main>
   );
 }

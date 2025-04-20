@@ -1,6 +1,14 @@
 .container {
   max-width: 1080px;
   margin: 0 auto;
+  &--light {
+    background-color: $light-root-background-color;
+    color: $light-text-color;
+  }
+  &--dark {
+    background-color: $dark-root-background-color;
+    color: $dark-text-color;
+  }
 }
 
 .main__container {

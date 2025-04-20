@@ -12,6 +12,7 @@ import { useTheme } from '@mui/material/styles';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 import { ColorModeContext } from '@/context/ColorModeContext';
+import usePrintMode from '@/hooks/usePrintMode';
 import ThemeCustomized from '@/layout/ThemeCustomized';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { changePrintMode } from '@/redux/modules/settings';
@@ -27,11 +28,14 @@ export default function DenseAppBar() {
     bottom: false,
     right: false,
   });
+
+  const anchor = 'right';
+
+  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
+  const { mode, isPrintMode } = usePrintMode(); // ✅ 통일된 훅 사용
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
-  const { pointColor, isPrintMode } = useAppSelector((state: TRootState) => state.settings);
-  const anchor = 'right';
-  const mode = isPrintMode ? 'print' : '';
+  const themeMode = theme.palette.mode;
 
   const toggleDrawer = (direction: TAnchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -41,12 +45,10 @@ export default function DenseAppBar() {
     ) {
       return;
     }
-
     setMenuDirection({ ...menuDirection, [direction]: open });
   };
 
   const handleClickOpen = async () => {
-    // change print mode
     await handlePrintModeChange();
   };
 
@@ -59,14 +61,12 @@ export default function DenseAppBar() {
   };
 
   useEffect(() => {
-    if (isPrintMode) {
-      openPrint();
-    }
+    if (isPrintMode) openPrint();
   }, [isPrintMode]);
 
   return (
-    <header className={isPrintMode ? 'header header--print' : 'header'}>
-      {!isPrintMode ? (
+    <header className={`header header--${themeMode} ${isPrintMode ? `header--${mode}` : ''}`}>
+      {!isPrintMode && (
         <ul className='links'>
           <li role='menuItem'>
             <Link to='/'>이력서</Link>
@@ -75,7 +75,8 @@ export default function DenseAppBar() {
             <Link to='/dashboard'>대시보드</Link>
           </li>
         </ul>
-      ) : null}
+      )}
+
       <div className='menu__groups'>
         {isPrintMode ? (
           <>
@@ -91,10 +92,10 @@ export default function DenseAppBar() {
             <IconButton
               aria-label='lightMode'
               onClick={() => {
-                colorMode.toggleColorMode(theme.palette.mode === 'light' ? 'dark' : 'light');
+                colorMode.toggleColorMode(themeMode === 'light' ? 'dark' : 'light');
               }}
             >
-              {theme.palette.mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+              {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
             <IconButton aria-label='printMode' onClick={handleClickOpen}>
               <PrintIcon />
@@ -102,6 +103,7 @@ export default function DenseAppBar() {
           </>
         )}
       </div>
+
       <button
         style={{ backgroundColor: pointColor.hex }}
         className={`fixButton half-left toggler ripple ${isPrintMode ? `fixButton--${mode}` : ''}`}

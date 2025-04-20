@@ -11,7 +11,7 @@
   }
 
   &--light {
-    background-color: $light-background-color;
+    background-color: $light-root-background-color;
     color: $light-text-color;
   }
   &--dark {
@@ -22,6 +22,7 @@
   .links {
     display: flex;
     gap: 12px;
+    padding: 0 12px;
     a {
       color: inherit;
     }
