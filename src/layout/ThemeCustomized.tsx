@@ -7,33 +7,22 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { changePointColor } from '@/redux/modules/settings';
-import type { TRootState } from '@/redux/store';
-
-import { ColorModeContext } from '../context/ColorModeContext';
+import { useSettings } from '@/stores/useSettings';
 
 import 'react-color-palette/css';
 import './ThemeCustomized.scss';
 
 const ThemeCustomized = () => {
-  const [color, setColor] = useColor('#561ecb');
-
-  const colorMode = React.useContext(ColorModeContext);
-  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
-  const dispatch = useAppDispatch();
+  const [color, setColor] = useColor('#5467f5');
+  const { themeMode, pointColor, setThemeMode, setPointColor } = useSettings();
 
   const handleChangeComplete = (selectedColor: IColor) => {
     setColor(selectedColor);
-    handlePointColor(selectedColor);
+    setPointColor(selectedColor); // Zustand 기반으로 포인트 색상 업데이트
   };
 
-  const handlePointColor = (changeColor: IColor) => {
-    dispatch(changePointColor(changeColor));
-  };
-
-  const changeHandler = (_event: React.ChangeEvent<HTMLInputElement>, value: string) => {
-    colorMode.toggleColorMode(value as PaletteMode);
+  const handleThemeChange = (_event: React.ChangeEvent<HTMLInputElement>, value: string) => {
+    setThemeMode(value as PaletteMode);
   };
 
   return (
@@ -41,23 +30,25 @@ const ThemeCustomized = () => {
       <h2>Theme Customize</h2>
       <hr />
       <h4>THEMING</h4>
+
       <div>
         <FormControl>
           <h5>Theme</h5>
           <RadioGroup
             row
-            aria-labelledby='demo-row-radio-buttons-group-label'
-            value={colorMode.currentMode}
-            name='row-radio-buttons-group'
-            onChange={changeHandler}
+            aria-labelledby='theme-radio-buttons'
+            name='theme-mode'
+            value={themeMode}
+            onChange={handleThemeChange}
           >
             <FormControlLabel value='light' control={<Radio style={{ color: pointColor.hex }} />} label='Light' />
             <FormControlLabel value='dark' control={<Radio style={{ color: pointColor.hex }} />} label='Dark' />
           </RadioGroup>
         </FormControl>
       </div>
+
       <h5>Point Color</h5>
-      <ColorPicker color={color} onChange={handleChangeComplete} />;
+      <ColorPicker color={color} onChange={handleChangeComplete} />
       <hr />
     </div>
   );

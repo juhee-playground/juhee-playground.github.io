@@ -3,16 +3,17 @@ import { useEffect, useState } from 'react';
 import { SelectChangeEvent } from '@mui/material/Select';
 
 import ResumeView from '@/components/resume/ResumeView';
+import usePrintMode from '@/hooks/usePrintMode';
 import useResumeData from '@/hooks/useResumeMainData';
-import { useAppSelector } from '@/redux/hooks';
+import { useSettings } from '@/stores/useSettings';
 
 const ResumeContainer = () => {
   const [sortValue, setSortValue] = useState('N');
   const [selectedCompanies, setSelectedCompanies] = useState<string[]>();
   const [selectedSkillOptions, setSelectedSkillOptions] = useState<string[]>();
 
-  const { pointColor, isPrintMode } = useAppSelector(state => state.settings);
-  const mode = isPrintMode ? 'print' : '';
+  const { pointColor } = useSettings();
+  const { mode } = usePrintMode();
 
   const { projectQuery, toyProjectData, companies, skillOptions, parseCompanyQuery, parseProjectQuery } = useResumeData(
     { selectedCompanies, selectedSkillOptions, sortValue },

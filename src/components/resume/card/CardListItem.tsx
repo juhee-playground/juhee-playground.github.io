@@ -2,22 +2,22 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import usePrintMode from '@/hooks/usePrintMode';
-import { useAppSelector } from '@/redux/hooks';
-import type { TRootState } from '@/redux/store';
+import { useSettings } from '@/stores/useSettings';
+import { cn } from '@/utils/classNames';
 import { parseCompanyData } from '@/utils/parser';
 
 import SubListItem from './SubListItem';
 
 const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps) => {
   const companyData = parseCompanyData(info);
-  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
-  const { mode, isPrintMode } = usePrintMode();
+  const { pointColor } = useSettings();
+  const { isPrintMode, mode } = usePrintMode();
 
   return (
     <>
       <div
         key={`company__${companyData.id}`}
-        className={`box__container${isPrintMode ? ` box__container--${mode}` : ''}`}
+        className={cn('box__container', isPrintMode && `box__container--${mode}`)}
         id={companyData.id}
       >
         <div className='box__header'>

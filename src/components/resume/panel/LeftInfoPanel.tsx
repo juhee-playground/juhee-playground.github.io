@@ -2,8 +2,8 @@ import { useTheme } from '@mui/material/styles';
 
 import ProfileInfo from '@/data/DB_profileInfo.json';
 import usePrintMode from '@/hooks/usePrintMode';
-import { useAppSelector } from '@/redux/hooks';
-import type { TRootState } from '@/redux/store';
+import { useSettings } from '@/stores/useSettings';
+import { cn } from '@/utils/classNames';
 
 import ProfileInfoBox from './ProfileInfoBox';
 
@@ -13,17 +13,17 @@ const contactInfo = ProfileInfo.find(item => item.title === 'CONTACT');
 const asideInfos = ProfileInfo.filter(item => item.title !== 'CONTACT');
 
 const LeftInfoPanel = () => {
-  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
   const { mode, isPrintMode } = usePrintMode();
+  const { pointColor } = useSettings();
   const theme = useTheme();
   const themeMode = theme.palette.mode;
 
   return (
     <aside
       id='profileInfo'
-      className={`nav__container nav__container--${themeMode} ${isPrintMode ? `nav__container--${mode}` : ''}`}
+      className={cn('nav__container', `nav__container--${themeMode}`, isPrintMode && `nav__container--${mode}`)}
     >
-      <div className={`infos infos--${isPrintMode ? 'print' : theme.palette.mode}`}>
+      <div className={cn('infos', `infos--${isPrintMode ? 'print' : themeMode}`)}>
         <section className='profile__box profile'>
           <header className={`profile__info profile__info--${themeMode}`}>
             <h2 style={{ color: pointColor.hex }} className='profile__info-first-name'>
@@ -34,12 +34,12 @@ const LeftInfoPanel = () => {
           </header>
         </section>
         {contactInfo && (
-          <section className={isPrintMode ? `profile__box--${mode} contact` : `profile__box contact`}>
+          <section className={cn('profile__box', isPrintMode && `profile__box--${mode}`, 'contact')}>
             <ProfileInfoBox info={contactInfo} />
           </section>
         )}
 
-        <section className={isPrintMode ? `profile__box--${mode} aside` : `profile__box aside`}>
+        <section className={cn('profile__box', isPrintMode && `profile__box--${mode}`, 'aside')}>
           {asideInfos.map(info => (
             <ProfileInfoBox key={info.title} info={info} />
           ))}

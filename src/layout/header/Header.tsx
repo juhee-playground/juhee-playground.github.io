@@ -14,14 +14,11 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { ColorModeContext } from '@/context/ColorModeContext';
 import usePrintMode from '@/hooks/usePrintMode';
 import ThemeCustomized from '@/layout/ThemeCustomized';
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { changePrintMode } from '@/redux/modules/settings';
-import type { TRootState } from '@/redux/store';
+import { useSettings } from '@/stores/useSettings';
 
 import './Header.scss';
 
 export default function DenseAppBar() {
-  const dispatch = useAppDispatch();
   const [menuDirection, setMenuDirection] = useState({
     top: false,
     left: false,
@@ -31,8 +28,8 @@ export default function DenseAppBar() {
 
   const anchor = 'right';
 
-  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
-  const { mode, isPrintMode } = usePrintMode(); // ✅ 통일된 훅 사용
+  const { togglePrintMode, pointColor } = useSettings();
+  const { mode, isPrintMode } = usePrintMode();
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
   const themeMode = theme.palette.mode;
@@ -48,12 +45,8 @@ export default function DenseAppBar() {
     setMenuDirection({ ...menuDirection, [direction]: open });
   };
 
-  const handleClickOpen = async () => {
-    await handlePrintModeChange();
-  };
-
-  const handlePrintModeChange = () => {
-    dispatch(changePrintMode());
+  const handleClickOpen = () => {
+    togglePrintMode();
   };
 
   const openPrint = () => {

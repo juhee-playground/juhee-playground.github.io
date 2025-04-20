@@ -1,5 +1,4 @@
-import { useAppSelector } from '@/redux/hooks';
-import type { TRootState } from '@/redux/store';
+import { useSettings } from '@/stores/useSettings';
 
 interface IContactProperties {
   [key: string]: string | undefined;
@@ -14,7 +13,7 @@ interface INavProfileProps {
 }
 
 const ProfileInfoBox = ({ info }: INavProfileProps) => {
-  const { pointColor } = useAppSelector((state: TRootState) => state.settings);
+  const { pointColor } = useSettings();
   const lang = 'ko';
 
   const contactInfo: IContactProperties = {
