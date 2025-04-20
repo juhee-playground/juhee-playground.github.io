@@ -55,18 +55,46 @@
 
 ---
 
-## ✔ 실행 방법
+## ✔ 실행방법
+
+### 🔧 로컬 실행
 
 ```bash
-# 설치
 yarn install
-
-# 로컬 실행
 yarn dev
+```
 
-# 스토리북 실행
+### 스토리북 실행
+
+```bash
 yarn storybook
 ```
+
+## 🚀 GitHub Pages 배포
+
+### 1. 배포 명령어 실행
+
+```bash
+yarn deploy
+```
+
+- 내부적으로 다음 스크립트를 실행함:
+  ```json
+  {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist"
+  }
+  ```
+- `dist/` 폴더가 자동으로 GitHub Pages에 배포됨
+- 배포 브랜치는 `gh-pages`
+
+---
+
+### 2. 배포 결과 확인
+
+- 배포 주소: `https://<GitHub_유저명>.github.io/`
+
+> GitHub Pages가 활성화되어 있는지 **Repository > Settings > Pages**에서 확인 필요
 
 ---
 
@@ -100,3 +128,7 @@ yarn storybook
 ## ✔ 결과물
 
 👉 [https://juhee-playground.github.io](https://juhee-playground.github.io)
+
+```
+
+```
