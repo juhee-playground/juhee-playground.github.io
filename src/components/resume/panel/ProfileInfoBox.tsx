@@ -1,3 +1,4 @@
+import { IS_JOB_SEEKING } from '@/constants/config';
 import { useSettings } from '@/stores/useSettings';
 
 interface IContactProperties {
@@ -23,6 +24,11 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
     portfolio: import.meta.env.VITE_APP_PORTFOLIO,
   };
 
+  const displayValue = (key: keyof IContactProperties): string | undefined => {
+    if (!IS_JOB_SEEKING && key === 'phone_number') return '현재 구직 중이 아니므로 연락처는 비공개입니다.';
+    return contactInfo[key];
+  };
+
   return (
     <>
       <div className='profile__box__header'>
@@ -45,10 +51,10 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
                   <dd className='text'>
                     {key === 'github' || key === 'portfolio' ? (
                       <a href={contactInfo[key]} color='inherit'>
-                        {contactInfo[key]}
+                        {displayValue(key)}
                       </a>
                     ) : (
-                      contactInfo[key]
+                      displayValue(key)
                     )}
                   </dd>
                 </div>
