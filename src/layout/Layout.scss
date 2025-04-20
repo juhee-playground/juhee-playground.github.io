@@ -17,6 +17,12 @@
   &--print {
     flex-direction: column;
   }
+  &--center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; // 적절한 높이로 중앙 정렬
+  }
   @include tablet-down {
     flex-direction: column;
   }
