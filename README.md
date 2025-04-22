@@ -92,7 +92,7 @@ yarn deploy
 
 ### 2. 배포 결과 확인
 
-- 배포 주소: `https://<GitHub_유저명>.github.io/`
+👉 [https://juhee-playground.github.io](https://juhee-playground.github.io)
 
 > GitHub Pages가 활성화되어 있는지 **Repository > Settings > Pages**에서 확인 필요
 
@@ -124,11 +124,3 @@ yarn deploy
 - [x] 디렉토리 구조 기능 단위로 정리
 
 ---
-
-## ✔ 결과물
-
-👉 [https://juhee-playground.github.io](https://juhee-playground.github.io)
-
-```
-
-```
