@@ -354,3 +354,41 @@
 .timeline-highlight-fade {
   animation: highlightFadeOut 0.5s ease-out forwards;
 }
+
+/* GameBoy Landing Page Animations from index.css */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1.2s infinite;
+}
+
+.scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.screen-fade {
+  animation: screenFade 0.4s ease-out forwards;
+}
+
+@keyframes screenFade {
+  0% { opacity: 0; transform: scale(0.98); filter: brightness(2); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+}
+
+.keycap-shadow {
+  box-shadow: 0 4px 0 0 rgba(0,0,0,0.2);
+}
+
+.keycap-shadow:active {
+  box-shadow: 0 1px 0 0 rgba(0,0,0,0.2);
+  transform: translateY(3px);
+}

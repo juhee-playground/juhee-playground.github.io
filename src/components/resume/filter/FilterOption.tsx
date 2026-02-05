@@ -2,8 +2,6 @@ import DChip from '@/components/custom/DChip';
 import ToggleChip from '@/components/custom/ToggleChip';
 import { formatFirstLetterToUpper } from '@/utils/formatter';
 
-import './filterOption.scss';
-
 interface IFilterOptionProps {
   title: string;
   options: string[];
@@ -15,12 +13,12 @@ interface IFilterOptionProps {
 
 const FilterOption = ({ title, options, colorOptions, color, selected, onChange }: IFilterOptionProps) => {
   return (
-    <li className='list__item'>
-      <p className='filter__left'>
-        <span className='text'>{formatFirstLetterToUpper(title)}</span>
+    <li className='flex items-center my-2 md:flex-row flex-col'>
+      <p className='mr-4 w-[15%] border-r-2 border-[#dddddd] py-2 px-2 flex items-center justify-center md:border-r-2 md:self-auto md:border-r self-start border-r-0'>
+        <span className='text-sm font-bold'>{formatFirstLetterToUpper(title)}</span>
       </p>
 
-      <div className='filter__chips'>
+      <div className='flex flex-wrap gap-2 w-[75%] py-2 px-2'>
         {colorOptions
           ? colorOptions.map(({ id, name, color: chipColor }: ISelectProperty) => (
               <DChip

@@ -9,10 +9,10 @@ interface ISideProjectSectionProps {
 
 const SideProjectSection = ({ data, projects, filters, pointColor }: ISideProjectSectionProps) => {
   return (
-    <section className='career'>
-      <div className='group__header'>
-        <span className='box-icon'>⚽️</span>
-        <h4 style={{ color: pointColor }} className='box-title'>
+    <section className='p-1 px-2'>
+      <div className='flex items-center my-2'>
+        <span className='px-1'>⚽️</span>
+        <h4 style={{ color: pointColor }} className='m-0 px-1 leading-7'>
           SIDE PROJECT
         </h4>
       </div>

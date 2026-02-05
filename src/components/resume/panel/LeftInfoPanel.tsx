@@ -7,8 +7,6 @@ import { cn } from '@/utils/classNames';
 
 import ProfileInfoBox from './ProfileInfoBox';
 
-import './index.scss';
-
 const contactInfo = ProfileInfo.find(item => item.title === 'CONTACT');
 const asideInfos = ProfileInfo.filter(item => item.title !== 'CONTACT');
 
@@ -21,25 +19,42 @@ const LeftInfoPanel = () => {
   return (
     <aside
       id='profileInfo'
-      className={cn('nav__container', `nav__container--${themeMode}`, isPrintMode && `nav__container--${mode}`)}
+      className={cn(
+        'grid-area-[profile] flex flex-col items-center justify-start py-6 px-3 pb-[18px]',
+        themeMode === 'light' ? 'bg-[whitesmoke] text-[#181717]' : 'bg-[#181717] text-white',
+        isPrintMode && mode === 'print' && 'bg-white text-black'
+      )}
     >
-      <div className={cn('infos', `infos--${isPrintMode ? 'print' : themeMode}`)}>
-        <section className='profile__box profile'>
-          <header className={`profile__info profile__info--${themeMode}`}>
-            <h2 style={{ color: pointColor.hex }} className='profile__info-first-name'>
+      <div
+        className={cn(
+          'flex flex-wrap justify-center w-full',
+          isPrintMode && 'print:grid print:grid-cols-[0.5fr_1fr_1fr] print:gap-4 print:grid-areas-[profile_contact_aside]',
+          'md:grid md:grid-cols-[0.5fr_1fr_1fr] md:gap-4 md:grid-areas-[profile_contact_aside]',
+          'max-md:flex'
+        )}
+      >
+        <section className='flex flex-col justify-center my-2 w-[80%] print:w-full print:justify-start'>
+          <header
+            className={cn(
+              'text-center mt-[11px]',
+              themeMode === 'light' ? 'text-[#181717]' : 'text-white',
+              '[&_h2]:mt-4 [&_h2]:m-0 [&_h2]:text-[30px]'
+            )}
+          >
+            <h2 style={{ color: pointColor.hex }} className='m-0'>
               BAEK
             </h2>
-            <h2 className='profile__info-name'>JU HEE</h2>
-            <p className='profile__info-role'>Front Developer</p>
+            <h2 className='m-0'>JU HEE</h2>
+            <p className='my-2'>Front Developer</p>
           </header>
         </section>
         {contactInfo && (
-          <section className={cn('profile__box', isPrintMode && `profile__box--${mode}`, 'contact')}>
+          <section className={cn('flex flex-col justify-center my-2 w-[80%]', isPrintMode && `profile__box--${mode}`, 'contact')}>
             <ProfileInfoBox info={contactInfo} />
           </section>
         )}
 
-        <section className={cn('profile__box', isPrintMode && `profile__box--${mode}`, 'aside')}>
+        <section className={cn('flex flex-col gap-4 my-2 w-[80%]', isPrintMode && `profile__box--${mode}`, 'aside')}>
           {asideInfos.map(info => (
             <ProfileInfoBox key={info.title} info={info} />
           ))}

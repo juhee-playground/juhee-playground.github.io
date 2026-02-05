@@ -1,4 +1,17 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-}
+
+  box-sizing: border-box;
+    border-width: 0;
+      border-style: solid;
+      border-color: #e5e7eb;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f5f9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }

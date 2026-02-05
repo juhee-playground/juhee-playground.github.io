@@ -17,59 +17,59 @@ const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps)
     <>
       <div
         key={`company__${companyData.id}`}
-        className={cn('box__container', isPrintMode && `box__container--${mode}`)}
+        className={cn('flex flex-col px-3', isPrintMode && `box__container--${mode}`)}
         id={companyData.id}
       >
-        <div className='box__header'>
-          <div className='row row__first'>
-            <span className='text text__title'>{companyData.name}</span>
+        <div className='flex flex-col'>
+          <div className='flex items-center py-1'>
+            <span className='text-2xl font-semibold leading-none m-0'>{companyData.name}</span>
 
-            <Box className='period__groups'>
-              <Typography variant='caption' color='text.primary' className='text text__sub period'>
+            <Box className='ml-5'>
+              <Typography variant='caption' color='text.primary' className='text-sm font-semibold leading-none m-0'>
                 {companyData.startDate}
               </Typography>
               {companyData.startDate && (
-                <Typography variant='caption' color='text.primary' className='text text__plain period'>
+                <Typography variant='caption' color='text.primary' className='text-sm leading-none m-0'>
                   ~
                 </Typography>
               )}
-              <Typography variant='caption' color='text.primary' className='text text__sub period'>
+              <Typography variant='caption' color='text.primary' className='text-sm font-semibold leading-none m-0'>
                 {companyData.endDate}
               </Typography>
-              <Typography variant='caption' color='text.primary' className='text text__plain period'>
+              <Typography variant='caption' color='text.primary' className='text-sm leading-none m-0'>
                 {companyData.period}
               </Typography>
             </Box>
           </div>
 
           {companyData.type === 'C' && (
-            <p className='row row__second'>
-              <span className='text text__sub'>{companyData.role}</span>
-              <span className='text text__plain'> | </span>
-              <span className='text text__sub'>{companyData.department}</span>
-              <span className='text text__plain'> | 설립년도:</span>
-              <span className='text text__sub'> {companyData.year}</span>
-              <span className='text text__plain'> | 회사규모: </span>
-              <span className='text text__sub'> {companyData.scale}</span>
+            <p className='py-1'>
+              <span className='text-sm font-semibold leading-none m-0'>{companyData.role}</span>
+              <span className='text-sm leading-none m-0'> | </span>
+              <span className='text-sm font-semibold leading-none m-0'>{companyData.department}</span>
+              <span className='text-sm leading-none m-0'> | 설립년도:</span>
+              <span className='text-sm font-semibold leading-none m-0'> {companyData.year}</span>
+              <span className='text-sm leading-none m-0'> | 회사규모: </span>
+              <span className='text-sm font-semibold leading-none m-0'> {companyData.scale}</span>
             </p>
           )}
 
-          <p className='row row__third'>
+          <p className='flex flex-col mb-3'>
             {companyData.description.map((text, index) => (
-              <span key={`description_${index}`} className='text text__plain'>
+              <span key={`description_${index}`} className='text-sm leading-none m-0'>
                 {text}
               </span>
             ))}
           </p>
         </div>
 
-        <div className='group__header'>
-          <h4 style={{ color: pointColor.hex }} className='box-title'>
+        <div className='flex items-center my-2'>
+          <h4 style={{ color: pointColor.hex }} className='m-0 px-1 leading-7'>
             WORK EXPERIENCE
           </h4>
         </div>
 
-        <div className='projects'>
+        <div className='my-3'>
           {subInfo
             ?.filter(project => project.company?.relation?.[0]?.id === companyData.id)
             .map((project: IProjectProperties, index: number) => (
@@ -78,7 +78,7 @@ const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps)
         </div>
       </div>
 
-      {!isLastCompany && <hr className='line--bottom' />}
+      {!isLastCompany && <hr className='bg-[#dddddd] h-px border-0' />}
     </>
   );
 };

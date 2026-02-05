@@ -10,8 +10,7 @@ import FilterOption from '@/components/resume/filter/FilterOption';
 import PointStackCard from '@/components/resume/overview/Card';
 import LeftSection from '@/components/resume/panel/LeftInfoPanel';
 import SideProjectSection from '@/components/resume/SideProjectSection';
-
-import './index.scss';
+import { cn } from '@/utils/classNames';
 
 interface IResumeViewProps {
   isLoading: boolean;
@@ -51,11 +50,19 @@ const ResumeView = ({
   return (
     <>
       <LeftSection />
-      <div className={`section-right section-right--${theme.palette.mode} ${mode ? `section-right--${mode}` : ''}`}>
+      <div
+        className={cn(
+          'flex-[0_0_70%] flex flex-col py-3 px-2',
+          theme.palette.mode === 'light'
+            ? 'bg-[ghostwhite] text-[#181717]'
+            : 'bg-[#1d1b1b] text-white',
+          mode === 'print' && 'bg-white border-t-2 border-[#666666]'
+        )}
+      >
         {isLoading && <Loading />}
 
-        <section className={mode ? `action--${mode}` : 'action'}>
-          <ul className='filter__container'>
+        <section className={`h-[20%] ${mode === 'print' ? 'hidden' : ''}`}>
+          <ul className='flex flex-col gap-4'>
             <FilterOption
               options={companies}
               title='company'
@@ -72,11 +79,10 @@ const ResumeView = ({
             />
           </ul>
 
-          <div className='sort__container'>
+          <div className='flex justify-end'>
             <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
               <InputLabel id='demo-select-small-label'>정렬방법</InputLabel>
               <Select
-                className='sort__select-input'
                 labelId='demo-simple-select-label'
                 id='demo-select-small'
                 value={sortValue}
@@ -93,12 +99,12 @@ const ResumeView = ({
             </FormControl>
           </div>
 
-          <hr className='hrBasic' />
+          <hr className='bg-[#dddddd] h-px w-full my-4' />
         </section>
 
         <PointStackCard />
 
-        <hr className='hrBasic' />
+        <hr className='bg-[#dddddd] h-px w-full my-4' />
 
         <CareerSection
           data={parseCompanyQuery}
@@ -107,7 +113,7 @@ const ResumeView = ({
           pointColor={pointColorHex}
         />
 
-        <hr className='hrBasic' />
+        <hr className='bg-[#dddddd] h-px w-full my-4' />
 
         <SideProjectSection
           data={toyProjectData}

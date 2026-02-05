@@ -13,8 +13,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import usePrintMode from '@/hooks/usePrintMode';
 import ThemeCustomized from '@/layout/ThemeCustomized';
 import { useSettings } from '@/stores/useSettings';
-
-import './Header.scss';
+import { cn } from '@/utils/classNames';
 
 const anchor = 'right';
 const PRINT_TIMEOUT_MS = 100;
@@ -63,9 +62,15 @@ export default function DenseAppBar() {
   }, [isPrintMode]);
 
   return (
-    <header className={`header header--${themeMode} ${isPrintMode ? `header--${mode}` : ''}`}>
+    <header
+      className={cn(
+        'p-0 h-10 flex justify-between items-center max-w-[1080px] mx-auto md:pr-[45px]',
+        themeMode === 'light' ? 'bg-[#fefefe] text-[#181717]' : 'bg-[#181717] text-white',
+        isPrintMode && mode === 'print' && '[&_.menu__groups]:hidden [&:hover_.menu__groups]:inline'
+      )}
+    >
       {!isPrintMode && (
-        <ul className='links'>
+        <ul className='flex gap-3 px-3 [&_a]:text-inherit'>
           <li role='menuItem'>
             <Link to='/'>이력서</Link>
           </li>
@@ -104,7 +109,15 @@ export default function DenseAppBar() {
 
       <button
         style={{ backgroundColor: pointColor.hex }}
-        className={`fixButton half-left toggler ripple ${isPrintMode ? `fixButton--${mode}` : ''}`}
+        className={cn(
+          'font-["Roboto",sans-serif] appearance-none border-none uppercase box-border text-white align-middle text-sm text-center no-underline py-2 shadow-[0_1px_4px_0_rgba(0,0,0,0.37)] cursor-pointer hover:shadow-[0_2px_2px_0_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.3)] focus:outline-0',
+          'rounded-tl-lg rounded-bl-lg',
+          'relative overflow-hidden',
+          'before:content-[""] before:absolute before:top-1/2 before:left-1/2 before:w-0 before:h-0 before:rounded-full before:bg-[rgba(255,255,255,0.6)]',
+          'focus:before:transition-all focus:before:duration-500 focus:before:ease-out focus:before:opacity-0 focus:before:w-[160px] focus:before:h-[160px] focus:before:-mt-20 focus:before:-ml-20',
+          'absolute fixed top-[10%] right-0 -translate-y-1/2 md:top-[2.6%]',
+          isPrintMode && mode === 'print' && 'hidden'
+        )}
         onClick={toggleDrawer(anchor, true)}
       >
         <SettingsIcon />

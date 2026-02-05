@@ -1,7 +1,10 @@
 @tailwind utilities;
 
+/* Mixins from _mixins.scss */
 .flex-center {
   @apply flex items-center justify-center;
+  display: flex;
+  align-items: center;
 }
 
 .text-title {

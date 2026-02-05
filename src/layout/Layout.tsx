@@ -4,9 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 
 import usePrintMode from '@/hooks/usePrintMode';
-
-import './Layout.scss';
-import './FixButton.scss';
+import { cn } from '@/utils/classNames';
 
 interface IMainLayoutProps {
   children: ReactNode;
@@ -21,11 +19,19 @@ export default function Layout({ children }: IMainLayoutProps) {
   const isErrorPage = pathname === '/404' || !['/', '/dashboard', '/portfolio'].includes(pathname);
 
   return (
-    <main className={`container container--${themeMode}`}>
+    <main
+      className={cn(
+        'max-w-[1080px] mx-auto',
+        themeMode === 'light' ? 'bg-[#fefefe] text-[#181717]' : 'bg-[#242424] text-white'
+      )}
+    >
       <div
-        className={`main__container ${isPrintMode ? `main__container--${mode}` : ''} ${
-          isErrorPage ? 'main__container--center' : ''
-        }`}
+        className={cn(
+          'flex gap-[0.4em]',
+          isPrintMode && 'flex-col',
+          isErrorPage && 'justify-center items-center min-h-[80vh]',
+          'md:flex-row'
+        )}
       >
         {children}
       </div>

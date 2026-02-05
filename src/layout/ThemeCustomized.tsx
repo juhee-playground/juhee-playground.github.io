@@ -10,7 +10,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import { useSettings } from '@/stores/useSettings';
 
 import 'react-color-palette/css';
-import './ThemeCustomized.scss';
 
 const ThemeCustomized = () => {
   const [color, setColor] = useColor('#5467f5');
@@ -26,7 +25,7 @@ const ThemeCustomized = () => {
   };
 
   return (
-    <div className='card__container'>
+    <div className='px-3 py-2'>
       <h2>Theme Customize</h2>
       <hr />
       <h4>THEMING</h4>

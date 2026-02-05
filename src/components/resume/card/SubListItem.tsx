@@ -18,36 +18,36 @@ const SubListItem = ({ info, filters }: ISubListProps) => {
   const { mode, isPrintMode } = usePrintMode();
 
   return (
-    <section className='project__container' key={`project__${projectData.id}`}>
-      <div className='list__item list__item--vertical'>
-        <a className='title__link' href={projectData.url} target='_blank' rel='noreferrer'>
-          <LabelIcon fontSize='small' className='text text__icon--pre' />
-          <h6 className='text text__subTitle'>{projectData.name}</h6>
+    <section className='my-3' key={`project__${projectData.id}`}>
+      <div className='flex flex-col my-1'>
+        <a className='flex items-start cursor-pointer text-inherit hover:underline' href={projectData.url} target='_blank' rel='noreferrer'>
+          <LabelIcon fontSize='small' className='pr-1 leading-none m-0' />
+          <h6 className='text-xl font-semibold leading-none m-0'>{projectData.name}</h6>
         </a>
 
-        <Box className='numbers text__sub'>
-          <Typography variant='caption' color='text.primary' className='text text__plain period' gutterBottom>
+        <Box className='px-1'>
+          <Typography variant='caption' color='text.primary' className='text-sm font-bold text-xs leading-none m-0' gutterBottom>
             {projectData.period}
           </Typography>
         </Box>
       </div>
 
-      <p>
-        <span className='text text__plain'>참여인원: </span>
-        <span className='text__sub'>{projectData.numberOfParticipants}</span>
-        <span className='text text__plain'> | 역활: </span>
-        <span className='text text__sub'> {projectData.role}</span>
+      <p className='my-1'>
+        <span className='text-sm leading-none m-0'>참여인원: </span>
+        <span className='text-sm font-semibold leading-none m-0'>{projectData.numberOfParticipants}</span>
+        <span className='text-sm leading-none m-0'> | 역활: </span>
+        <span className='text-sm font-semibold leading-none m-0'> {projectData.role}</span>
       </p>
 
-      <p className='list__item description'>
-        <span className='text text__plain'>{projectData.description}</span>
+      <p className='flex flex-col line-height-6 my-1'>
+        <span className='text-sm leading-none m-0 whitespace-pre'>{projectData.description}</span>
       </p>
 
-      <div className='list__item period'></div>
+      <div className='my-1'></div>
 
-      <div className='list__item stacks'>
-        <ul className={isPrintMode ? `list__container--${mode}` : 'list__container'}>
-          <Stack className='stacks' direction='row' spacing={1}>
+      <div className='flex flex-col items-start my-1'>
+        <ul className={isPrintMode ? `flex flex-wrap list-none my-1 p-0` : 'flex flex-wrap list-none my-1 p-0'}>
+          <Stack className='flex flex-wrap' direction='row' spacing={1}>
             {projectData.mainSkills.map((select: ISelectProperty) => (
               <DChip
                 key={`mainSkill_${projectData.id}_${select.id}`}
@@ -71,7 +71,7 @@ const SubListItem = ({ info, filters }: ISubListProps) => {
         </ul>
       </div>
 
-      <div className='list__item experience'>
+      <div className='flex flex-col items-start my-1'>
         <Accordion
           title={
             <React.Fragment>

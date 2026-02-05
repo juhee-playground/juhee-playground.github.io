@@ -8,8 +8,6 @@ import PieChart from '@/components/chart/pie/d3Pie';
 import TimelineChart from '@/components/chart/TimelineChart';
 import CardV2 from '@/components/common/CardVersion2';
 
-import './Main.scss';
-
 const tasks: ITask[] = [
   {
     name: 'YU파트너스',
@@ -36,11 +34,11 @@ const stackData = [
 
 export default function MainPage() {
   return (
-    <div className='dashboard'>
-      <section className='dashboard__row'>
-        <article className='dashboard__widget'>
-          <h3 className='dashboard__widget-title'>PROJECTS</h3>
-          <ul className='dashboard__widget-content'>
+    <div className='w-full flex flex-col items-start gap-4 bg-white'>
+      <section className='w-full flex flex-wrap gap-4 items-center justify-start'>
+        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
+          <h3 className='mb-6 text-2xl'>PROJECTS</h3>
+          <ul className='flex flex-wrap gap-6'>
             <li>
               <CardV2 image={ReactIcon} name='React' count={3} />
             </li>
@@ -52,9 +50,9 @@ export default function MainPage() {
             </li>
           </ul>
         </article>
-        <article className='dashboard__widget'>
-          <h3 className='dashboard__widget-title'>COMPANYS</h3>
-          <ul className='dashboard__widget-content'>
+        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
+          <h3 className='mb-6 text-2xl'>COMPANYS</h3>
+          <ul className='flex flex-wrap gap-6'>
             <li>
               <CardV2 name='Fitogether' count={4} unit='year' />
             </li>
@@ -64,17 +62,17 @@ export default function MainPage() {
           </ul>
         </article>
       </section>
-      <section className='dashboard__row'>
-        <article className='dashboard__widget'>
-          <h3 className='dashboard__widget-title'>MAIN TECH USAGE</h3>
-          <div className='dashboard__widget-content'>
+      <section className='w-full flex flex-wrap gap-4 items-center justify-start'>
+        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
+          <h3 className='mb-6 text-2xl'>MAIN TECH USAGE</h3>
+          <div className='flex flex-wrap gap-6'>
             <PieChart data={stackData} width={410} height={280} />
           </div>
         </article>
 
-        <article className='dashboard__widget'>
-          <h3 className='dashboard__widget-title'>CAREER TIMELINE</h3>
-          <div className='dashboard__widget-content'>
+        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
+          <h3 className='mb-6 text-2xl'>CAREER TIMELINE</h3>
+          <div className='flex flex-wrap gap-6'>
             <TimelineChart tasks={tasks} width={500} height={300} />
           </div>
         </article>

@@ -31,26 +31,26 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
 
   return (
     <>
-      <div className='profile__box__header'>
-        <span className='box-icon'>{info.icon}</span>
-        <h4 style={{ color: pointColor.hex }} className='box-title'>
+      <div className='flex items-center'>
+        <span className='px-1'>{info.icon}</span>
+        <h4 style={{ color: pointColor.hex }} className='m-0 px-1 leading-7'>
           {info.title}
         </h4>
       </div>
 
-      <hr />
+      <hr className='w-full my-0.5' />
 
       {info.isSubTitle && info.subTitle && (
-        <div className='profile__box__content'>
-          <dl className='list list-subtitle'>
+        <div className='flex w-full'>
+          <dl className='w-full list-none p-0 m-0 flex flex-col gap-2'>
             {info.subTitle.map((item: ISubTitleItem, index: number) => {
               const key = item.value;
               return (
-                <div className='list-item' key={`profile_subTitle_${index}`}>
-                  <dt className='subtitle'>{item.subTitle}</dt>
-                  <dd className='text'>
+                <div className='flex flex-col gap-2 leading-6' key={`profile_subTitle_${index}`}>
+                  <dt className='font-semibold text-[15px] m-0'>{item.subTitle}</dt>
+                  <dd className='font-normal text-[13px] m-0 break-words'>
                     {key === 'github' || key === 'portfolio' ? (
-                      <a href={contactInfo[key]} color='inherit'>
+                      <a href={contactInfo[key]} className='text-inherit underline' color='inherit'>
                         {displayValue(key)}
                       </a>
                     ) : (
@@ -65,11 +65,11 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
       )}
 
       {info.isBasic && info.basic && (
-        <div className='profile__box__content'>
-          <ul className='list list-row'>
+        <div className='flex w-full'>
+          <ul className='w-full list-none p-0 m-0 flex flex-row flex-wrap gap-2'>
             {info.basic.map((item: IMultilangText, index: number) => (
-              <li className='list-item' key={`profile_basic_${index}`}>
-                <span className='text'>{item[lang]}</span>
+              <li className='flex flex-col leading-6 pr-3' key={`profile_basic_${index}`}>
+                <span className='font-normal text-[13px] m-0'>{item[lang]}</span>
               </li>
             ))}
           </ul>
@@ -77,12 +77,12 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
       )}
 
       {info.isSpaceBetween && info.spaceBetween && (
-        <div className='profile__box__content'>
-          <ul className='list list-date'>
+        <div className='flex w-full'>
+          <ul className='w-full list-none p-0 m-0 flex flex-col gap-2'>
             {info.spaceBetween.map((item: IDateItem, index: number) => (
-              <li className='list-item list-item__between' key={`spaceBetween_${index}`}>
-                <span className='text'>{item.text[lang]}</span>
-                <span className='date'>{item.date}</span>
+              <li className='flex flex-row justify-between leading-6' key={`spaceBetween_${index}`}>
+                <span className='font-normal text-[13px] m-0 break-words'>{item.text[lang]}</span>
+                <span className='text-[13px]'>{item.date}</span>
               </li>
             ))}
           </ul>
