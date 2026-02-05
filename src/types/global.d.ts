@@ -258,4 +258,13 @@ declare global {
     ko: string;
     en: string;
   }
+
+interface IButtonProps {
+  label?: string;
+  onClick: () => void;
+  className?: string;
+  type?: 'circle' | 'dpad' | 'pill';
+  direction?: 'up' | 'down' | 'left' | 'right';
+}
+
 }
