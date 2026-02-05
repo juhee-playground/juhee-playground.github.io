@@ -5,11 +5,13 @@ interface ScreenContentProps {
   menuIndex?: number;
   detailIndex?: number;
   resumePage?: number;
+  dashboardPage?: number;
   onPageChange?: (page: number) => void;
+  onDashboardPageChange?: (page: number) => void;
   onDetailsClick?: () => void;
 }
 
-export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resumePage = 0, onPageChange, onDetailsClick }: ScreenContentProps) {
+export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resumePage = 0, dashboardPage = 0, onPageChange, onDashboardPageChange, onDetailsClick }: ScreenContentProps) {
   const menuItems = ['RESUME', 'DASHBOARD',];
 
   const resumePages = [
@@ -76,6 +78,48 @@ export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resum
     ),
   ];
 
+  const dashboardPages = [
+    // PAGE 1: CAREER TIMELINE
+    (
+      <>
+<p className="font-bold underline mb-1">CAREER TIMELINE:</p>
+<pre className="whitespace-pre font-mono text-[10px] text-[#1a1c10]">
+{`2017 ─── YU PARTNERS (11M)
+2018 ────────────── FITOGETHER (4Y4M)
+2024 ─── FREELANCE (9M)
+2025 ─── TINDLO (NOW)`}
+</pre>
+      </>
+    ),
+
+    // PAGE 2: STACK USAGE
+    (
+      <>
+<p className="font-bold underline mb-1">STACK USAGE:</p>
+<pre className="whitespace-pre font-mono text-[10px] text-[#1a1c10]">
+{`REACT   ██████████          50%
+NEXT.JS ████                 20%
+VUE     ████                 20%
+PHP     ██                   10%`}
+</pre>
+      </>
+    ),
+
+    // PAGE 3: RUNNING MODULES
+    (
+      <>
+        <p className="font-bold underline mb-1">RUNNING MODULES:</p>
+        <pre className="whitespace-pre-wrap font-mono text-[10px] leading-relaxed font-bold">
+{`✓ FRONTEND SYSTEMS LOADED
+✓ REFACTOR MODE: ALWAYS ON
+✓ COMPLEX UI INTERACTIONS ENABLED
+✓ STATE SINGLE SOURCE VERIFIED
+✓ FUTURE ME CONSIDERED
+✓ SIDE PROJECTS RUNNING`}
+        </pre>
+      </>
+    ),
+  ];
 
   switch (gameState) {
     case PortfolioState.START:
@@ -159,32 +203,47 @@ export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resum
 
     case PortfolioState.DASHBOARD:
       return (
-        <div className="h-full text-[#2d321d] space-y-3 pixel-font">
-          <div className="border-b-2 border-[#2d321d] pb-1">
-            <h3 className="text-[10px] font-bold">대시보드.exe</h3>
+        <div className="h-full text-[#2d321d] space-y-4 pixel-font flex flex-col">
+        {/* Header */}
+        <div className="border-b-2 border-[#2d321d] pb-1 flex justify-between">
+          <h3 className="text-[10px] font-bold">DASHBOARD.SYS</h3>
+          <span className="text-[8px]">
+            {dashboardPage + 1}/{dashboardPages.length}
+          </span>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 text-[8px] leading-relaxed py-1 flex flex-col justify-center">
+          {dashboardPages[dashboardPage]}
+        </div>
+
+        {/* Footer */}
+        <div className="pt-2 border-t border-[#2d321d]/20 flex items-center justify-between">
+          <div className="flex items-center gap-1">
+            <span className="visible animate-pulse text-[10px]">▶</span>
+            <button
+              className="text-[10px] font-bold px-2 bg-[#2d321d] text-[#d9f99d] disabled:opacity-30"
+              disabled={dashboardPage === 0}
+              onClick={() => onDashboardPageChange?.(Math.max(dashboardPage - 1, 0))}
+            >
+              {'<'}
+            </button>
           </div>
-          <div className="grid grid-cols-2 gap-2 mt-2">
-            <div className="border border-[#2d321d] p-1 text-[7px]">
-              CPU: 24%
-            </div>
-            <div className="border border-[#2d321d] p-1 text-[7px]">
-              MEM: 4.2GB
-            </div>
-          </div>
-          <div className="flex-1 border-2 border-[#2d321d] p-1 relative min-h-[40px]">
-             <div className="w-full h-full flex items-end gap-1">
-                <div className="w-2 h-[40%] bg-[#2d321d]"></div>
-                <div className="w-2 h-[70%] bg-[#2d321d]"></div>
-                <div className="w-2 h-[50%] bg-[#2d321d]"></div>
-                <div className="w-2 h-[90%] bg-[#2d321d]"></div>
-                <div className="w-2 h-[60%] bg-[#2d321d]"></div>
-             </div>
-             <span className="absolute top-0 right-1 text-[6px]">STATS</span>
-          </div>
-          <div className="text-center">
-            <p className="text-[7px] animate-pulse">PRESS B TO MENU</p>
+
+          <p className="text-[7px] animate-pulse text-center">ARROW: NAV / B: MENU</p>
+
+          <div className="flex items-center gap-1">
+            <button
+              className="text-[10px] font-bold px-2 bg-[#2d321d] text-[#d9f99d] disabled:opacity-30"
+              disabled={dashboardPage === dashboardPages.length - 1}
+              onClick={() => onDashboardPageChange?.(Math.min(dashboardPage + 1, dashboardPages.length - 1))}
+            >
+              {'>'}
+            </button>
+            <span className="visible animate-pulse text-[10px]">▶</span>
           </div>
         </div>
+      </div>
       );
 
     case PortfolioState.PORTFOLIO:

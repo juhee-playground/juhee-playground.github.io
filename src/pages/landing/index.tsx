@@ -10,6 +10,7 @@ const LandingPage = () => {
   const [menuIndex, setMenuIndex] = useState(0);
   const [detailIndex, setDetailIndex] = useState(0); // 0: 페이지 네비게이션, 1: DETAILS
   const [resumePage, setResumePage] = useState(0);
+  const [dashboardPage, setDashboardPage] = useState(0);
   
   const isPowerOn = powerState === 'on';
   const isAnimating = powerState === 'powering-on' || powerState === 'powering-off';
@@ -53,6 +54,12 @@ const LandingPage = () => {
       } else if (direction === 'right' && detailIndex === 0) {
         setResumePage(prev => Math.min(prev + 1, 2)); // resumePages.length - 1
       }
+    } else if (gameState === PortfolioState.DASHBOARD) {
+      if (direction === 'left') {
+        setDashboardPage(prev => Math.max(prev - 1, 0));
+      } else if (direction === 'right') {
+        setDashboardPage(prev => Math.min(prev + 1, 2)); // dashboardPages.length - 1
+      }
     }
   }, [gameState, menuItems.length, detailIndex]);
 
@@ -73,6 +80,7 @@ const LandingPage = () => {
       setMenuIndex(0);
       setDetailIndex(0);
       setResumePage(0);
+      setDashboardPage(0);
       setTimeout(() => {
         setPowerState('on');
       }, 400);
@@ -165,6 +173,7 @@ const LandingPage = () => {
         menuIndex={menuIndex}
         detailIndex={detailIndex}
         resumePage={resumePage}
+        dashboardPage={dashboardPage}
         isPowerOn={isPowerOn}
         onStart={handleStart}
         onSelect={handleSelect}
@@ -172,6 +181,7 @@ const LandingPage = () => {
         onDPad={handleDPad}
         onPowerToggle={handlePowerToggle}
         onPageChange={setResumePage}
+        onDashboardPageChange={setDashboardPage}
         powerState={powerState}
         onDetailsClick={handleDetailsClick}
       />

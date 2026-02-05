@@ -6,6 +6,7 @@ interface GameBoyFrameProps {
   menuIndex: number;
   detailIndex?: number;
   resumePage?: number;
+  dashboardPage?: number;
   isPowerOn: boolean;
   powerState: PowerState;
   onStart: () => void;
@@ -14,6 +15,7 @@ interface GameBoyFrameProps {
   onDPad: (dir: string) => void;
   onPowerToggle: () => void;
   onPageChange?: (page: number) => void;
+  onDashboardPageChange?: (page: number) => void;
   onDetailsClick?: () => void;
 }
 
@@ -22,6 +24,7 @@ export function GameBoyFrame({
   menuIndex,
   detailIndex = 0,
   resumePage = 0,
+  dashboardPage = 0,
   isPowerOn,
   powerState,
   onStart,
@@ -30,6 +33,7 @@ export function GameBoyFrame({
   onDPad,
   onPowerToggle,
   onPageChange,
+  onDashboardPageChange,
   onDetailsClick
 }: GameBoyFrameProps) {
   const shouldShowContent = powerState === 'on' || powerState === 'powering-on' || powerState === 'powering-off';
@@ -69,7 +73,7 @@ export function GameBoyFrame({
               <div className={`absolute inset-0 ${getAnimationClass()}`}>
                 <div className="absolute inset-0 scanlines opacity-10 z-10"></div>
                 <div className="relative z-0 h-full w-full p-4 overflow-y-auto">
-                   <ScreenContent gameState={gameState} menuIndex={menuIndex} detailIndex={detailIndex} resumePage={resumePage} onPageChange={onPageChange} onDetailsClick={onDetailsClick} />
+                   <ScreenContent gameState={gameState} menuIndex={menuIndex} detailIndex={detailIndex} resumePage={resumePage} dashboardPage={dashboardPage} onPageChange={onPageChange} onDashboardPageChange={onDashboardPageChange} onDetailsClick={onDetailsClick} />
                 </div>
                 {/* 하얀 빛 overlay 효과 */}
                 {powerState === 'powering-on' && (
