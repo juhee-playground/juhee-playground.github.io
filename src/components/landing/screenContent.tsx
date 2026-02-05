@@ -1,15 +1,16 @@
-import { useState } from 'react';
 import { PortfolioState } from '@/pages/landing/types';
 
 interface ScreenContentProps {
   gameState: PortfolioState;
   menuIndex?: number;
+  detailIndex?: number;
+  resumePage?: number;
+  onPageChange?: (page: number) => void;
+  onDetailsClick?: () => void;
 }
 
-export function ScreenContent({ gameState, menuIndex = 0 }: ScreenContentProps) {
+export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resumePage = 0, onPageChange, onDetailsClick }: ScreenContentProps) {
   const menuItems = ['RESUME', 'DASHBOARD',];
-
-  const [resumePage, setResumePage] = useState(0);
 
   const resumePages = [
     // ======================
@@ -22,7 +23,7 @@ export function ScreenContent({ gameState, menuIndex = 0 }: ScreenContentProps) 
         <p>- TAILWIND / SCSS</p>
         <p>- NEXT.JS / VITE</p>
 
-        <p className="mt-2 font-bold underline mb-1">EXP:</p>
+        <p className="mt-3 font-bold underline mb-1">EXP:</p>
         <p>- 5+ YEARS FRONT-END</p>
         <p>- Frontend Systems Builder</p>
       </>
@@ -37,7 +38,7 @@ export function ScreenContent({ gameState, menuIndex = 0 }: ScreenContentProps) 
         <p>- BAEK JU HEE</p>
         <p>- FRONTEND DEVELOPER</p>
 
-        <p className="mt-2 font-bold underline mb-1">CONTACT:</p>
+        <p className="mt-3 font-bold underline mb-1">CONTACT:</p>
         <p>- EMAIL:</p>
         <p className="pl-2 break-all">gogumangoguma@gmail.com</p>
         <p>- GITHUB:</p>
@@ -53,10 +54,24 @@ export function ScreenContent({ gameState, menuIndex = 0 }: ScreenContentProps) 
         <p className="font-bold underline mb-1">EDUCATION:</p>
         <p>- 한양여자대학교 (Feb 2014) </p>
 
-        <p className="mt-2 font-bold underline mb-1">WORK:</p>
+        <p className="mt-3 font-bold underline mb-1">WORK:</p>
         <p>- YU Partners (11 months)</p>
         <p>- Fitogether (4 years 4 months)</p>
         <p>- Tindlo (Currently) </p>
+
+        {/* ✅ RESUME LINK */}
+        <p className="mt-3 font-bold flex items-center gap-1">
+          <span className={detailIndex === 1 ? 'visible animate-pulse' : 'invisible'}>▶</span>
+          <span 
+            className={`ml-1 underline cursor-pointer ${detailIndex === 1 ? 'bg-[#2d321d] text-[#d9f99d] px-1' : ''}`}
+            onClick={onDetailsClick}
+            onMouseEnter={() => {
+              // 마우스 호버 시 선택 효과 (선택적)
+            }}
+          >
+            CLICK TO DETAILS
+          </span>
+        </p>
       </>
     ),
   ];
@@ -98,9 +113,9 @@ export function ScreenContent({ gameState, menuIndex = 0 }: ScreenContentProps) 
 
       case PortfolioState.RESUME:
         return (
-          <div className="h-full text-[#2d321d] space-y-3 pixel-font flex flex-col">
+          <div className="h-full text-[#2d321d] space-y-4 pixel-font flex flex-col">
             {/* HEADER */}
-            <div className="border-b-2 border-[#2d321d] pb-0.5 flex justify-between">
+            <div className="border-b-2 border-[#2d321d] pb-1 flex justify-between">
               <h3 className="text-[10px] font-bold">RESUME.txt</h3>
               <span className="text-[8px]">
                 {resumePage + 1}/{resumePages.length}
@@ -114,29 +129,30 @@ export function ScreenContent({ gameState, menuIndex = 0 }: ScreenContentProps) 
   
             {/* FOOTER */}
             <div className="pt-2 border-t border-[#2d321d]/20 flex items-center justify-between">
-              <button
-                className="text-[10px] font-bold px-2 disabled:opacity-30"
-                disabled={resumePage === 0}
-                onClick={() => setResumePage((p) => Math.max(p - 1, 0))}
-              >
-                {'<'}
-              </button>
+              <div className="flex items-center gap-1">
+                <span className={detailIndex === 0 ? 'visible animate-pulse text-[10px]' : 'invisible text-[10px]'}>▶</span>
+                <button
+                  className={`text-[10px] font-bold px-2 ${detailIndex === 0 ? 'bg-[#2d321d] text-[#d9f99d]' : ''} ${resumePage === 0 ? 'opacity-30' : ''}`}
+                  disabled={resumePage === 0}
+                  onClick={() => onPageChange?.(Math.max(resumePage - 1, 0))}
+                >
+                  {'<'}
+                </button>
+              </div>
   
               <p className="text-[7px] animate-pulse text-center">
-                PRESS B TO MENU
+                {detailIndex === 0 ? 'ARROW: NAV / UP/DOWN: SELECT' : 'A/ENTER: OPEN DETAILS / B/ESC: MENU'}
               </p>
   
-              <button
-                className="text-[10px] font-bold px-2 disabled:opacity-30"
-                disabled={resumePage === resumePages.length - 1}
-                onClick={() =>
-                  setResumePage((p) =>
-                    Math.min(p + 1, resumePages.length - 1)
-                  )
-                }
-              >
-                {'>'}
-              </button>
+              <div className="flex items-center gap-1">
+                <button
+                  className={`text-[10px] font-bold px-2 ${detailIndex === 0 ? 'bg-[#2d321d] text-[#d9f99d]' : ''} ${resumePage === resumePages.length - 1 ? 'opacity-30' : ''}`}
+                  disabled={resumePage === resumePages.length - 1}
+                  onClick={() => onPageChange?.(Math.min(resumePage + 1, resumePages.length - 1))}
+                >
+                  {'>'}
+                </button>
+              </div>
             </div>
           </div>
         );

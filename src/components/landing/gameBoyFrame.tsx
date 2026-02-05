@@ -4,23 +4,31 @@ import { ScreenContent } from './screenContent';
 interface GameBoyFrameProps {
   gameState: PortfolioState;
   menuIndex: number;
+  detailIndex?: number;
+  resumePage?: number;
   isPowerOn: boolean;
   onStart: () => void;
   onSelect: () => void;
   onAction: (btn: 'A' | 'B') => void;
   onDPad: (dir: string) => void;
   onPowerToggle: () => void;
+  onPageChange?: (page: number) => void;
+  onDetailsClick?: () => void;
 }
 
 export function GameBoyFrame({
   gameState,
   menuIndex,
+  detailIndex = 0,
+  resumePage = 0,
   isPowerOn,
   onStart,
   onSelect,
   onAction,
   onDPad,
-  onPowerToggle
+  onPowerToggle,
+  onPageChange,
+  onDetailsClick
 }: GameBoyFrameProps) {
   return (
     <div className="relative flex flex-col items-center mx-auto scale-90 md:scale-100 pt-4">
@@ -30,7 +38,7 @@ export function GameBoyFrame({
       </div>
 
       {/* Main Body - Bright NuPhy White */}
-      <div className="w-[340px] md:w-[410px] bg-white p-7 rounded-[40px] rounded-br-[120px] border border-slate-200 shadow-2xl relative overflow-hidden">
+      <div className="w-[320px] md:w-[380px] bg-white p-4 rounded-[40px] rounded-br-[120px] border border-slate-200 shadow-2xl relative overflow-hidden">
         
         {/* Power LED - Bright Blue */}
         <div className="absolute top-24 left-6 flex flex-col items-center">
@@ -39,19 +47,19 @@ export function GameBoyFrame({
         </div>
 
         {/* Screen Frame - Sleek Slate */}
-        <div className="bg-[#334155] p-6 rounded-2xl border-2 border-slate-400/20 mb-10 relative">
+        <div className="bg-[#334155] p-2 rounded-2xl border-2 border-slate-400/20 mb-5 relative">
           <div className="absolute top-2 left-1/2 -translate-x-1/2 flex gap-8">
              <div className="h-1 w-12 bg-slate-500/30 rounded-full"></div>
              <div className="h-1 w-12 bg-slate-500/30 rounded-full"></div>
           </div>
           
           {/* LCD Screen - Bright LCD Tint */}
-          <div className={`w-full aspect-square md:aspect-4/3 relative overflow-hidden border-4 border-slate-800 rounded-sm ${isPowerOn ? 'bg-[#d9f99d]' : 'bg-[#1e293b]'} transition-colors duration-500`}>
+          <div className={`w-full aspect-[4/3] md:aspect-[4/3] relative overflow-hidden border-4 border-slate-800 rounded-sm ${isPowerOn ? 'bg-[#d9f99d]' : 'bg-[#1e293b]'} transition-colors duration-500`}>
             {isPowerOn && (
               <>
                 <div className="absolute inset-0 scanlines opacity-10 z-10"></div>
-                <div className="relative z-0 h-full w-full p-3 overflow-y-auto">
-                   <ScreenContent gameState={gameState} menuIndex={menuIndex} />
+                <div className="relative z-0 h-full w-full p-4 overflow-y-auto">
+                   <ScreenContent gameState={gameState} menuIndex={menuIndex} detailIndex={detailIndex} resumePage={resumePage} onPageChange={onPageChange} onDetailsClick={onDetailsClick} />
                 </div>
               </>
             )}
@@ -96,14 +104,14 @@ export function GameBoyFrame({
             </div>
           </div>
 
-          {/* Start / Select - Blue Accents */}
+          {/* Start / Quick - Blue Accents */}
           <div className="flex justify-center gap-10 mt-2 mb-6">
             <div className="flex flex-col items-center gap-2">
               <button 
                 onClick={onSelect}
                 className="w-14 h-4 bg-[#3b82f6] rounded-full border-b-4 border-[#1d4ed8] active:translate-y-1 active:border-b-0"
               ></button>
-              <span className="text-[9px] font-black text-slate-300">SELECT</span>
+              <span className="text-[9px] font-black text-slate-300">QUICK</span>
             </div>
             <div className="flex flex-col items-center gap-2">
               <button 
