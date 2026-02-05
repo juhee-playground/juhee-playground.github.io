@@ -1,0 +1,201 @@
+import { useState } from 'react';
+import { PortfolioState } from '@/pages/landing/types';
+
+interface ScreenContentProps {
+  gameState: PortfolioState;
+  menuIndex?: number;
+}
+
+export function ScreenContent({ gameState, menuIndex = 0 }: ScreenContentProps) {
+  const menuItems = ['RESUME', 'DASHBOARD',];
+
+  const [resumePage, setResumePage] = useState(0);
+
+  const resumePages = [
+    // ======================
+    // PAGE 1: SKILLS / EXP
+    // ======================
+    (
+      <>
+        <p className="font-bold underline mb-1">SKILLS:</p>
+        <p>- REACT / TYPESCRIPT</p>
+        <p>- TAILWIND / SCSS</p>
+        <p>- NEXT.JS / VITE</p>
+
+        <p className="mt-2 font-bold underline mb-1">EXP:</p>
+        <p>- 5+ YEARS FRONT-END</p>
+        <p>- Frontend Systems Builder</p>
+      </>
+    ),
+
+    // ======================
+    // PAGE 2: INFO / CONTACT
+    // ======================
+    (
+      <>
+        <p className="font-bold underline mb-1">PROFILE:</p>
+        <p>- BAEK JU HEE</p>
+        <p>- FRONTEND DEVELOPER</p>
+
+        <p className="mt-2 font-bold underline mb-1">CONTACT:</p>
+        <p>- EMAIL:</p>
+        <p className="pl-2 break-all">gogumangoguma@gmail.com</p>
+        <p>- GITHUB:</p>
+        <p className="pl-2 break-all">github.com/juhee-playground</p>
+      </>
+    ),
+
+    // ======================
+    // PAGE 3: EDUCATION / WORK
+    // ======================
+    (
+      <>
+        <p className="font-bold underline mb-1">EDUCATION:</p>
+        <p>- 한양여자대학교 (Feb 2014) </p>
+
+        <p className="mt-2 font-bold underline mb-1">WORK:</p>
+        <p>- YU Partners (11 months)</p>
+        <p>- Fitogether (4 years 4 months)</p>
+        <p>- Tindlo (Currently) </p>
+      </>
+    ),
+  ];
+
+
+  switch (gameState) {
+    case PortfolioState.START:
+      return (
+        <div className="h-full flex flex-col items-center justify-center text-[#2d321d] text-center pixel-font">
+          <p className="text-[10px] mb-2">WELCOME TO</p>
+          <h2 className="text-xl md:text-2xl mb-8 leading-tight font-black tracking-tighter">JUHEE'S PLAYGROUND</h2>
+          <div className="mt-4 border-2 border-[#2d321d] bg-[#d9f99d] px-8 py-3 inline-block animate-blink">
+            <p className="text-[10px] font-bold">PRESS START</p>
+          </div>
+        </div>
+      );
+
+    case PortfolioState.MENU:
+      return (
+        <div className="h-full text-[#2d321d] flex flex-col pixel-font">
+          <div className="border-b-2 border-[#2d321d] pb-1 mb-4">
+            <h3 className="text-[10px] font-bold">MAIN MENU</h3>
+          </div>
+          <div className="flex-1 flex flex-col justify-center space-y-4">
+            {menuItems.map((item, idx) => (
+              <div key={item} className="flex items-center gap-3">
+                <span className={`text-[12px] ${menuIndex === idx ? 'visible animate-pulse' : 'invisible'}`}>▶</span>
+                <div className={`text-[10px] py-1 px-2 ${menuIndex === idx ? 'bg-[#2d321d] text-[#d9f99d]' : ''}`}>
+                  {item}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 text-[7px] text-center opacity-60">
+            DPAD: MOVE / A: SELECT
+          </div>
+        </div>
+      );
+
+      case PortfolioState.RESUME:
+        return (
+          <div className="h-full text-[#2d321d] space-y-3 pixel-font flex flex-col">
+            {/* HEADER */}
+            <div className="border-b-2 border-[#2d321d] pb-0.5 flex justify-between">
+              <h3 className="text-[10px] font-bold">RESUME.txt</h3>
+              <span className="text-[8px]">
+                {resumePage + 1}/{resumePages.length}
+              </span>
+            </div>
+  
+            {/* CONTENT */}
+            <div className="flex-1 text-[8px] leading-relaxed">
+              {resumePages[resumePage]}
+            </div>
+  
+            {/* FOOTER */}
+            <div className="pt-2 border-t border-[#2d321d]/20 flex items-center justify-between">
+              <button
+                className="text-[10px] font-bold px-2 disabled:opacity-30"
+                disabled={resumePage === 0}
+                onClick={() => setResumePage((p) => Math.max(p - 1, 0))}
+              >
+                {'<'}
+              </button>
+  
+              <p className="text-[7px] animate-pulse text-center">
+                PRESS B TO MENU
+              </p>
+  
+              <button
+                className="text-[10px] font-bold px-2 disabled:opacity-30"
+                disabled={resumePage === resumePages.length - 1}
+                onClick={() =>
+                  setResumePage((p) =>
+                    Math.min(p + 1, resumePages.length - 1)
+                  )
+                }
+              >
+                {'>'}
+              </button>
+            </div>
+          </div>
+        );
+
+    case PortfolioState.DASHBOARD:
+      return (
+        <div className="h-full text-[#2d321d] space-y-3 pixel-font">
+          <div className="border-b-2 border-[#2d321d] pb-1">
+            <h3 className="text-[10px] font-bold">대시보드.exe</h3>
+          </div>
+          <div className="grid grid-cols-2 gap-2 mt-2">
+            <div className="border border-[#2d321d] p-1 text-[7px]">
+              CPU: 24%
+            </div>
+            <div className="border border-[#2d321d] p-1 text-[7px]">
+              MEM: 4.2GB
+            </div>
+          </div>
+          <div className="flex-1 border-2 border-[#2d321d] p-1 relative min-h-[40px]">
+             <div className="w-full h-full flex items-end gap-1">
+                <div className="w-2 h-[40%] bg-[#2d321d]"></div>
+                <div className="w-2 h-[70%] bg-[#2d321d]"></div>
+                <div className="w-2 h-[50%] bg-[#2d321d]"></div>
+                <div className="w-2 h-[90%] bg-[#2d321d]"></div>
+                <div className="w-2 h-[60%] bg-[#2d321d]"></div>
+             </div>
+             <span className="absolute top-0 right-1 text-[6px]">STATS</span>
+          </div>
+          <div className="text-center">
+            <p className="text-[7px] animate-pulse">PRESS B TO MENU</p>
+          </div>
+        </div>
+      );
+
+    case PortfolioState.PORTFOLIO:
+      return (
+        <div className="h-full text-[#2d321d] space-y-3 pixel-font">
+          <div className="border-b-2 border-[#2d321d] pb-1">
+            <h3 className="text-[10px] font-bold">포트폴리오.rar</h3>
+          </div>
+          <div className="space-y-2">
+            <div className="border border-[#2d321d] p-1 flex justify-between items-center">
+              <span className="text-[7px]">8-BIT ENGINE</span>
+              <span className="text-[6px] bg-[#2d321d] text-[#d9f99d] px-1">NEW</span>
+            </div>
+            <div className="border border-[#2d321d] p-1 flex justify-between items-center opacity-60">
+              <span className="text-[7px]">PIXEL CHAT</span>
+            </div>
+            <div className="border border-[#2d321d] p-1 flex justify-between items-center opacity-60">
+              <span className="text-[7px]">D3-VISUALS</span>
+            </div>
+          </div>
+          <div className="pt-2 text-center">
+            <p className="text-[7px] animate-pulse">PRESS B TO MENU</p>
+          </div>
+        </div>
+      );
+
+    default:
+      return null;
+  }
+}
