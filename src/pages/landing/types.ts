@@ -5,3 +5,5 @@ export enum PortfolioState {
   DASHBOARD = 'DASHBOARD',
   PORTFOLIO = 'PORTFOLIO'
 }
+
+export type PowerState = 'on' | 'off' | 'powering-on' | 'powering-off';

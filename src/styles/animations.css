@@ -392,3 +392,106 @@
   box-shadow: 0 1px 0 0 rgba(0,0,0,0.2);
   transform: translateY(3px);
 }
+
+/* CRT TV 전원 On/Off 애니메이션 */
+@keyframes tv-on {
+  0% {
+    transform: scale(0.01, 0.01);
+    opacity: 0;
+    filter: brightness(5);
+    background-color: rgba(255, 255, 255, 1);
+  }
+  40% {
+    transform: scale(1, 0.01);
+    opacity: 1;
+    filter: brightness(4);
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
+    filter: brightness(1);
+    background-color: transparent;
+  }
+}
+
+@keyframes tv-off {
+  0% {
+    transform: scale(1, 1);
+    filter: brightness(1);
+    opacity: 1;
+    background-color: transparent;
+  }
+  30% {
+    transform: scale(1, 0.01);
+    filter: brightness(2);
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+  60% {
+    transform: scale(0.2, 0.01);
+    filter: brightness(4);
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  100% {
+    transform: scale(0, 0);
+    filter: brightness(6);
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes tv-on-overlay {
+  0% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  40% {
+    opacity: 0.8;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes tv-off-overlay {
+  0% {
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0);
+  }
+  30% {
+    opacity: 0.6;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+  60% {
+    opacity: 0.9;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  100% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+.animate-tv-on {
+  animation: tv-on 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: center;
+}
+
+.animate-tv-off {
+  animation: tv-off 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: center;
+}
+
+.animate-tv-on-overlay {
+  animation: tv-on-overlay 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  pointer-events: none;
+}
+
+.animate-tv-off-overlay {
+  animation: tv-off-overlay 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  pointer-events: none;
+}

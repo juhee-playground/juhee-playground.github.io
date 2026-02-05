@@ -1,15 +1,18 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GameBoyFrame } from '@/components/landing/gameBoyFrame';
-import { PortfolioState } from './types';
+import { PortfolioState, PowerState } from './types';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [gameState, setGameState] = useState<PortfolioState>(PortfolioState.START);
-  const [isPowerOn, setIsPowerOn] = useState(true);
+  const [powerState, setPowerState] = useState<PowerState>('on');
   const [menuIndex, setMenuIndex] = useState(0);
   const [detailIndex, setDetailIndex] = useState(0); // 0: 페이지 네비게이션, 1: DETAILS
   const [resumePage, setResumePage] = useState(0);
+  
+  const isPowerOn = powerState === 'on';
+  const isAnimating = powerState === 'powering-on' || powerState === 'powering-off';
 
   const menuItems = [
     { label: '이력서', state: PortfolioState.RESUME },
@@ -18,19 +21,24 @@ const LandingPage = () => {
   ];
 
   const handleStart = useCallback(() => {
+    if (powerState !== 'on') return;
+    
     if (gameState === PortfolioState.START) {
       setGameState(PortfolioState.MENU);
     } else if (gameState !== PortfolioState.MENU) {
       setGameState(PortfolioState.MENU);
     }
-  }, [gameState]);
+  }, [gameState, powerState]);
 
   const handleSelect = useCallback(() => {
+    if (powerState !== 'on') return;
     // QUICK 버튼: 이력서 페이지로 바로 이동
     navigate('/resume');
-  }, [navigate]);
+  }, [navigate, powerState]);
 
   const handleDPad = useCallback((direction: string) => {
+    if (powerState !== 'on') return;
+    
     if (gameState === PortfolioState.MENU) {
       if (direction === 'up') {
         setMenuIndex(prev => (prev > 0 ? prev - 1 : menuItems.length - 1));
@@ -48,8 +56,31 @@ const LandingPage = () => {
     }
   }, [gameState, menuItems.length, detailIndex]);
 
+  const handlePowerToggle = useCallback(() => {
+    if (isAnimating) return;
+    
+    if (powerState === 'on') {
+      // Turning OFF
+      setPowerState('powering-off');
+      setTimeout(() => {
+        setPowerState('off');
+      }, 400);
+    } else if (powerState === 'off') {
+      // Turning ON - 초기 상태로 리셋
+      setPowerState('powering-on');
+      // 게임 상태 초기화
+      setGameState(PortfolioState.START);
+      setMenuIndex(0);
+      setDetailIndex(0);
+      setResumePage(0);
+      setTimeout(() => {
+        setPowerState('on');
+      }, 400);
+    }
+  }, [powerState, isAnimating]);
+
   const handleAction = useCallback((btn: 'A' | 'B') => {
-    if (!isPowerOn) return;
+    if (powerState !== 'on') return;
 
     if (gameState === PortfolioState.START) {
       if (btn === 'A') setGameState(PortfolioState.MENU);
@@ -84,7 +115,7 @@ const LandingPage = () => {
   // 키보드 이벤트 리스너
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (!isPowerOn) return;
+      if (powerState !== 'on') return;
 
       switch (event.key) {
         case 'ArrowUp':
@@ -125,7 +156,7 @@ const LandingPage = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isPowerOn, handleDPad, handleAction, handleStart]);
+  }, [powerState, handleDPad, handleAction, handleStart]);
 
   return (
     <section className="min-h-screen w-full flex items-center justify-center py-6">
@@ -139,8 +170,9 @@ const LandingPage = () => {
         onSelect={handleSelect}
         onAction={handleAction}
         onDPad={handleDPad}
-        onPowerToggle={() => setIsPowerOn(prev => !prev)}
+        onPowerToggle={handlePowerToggle}
         onPageChange={setResumePage}
+        powerState={powerState}
         onDetailsClick={handleDetailsClick}
       />
       
