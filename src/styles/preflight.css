@@ -1,0 +1,107 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* 배경 이미지는 AppBackground 컴포넌트에서 관리 */
+  background-color: transparent;
+  position: relative;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow: hidden;
+  color: var(--color-white);
+}
+
+.scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: grey;
+  border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: rgba(102, 0, 186, 0.1);
+}
+
+/* 가로 스크롤바만 두껍게 하는 클래스 */
+.scroll-vertical::-webkit-scrollbar {
+  width: 4px;
+  height: 10px;
+}
+
+.scroll-vertical::-webkit-scrollbar-thumb {
+  background: grey;
+  opacity: 0.5;
+  border-radius: 8px;
+}
+
+.scroll-vertical::-webkit-scrollbar-track {
+  background: rgba(102, 0, 186, 0.1);
+}
+
+.scroll-vertical::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.scroll-roadmap::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none; /* Firefox 대응 */
+  -ms-overflow-style: none; /* IE 대응 */
+}
+
+.scroll::-webkit-scrollbar-corner {
+  background-color: var(--color-dashboard-background);
+}
+
+/* cursor 기본적으로 숨김 */
+.hide-cursor {
+  cursor: none !important;
+}
+
+.hide-cursor .card-cursor,
+.hide-cursor .card-cursor * {
+  cursor: pointer !important;
+}
+.card-cursor {
+  cursor: pointer !important;
+}
+/* .hide-cursor .card-cursor,
+.hide-cursor .card-cursor * {
+  cursor: pointer !important;
+} */
+
+.glass-border {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* body 스크롤 방지 */
+.scroll-lock {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+
+.rpv-core__inner-pages {
+  scrollbar-width: 4px !important;
+  background: rgba(102, 0, 186, 0.1);
+  scrollbar-color: #888 #f1f1f1 !important;
+}

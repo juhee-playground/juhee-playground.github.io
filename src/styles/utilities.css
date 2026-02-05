@@ -1,0 +1,25 @@
+@tailwind utilities;
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.text-title {
+  @apply text-2xl font-bold text-gray-800;
+}
+
+.card {
+  @apply p-4 bg-white rounded-lg shadow;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600;
+}
+
+.btn-secondary {
+  @apply bg-gray-500 hover:bg-gray-600;
+}
+
+.error-message {
+  @apply text-red-500 text-sm h-[20px];
+}

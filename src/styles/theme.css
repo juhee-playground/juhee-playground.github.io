@@ -1,0 +1,180 @@
+@import './_variables.css';
+@import './animations.css';
+
+@theme default {
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-primary-active: #3730a3;
+  --color-primary-light: #60ffb7;
+
+  --color-primary-lighter: #818cf8;
+  --color-primary-lightest: #c7d2fe;
+  --color-primary-dark: #4338ca;
+  --color-primary-darker: #3730a3;
+  --color-primary-darkest: #312e81;
+
+  --color-secondary: #64748b;
+  --color-secondary-hover: #475569;
+  --color-secondary-active: #334155;
+  --color-secondary-light: #94a3b8;
+  --color-secondary-lighter: #cbd5e1;
+  --color-secondary-lightest: #f1f5f9;
+  --color-secondary-dark: #475569;
+  --color-secondary-darker: #334155;
+  --color-secondary-darkest: #1e293b;
+
+  --color-third: #53ceff;
+  --color-third-hover: #42b0e0;
+  --color-third-active: #3090c0;
+  --color-third-light: #81d4fa;
+  --color-third-lighter: #b6e3ff;
+  --color-third-lightest: #e0f7fa;
+
+  --color-fourth: #ff00ae;
+  --color-fourth-hover: #e00094;
+  --color-fourth-active: #c0007a;
+  --color-fourth-light: #ff66c4;
+  --color-fourth-lighter: #ff99d6;
+  --color-fourth-lightest: #ffd6f2;
+  --color-fourth-dark: #e00094;
+
+  --color-dark-purple: #453e54;
+
+  --color-accent: rgba(0, 255, 133, 0.6);
+  --color-accent-rgb: 0, 255, 133;
+  --color-accent-foreground: #00ff6a;
+  --color-destructive: #fe646f;
+  --color-destructive-foreground: #fff;
+
+  --color-success: #22c55e;
+  --color-success-hover: #16a34a;
+  --color-success-active: #15803d;
+  --color-success-light: #4ade80;
+  --color-success-lighter: #86efac;
+  --color-success-lightest: #dcfce7;
+  --color-success-dark: #16a34a;
+  --color-success-darker: #15803d;
+  --color-success-darkest: #166534;
+
+  --color-error: #ef4444;
+  --color-error-hover: #dc2626;
+  --color-error-active: #b91c1c;
+  --color-error-light: #f87171;
+  --color-error-lighter: #fca5a5;
+  --color-error-lightest: #fee2e2;
+  --color-error-dark: #dc2626;
+  --color-error-darker: #b91c1c;
+  --color-error-darkest: #991b1b;
+
+  --color-input: #d1d5db;
+  --color-background: #f9fafb;
+  --color-dark-background: #2a2a2a;
+  --color-dashboard-background: #151414;
+  --color-nav-background: #3e3e3e;
+  --color-background-details: #131316;
+  --color-off: #888888;
+  --color-tin-text-off: #b0b0b0;
+  --color-tin-dark: #414141;
+  --color-ring: var(--color-primary);
+
+  --text-caption-xs: 0.37rem;
+  --text-tab-button: 0.42rem;
+  --text-caption-sm: 0.51rem;
+  --text-body-3xs: 0.5625rem;
+  --text-body-2xs: 0.625rem;
+  --text-body-xs: 0.84rem;
+  --text-form-sm: 0.87rem;
+  --text-md: 0.9375rem;
+  --text-form-title: 1.73rem;
+  --text-form-input-self: 1.01rem;
+  --text-form-label: 0.75rem;
+  --text-avatar: 0.6875rem;
+  --text-button-dashboard: 1.33rem;
+  --text-page-title: 3.06rem;
+  --text-calendar-day: 4.38rem;
+  --text-calendar-month: 2.01rem;
+  --text-calendar-year: 1.29rem;
+  --text-header-tab: 1.4rem;
+
+  --height-timeline-grid: 72px;
+  --height-last-timeline-grid: 20px;
+  --height-dashboard-area: calc(100vh - 78px);
+  --height-dashboard-grid: 72px;
+  --height-last-dashboard-grid: 20px;
+  --height-grid-header: 39px;
+  --width-timeline-grid: 53px;
+  --width-dashboard-area: calc(100vw - 124px);
+  --width-dashboard-area-with-acchor: calc(100vw - 324px);
+  --width-mobile-dashboard-area: calc(100vw - 80px);
+  --width-dashboard-grid: 192px;
+  --min-width-dashboard-grid: 192px;
+  --min-height-dashboard-grid: 72px;
+  --min-height-right-border-time-axis: 71px;
+  --width-roadmaps-header: 264px;
+  --width-roadmaps-block: 42px;
+  --min-width-roadmaps-block: 42px;
+  --width-task-card: 187px;
+  --height-task-card: 68px;
+  --min-width-task-card: 187px;
+  --min-height-task-card: 68px;
+
+  --animate-slide-up: slideUp 200ms ease-out;
+  --animate-hammer: hammer 0.6s infinite;
+  --animate-shake: shake 0.5s infinite;
+  --animate-dust: dust 1.2s ease-out infinite;
+  --animate-dust-right: dust-right 1.2s ease-out infinite;
+  --animate-dust-center: dust-center 1.2s ease-out infinite;
+  --animate-drop-in: dropIn 400ms ease-out forwards;
+  --animate-drop-out: dropOut 400ms ease-in forwards;
+
+  --z-index-modal: 1000;
+  --z-index-dropdown: 900;
+  --z-index-header: 800;
+  --z-index-footer: 700;
+  --z-index-tooltip: 600;
+  --z-index-overlay: 500;
+  --z-index-sticky: 400;
+  --z-index-fixed: 300;
+  --z-index-above: 200;
+  --z-index-default: 100;
+  --z-index-below: 0;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --shadow-none: 0 0 #0000;
+}
+
+/* 대시보드 영역 너비 유틸리티 클래스 */
+.w-dashboard-area {
+  width: var(--width-dashboard-area);
+}
+
+.w-mobile-dashboard-area {
+  width: var(--width-mobile-dashboard-area);
+}
+
+/* 로드맵 전용 스크롤 - 가로만 표시 */
+.scroll-roadmap {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+/* 로드맵 스크롤바 스타일링 (preflight.css의 scroll-vertical과 동일) */
+.scroll-roadmap::-webkit-scrollbar {
+  width: 4px;
+  height: 10px;
+}
+
+.scroll-roadmap::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 8px;
+}
+
+.scroll-roadmap::-webkit-scrollbar-track {
+  background: rgba(102, 0, 186, 0.1);
+}

@@ -1,0 +1,356 @@
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hammer {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(40px) rotate(-60deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes dust {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translate(-10px, -20px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-20px, -40px) scale(2);
+  }
+}
+
+@keyframes dust-right {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translate(10px, -20px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(20px, -40px) scale(2);
+  }
+}
+
+@keyframes dust-center {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translate(0px, -25px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0px, -50px) scale(2);
+  }
+}
+
+@keyframes dropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px); /* 위에서 내려오는 움직임 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px); /* 위로 올라가면서 사라짐 */
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}
+
+/* Popover 방향별 슬라이드 애니메이션 */
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutToTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutToBottom {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+/* 순수한 페이드 애니메이션 (transform 없음) */
+@keyframes simpleFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes simpleFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* TaskCard 생성/삭제 애니메이션 */
+@keyframes cardExpand {
+  0% {
+    transform: scale(0);
+    transition-timing-function: ease-in-out;
+    /* transform-origin: center; */
+    opacity: 0;
+  }
+
+  75% {
+    transform: scale(1.2);
+    transition-timing-function: ease-in-out;
+    /* transform-origin: center; */
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    transition-timing-function: ease-in-out;
+    /* transform-origin: center; */
+    opacity: 1;
+  }
+}
+
+@keyframes cardCollapse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.2);
+    transition-timing-function: ease-in-out;
+    /* transform-origin: center; */
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* 트랙 생성 애니메이션: 넓이가 넓어짐 */
+@keyframes trackExpandWidth {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: var(--width-dashboard-grid);
+    opacity: 1;
+  }
+}
+
+@keyframes trackHiddenWidth {
+  0% {
+    width: var(--width-dashboard-grid);
+  }
+
+  100% {
+    width: 7px;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bubbleUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.3);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 타임라인 네비게이션 하이라이팅 */
+@keyframes highlightPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(var(--color-accent-rgb), 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0);
+  }
+}
+
+@keyframes highlightFadeOut {
+  0% {
+    box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb), 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0);
+  }
+}
+
+.timeline-highlight-target {
+  animation: highlightPulse 0.8s ease-in-out 3;
+  position: relative;
+  z-index: 10;
+}
+
+.timeline-highlight-fade {
+  animation: highlightFadeOut 0.5s ease-out forwards;
+}
