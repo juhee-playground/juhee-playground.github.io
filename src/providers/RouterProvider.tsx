@@ -10,15 +10,20 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function RouterProvider() {
   const location = useLocation();
-  const shouldRenderHeader = validPaths.includes(location.pathname);
+  const isLandingPage = location.pathname === '/';
+  const shouldRenderHeader = validPaths.includes(location.pathname) && !isLandingPage;
 
   return (
     <>
       <ToastContainer />
+      {isLandingPage ? (
+        <Router />
+      ) : (
+        <Layout>
       {shouldRenderHeader && <Header />}
-      <Layout>
         <Router />
       </Layout>
+      )}
     </>
   );
 }
