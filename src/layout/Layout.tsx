@@ -17,8 +17,8 @@ export default function Layout({ children }: IMainLayoutProps) {
   const themeMode = theme.palette.mode;
   const { pathname } = useLocation();
 
-  const isErrorPage = pathname === '/404' || !['/', '/dashboard', '/portfolio', '/resume'].includes(pathname);
   const isResumePage = pathname === '/resume';
+  const isErrorPage = pathname === '/404';
 
   // children을 배열로 변환하여 Header와 컨텐츠 분리
   const childrenArray = React.Children.toArray(children);

@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 import { useTheme } from '@mui/material/styles';
 
 import SiteContact from '@/components/site/SiteContact';
@@ -5,32 +8,15 @@ import SiteExperiencePreview from '@/components/site/SiteExperiencePreview';
 import SiteHero from '@/components/site/SiteHero';
 import SiteOverview from '@/components/site/SiteOverview';
 import SiteSection from '@/components/site/SiteSection';
+import { PROJECTS_SITE, TProjectStatus } from '@/data/projects/DB_projects_site';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
-const PROJECTS = [
-  {
-    title: 'JUHEE PLAYGROUND',
-    desc: '채용 플랫폼에 종속되지 않는 개인 이력서 포트폴리오. GameBoy UI 인터랙션, 다크모드, 프린트 PDF 변환 지원.',
-    tags: ['React', 'TypeScript', 'Tailwind', 'D3', 'Zustand'],
-    status: 'LIVE' as const,
-    link: 'https://juhee-playground.github.io',
-  },
-  {
-    title: 'OHCOACH ULTIMATE',
-    desc: '웨어러블 EPTS 기반 스포츠 데이터 시각화 플랫폼. 전문가용 대시보드 및 다국어 지원.',
-    tags: ['Vue', 'D3', 'SCSS', 'NodeJS'],
-    status: 'SHIPPED' as const,
-    link: 'https://dino100.notion.site/OHCOACH-Ultimate-fd838cf131fc4d718d2b4d89e7d42dd8',
-  },
-  {
-    title: 'ERP SYSTEM',
-    desc: '운영·자문·펀딩 플랫폼 내 ERP 어드민. 재사용 가능한 UI 컴포넌트 시스템 구축.',
-    tags: ['React', 'PHP', 'MySQL'],
-    status: 'SHIPPED' as const,
-    link: '#',
-  },
-];
+const STATUS_COLOR: Record<TProjectStatus, string> = {
+  LIVE: '#22c55e',
+  WIP: '#f59e0b',
+  ARCHIVED: '#888',
+};
 
 const STATS = [
   { value: '5+', label: 'Years Experience' },
@@ -64,17 +50,21 @@ const SitePage = () => {
         {/* ─── #projects ─── */}
         <SiteSection id='projects' title='Projects'>
           <div className='flex flex-col gap-4'>
-            {PROJECTS.map(({ title, desc, tags, status, link }) => (
-              <a
-                key={title}
-                href={link}
-                target='_blank'
+            {PROJECTS_SITE.map(({ slug, title, tagline, tags, status, links }, i) => (
+              <motion.a
+                key={slug}
+                href={links?.live ?? links?.notion ?? '#'}
+                target={links?.live || links?.notion ? '_blank' : undefined}
                 rel='noreferrer'
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
                 className={cn(
-                  'group flex flex-col md:flex-row md:items-start gap-4 p-5 rounded-2xl border transition-all',
+                  'group flex flex-col md:flex-row md:items-start gap-4 p-5 rounded-2xl border transition-all duration-300',
                   isDark
-                    ? 'bg-white/3 border-white/10 hover:border-white/25'
-                    : 'bg-white border-black/7 hover:border-black/20',
+                    ? 'bg-white/3 border-white/10 hover:border-white/25 hover:bg-white/5'
+                    : 'bg-white border-black/7 hover:border-black/20 hover:shadow-md',
                   'hover:-translate-y-0.5',
                 )}
               >
@@ -83,12 +73,14 @@ const SitePage = () => {
                     <span className='text-xs font-black tracking-widest'>{title}</span>
                     <span
                       className='text-[9px] font-bold px-1.5 py-0.5 rounded text-white'
-                      style={{ backgroundColor: status === 'LIVE' ? pt : '#888' }}
+                      style={{ backgroundColor: STATUS_COLOR[status] }}
                     >
                       {status}
                     </span>
                   </div>
-                  <p className={cn('text-sm leading-relaxed', isDark ? 'text-white/55' : 'text-black/55')}>{desc}</p>
+                  <p className={cn('text-sm leading-relaxed', isDark ? 'text-white/55' : 'text-black/55')}>
+                    {tagline}
+                  </p>
                   <div className='flex flex-wrap gap-1 mt-1'>
                     {tags.map(tag => (
                       <span
@@ -105,14 +97,27 @@ const SitePage = () => {
                 </div>
                 <span
                   className={cn(
-                    'text-lg transition-transform group-hover:translate-x-1 mt-0.5',
+                    'text-lg transition-transform group-hover:translate-x-1 mt-0.5 shrink-0',
                     isDark ? 'text-white/30' : 'text-black/25',
                   )}
                 >
                   →
                 </span>
-              </a>
+              </motion.a>
             ))}
+          </div>
+
+          {/* View all link */}
+          <div className='flex justify-end mt-2'>
+            <Link
+              to='/projects'
+              className={cn(
+                'text-sm font-semibold transition-colors',
+                isDark ? 'text-white/45 hover:text-white/80' : 'text-black/40 hover:text-black/70',
+              )}
+            >
+              View all projects →
+            </Link>
           </div>
         </SiteSection>
 
@@ -124,18 +129,37 @@ const SitePage = () => {
         {/* ─── #stats ─── */}
         <SiteSection id='stats' title='Stats'>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
-            {STATS.map(({ value, label }) => (
-              <div
+            {STATS.map(({ value, label }, i) => (
+              <motion.div
                 key={label}
+                initial={{ opacity: 0, scale: 0.92 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.4, delay: i * 0.07 }}
                 className={cn(
                   'rounded-2xl p-6 flex flex-col gap-1',
                   isDark ? 'bg-white/5' : 'bg-white border border-black/7',
                 )}
               >
                 <span className='text-4xl font-black' style={{ color: pt }}>{value}</span>
-                <span className={cn('text-xs font-semibold', isDark ? 'text-white/50' : 'text-black/45')}>{label}</span>
-              </div>
+                <span className={cn('text-xs font-semibold', isDark ? 'text-white/50' : 'text-black/45')}>
+                  {label}
+                </span>
+              </motion.div>
             ))}
+          </div>
+
+          {/* Dashboard link */}
+          <div className='flex justify-end mt-2'>
+            <Link
+              to='/dashboard'
+              className={cn(
+                'text-sm font-semibold transition-colors',
+                isDark ? 'text-white/45 hover:text-white/80' : 'text-black/40 hover:text-black/70',
+              )}
+            >
+              대시보드 전체 보기 →
+            </Link>
           </div>
         </SiteSection>
 

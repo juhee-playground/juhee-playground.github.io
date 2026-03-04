@@ -11,9 +11,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function RouterProvider() {
   const location = useLocation();
-  const isLandingPage = location.pathname === '/';
-  const shouldRenderHeader = validPaths.includes(location.pathname) && !isLandingPage;
-  const isScrollablePage = ['/resume', '/site'].includes(location.pathname);
+  const { pathname } = location;
+
+  const isLandingPage = pathname === '/';
+  const isProjectsPath = pathname === '/projects' || pathname.startsWith('/projects/');
+  const shouldRenderHeader =
+    (validPaths.includes(pathname) || isProjectsPath) && !isLandingPage;
+  const isScrollablePage =
+    ['/resume', '/site', '/projects'].includes(pathname) || isProjectsPath;
 
   useEffect(() => {
     document.body.style.overflow = isScrollablePage ? 'auto' : 'hidden';

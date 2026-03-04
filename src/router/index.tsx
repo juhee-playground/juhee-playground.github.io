@@ -1,28 +1,35 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import NotFound from '@/components/NotFound';
 import UnderConstruction from '@/pages/UnderConstruction';
+import { validPaths } from '@/router/paths';
 
+const Dashboard = lazy(() => import('../pages/dashboard'));
 const LandingPage = lazy(() => import('../pages/landing'));
 const Main = lazy(() => import('../pages/resume'));
-const Dashboard = lazy(() => import('../pages/dashboard'));
+const ProjectDetailPage = lazy(() => import('../pages/projects/detail'));
+const ProjectsPage = lazy(() => import('../pages/projects'));
 const SitePage = lazy(() => import('../pages/site'));
 
 const renderLoader = () => <p>Loading</p>;
 
 export default function Router() {
   const location = useLocation();
-  const validPaths = ['/', '/resume', '/dashboard', '/portfolio', '/site'];
+  const isValid =
+    validPaths.includes(location.pathname) ||
+    location.pathname.startsWith('/projects/');
 
   return (
     <Suspense fallback={renderLoader()}>
-      {validPaths.includes(location.pathname) ? (
+      {isValid ? (
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/resume' element={<Main />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/portfolio' element={<UnderConstruction />} />
+          <Route path='/projects' element={<ProjectsPage />} />
+          <Route path='/projects/:slug' element={<ProjectDetailPage />} />
           <Route path='/site' element={<SitePage />} />
         </Routes>
       ) : (

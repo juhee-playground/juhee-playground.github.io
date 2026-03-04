@@ -32,6 +32,7 @@ export default function DenseAppBar() {
   const { mode } = usePrintMode();
   const { pathname } = useLocation();
   const isSitePage = pathname === '/site';
+  const isResumePage = pathname === '/resume';
 
   const toggleDrawer = (direction: TAnchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -88,6 +89,9 @@ export default function DenseAppBar() {
               <Link to='/dashboard'>대시보드</Link>
             </li>
             <li role='menuItem'>
+              <Link to='/projects'>Projects</Link>
+            </li>
+            <li role='menuItem'>
               <Link
                 to='/site'
                 className='font-bold text-white px-2 py-0.5 rounded text-xs'
@@ -100,7 +104,7 @@ export default function DenseAppBar() {
         )}
 
         <div className='menu__groups'>
-          {isPrintMode ? (
+          {isPrintMode && isResumePage ? (
             <>
               <IconButton aria-label='printMode' onClick={openPrint}>
                 <PrintIcon />
@@ -114,9 +118,11 @@ export default function DenseAppBar() {
               <IconButton aria-label='lightMode' onClick={toggleThemeMode}>
                 {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
               </IconButton>
-              <IconButton aria-label='printMode' onClick={handleClickOpen}>
-                <PrintIcon />
-              </IconButton>
+              {isResumePage && (
+                <IconButton aria-label='printMode' onClick={handleClickOpen}>
+                  <PrintIcon />
+                </IconButton>
+              )}
             </>
           )}
         </div>

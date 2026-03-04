@@ -1,1 +1,1 @@
-export const validPaths = ['/', '/resume', '/dashboard', '/site'];
+export const validPaths = ['/', '/resume', '/dashboard', '/site', '/projects'];
