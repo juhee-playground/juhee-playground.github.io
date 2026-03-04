@@ -103,7 +103,7 @@ export default function DenseAppBar() {
                   className='font-bold text-white px-2 py-0.5 rounded text-xs'
                   style={{ backgroundColor: pointColor.hex }}
                 >
-                  Site
+                  포트폴리오
                 </Link>
               </li>
             </ul>

@@ -111,7 +111,7 @@ const LandingPage = () => {
       }
     } else if (gameState === PortfolioState.PROJECTS) {
       if (btn === 'A') {
-        navigate('/portfolio');
+        navigate('/site');
       } else if (btn === 'B') {
         setGameState(PortfolioState.MENU);
       }

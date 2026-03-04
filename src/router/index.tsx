@@ -2,7 +2,6 @@ import { lazy, Suspense } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import NotFound from '@/components/NotFound';
-import UnderConstruction from '@/pages/UnderConstruction';
 import { validPaths } from '@/router/paths';
 
 const Dashboard = lazy(() => import('../pages/dashboard'));
@@ -27,7 +26,6 @@ export default function Router() {
           <Route path='/' element={<LandingPage />} />
           <Route path='/resume' element={<Main />} />
           <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/portfolio' element={<UnderConstruction />} />
           <Route path='/projects' element={<ProjectsPage />} />
           <Route path='/projects/:slug' element={<ProjectDetailPage />} />
           <Route path='/site' element={<SitePage />} />
