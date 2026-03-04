@@ -1,54 +1,92 @@
-import React from 'react';
 import { ColorPicker, useColor, type IColor } from 'react-color-palette';
 
-import { PaletteMode } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-
 import { useSettings } from '@/stores/useSettings';
+import { cn } from '@/utils/classNames';
 
 import 'react-color-palette/css';
 
 const ThemeCustomized = () => {
-  const [color, setColor] = useColor('#5467f5');
-  const { themeMode, pointColor, setThemeMode, setPointColor } = useSettings();
+  const { themeMode, pointColor, setPointColor } = useSettings();
+  const [color, setColor] = useColor(pointColor.hex);
+  const isDark = themeMode === 'dark';
 
-  const handleChangeComplete = (selectedColor: IColor) => {
+  const handleChange = (selectedColor: IColor) => {
     setColor(selectedColor);
-    setPointColor(selectedColor); // Zustand 기반으로 포인트 색상 업데이트
-  };
-
-  const handleThemeChange = (_event: React.ChangeEvent<HTMLInputElement>, value: string) => {
-    setThemeMode(value as PaletteMode);
+    setPointColor(selectedColor);
   };
 
   return (
-    <div className='px-3 py-2'>
-      <h2>Theme Customize</h2>
-      <hr />
-      <h4>THEMING</h4>
-
-      <div>
-        <FormControl>
-          <h5>Theme</h5>
-          <RadioGroup
-            row
-            aria-labelledby='theme-radio-buttons'
-            name='theme-mode'
-            value={themeMode}
-            onChange={handleThemeChange}
-          >
-            <FormControlLabel value='light' control={<Radio style={{ color: pointColor.hex }} />} label='Light' />
-            <FormControlLabel value='dark' control={<Radio style={{ color: pointColor.hex }} />} label='Dark' />
-          </RadioGroup>
-        </FormControl>
+    <div
+      className={cn(
+        'w-72 h-full flex flex-col px-5 py-6 gap-6',
+        isDark ? 'bg-[#181717] text-white' : 'bg-[#fafafa] text-[#181717]',
+      )}
+    >
+      {/* 헤더 */}
+      <div className='flex items-center gap-3'>
+        <span
+          className={cn(
+            'text-[10px] font-black tracking-widest uppercase shrink-0',
+            isDark ? 'text-white/40' : 'text-black/40',
+          )}
+        >
+          Point Color
+        </span>
+        <div className={cn('flex-1 h-px', isDark ? 'bg-white/10' : 'bg-black/8')} />
       </div>
 
-      <h5>Point Color</h5>
-      <ColorPicker color={color} onChange={handleChangeComplete} />
-      <hr />
+      {/* 현재 색상 프리뷰 */}
+      <div className='flex items-center gap-3'>
+        <div
+          className='w-8 h-8 rounded-full shadow-sm shrink-0'
+          style={{ backgroundColor: pointColor.hex }}
+        />
+        <div className='flex flex-col gap-0.5'>
+          <span className={cn('text-xs font-semibold', isDark ? 'text-white/80' : 'text-black/70')}>
+            {pointColor.hex.toUpperCase()}
+          </span>
+          <span className={cn('text-[10px]', isDark ? 'text-white/30' : 'text-black/30')}>
+            현재 포인트 색상
+          </span>
+        </div>
+      </div>
+
+      {/* 컬러 피커 */}
+      <div
+        className={cn(
+          '[&_.rcp]:rounded-xl [&_.rcp]:shadow-none',
+          isDark
+            ? '[&_.rcp]:bg-transparent [&_.rcp-field-input]:bg-white/8 [&_.rcp-field-input]:text-white [&_.rcp-field-label]:text-white/40'
+            : '[&_.rcp]:bg-transparent [&_.rcp-field-input]:bg-black/5 [&_.rcp-field-input]:text-[#181717] [&_.rcp-field-label]:text-black/40',
+        )}
+      >
+        <ColorPicker color={color} onChange={handleChange} />
+      </div>
+
+      {/* 프리셋 */}
+      <div className='flex flex-col gap-3'>
+        <span className={cn('text-[10px] font-black tracking-widest uppercase', isDark ? 'text-white/40' : 'text-black/40')}>
+          Presets
+        </span>
+        <div className='flex flex-wrap gap-2'>
+          {[
+            '#5467f5', '#ef4444', '#f59e0b', '#22c55e',
+            '#06b6d4', '#a855f7', '#ec4899', '#64748b',
+          ].map(hex => (
+            <button
+              key={hex}
+              onClick={() => handleChange({ ...color, hex })}
+              className={cn(
+                'w-7 h-7 rounded-full transition-all duration-150 hover:scale-110',
+                pointColor.hex.toLowerCase() === hex ? 'ring-2 ring-offset-2 scale-110' : '',
+                isDark ? 'ring-offset-[#181717]' : 'ring-offset-[#fafafa]',
+              )}
+              style={{ backgroundColor: hex, ringColor: hex }}
+              title={hex}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

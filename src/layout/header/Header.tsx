@@ -5,7 +5,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import PrintIcon from '@mui/icons-material/Print';
-import SettingsIcon from '@mui/icons-material/Settings';
+import PaletteIcon from '@mui/icons-material/Palette';
 
 import IconButton from '@mui/material/IconButton';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -18,13 +18,6 @@ import { cn } from '@/utils/classNames';
 const anchor = 'right';
 const PRINT_TIMEOUT_MS = 100;
 
-// Portfolio가 실질적 홈 — '/'(GameBoy)는 footer Easter egg로만 접근
-const NAV_ITEMS = [
-  { to: '/portfolio',  label: 'Portfolio' },
-  { to: '/resume',     label: 'Resume' },
-  { to: '/dashboard',  label: 'Dashboard' },
-  { to: '/projects',   label: 'Projects' },
-];
 
 export default function DenseAppBar() {
   const [menuDirection, setMenuDirection] = useState({
@@ -35,6 +28,7 @@ export default function DenseAppBar() {
   const { mode } = usePrintMode();
   const { pathname } = useLocation();
 
+  const isPortfolioPage = pathname === '/portfolio';
   const isResumePage    = pathname === '/resume';
   const isDashboardPage = pathname === '/dashboard';
 
@@ -65,36 +59,18 @@ export default function DenseAppBar() {
     >
       <div className={cn('h-11 flex justify-between items-center px-3 border-b', bgColor, borderColor)}>
 
-        {/* ─── 좌: 네비게이션 ─── */}
-        {!isPrintMode && (
-          <nav>
-            <ul className='flex items-center gap-1 [&_a]:text-inherit'>
-              {NAV_ITEMS.map(({ to, label }) => {
-                const isActive = pathname === to || (to !== '/portfolio' && pathname.startsWith(to));
-                return (
-                  <li key={to} role='menuItem'>
-                    <Link
-                      to={to}
-                      className={cn(
-                        'relative inline-flex flex-col items-center px-2 py-3 text-sm transition-all',
-                        isActive
-                          ? 'font-semibold opacity-100'
-                          : 'opacity-40 hover:opacity-70',
-                      )}
-                    >
-                      {label}
-                      {isActive && (
-                        <span
-                          className='absolute bottom-1 left-2 right-2 h-0.5 rounded-full'
-                          style={{ backgroundColor: pointColor.hex }}
-                        />
-                      )}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+        {/* ─── 좌: Portfolio → back 버튼 (포트폴리오 페이지에서는 숨김) ─── */}
+        {!isPrintMode && !isPortfolioPage && (
+          <Link
+            to='/portfolio'
+            className={cn(
+              'flex items-center gap-1.5 text-sm font-medium px-1 py-2 transition-all',
+              themeMode === 'dark' ? 'opacity-50 hover:opacity-90' : 'opacity-45 hover:opacity-85',
+            )}
+          >
+            <span className='text-base leading-none'>←</span>
+            Portfolio
+          </Link>
         )}
 
         {/* ─── 우: 아이콘 버튼들 ─── */}
@@ -135,12 +111,12 @@ export default function DenseAppBar() {
                 </IconButton>
               )}
               <IconButton
-                aria-label='settings'
+                aria-label='color settings'
                 onClick={toggleDrawer(anchor, true)}
                 size='small'
                 className={cn(isPrintMode && mode === 'print' && 'hidden!')}
               >
-                <SettingsIcon fontSize='small' />
+                <PaletteIcon fontSize='small' />
               </IconButton>
             </>
           )}
