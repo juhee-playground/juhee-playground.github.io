@@ -15,111 +15,97 @@ import ThemeCustomized from '@/layout/ThemeCustomized';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
-
 const anchor = 'right';
 const PRINT_TIMEOUT_MS = 100;
 
+const NAV_ITEMS = [
+  { to: '/',           label: 'Home' },
+  { to: '/resume',     label: 'Resume' },
+  { to: '/dashboard',  label: 'Dashboard' },
+  { to: '/projects',   label: 'Projects' },
+  { to: '/portfolio',  label: 'Portfolio' },
+];
+
 export default function DenseAppBar() {
   const [menuDirection, setMenuDirection] = useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
+    top: false, left: false, bottom: false, right: false,
   });
 
   const { pointColor, isPrintMode, togglePrintMode, themeMode, toggleThemeMode, showSideProjects, toggleSideProjects } = useSettings();
-
   const { mode } = usePrintMode();
   const { pathname } = useLocation();
-  const isSitePage = pathname === '/portfolio';
-  const isResumePage = pathname === '/resume';
+
+  const isResumePage    = pathname === '/resume';
   const isDashboardPage = pathname === '/dashboard';
 
   const toggleDrawer = (direction: TAnchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
-      event &&
-      event.type === 'keydown' &&
+      event?.type === 'keydown' &&
       ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
+    ) return;
     setMenuDirection({ ...menuDirection, [direction]: open });
-  };
-
-  const handleClickOpen = () => {
-    togglePrintMode();
-  };
-
-  const openPrint = () => {
-    window.print();
   };
 
   useEffect(() => {
     if (!isPrintMode) return undefined;
-
-    const timeout = window.setTimeout(() => {
-      window.print();
-    }, PRINT_TIMEOUT_MS);
-
-    return () => {
-      window.clearTimeout(timeout);
-    };
+    const timeout = window.setTimeout(() => window.print(), PRINT_TIMEOUT_MS);
+    return () => window.clearTimeout(timeout);
   }, [isPrintMode]);
 
   const bgColor = themeMode === 'light' ? 'bg-[#fefefe] text-[#181717]' : 'bg-[#181717] text-white';
+  const borderColor = themeMode === 'light' ? 'border-black/8' : 'border-white/8';
 
   return (
     <header
       className={cn(
         'flex flex-col max-w-[1080px] mx-auto w-full',
         bgColor,
-        isPrintMode && mode === 'print' && '[&_.menu__groups]:hidden [&:hover_.menu__groups]:inline'
+        isPrintMode && mode === 'print' && '[&_.menu__groups]:hidden [&:hover_.menu__groups]:inline',
       )}
     >
-      {/* ─── Row 1: 페이지 nav + 아이콘 ─── */}
-      <div className={cn('h-10 flex justify-between items-center md:pr-[45px]', bgColor)}>
+      <div className={cn('h-11 flex justify-between items-center px-3 border-b', bgColor, borderColor)}>
+
+        {/* ─── 좌: 네비게이션 ─── */}
         {!isPrintMode && (
-          isSitePage ? (
-            <ul className='flex gap-3 px-3 [&_a]:text-inherit items-center'>
-              <li role='menuItem'>
-                <Link to='/'>홈</Link>
-              </li>
+          <nav>
+            <ul className='flex items-center gap-1 [&_a]:text-inherit'>
+              {NAV_ITEMS.map(({ to, label }) => {
+                const isActive = to === '/' ? pathname === '/' : pathname.startsWith(to);
+                return (
+                  <li key={to} role='menuItem'>
+                    <Link
+                      to={to}
+                      className={cn(
+                        'relative inline-flex flex-col items-center px-2 py-3 text-sm transition-all',
+                        isActive
+                          ? 'font-semibold opacity-100'
+                          : 'opacity-40 hover:opacity-70',
+                      )}
+                    >
+                      {label}
+                      {isActive && (
+                        <span
+                          className='absolute bottom-1 left-2 right-2 h-0.5 rounded-full'
+                          style={{ backgroundColor: pointColor.hex }}
+                        />
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
-          ) : (
-            <ul className='flex gap-3 px-3 [&_a]:text-inherit items-center'>
-              <li role='menuItem'>
-                <Link to='/'>홈</Link>
-              </li>
-              <li role='menuItem'>
-                <Link to='/resume'>이력서</Link>
-              </li>
-              <li role='menuItem'>
-                <Link to='/dashboard'>대시보드</Link>
-              </li>
-              <li role='menuItem'>
-                <Link to='/projects'>Projects</Link>
-              </li>
-              <li role='menuItem'>
-                <Link
-                  to='/portfolio'
-                  className='font-bold text-white px-2 py-0.5 rounded text-xs'
-                  style={{ backgroundColor: pointColor.hex }}
-                >
-                  포트폴리오
-                </Link>
-              </li>
-            </ul>
-          )
+          </nav>
         )}
 
-        <div className='menu__groups'>
+        {/* ─── 우: 아이콘 버튼들 ─── */}
+        <div className='menu__groups flex items-center'>
           {isPrintMode && isResumePage ? (
             <>
-              <IconButton aria-label='printMode' onClick={openPrint}>
-                <PrintIcon />
+              <IconButton aria-label='print' onClick={() => window.print()} size='small'>
+                <PrintIcon fontSize='small' />
               </IconButton>
-              <IconButton aria-label='offPrintMode' onClick={handleClickOpen}>
-                <ClearIcon />
+              <IconButton aria-label='offPrintMode' onClick={togglePrintMode} size='small'>
+                <ClearIcon fontSize='small' />
               </IconButton>
             </>
           ) : (
@@ -140,34 +126,26 @@ export default function DenseAppBar() {
                   {showSideProjects ? '✓ 사이드' : '+ 사이드'}
                 </button>
               )}
-              <IconButton aria-label='lightMode' onClick={toggleThemeMode}>
-                {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+              <IconButton aria-label='toggleTheme' onClick={toggleThemeMode} size='small'>
+                {themeMode === 'light' ? <DarkModeIcon fontSize='small' /> : <LightModeIcon fontSize='small' />}
               </IconButton>
               {isResumePage && (
-                <IconButton aria-label='printMode' onClick={handleClickOpen}>
-                  <PrintIcon />
+                <IconButton aria-label='printMode' onClick={togglePrintMode} size='small'>
+                  <PrintIcon fontSize='small' />
                 </IconButton>
               )}
+              <IconButton
+                aria-label='settings'
+                onClick={toggleDrawer(anchor, true)}
+                size='small'
+                className={cn(isPrintMode && mode === 'print' && 'hidden!')}
+              >
+                <SettingsIcon fontSize='small' />
+              </IconButton>
             </>
           )}
         </div>
       </div>
-
-      <button
-        style={{ backgroundColor: pointColor.hex }}
-        className={cn(
-          'font-["Roboto",sans-serif] appearance-none border-none uppercase box-border text-white align-middle text-sm text-center no-underline py-2 shadow-[0_1px_4px_0_rgba(0,0,0,0.37)] cursor-pointer hover:shadow-[0_2px_2px_0_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.3)] focus:outline-0',
-          'rounded-tl-lg rounded-bl-lg',
-          'overflow-hidden',
-          'before:content-[""] before:absolute before:top-1/2 before:left-1/2 before:w-0 before:h-0 before:rounded-full before:bg-[rgba(255,255,255,0.6)]',
-          'focus:before:transition-all focus:before:duration-500 focus:before:ease-out focus:before:opacity-0 focus:before:w-[160px] focus:before:h-[160px] focus:before:-mt-20 focus:before:-ml-20',
-          'fixed top-[10%] right-0 -translate-y-1/2 md:top-[2.6%]',
-          isPrintMode && mode === 'print' && 'hidden'
-        )}
-        onClick={toggleDrawer(anchor, true)}
-      >
-        <SettingsIcon />
-      </button>
 
       <SwipeableDrawer
         anchor={anchor}
