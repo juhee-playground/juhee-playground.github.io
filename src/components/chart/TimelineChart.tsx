@@ -11,12 +11,13 @@ interface ITimeScaleChartProps {
   width: number;
   height: number;
   tasks: ITask[];
+  isDark?: boolean;
 }
 
 const today = dayjs();
 const firstDay = dayjs('2017-05-02');
 
-const TimelineChart = ({ width, height, tasks }: ITimeScaleChartProps) => {
+const TimelineChart = ({ width, height, tasks, isDark = false }: ITimeScaleChartProps) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const margin = { top: 40, right: 30, bottom: 50, left: 30 };
 
@@ -62,7 +63,7 @@ const TimelineChart = ({ width, height, tasks }: ITimeScaleChartProps) => {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           />
-          <XAxis xScale={xScale} innerHeight={height - margin.top - margin.bottom} />
+          <XAxis xScale={xScale} innerHeight={height - margin.top - margin.bottom} isDark={isDark} />
         </g>
       </svg>
       {tooltip && <Tooltip content={tooltip.content} x={tooltip.x} y={tooltip.y} color={tooltip.color} />}

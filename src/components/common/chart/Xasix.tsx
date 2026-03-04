@@ -4,15 +4,18 @@ import dayjs from 'dayjs';
 interface IXAxisProps {
   xScale: d3.ScaleTime<number, number>;
   innerHeight: number;
+  isDark?: boolean;
 }
 
-const XAxis = ({ xScale, innerHeight }: IXAxisProps) => {
+const XAxis = ({ xScale, innerHeight, isDark = false }: IXAxisProps) => {
   const tickValues = [
     dayjs('2017-05-02').toDate(),
     dayjs('2018-07-01').toDate(),
     dayjs('2022-11-30').toDate(),
     dayjs().toDate(),
   ];
+
+  const tickColor = isDark ? 'rgba(255,255,255,0.45)' : '#555';
 
   return (
     <g
@@ -33,6 +36,9 @@ const XAxis = ({ xScale, innerHeight }: IXAxisProps) => {
                 return '';
               }),
           );
+          d3.select(node).selectAll('text').style('fill', tickColor);
+          d3.select(node).selectAll('.domain').style('stroke', tickColor);
+          d3.select(node).selectAll('.tick line').style('stroke', tickColor);
         }
       }}
     />

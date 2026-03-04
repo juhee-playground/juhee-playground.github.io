@@ -17,7 +17,7 @@ const Legend = ({ data, orientation = 'horizontal' }: ILegendProps) => {
       {data.map(item => (
         <li key={item.id}>
           <span className='inline-block w-3 h-3 rounded-full mr-2' style={{ backgroundColor: item.color }}></span>
-          <span className='text-xs text-[#333333]'>{item.label}</span>
+          <span className='text-xs text-inherit opacity-70'>{item.label}</span>
         </li>
       ))}
     </ul>
