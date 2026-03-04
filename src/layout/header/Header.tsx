@@ -137,7 +137,7 @@ export default function DenseAppBar() {
         className={cn(
           'font-["Roboto",sans-serif] appearance-none border-none uppercase box-border text-white align-middle text-sm text-center no-underline py-2 shadow-[0_1px_4px_0_rgba(0,0,0,0.37)] cursor-pointer hover:shadow-[0_2px_2px_0_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.3)] focus:outline-0',
           'rounded-tl-lg rounded-bl-lg',
-          'relative overflow-hidden',
+          'overflow-hidden',
           'before:content-[""] before:absolute before:top-1/2 before:left-1/2 before:w-0 before:h-0 before:rounded-full before:bg-[rgba(255,255,255,0.6)]',
           'focus:before:transition-all focus:before:duration-500 focus:before:ease-out focus:before:opacity-0 focus:before:w-[160px] focus:before:h-[160px] focus:before:-mt-20 focus:before:-ml-20',
           'fixed top-[10%] right-0 -translate-y-1/2 md:top-[2.6%]',
