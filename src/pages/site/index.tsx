@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 
+import SiteExperiencePreview from '@/components/site/SiteExperiencePreview';
 import SiteHero from '@/components/site/SiteHero';
 import SiteOverview from '@/components/site/SiteOverview';
 import SiteSection from '@/components/site/SiteSection';
@@ -42,36 +43,6 @@ const PROJECTS = [
   },
 ];
 
-const EXPERIENCE = [
-  {
-    company: '틴들로 (Tindlo)',
-    role: 'Frontend Developer',
-    period: '2025.02 — Present',
-    desc: '프론트엔드 시스템 설계 및 개발.',
-    current: true,
-  },
-  {
-    company: '프리랜서',
-    role: 'Frontend Developer',
-    period: '2023.07 — 2023.10',
-    desc: '단기 프로젝트 및 컨설팅.',
-    current: false,
-  },
-  {
-    company: '핏투게더 (Fitogether)',
-    role: 'Frontend Developer',
-    period: '2018.07 — 2022.11',
-    desc: '스포츠 데이터 시각화 SaaS 플랫폼 개발. 1인 → 10인 이상 팀으로 성장하는 초기 스타트업 경험.',
-    current: false,
-  },
-  {
-    company: '와이유파트너스 (YU Partners)',
-    role: 'Web Developer',
-    period: '2017.03 — 2018.02',
-    desc: '운영·자문·펀딩 플랫폼 개발.',
-    current: false,
-  },
-];
 
 const STATS = [
   { value: '5+', label: 'Years Experience' },
@@ -217,40 +188,7 @@ const SitePage = () => {
 
         {/* ─── #experience ─── */}
         <SiteSection id='experience' title='Experience' sectionRef={el => { sectionRefs.current.experience = el; }}>
-          <ol className='relative flex flex-col gap-0'>
-            {EXPERIENCE.map(({ company, role, period, desc, current }, i) => (
-              <li key={company} className='flex gap-5'>
-                {/* Timeline line */}
-                <div className='flex flex-col items-center'>
-                  <div
-                    className='w-3 h-3 rounded-full mt-1 shrink-0 ring-2'
-                    style={{
-                      backgroundColor: current ? pt : 'transparent',
-                      border: `2px solid ${pt}`,
-                    }}
-                  />
-                  {i < EXPERIENCE.length - 1 && (
-                    <div className={cn('w-px flex-1 my-1', isDark ? 'bg-white/10' : 'bg-black/10')} />
-                  )}
-                </div>
-
-                <div className='pb-10 flex flex-col gap-1'>
-                  <div className='flex flex-wrap items-center gap-2'>
-                    <span className='font-bold text-sm'>{company}</span>
-                    {current && (
-                      <span className='text-[9px] font-bold px-1.5 py-0.5 rounded text-white' style={{ backgroundColor: pt }}>
-                        NOW
-                      </span>
-                    )}
-                  </div>
-                  <p className={cn('text-xs font-semibold', isDark ? 'text-white/50' : 'text-black/45')}>
-                    {role} · {period}
-                  </p>
-                  <p className={cn('text-sm leading-relaxed mt-1', isDark ? 'text-white/55' : 'text-black/55')}>{desc}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <SiteExperiencePreview />
         </SiteSection>
 
         {/* ─── #stats ─── */}
