@@ -72,7 +72,10 @@ export default function DenseAppBar() {
       {!isPrintMode && (
         <ul className='flex gap-3 px-3 [&_a]:text-inherit'>
           <li role='menuItem'>
-            <Link to='/'>이력서</Link>
+            <Link to='/'>홈</Link>
+          </li>
+          <li role='menuItem'>
+            <Link to='/resume'>이력서</Link>
           </li>
           <li role='menuItem'>
             <Link to='/dashboard'>대시보드</Link>

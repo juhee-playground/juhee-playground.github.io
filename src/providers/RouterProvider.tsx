@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import { ToastContainer } from 'react-toastify';
 
 import Header from '@/layout/header/Header';
@@ -27,21 +26,17 @@ export default function RouterProvider() {
     };
   }, [isResumePage]);
 
-  const isGameMode = (location.state as { gameMode?: boolean } | null)?.gameMode === true;
-
   return (
     <>
       <ToastContainer />
-      <AnimatePresence mode="wait">
-        {isLandingPage || isGameMode ? (
-          <Router key={location.pathname} />
-        ) : (
-          <Layout key={location.pathname}>
-            {shouldRenderHeader && <Header />}
-            <Router />
-          </Layout>
-        )}
-      </AnimatePresence>
+      {isLandingPage ? (
+        <Router />
+      ) : (
+        <Layout>
+          {shouldRenderHeader && <Header />}
+          <Router />
+        </Layout>
+      )}
     </>
   );
 }

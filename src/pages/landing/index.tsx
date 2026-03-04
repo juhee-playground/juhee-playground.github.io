@@ -28,7 +28,7 @@ const LandingPage = () => {
 
   const handleSelect = useCallback(() => {
     if (powerState !== 'on') return;
-    navigate('/resume', { state: { gameMode: true } });
+    navigate('/resume');
   }, [navigate, powerState]);
 
   const handleDPad = useCallback((direction: string) => {
@@ -96,7 +96,7 @@ const LandingPage = () => {
       }
     } else if (gameState === PortfolioState.PLAYER) {
       if (btn === 'A' && detailIndex === 1) {
-        navigate('/resume', { state: { gameMode: true } });
+        navigate('/resume');
       } else if (btn === 'B') {
         setGameState(PortfolioState.MENU);
         setDetailIndex(0);
@@ -104,14 +104,14 @@ const LandingPage = () => {
       }
     } else if (gameState === PortfolioState.CAREER) {
       if (btn === 'A') {
-        navigate('/dashboard', { state: { gameMode: true } });
+        navigate('/dashboard');
       } else if (btn === 'B') {
         setGameState(PortfolioState.MENU);
         setDashboardPage(0);
       }
     } else if (gameState === PortfolioState.PROJECTS) {
       if (btn === 'A') {
-        navigate('/portfolio', { state: { gameMode: true } });
+        navigate('/portfolio');
       } else if (btn === 'B') {
         setGameState(PortfolioState.MENU);
       }
@@ -124,7 +124,7 @@ const LandingPage = () => {
 
   const handleDetailsClick = useCallback(() => {
     if (gameState === PortfolioState.PLAYER) {
-      navigate('/resume', { state: { gameMode: true } });
+      navigate('/resume');
     }
   }, [gameState, navigate]);
 
