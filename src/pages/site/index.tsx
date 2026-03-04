@@ -8,6 +8,7 @@ import SiteExperiencePreview from '@/components/site/SiteExperiencePreview';
 import SiteHero from '@/components/site/SiteHero';
 import SiteOverview from '@/components/site/SiteOverview';
 import SiteSection from '@/components/site/SiteSection';
+import SiteSideNav from '@/components/site/SiteSideNav';
 import { PROJECTS_SITE, TProjectStatus } from '@/data/projects/DB_projects_site';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
@@ -36,12 +37,13 @@ const SitePage = () => {
 
   return (
     <div className={cn('min-h-screen w-full', isDark ? 'bg-[#181717] text-white' : 'bg-[#fafafa] text-[#181717]')}>
+      <SiteSideNav />
       <main className='max-w-[860px] mx-auto px-6 pb-24'>
 
         {/* ─── #overview ─── */}
         <section
           id='overview'
-          className='min-h-[80vh] flex flex-col justify-center py-20 gap-10 scroll-mt-20'
+          className='min-h-[80vh] flex flex-col justify-center py-20 gap-10 scroll-mt-14'
         >
           <SiteHero onScrollToProjects={scrollToProjects} />
           <SiteOverview />
