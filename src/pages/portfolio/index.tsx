@@ -174,11 +174,21 @@ const PortfolioPage = () => {
 
       <footer
         className={cn(
-          'text-center py-8 text-xs border-t',
+          'py-8 text-xs border-t flex items-center justify-between px-2',
           isDark ? 'border-white/10 text-white/30' : 'border-black/10 text-black/30',
         )}
       >
-        © 2025 BAEK JU HEE · Built with React + TypeScript
+        <span>© 2025 BAEK JU HEE · Built with React + TypeScript</span>
+        <Link
+          to='/'
+          title='GameBoy ver.'
+          className={cn(
+            'text-base transition-all duration-200 hover:scale-110 hover:opacity-80',
+            isDark ? 'opacity-20' : 'opacity-25',
+          )}
+        >
+          🎮
+        </Link>
       </footer>
     </div>
   );

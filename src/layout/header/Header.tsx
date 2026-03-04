@@ -18,12 +18,12 @@ import { cn } from '@/utils/classNames';
 const anchor = 'right';
 const PRINT_TIMEOUT_MS = 100;
 
+// Portfolio가 실질적 홈 — '/'(GameBoy)는 footer Easter egg로만 접근
 const NAV_ITEMS = [
-  { to: '/',           label: 'Home' },
+  { to: '/portfolio',  label: 'Portfolio' },
   { to: '/resume',     label: 'Resume' },
   { to: '/dashboard',  label: 'Dashboard' },
   { to: '/projects',   label: 'Projects' },
-  { to: '/portfolio',  label: 'Portfolio' },
 ];
 
 export default function DenseAppBar() {
@@ -70,7 +70,7 @@ export default function DenseAppBar() {
           <nav>
             <ul className='flex items-center gap-1 [&_a]:text-inherit'>
               {NAV_ITEMS.map(({ to, label }) => {
-                const isActive = to === '/' ? pathname === '/' : pathname.startsWith(to);
+                const isActive = pathname === to || (to !== '/portfolio' && pathname.startsWith(to));
                 return (
                   <li key={to} role='menuItem'>
                     <Link
