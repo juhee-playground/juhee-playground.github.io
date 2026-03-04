@@ -74,7 +74,7 @@ export default function DenseAppBar() {
         )}
 
         {/* ─── 우: 아이콘 버튼들 ─── */}
-        <div className='menu__groups flex items-center'>
+        <div className='menu__groups flex items-center ml-auto'>
           {isPrintMode && isResumePage ? (
             <>
               <IconButton aria-label='print' onClick={() => window.print()} size='small'>

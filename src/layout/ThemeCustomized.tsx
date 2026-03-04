@@ -60,7 +60,7 @@ const ThemeCustomized = () => {
             : '[&_.rcp]:bg-transparent [&_.rcp-field-input]:bg-black/5 [&_.rcp-field-input]:text-[#181717] [&_.rcp-field-label]:text-black/40',
         )}
       >
-        <ColorPicker color={color} onChange={handleChange} />
+        <ColorPicker color={color} onChange={handleChange} hideInput={['rgb', 'hsv']} />
       </div>
 
       {/* 프리셋 */}
@@ -81,7 +81,7 @@ const ThemeCustomized = () => {
                 pointColor.hex.toLowerCase() === hex ? 'ring-2 ring-offset-2 scale-110' : '',
                 isDark ? 'ring-offset-[#181717]' : 'ring-offset-[#fafafa]',
               )}
-              style={{ backgroundColor: hex, ringColor: hex }}
+              style={{ backgroundColor: hex, outlineColor: hex }}
               title={hex}
             />
           ))}
