@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 
 import SiteHero from '@/components/site/SiteHero';
+import SiteOverview from '@/components/site/SiteOverview';
 import SiteSection from '@/components/site/SiteSection';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
@@ -153,9 +154,10 @@ const SitePage = () => {
         <section
           id='overview'
           ref={el => { sectionRefs.current.overview = el; }}
-          className='min-h-[80vh] flex flex-col justify-center py-20'
+          className='min-h-[80vh] flex flex-col justify-center py-20 gap-10'
         >
           <SiteHero onScrollToProjects={() => scrollTo('projects')} />
+          <SiteOverview />
         </section>
 
         {/* ─── #projects ─── */}
