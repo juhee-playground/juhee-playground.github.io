@@ -29,7 +29,7 @@ const XAxis = ({ xScale, innerHeight, isDark = false }: IXAxisProps) => {
               .tickValues(tickValues)
               .tickFormat((domainValue: Date | d3.NumberValue) => {
                 if (domainValue instanceof Date) {
-                  return d3.timeFormat('%y/%m/%d')(domainValue);
+                  return d3.timeFormat('%y/%m')(domainValue);
                 } else if (typeof domainValue === 'number') {
                   return domainValue.toString();
                 }
