@@ -41,7 +41,7 @@ const LandingPage = () => {
 
   const handleSelect = useCallback(() => {
     if (powerState !== 'on') return;
-    navigate('/site');
+    navigate('/portfolio');
   }, [navigate, powerState]);
 
   const handleDPad = useCallback((direction: string) => {
@@ -124,7 +124,7 @@ const LandingPage = () => {
       }
     } else if (gameState === PortfolioState.PROJECTS) {
       if (btn === 'A') {
-        navigate('/site');
+        navigate('/portfolio');
       } else if (btn === 'B') {
         setGameState(PortfolioState.MENU);
       }

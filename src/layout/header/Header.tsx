@@ -31,7 +31,7 @@ export default function DenseAppBar() {
 
   const { mode } = usePrintMode();
   const { pathname } = useLocation();
-  const isSitePage = pathname === '/site';
+  const isSitePage = pathname === '/portfolio';
   const isResumePage = pathname === '/resume';
   const isDashboardPage = pathname === '/dashboard';
 
@@ -101,7 +101,7 @@ export default function DenseAppBar() {
               </li>
               <li role='menuItem'>
                 <Link
-                  to='/site'
+                  to='/portfolio'
                   className='font-bold text-white px-2 py-0.5 rounded text-xs'
                   style={{ backgroundColor: pointColor.hex }}
                 >

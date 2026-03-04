@@ -35,7 +35,7 @@ const ProjectsPage = () => {
         {/* Breadcrumb */}
         <nav aria-label='breadcrumb' className='mb-10'>
           <Link
-            to='/site'
+            to='/portfolio'
             className={cn(
               'text-sm transition-colors',
               isDark ? 'text-white/40 hover:text-white/75' : 'text-black/35 hover:text-black/65',

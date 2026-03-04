@@ -18,7 +18,7 @@ export default function RouterProvider() {
   const shouldRenderHeader =
     (validPaths.includes(pathname) || isProjectsPath) && !isLandingPage;
   const isScrollablePage =
-    ['/resume', '/site', '/projects', '/dashboard'].includes(pathname) || isProjectsPath;
+    ['/resume', '/portfolio', '/projects', '/dashboard'].includes(pathname) || isProjectsPath;
 
   useEffect(() => {
     document.body.style.overflow = isScrollablePage ? 'auto' : 'hidden';
