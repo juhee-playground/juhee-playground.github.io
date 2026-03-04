@@ -18,7 +18,7 @@ const SiteSection = ({ children, id, title }: ISiteSectionProps) => {
   return (
     <section
       id={id}
-      className='py-20 flex flex-col gap-8 scroll-mt-10'
+      className='py-20 flex flex-col gap-8 scroll-mt-20'
     >
       {title && (
         <div className='flex items-center gap-3'>

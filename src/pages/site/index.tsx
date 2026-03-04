@@ -55,7 +55,7 @@ const SitePage = () => {
         {/* ─── #overview ─── */}
         <section
           id='overview'
-          className='min-h-[80vh] flex flex-col justify-center py-20 gap-10 scroll-mt-10'
+          className='min-h-[80vh] flex flex-col justify-center py-20 gap-10 scroll-mt-20'
         >
           <SiteHero onScrollToProjects={scrollToProjects} />
           <SiteOverview />

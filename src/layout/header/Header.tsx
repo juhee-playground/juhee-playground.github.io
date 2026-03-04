@@ -64,19 +64,20 @@ export default function DenseAppBar() {
     };
   }, [isPrintMode]);
 
+  const bgColor = themeMode === 'light' ? 'bg-[#fefefe] text-[#181717]' : 'bg-[#181717] text-white';
+
   return (
     <header
       className={cn(
-        'p-0 h-10 flex justify-between items-center max-w-[1080px] mx-auto md:pr-[45px]',
-        themeMode === 'light' ? 'bg-[#fefefe] text-[#181717]' : 'bg-[#181717] text-white',
+        'flex flex-col max-w-[1080px] mx-auto w-full',
+        bgColor,
         isPrintMode && mode === 'print' && '[&_.menu__groups]:hidden [&:hover_.menu__groups]:inline'
       )}
     >
-      {!isPrintMode && (
-        isSitePage ? (
-          <SiteSectionNav />
-        ) : (
-          <ul className='flex gap-3 px-3 [&_a]:text-inherit'>
+      {/* ─── Row 1: 페이지 nav + 아이콘 ─── */}
+      <div className={cn('h-10 flex justify-between items-center md:pr-[45px]', bgColor)}>
+        {!isPrintMode && (
+          <ul className='flex gap-3 px-3 [&_a]:text-inherit items-center'>
             <li role='menuItem'>
               <Link to='/'>홈</Link>
             </li>
@@ -96,35 +97,40 @@ export default function DenseAppBar() {
               </Link>
             </li>
           </ul>
-        )
-      )}
-
-      <div className='menu__groups'>
-        {isPrintMode ? (
-          <>
-            <IconButton aria-label='printMode' onClick={openPrint}>
-              <PrintIcon />
-            </IconButton>
-            <IconButton aria-label='offPrintMode' onClick={handleClickOpen}>
-              <ClearIcon />
-            </IconButton>
-          </>
-        ) : (
-          <>
-            <IconButton
-              aria-label='lightMode'
-              onClick={() => {
-                toggleThemeMode();
-              }}
-            >
-              {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
-            </IconButton>
-            <IconButton aria-label='printMode' onClick={handleClickOpen}>
-              <PrintIcon />
-            </IconButton>
-          </>
         )}
+
+        <div className='menu__groups'>
+          {isPrintMode ? (
+            <>
+              <IconButton aria-label='printMode' onClick={openPrint}>
+                <PrintIcon />
+              </IconButton>
+              <IconButton aria-label='offPrintMode' onClick={handleClickOpen}>
+                <ClearIcon />
+              </IconButton>
+            </>
+          ) : (
+            <>
+              <IconButton aria-label='lightMode' onClick={toggleThemeMode}>
+                {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+              </IconButton>
+              <IconButton aria-label='printMode' onClick={handleClickOpen}>
+                <PrintIcon />
+              </IconButton>
+            </>
+          )}
+        </div>
       </div>
+
+      {/* ─── Row 2: 섹션 앵커 nav (/site 전용) ─── */}
+      {isSitePage && !isPrintMode && (
+        <div className={cn(
+          'border-t',
+          themeMode === 'light' ? 'border-black/8' : 'border-white/10'
+        )}>
+          <SiteSectionNav />
+        </div>
+      )}
 
       <button
         style={{ backgroundColor: pointColor.hex }}
@@ -134,7 +140,7 @@ export default function DenseAppBar() {
           'relative overflow-hidden',
           'before:content-[""] before:absolute before:top-1/2 before:left-1/2 before:w-0 before:h-0 before:rounded-full before:bg-[rgba(255,255,255,0.6)]',
           'focus:before:transition-all focus:before:duration-500 focus:before:ease-out focus:before:opacity-0 focus:before:w-[160px] focus:before:h-[160px] focus:before:-mt-20 focus:before:-ml-20',
-          'absolute fixed top-[10%] right-0 -translate-y-1/2 md:top-[2.6%]',
+          'fixed top-[10%] right-0 -translate-y-1/2 md:top-[2.6%]',
           isPrintMode && mode === 'print' && 'hidden'
         )}
         onClick={toggleDrawer(anchor, true)}

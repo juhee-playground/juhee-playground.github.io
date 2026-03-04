@@ -44,7 +44,7 @@ export default function Layout({ children }: IMainLayoutProps) {
       )}
     >
       {headerChild && (
-        <div className="shrink-0">
+        <div className="shrink-0 sticky top-0 z-50">
           {headerChild}
         </div>
       )}
