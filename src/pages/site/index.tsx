@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 
+import SiteContact from '@/components/site/SiteContact';
 import SiteExperiencePreview from '@/components/site/SiteExperiencePreview';
 import SiteHero from '@/components/site/SiteHero';
 import SiteOverview from '@/components/site/SiteOverview';
@@ -211,40 +212,7 @@ const SitePage = () => {
 
         {/* ─── #contact ─── */}
         <SiteSection id='contact' title='Contact' sectionRef={el => { sectionRefs.current.contact = el; }}>
-          <div
-            className={cn(
-              'rounded-2xl p-8 flex flex-col gap-6',
-              isDark ? 'bg-white/5' : 'bg-white border border-black/[0.07]',
-            )}
-          >
-            <p className={cn('text-sm leading-relaxed', isDark ? 'text-white/60' : 'text-black/55')}>
-              새로운 기회나 협업에 열려 있습니다. 언제든지 연락주세요.
-            </p>
-            <div className='flex flex-col gap-3'>
-              {[
-                { label: 'Email', value: 'gogumangoguma@gmail.com', href: 'mailto:gogumangoguma@gmail.com' },
-                { label: 'GitHub', value: 'github.com/juhee-playground', href: 'https://github.com/juhee-playground' },
-                { label: 'Portfolio', value: 'juhee-playground.github.io', href: 'https://juhee-playground.github.io' },
-              ].map(({ label, value, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target='_blank'
-                  rel='noreferrer'
-                  className={cn(
-                    'flex items-center justify-between p-4 rounded-xl transition-colors group',
-                    isDark ? 'hover:bg-white/5' : 'hover:bg-black/3',
-                  )}
-                >
-                  <div className='flex flex-col gap-0.5'>
-                    <span className='text-[10px] font-bold tracking-widest uppercase' style={{ color: pt }}>{label}</span>
-                    <span className={cn('text-sm', isDark ? 'text-white/80' : 'text-black/70')}>{value}</span>
-                  </div>
-                  <span className={cn('transition-transform group-hover:translate-x-1', isDark ? 'text-white/30' : 'text-black/25')}>→</span>
-                </a>
-              ))}
-            </div>
-          </div>
+          <SiteContact />
         </SiteSection>
 
       </main>
