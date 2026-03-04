@@ -245,6 +245,7 @@ declare global {
     name: string;
     startDate: string;
     endDate: string;
+    color?: string;
   }
 
   interface IPieData {

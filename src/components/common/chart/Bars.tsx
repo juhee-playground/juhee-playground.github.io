@@ -13,11 +13,18 @@ interface IBarProps {
 
 const Bars = ({ tasks, xScale, yPosition, barHeight, onMouseEnter, onMouseMove, onMouseLeave }: IBarProps) => {
   const barRadius = 5;
-  const colors = ['hsl(235.93, 35%, 70%)', 'hsl(153.5, 40%, 70%)', 'hsl(188.98, 60%, 70%)'];
+  const fallbackColors = [
+    'hsl(235.93, 35%, 70%)',
+    'hsl(153.5, 40%, 70%)',
+    'hsl(188.98, 60%, 70%)',
+    'hsl(270, 35%, 68%)',
+  ];
 
   return (
     <>
-      {tasks.map((task, i) => (
+      {tasks.map((task, i) => {
+        const color = task.color ?? fallbackColors[i % fallbackColors.length];
+        return (
         <rect
           key={i}
           className='bar'
@@ -27,12 +34,13 @@ const Bars = ({ tasks, xScale, yPosition, barHeight, onMouseEnter, onMouseMove, 
           height={barHeight}
           rx={barRadius}
           ry={barRadius}
-          fill={colors[i % tasks.length]}
-          onMouseEnter={event => onMouseEnter(event, task, colors[i % tasks.length])}
+          fill={color}
+          onMouseEnter={event => onMouseEnter(event, task, color)}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
         />
-      ))}
+        );
+      })}
     </>
   );
 };

@@ -13,33 +13,44 @@ import TimelineChart from '@/components/chart/TimelineChart';
 import CardV2 from '@/components/common/CardVersion2';
 import { cn } from '@/utils/classNames';
 
+const stackData = [
+  { id: 'Vue', label: 'Vue', value: 50, color: 'hsl(153.5, 40%, 70%)' },
+  { id: 'React', label: 'React', value: 30, color: 'hsl(188.98, 60%, 70%)' },
+  { id: 'PHP', label: 'PHP', value: 20, color: 'hsl(235.93, 35%, 70%)' },
+];
+
+// 회사별 메인 스택 색상 — stackData 색상과 일치
+const TECH_COLORS = {
+  vue: stackData[0].color,    // hsl(153.5, 40%, 70%)  녹색
+  react: stackData[1].color,  // hsl(188.98, 60%, 70%) 청록
+  php: stackData[2].color,    // hsl(235.93, 35%, 70%) 파랑
+};
+
 const tasks: ITask[] = [
   {
     name: 'YU파트너스',
     startDate: dayjs('2017-05-02').format('YYYY-MM-DD'),
     endDate: dayjs('2018-02-28').format('YYYY-MM-DD'),
+    color: TECH_COLORS.php,     // 메인 스택: PHP
   },
   {
     name: 'Fitogether',
     startDate: dayjs('2018-07-01').format('YYYY-MM-DD'),
     endDate: dayjs('2022-11-30').format('YYYY-MM-DD'),
+    color: TECH_COLORS.vue,     // 메인 스택: Vue
   },
   {
     name: '프리랜서',
     startDate: dayjs('2023-07-03').format('YYYY-MM-DD'),
     endDate: dayjs('2023-10-13').format('YYYY-MM-DD'),
+    color: TECH_COLORS.react,   // 메인 스택: React
   },
   {
     name: '틴들로',
     startDate: dayjs('2025-02-03').format('YYYY-MM-DD'),
-    endDate: dayjs('2026-10-13').format('YYYY-MM-DD'),
+    endDate: dayjs().format('YYYY-MM-DD'), // 현재 재직 중 → 오늘 날짜
+    color: TECH_COLORS.react,   // 메인 스택: React
   },
-];
-
-const stackData = [
-  { id: 'Vue', label: 'Vue', value: 50, color: 'hsl(153.5, 40%, 70%)' },
-  { id: 'React', label: 'React', value: 30, color: 'hsl(188.98, 60%, 70%)' },
-  { id: 'PHP', label: 'PHP', value: 20, color: 'hsl(235.93, 35%, 70%)' },
 ];
 
 export default function MainPage() {
@@ -67,7 +78,7 @@ export default function MainPage() {
       <main className='max-w-[1000px] mx-auto px-6 py-12 flex flex-col gap-6'>
 
         {/* Row 1: PROJECTS + COMPANYS */}
-        <div className='flex flex-wrap gap-6'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           <article className={articleClass}>
             <SectionHeader title='PROJECTS' />
             <ul className='flex flex-wrap gap-4'>
@@ -87,8 +98,8 @@ export default function MainPage() {
           </article>
         </div>
 
-        {/* Row 2: TECH USAGE + CAREER TIMELINE */}
-        <div className='flex flex-wrap gap-6'>
+        {/* Row 2: TECH USAGE + COMPANYS TIMELINE */}
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           <article className={articleClass}>
             <SectionHeader title='MAIN TECH USAGE' />
             <div className='overflow-x-auto'>
@@ -96,10 +107,8 @@ export default function MainPage() {
             </div>
           </article>
           <article className={articleClass}>
-            <SectionHeader title='CAREER TIMELINE' />
-            <div className='overflow-x-auto'>
-              <TimelineChart tasks={tasks} width={500} height={300} isDark={isDark} />
-            </div>
+            <SectionHeader title='COMPANYS TIMELINE' />
+            <TimelineChart tasks={tasks} height={300} isDark={isDark} />
           </article>
         </div>
 
@@ -159,8 +168,8 @@ export default function MainPage() {
             <PieChart data={stackData} width={410} height={280} />
           </article>
           <article className='flex flex-col items-start p-5 px-6 border border-[#2d321d]/30 bg-[#d9f99d]'>
-            <h3 className='pixel-font mb-6 text-sm text-[#2d321d] tracking-widest'>[ CAREER TIMELINE ]</h3>
-            <TimelineChart tasks={tasks} width={500} height={300} />
+            <h3 className='pixel-font mb-6 text-sm text-[#2d321d] tracking-widest'>[ COMPANYS TIMELINE ]</h3>
+            <TimelineChart tasks={tasks} height={300} />
           </article>
         </section>
       </div>
