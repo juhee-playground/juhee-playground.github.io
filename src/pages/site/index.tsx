@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 
+import SiteHero from '@/components/site/SiteHero';
 import SiteSection from '@/components/site/SiteSection';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
@@ -78,17 +79,9 @@ const STATS = [
   { value: '3+', label: 'Tech Stacks' },
 ];
 
-const SKILLS = [
-  { group: 'Core', items: ['React', 'TypeScript', 'Next.js', 'Vue'] },
-  { group: 'Style', items: ['Tailwind CSS', 'SCSS', 'MUI'] },
-  { group: 'State / Data', items: ['Zustand', 'React Query', 'Redux'] },
-  { group: 'Tooling', items: ['Vite', 'Storybook', 'Vitest', 'D3.js'] },
-];
-
 const SitePage = () => {
   const { pointColor } = useSettings();
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const isDark = useTheme().palette.mode === 'dark';
   const [activeSection, setActiveSection] = useState<TSection>('overview');
   const sectionRefs = useRef<Record<TSection, HTMLElement | null>>({
     overview: null,
@@ -160,58 +153,9 @@ const SitePage = () => {
         <section
           id='overview'
           ref={el => { sectionRefs.current.overview = el; }}
-          className='min-h-[80vh] flex flex-col justify-center py-20 gap-10'
+          className='min-h-[80vh] flex flex-col justify-center py-20'
         >
-          <div className='flex flex-col gap-4'>
-            <p className='text-xs font-bold tracking-[0.25em] uppercase' style={{ color: pt }}>
-              Frontend Developer
-            </p>
-            <h1 className='text-5xl md:text-7xl font-black tracking-tight leading-none'>
-              BAEK<br />JU HEE
-            </h1>
-            <p className={cn('text-lg max-w-[520px] leading-relaxed', isDark ? 'text-white/60' : 'text-black/55')}>
-              복잡한 워크플로우를 직관적인 인터페이스로.
-              프론트엔드 시스템을 설계하고 빌드합니다.
-            </p>
-            <div className='flex gap-3 mt-2'>
-              <a
-                href='/resume'
-                className='px-5 py-2.5 text-sm font-bold text-white rounded-lg transition-opacity hover:opacity-80'
-                style={{ backgroundColor: pt }}
-              >
-                이력서 보기
-              </a>
-              <button
-                onClick={() => scrollTo('contact')}
-                className={cn(
-                  'px-5 py-2.5 text-sm font-bold rounded-lg border-2 transition-colors',
-                  isDark ? 'border-white/20 hover:border-white/40' : 'border-black/15 hover:border-black/30',
-                )}
-              >
-                연락하기
-              </button>
-            </div>
-          </div>
-
-          {/* Skills grid */}
-          <div className='grid grid-cols-2 md:grid-cols-4 gap-3 mt-4'>
-            {SKILLS.map(({ group, items }) => (
-              <div
-                key={group}
-                className={cn(
-                  'p-4 rounded-xl flex flex-col gap-2',
-                  isDark ? 'bg-white/5' : 'bg-black/3',
-                )}
-              >
-                <p className='text-[10px] font-bold tracking-widest uppercase' style={{ color: pt }}>{group}</p>
-                <ul className='flex flex-col gap-1'>
-                  {items.map(item => (
-                    <li key={item} className={cn('text-xs', isDark ? 'text-white/70' : 'text-black/60')}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <SiteHero onScrollToProjects={() => scrollTo('projects')} />
         </section>
 
         {/* ─── #projects ─── */}
