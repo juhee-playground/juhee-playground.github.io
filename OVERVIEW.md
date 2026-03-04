@@ -1,6 +1,6 @@
 # 포트폴리오 사이트 현황 정리
 
-> 마지막 업데이트: 2026.03.04  
+> 마지막 업데이트: 2026.03.04 (/portfolio 제거, /site → 포트폴리오로 대체 확정)  
 > 배포 주소: [https://juhee-playground.github.io](https://juhee-playground.github.io)
 
 ---
@@ -14,14 +14,18 @@
 
 ## 2. 페이지 구성
 
-총 4개 라우트가 존재하며, 그 중 `/portfolio`는 현재 공사 중 상태.
+총 6개 라우트가 존재하며, `/site`가 포트폴리오 역할을 대체함.
 
 | 경로 | 페이지 | 상태 |
 |------|--------|------|
 | `/` | 랜딩 (GameBoy UI) | ✅ 완성 |
 | `/resume` | 이력서 | ✅ 완성 |
 | `/dashboard` | 대시보드 | ✅ 완성 |
-| `/portfolio` | 포트폴리오 | 🚧 공사 중 |
+| `/site` | 포트폴리오 랜딩 (구 /portfolio 대체) | ✅ 완성 |
+| `/projects` | 프로젝트 목록 | ✅ Phase 1 완성 (목 데이터) |
+| `/projects/:slug` | 프로젝트 케이스 스터디 상세 | ✅ Phase 1 완성 (목 데이터) |
+
+> `/portfolio` 라우트는 제거됨. GameBoy 랜딩의 PROJECTS 메뉴도 `/site`로 연결됨.
 
 ---
 
@@ -239,9 +243,236 @@ Notion API 연동 + 로컬 JSON 파일 fallback (`src/data/DB_company.json`, `DB
 
 ---
 
-### 3-4. 포트폴리오 페이지 (`/portfolio`)
+### 3-4. 포트폴리오 (`/site`)
 
-현재 `UnderConstruction` 컴포넌트로 대체된 상태. 미구현.
+헤더의 **포트폴리오** 배지 버튼으로 진입. 기존 `/portfolio`를 완전히 대체하는 프로페셔널 포트폴리오 페이지.  
+기존 `/resume`, `/dashboard` 데이터를 공유·재사용하면서, 별도의 디자인 언어(카드, 2컬럼 그리드)로 구성.
+
+#### 레이아웃 구조
+
+```
+[Header - 홈 링크 + 다크모드 아이콘 + 설정 기어만 표시]
+│
+[SiteSideNav - 뷰포트 왼쪽 고정 (xl+ 전용)]
+│  ● Overview  Projects  Experience  Stats  Contact
+│
+[main .max-w-[860px]]
+├── #overview  (min-h-80vh, SiteHero + SiteOverview)
+├── #projects  (SiteSection + "View all projects →")
+├── #experience (SiteSection)
+├── #stats     (SiteSection + "대시보드 전체 보기 →")
+└── #contact   (SiteSection)
+[footer]
+```
+
+#### 헤더 동작
+
+- `/site` 접속 시 헤더 왼쪽에는 **홈** 링크만 표시 (이력서/대시보드/Projects/Site 숨김)
+- 오른쪽에는 다크모드 토글 + 설정 기어(컬러 설정 드로어)만 표시
+- 각 섹션 내부 링크로 `/resume`, `/dashboard`, `/projects` 이동 가능
+
+#### 사이드 네비 (`SiteSideNav`)
+
+- 뷰포트 왼쪽에 `fixed` 포지셔닝 (`xl` 1280px+ 에서만 표시)
+- IntersectionObserver로 스크롤 위치 감지 → 활성 섹션 포인트 컬러 하이라이트
+- 클릭 시 `scrollIntoView({ behavior: 'smooth' })`
+
+#### 섹션별 상세
+
+**`#overview` — SiteHero + SiteOverview**
+
+```
+┌──────────────────────────┐  ┌───────────────────────────┐
+│ Frontend Developer       │  │ ● Current Status          │
+│                          │  │ ─────────────────────     │
+│ BAEK                     │  │ • Building at Tindlo      │
+│ JU HEE                   │  │ • Open to opportunities   │
+│                          │  │ • Side projects running   │
+│ 복잡한 워크플로우를...        │  │ ─────────────────────     │
+│                          │  │ Last update   2025.03     │
+│ [Projects 보기] [이력서]    │  └───────────────────────────┘
+└──────────────────────────┘
+[ SiteOverview: description.ts 공유 · 불릿 리스트 카드 ]
+```
+
+- framer-motion stagger 애니메이션 (좌측 텍스트 순차, 우측 카드 slide-in)
+
+---
+
+**`#projects` — PROJECTS_SITE 카드 리스트**
+
+- `DB_projects_site.ts`의 `PROJECTS_SITE` 데이터 사용 (3개)
+- 태그 칩, LIVE/WIP/ARCHIVED 뱃지, hover 시 translateY + border 강조
+- whileInView 스태거 애니메이션
+- **"View all projects →"** 링크 → `/projects`
+
+---
+
+**`#experience` — SiteExperiencePreview**
+
+- `useCompaniesQuery` + `useProjectsQuery` 재사용 (Notion API + JSON fallback)
+- 상위 회사 2개, 회사당 프로젝트 2개로 slice
+- 기존 `CardListItem` / `SubListItem` 컴포넌트 그대로 재사용
+- "전체 이력서 보기 →" 링크 → `/resume`
+
+---
+
+**`#stats` — 숫자 카드 그리드**
+
+```
+[ 5+          ] [ 10+         ] [ 4           ] [ 3+          ]
+  Years Exp       Projects       Companies       Tech Stacks
+```
+
+- scale 기반 whileInView 스태거 애니메이션
+- **"대시보드 전체 보기 →"** 링크 → `/dashboard`
+
+---
+
+**`#contact` — SiteContact**
+
+- `VITE_APP_EMAIL` / `VITE_APP_GITHUB` / `VITE_APP_PORTFOLIO` 환경변수 사용
+- `IS_JOB_SEEKING = false`이면 Phone 카드 숨김
+- 2컬럼 그리드 (sm 이상)
+
+---
+
+#### 컴포넌트 목록
+
+| 파일 | 역할 |
+|------|------|
+| `src/pages/site/index.tsx` | 페이지 진입점, 섹션 조합 |
+| `src/components/site/SiteSideNav.tsx` | 뷰포트 왼쪽 고정 세로 앵커 네비 (xl+) |
+| `src/components/site/SiteSection.tsx` | 섹션 래퍼 (label 애니메이션 포함) |
+| `src/components/site/SiteHero.tsx` | 2컬럼 히어로 + Status 카드 (framer-motion) |
+| `src/components/site/SiteOverview.tsx` | description.ts 재사용 불릿 카드 |
+| `src/components/site/SiteExperiencePreview.tsx` | 상위 2사 · 2프로젝트 미리보기 |
+| `src/components/site/SiteContact.tsx` | 연락처 카드 (env + IS_JOB_SEEKING) |
+
+---
+
+### 3-5. 프로젝트 목록 (`/projects`)
+
+`/site`의 **View all projects →** 또는 헤더 **Projects** 링크로 진입.
+
+```
+[Breadcrumb: ← Site로 돌아가기]
+[h1: Projects]
+[p: 설명]
+
+┌─────────────────────┐  ┌─────────────────────┐
+│ TITLE          LIVE │  │ TITLE       ARCHIVED │
+│                     │  │                     │
+│ tagline...          │  │ tagline...           │
+│                     │  │                     │
+│ [React][TS][Tailwind]│  │ [Vue][D3][NodeJS]   │
+│ ─────────────────── │  │ ─────────────────── │
+│ [Case Study] [Live] │  │ [Case Study][Notion] │
+└─────────────────────┘  └─────────────────────┘
+```
+
+- 1컬럼(모바일) / 2컬럼(md+) grid
+- framer-motion variants stagger 애니메이션
+- 각 카드 hover 시 translateY(-4px) + border/shadow 강조
+- **Case Study →** 버튼: `/projects/:slug` 이동
+- **Live / Repo / Notion** 버튼: 외부 링크
+
+---
+
+### 3-6. 프로젝트 케이스 스터디 (`/projects/:slug`)
+
+각 프로젝트의 상세 케이스 스터디 페이지.  
+slug가 없거나 잘못된 경우 페이지 내 404 UI 렌더 (크래시 없음).
+
+```
+[Breadcrumb: ← All Projects]
+
+Hero
+  [STATUS]
+  TITLE
+  tagline
+  [Live ↗] [Notion ↗]
+  [React] [TypeScript] ...
+  ─────────────────────
+  summary 텍스트 (overview)
+
+PROBLEM ──────────────────
+  문제 배경 텍스트
+
+SOLUTION ─────────────────
+  해결 방법 텍스트
+
+ARCHITECTURE ─────────────
+  기술 스택 설명 (monospace)
+
+KEY FEATURES ─────────────
+  ● feature 1
+  ● feature 2
+  ● feature 3
+
+LESSONS ──────────────────
+  01  lesson 1
+  02  lesson 2
+
+[footer: ← All Projects]
+```
+
+각 섹션은 `ProjectSection` 공유 래퍼 사용 (whileInView fade-up 애니메이션).
+
+#### 컴포넌트 목록
+
+| 파일 | 역할 |
+|------|------|
+| `src/pages/projects/index.tsx` | 프로젝트 목록 페이지 |
+| `src/pages/projects/detail.tsx` | 케이스 스터디 상세 페이지 |
+| `src/components/project/ProjectSection.tsx` | 섹션 공유 래퍼 (label + 구분선 + 애니메이션) |
+| `src/components/project/ProjectHero.tsx` | status / title / tagline / links / tags / summary |
+| `src/components/project/ProjectProblem.tsx` | Problem 텍스트 섹션 |
+| `src/components/project/ProjectSolution.tsx` | Solution 텍스트 섹션 |
+| `src/components/project/ProjectArchitecture.tsx` | Architecture 섹션 (monospace) |
+| `src/components/project/ProjectFeatures.tsx` | Key Features 불릿 리스트 |
+| `src/components/project/ProjectLessons.tsx` | Lessons 번호 리스트 |
+
+#### 데이터 구조 (`TProject`)
+
+```ts
+interface TProject {
+  slug: string;
+  title: string;
+  tagline: string;
+  summary: string;
+  tags: string[];
+  status: 'LIVE' | 'WIP' | 'ARCHIVED';
+  links?: { live?: string; repo?: string; notion?: string; };
+  // Case study sections
+  problem?: string;
+  solution?: string;
+  architecture?: string;
+  features?: string[];
+  lessons?: string[];
+}
+```
+
+#### Phase 2 준비 구조
+
+```
+src/
+├ api/projectsApi.ts              fetchProjects / fetchProjectBySlug
+│                                 → Phase 2에서 Lambda 엔드포인트로 교체
+├ queryKeys/projects.ts           projectQueryKeys.list() / .detail(slug)
+└ hooks/queries/
+    ├ useProjectsListQuery.ts     프로젝트 목록 React Query hook
+    └ useProjectDetailQuery.ts    단일 프로젝트 React Query hook
+```
+
+**Phase 2 전환**: `projectsApi.ts`의 `Promise.resolve(MOCK)` 부분만  
+`fetch('https://lambda/.../projects')` 로 교체하면 나머지 코드 변경 없음.
+
+---
+
+### ~~3-7. 포트폴리오 페이지 (`/portfolio`)~~ ← 제거됨
+
+`/site`가 포트폴리오 역할을 완전히 대체. 라우트 및 `UnderConstruction` 컴포넌트 참조 모두 제거.
 
 ---
 
@@ -249,10 +480,12 @@ Notion API 연동 + 로컬 JSON 파일 fallback (`src/data/DB_company.json`, `DB
 
 ### 헤더 (Header)
 
-- 네비게이션: 이력서 / 대시보드 링크
-- 다크모드 토글 버튼
-- 프린트 모드 토글 버튼
+- **기본 nav (비-site 페이지)**: 홈 / 이력서 / 대시보드 / Projects / **포트폴리오** (→ `/site` 배지)
+- **`/site` 접속 시**: 왼쪽 nav는 **홈만** 표시 (나머지 숨김)
+- 다크모드 토글 아이콘 (항상 표시)
+- 프린트 모드 토글 아이콘 **(`/resume` 에서만 표시)**
 - 오른쪽 고정 설정 버튼 → `SwipeableDrawer`로 포인트 컬러 설정 패널 열림
+- 헤더 sticky (`sticky top-0 z-50`) 고정
 
 ### 전역 설정 (Zustand - `useSettings`)
 
@@ -269,7 +502,8 @@ Notion API 연동 + 로컬 JSON 파일 fallback (`src/data/DB_company.json`, `DB
 | 분류 | 사용 기술 |
 |------|-----------|
 | 언어 / 프레임워크 | TypeScript, React |
-| 스타일링 | Tailwind CSS, SCSS, MUI (Material UI) |
+| 스타일링 | Tailwind CSS, MUI (Material UI) ← SCSS 제거 완료 |
+| 애니메이션 | framer-motion (site, projects 페이지) |
 | 상태 관리 | Zustand |
 | 데이터 패칭 | React Query |
 | 차트 | D3.js |
@@ -284,27 +518,68 @@ Notion API 연동 + 로컬 JSON 파일 fallback (`src/data/DB_company.json`, `DB
 
 ```
 src/
-├── api/            Notion API 호출 로직
-├── assets/         아이콘(SVG), 이미지, 스크린샷
+├── api/
+│   ├── notion.ts         Notion API 호출
+│   └── projectsApi.ts    프로젝트 API (Phase 1: 목 데이터 / Phase 2: Lambda)
+│
+├── assets/               아이콘(SVG), 이미지, 스크린샷
+│
 ├── components/
-│   ├── common/     공통 Card, Chart 컴포넌트
-│   ├── custom/     DChip, ToggleChip 등 커스텀 컴포넌트
-│   ├── landing/    GameBoy 프레임 + 스크린 콘텐츠
-│   └── resume/     이력서 관련 컴포넌트 전체
-├── constants/      설정값, 아이콘 매핑, Notion 키 등
-├── data/           로컬 목 데이터 JSON (회사/프로젝트/스킬/프로필)
-├── hooks/          커스텀 훅, React Query 훅
-├── layout/         Layout, Header, ThemeCustomized
-├── lib/            queryClient 설정
-├── pages/          라우트별 페이지 (landing, resume, dashboard, portfolio)
-├── providers/      Providers.tsx, RouterProvider.tsx
-├── queryKeys/      React Query 키 상수
-├── router/         라우팅 설정 및 paths
-├── stores/         Zustand 스토어 (useSettings)
-├── styles/         SCSS 전역 변수, 리셋, 믹스인
-├── theme/          MUI 테마 설정
-├── types/          전역 타입 선언
-└── utils/          포맷터, 파서, classNames 유틸
+│   ├── common/           공통 Card, Chart 컴포넌트
+│   ├── custom/           DChip, ToggleChip 등 커스텀 컴포넌트
+│   ├── landing/          GameBoy 프레임 + 스크린 콘텐츠
+│   ├── project/          /projects 케이스 스터디 섹션 컴포넌트
+│   │                     (ProjectSection, ProjectHero, ProjectProblem,
+│   │                      ProjectSolution, ProjectArchitecture,
+│   │                      ProjectFeatures, ProjectLessons)
+│   ├── resume/           이력서 관련 컴포넌트 전체
+│   └── site/             /site 페이지 전용 컴포넌트
+│                         (SiteSideNav, SiteSection, SiteHero,
+│                          SiteOverview, SiteExperiencePreview, SiteContact)
+│
+├── constants/            설정값, 아이콘 매핑, Notion 키 등
+│
+├── data/
+│   ├── DB_company.json   회사 목 데이터
+│   ├── DB_project.json   프로젝트 목 데이터 (Notion fallback)
+│   └── projects/
+│       └── DB_projects_site.ts   케이스 스터디 데이터 (TProject 타입)
+│
+├── hooks/
+│   └── queries/          React Query 훅
+│       ├── useCompaniesQuery.ts
+│       ├── useProjectsQuery.ts   (Notion 프로젝트)
+│       ├── useProjectsListQuery.ts  (site용 목록)
+│       └── useProjectDetailQuery.ts (site용 상세)
+│
+├── layout/               Layout, Header, ThemeCustomized
+├── lib/                  queryClient 설정
+│
+├── pages/
+│   ├── landing/          GameBoy 랜딩
+│   ├── resume/           이력서
+│   ├── dashboard/        대시보드
+│   ├── site/             프로페셔널 포트폴리오 랜딩
+│   ├── projects/
+│   │   ├── index.tsx     프로젝트 목록
+│   │   └── detail.tsx    케이스 스터디 상세
+│   └── portfolio/        공사 중 (UnderConstruction)
+│
+├── providers/            Providers.tsx, RouterProvider.tsx
+│
+├── queryKeys/
+│   ├── notion.ts         Notion 쿼리 키
+│   └── projects.ts       프로젝트 쿼리 키
+│
+├── router/               라우팅 설정 및 paths
+├── stores/               Zustand 스토어 (useSettings)
+├── styles/               CSS 전역 변수, 리셋, 애니메이션 (SCSS 제거 완료)
+├── theme/                MUI 테마 설정
+├── types/                전역 타입 선언
+└── utils/
+    ├── classNames.ts     cn() 유틸
+    ├── getProjectBySlug.ts  slug → TProject 조회
+    └── ...               포맷터, 파서 등
 ```
 
 ---
@@ -317,12 +592,35 @@ src/
 - [x] 대시보드 페이지 (D3 차트 2종)
 - [x] 다크모드 / 라이트모드
 - [x] 포인트 컬러 커스터마이징
-- [x] 프린트 PDF 변환 모드
+- [x] 프린트 PDF 변환 모드 (`/resume` 전용)
 - [x] 반응형 디자인
 - [x] Notion API 연동
 - [x] Storybook 컴포넌트 문서화
 - [x] 단위 테스트 (DChip, ToggleChip, FilterOption)
+- [x] `/site` 포트폴리오 랜딩 페이지 (`/portfolio` 대체 확정)
+- [x] SiteSideNav — 뷰포트 왼쪽 고정 세로 앵커 네비 (xl+)
+- [x] SiteHero — 2컬럼 히어로 + Status 카드 + framer-motion 애니메이션
+- [x] SiteOverview — description.ts 재사용
+- [x] SiteExperiencePreview — 기존 resume 컴포넌트/데이터 재사용
+- [x] SiteContact — env 변수 + IS_JOB_SEEKING 룰 적용
+- [x] `/site` 마이크로 애니메이션 (framer-motion whileInView stagger)
+- [x] `/site` → `/projects` 연결 ("View all projects →")
+- [x] `/site` → `/dashboard` 연결 ("대시보드 전체 보기 →")
+- [x] `/projects` 프로젝트 목록 페이지 (Phase 1 목 데이터)
+- [x] `/projects/:slug` 케이스 스터디 상세 페이지 (Phase 1 목 데이터)
+- [x] `TProject` 타입 정의 (slug/title/tagline/summary/tags/status/links/problem/solution/architecture/features/lessons)
+- [x] `projectsApi.ts` — Phase 2 Lambda 전환 대비 API 레이어 stub
+- [x] `useProjectsListQuery` / `useProjectDetailQuery` React Query hook
+- [x] 헤더 /site 전용 동작 (홈 링크만, print 아이콘 숨김)
+- [x] 헤더 sticky 고정
+- [x] SCSS 제거 — Tailwind CSS 단일 스타일링으로 전환
+- [x] `src/utils/getProjectBySlug.ts` 유틸 추가
+- [x] `/portfolio` 라우트 제거 — `/site`(포트폴리오)로 완전 대체
+- [x] 헤더 배지명 "Site" → "포트폴리오" 변경
+- [x] GameBoy 랜딩 PROJECTS 버튼 → `/site` 연결
 
 ### 미완성 / 예정
-- [ ] 포트폴리오 페이지 (`/portfolio`) - 현재 공사 중 상태
-- [ ] 랜딩 PORTFOLIO 메뉴 → 실제 연결 (현재 UnderConstruction)
+- [ ] `/projects` Phase 2: Lambda API 연동 (`projectsApi.ts` 교체)
+- [ ] `/projects` 실제 케이스 스터디 내용 작성 (현재 목 플레이스홀더)
+- [ ] `/site` Stats 섹션 동적 집계 (현재 하드코딩)
+- [ ] `/projects/:slug` Screenshots 섹션 (이미지 데이터 미구현)
