@@ -15,6 +15,7 @@ import ThemeCustomized from '@/layout/ThemeCustomized';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
+
 const anchor = 'right';
 const PRINT_TIMEOUT_MS = 100;
 
@@ -26,12 +27,13 @@ export default function DenseAppBar() {
     right: false,
   });
 
-  const { pointColor, isPrintMode, togglePrintMode, themeMode, toggleThemeMode } = useSettings();
+  const { pointColor, isPrintMode, togglePrintMode, themeMode, toggleThemeMode, showSideProjects, toggleSideProjects } = useSettings();
 
   const { mode } = usePrintMode();
   const { pathname } = useLocation();
   const isSitePage = pathname === '/site';
   const isResumePage = pathname === '/resume';
+  const isDashboardPage = pathname === '/dashboard';
 
   const toggleDrawer = (direction: TAnchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -122,6 +124,22 @@ export default function DenseAppBar() {
             </>
           ) : (
             <>
+              {isDashboardPage && (
+                <button
+                  onClick={toggleSideProjects}
+                  className={cn(
+                    'text-xs font-semibold px-3 py-1 rounded-full border transition-all duration-200 mr-1',
+                    showSideProjects
+                      ? 'text-white border-transparent'
+                      : themeMode === 'dark'
+                        ? 'border-white/25 text-white/50 hover:border-white/45 hover:text-white/70'
+                        : 'border-black/20 text-black/45 hover:border-black/35 hover:text-black/65',
+                  )}
+                  style={showSideProjects ? { backgroundColor: pointColor.hex } : {}}
+                >
+                  {showSideProjects ? '✓ 사이드' : '+ 사이드'}
+                </button>
+              )}
               <IconButton aria-label='lightMode' onClick={toggleThemeMode}>
                 {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
               </IconButton>

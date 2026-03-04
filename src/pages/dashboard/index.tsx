@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
@@ -51,8 +50,7 @@ export default function MainPage() {
   const location = useLocation();
   const isGameMode = (location.state as { gameMode?: boolean } | null)?.gameMode === true;
   const isDark = useTheme().palette.mode === 'dark';
-  const { pointColor } = useSettings();
-  const [showSideProjects, setShowSideProjects] = useState(false);
+  const { showSideProjects } = useSettings();
 
   const techIcons: Record<string, string> = {
     React: isDark ? ReactDarkIcon : ReactLightIcon,
@@ -90,45 +88,9 @@ export default function MainPage() {
     </div>
   );
 
-  const ToggleButton = ({ gameMode = false }: { gameMode?: boolean }) =>
-    gameMode ? (
-      <button
-        onClick={() => setShowSideProjects(prev => !prev)}
-        className={cn(
-          'pixel-font text-[8px] px-2 py-0.5 border transition-colors',
-          showSideProjects
-            ? 'bg-[#2d321d] text-[#d9f99d] border-[#2d321d]'
-            : 'border-[#2d321d]/50 text-[#2d321d]/60 hover:border-[#2d321d]',
-        )}
-      >
-        {showSideProjects ? '✓ SIDE ON' : '+ SIDE'}
-      </button>
-    ) : (
-      <button
-        onClick={() => setShowSideProjects(prev => !prev)}
-        className={cn(
-          'flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full border transition-all duration-200',
-          showSideProjects
-            ? 'text-white border-transparent'
-            : isDark
-              ? 'border-white/20 text-white/45 hover:border-white/40 hover:text-white/65'
-              : 'border-black/15 text-black/40 hover:border-black/30 hover:text-black/60',
-        )}
-        style={showSideProjects ? { backgroundColor: pointColor.hex } : {}}
-      >
-        <span className='text-[11px] leading-none'>{showSideProjects ? '✓' : '+'}</span>
-        사이드 프로젝트 포함
-      </button>
-    );
-
   const classicContent = (
     <div className={cn('min-h-screen w-full', isDark ? 'bg-[#181717] text-white' : 'bg-[#fafafa] text-[#181717]')}>
       <main className='max-w-[1000px] mx-auto px-6 py-12 flex flex-col gap-6'>
-
-        {/* 토글 버튼 */}
-        <div className='flex justify-end'>
-          <ToggleButton />
-        </div>
 
         {/* Row 1: PROJECTS + COMPANYS */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -186,10 +148,9 @@ export default function MainPage() {
           </button>
           <span className='text-[11px] font-bold tracking-widest'>CAREER.LOG</span>
         </div>
-        <div className='flex items-center gap-3 text-[9px]'>
-          <ToggleButton gameMode />
-          <span className='opacity-60 animate-pulse'>●</span>
-          <span className='opacity-60'>JUHEE-OS v2.0</span>
+        <div className='flex items-center gap-2 text-[9px] opacity-60'>
+          <span className='animate-pulse'>●</span>
+          <span>JUHEE-OS v2.0</span>
         </div>
       </div>
 

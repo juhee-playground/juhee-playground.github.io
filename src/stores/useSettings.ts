@@ -7,12 +7,14 @@ interface ISettingsStore {
   themeMode: PaletteMode;
   isPrintMode: boolean;
   pointColor: IColor;
+  showSideProjects: boolean;
 
   toggleThemeMode: () => void;
   setThemeMode: (mode: PaletteMode) => void;
   togglePrintMode: () => void;
   setPrintMode: (enabled: boolean) => void;
   setPointColor: (color: IColor) => void;
+  toggleSideProjects: () => void;
 }
 
 const defaultColor: IColor = {
@@ -25,6 +27,7 @@ export const useSettings = create<ISettingsStore>(set => ({
   themeMode: 'light',
   isPrintMode: false,
   pointColor: defaultColor,
+  showSideProjects: false,
 
   toggleThemeMode: () =>
     set(state => ({
@@ -34,4 +37,5 @@ export const useSettings = create<ISettingsStore>(set => ({
   togglePrintMode: () => set(state => ({ isPrintMode: !state.isPrintMode })),
   setPrintMode: enabled => set({ isPrintMode: enabled }),
   setPointColor: color => set({ pointColor: color }),
+  toggleSideProjects: () => set(state => ({ showSideProjects: !state.showSideProjects })),
 }));
