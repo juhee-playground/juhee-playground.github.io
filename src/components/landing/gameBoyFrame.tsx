@@ -132,13 +132,31 @@ export function GameBoyFrame({
 
           {/* Start / Quick - Blue Accents */}
           <div className="flex justify-center gap-10 mt-2 mb-6">
-            <div className="flex flex-col items-center gap-2">
-              <button 
+            {/* QUICK 버튼 - 포트폴리오로 바로 이동 */}
+            <div className="group relative flex flex-col items-center gap-2">
+              {/* 툴팁 */}
+              <div className="
+                absolute bottom-full mb-3 left-1/2 -translate-x-1/2
+                pointer-events-none
+                opacity-0 group-hover:opacity-100
+                translate-y-1 group-hover:translate-y-0
+                transition-all duration-200 ease-out
+                whitespace-nowrap
+              ">
+                <div className="bg-[#2d321d] text-[#d9f99d] pixel-font text-[7px] font-bold px-2 py-1 rounded-sm">
+                  → PORTFOLIO 바로가기
+                </div>
+                {/* 툴팁 꼬리 */}
+                <div className="w-2 h-2 bg-[#2d321d] rotate-45 mx-auto -mt-1" />
+              </div>
+
+              <button
                 onClick={onSelect}
-                className="w-14 h-4 bg-[#3b82f6] rounded-full border-b-4 border-[#1d4ed8] active:translate-y-1 active:border-b-0"
-              ></button>
-              <span className="text-[9px] font-black text-slate-300">QUICK</span>
+                className="w-14 h-4 bg-[#3b82f6] rounded-full border-b-4 border-[#1d4ed8] active:translate-y-1 active:border-b-0 group-hover:bg-[#60a5fa] transition-colors"
+              />
+              <span className="text-[9px] font-black text-slate-300 group-hover:text-[#93c5fd] transition-colors">QUICK</span>
             </div>
+
             <div className="flex flex-col items-center gap-2">
               <button 
                 onClick={onStart}

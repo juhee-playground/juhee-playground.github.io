@@ -41,7 +41,7 @@ const LandingPage = () => {
 
   const handleSelect = useCallback(() => {
     if (powerState !== 'on') return;
-    navigate('/resume');
+    navigate('/site');
   }, [navigate, powerState]);
 
   const handleDPad = useCallback((direction: string) => {

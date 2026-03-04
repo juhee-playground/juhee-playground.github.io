@@ -179,6 +179,9 @@ PHP     ██           10%`}
           <div className="mt-4 border-2 border-[#2d321d] bg-[#d9f99d] px-8 py-3 inline-block animate-blink">
             <p className="text-[10px] font-bold">PRESS START</p>
           </div>
+          <p className="mt-6 text-[7px] opacity-50 leading-relaxed">
+            QUICK → PORTFOLIO 바로가기
+          </p>
         </div>
       );
 
