@@ -71,10 +71,10 @@ const SiteSideNav = () => {
             className={cn(
               'text-[11px] font-semibold tracking-wide transition-all duration-200',
               active === id
-                ? 'opacity-100'
+                ? ''
                 : isDark
-                  ? 'opacity-25 group-hover:opacity-55'
-                  : 'opacity-25 group-hover:opacity-55',
+                  ? 'text-white/30 group-hover:text-white/60'
+                  : 'text-black/30 group-hover:text-black/60',
             )}
             style={active === id ? { color: pointColor.hex } : {}}
           >

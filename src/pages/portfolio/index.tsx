@@ -174,7 +174,7 @@ const PortfolioPage = () => {
 
       <footer
         className={cn(
-          'border-t mt-12 px-2 py-10 flex flex-col gap-6',
+          'border-t mt-12 px-2 py-4 flex flex-col gap-6',
           isDark ? 'border-white/10 text-white/30' : 'border-black/10 text-black/30',
         )}
       >
