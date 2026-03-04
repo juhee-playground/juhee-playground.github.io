@@ -13,18 +13,14 @@ export default function RouterProvider() {
   const location = useLocation();
   const isLandingPage = location.pathname === '/';
   const shouldRenderHeader = validPaths.includes(location.pathname) && !isLandingPage;
-  const isResumePage = location.pathname === '/resume';
+  const isScrollablePage = ['/resume', '/site'].includes(location.pathname);
 
   useEffect(() => {
-    if (isResumePage) {
-      document.body.style.overflow = 'auto';
-    } else {
-      document.body.style.overflow = 'hidden';
-    }
+    document.body.style.overflow = isScrollablePage ? 'auto' : 'hidden';
     return () => {
       document.body.style.overflow = 'hidden';
     };
-  }, [isResumePage]);
+  }, [isScrollablePage]);
 
   return (
     <>

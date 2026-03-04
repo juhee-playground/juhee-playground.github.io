@@ -7,12 +7,13 @@ import UnderConstruction from '@/pages/UnderConstruction';
 const LandingPage = lazy(() => import('../pages/landing'));
 const Main = lazy(() => import('../pages/resume'));
 const Dashboard = lazy(() => import('../pages/dashboard'));
+const SitePage = lazy(() => import('../pages/site'));
 
 const renderLoader = () => <p>Loading</p>;
 
 export default function Router() {
   const location = useLocation();
-  const validPaths = ['/', '/resume', '/dashboard', '/portfolio'];
+  const validPaths = ['/', '/resume', '/dashboard', '/portfolio', '/site'];
 
   return (
     <Suspense fallback={renderLoader()}>
@@ -22,6 +23,7 @@ export default function Router() {
           <Route path='/resume' element={<Main />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/portfolio' element={<UnderConstruction />} />
+          <Route path='/site' element={<SitePage />} />
         </Routes>
       ) : (
         <NotFound />

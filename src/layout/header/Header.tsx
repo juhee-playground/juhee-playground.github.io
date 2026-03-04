@@ -80,6 +80,15 @@ export default function DenseAppBar() {
           <li role='menuItem'>
             <Link to='/dashboard'>대시보드</Link>
           </li>
+          <li role='menuItem'>
+            <Link
+              to='/site'
+              className='font-bold text-white px-2 py-0.5 rounded text-xs'
+              style={{ backgroundColor: pointColor.hex }}
+            >
+              New
+            </Link>
+          </li>
         </ul>
       )}
 
