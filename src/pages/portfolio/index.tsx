@@ -8,8 +8,6 @@ import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 
 import ProjectCard from './Card';
 
-import './Main.scss';
-
 export default function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,10 +18,10 @@ export default function MainPage() {
 
   if (!isGameMode) {
     return (
-      <article className='wrapper'>
+      <article className='flex flex-col'>
         <h1>Projects</h1>
         <h2>지금까지 참여한 프로젝트 리스트</h2>
-        <div className='container'>
+        <div className='flex flex-wrap gap-[1em]'>
           {isSuccess ? (
             projectList.map((project: IProjectProperties) => {
               const date = project.period.date;
