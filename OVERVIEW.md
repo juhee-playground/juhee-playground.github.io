@@ -1,6 +1,6 @@
 # 포트폴리오 사이트 현황 정리
 
-> 마지막 업데이트: 2026.03.04 (/portfolio 제거, /site → 포트폴리오로 대체 확정)  
+> 마지막 업데이트: 2026.03.04 (/site → /portfolio 라우트 변경, 헤더 전면 개편)  
 > 배포 주소: [https://juhee-playground.github.io](https://juhee-playground.github.io)
 
 ---
@@ -14,18 +14,16 @@
 
 ## 2. 페이지 구성
 
-총 6개 라우트가 존재하며, `/site`가 포트폴리오 역할을 대체함.
+총 6개 라우트. `/portfolio`가 실질적인 메인 허브 역할. `/`(GameBoy)는 인트로 전용.
 
 | 경로 | 페이지 | 상태 |
 |------|--------|------|
 | `/` | 랜딩 (GameBoy UI) | ✅ 완성 |
+| `/portfolio` | 포트폴리오 (메인 허브) | ✅ 완성 |
 | `/resume` | 이력서 | ✅ 완성 |
 | `/dashboard` | 대시보드 | ✅ 완성 |
-| `/site` | 포트폴리오 랜딩 (구 /portfolio 대체) | ✅ 완성 |
 | `/projects` | 프로젝트 목록 | ✅ Phase 1 완성 (목 데이터) |
 | `/projects/:slug` | 프로젝트 케이스 스터디 상세 | ✅ Phase 1 완성 (목 데이터) |
-
-> `/portfolio` 라우트는 제거됨. GameBoy 랜딩의 PROJECTS 메뉴도 `/site`로 연결됨.
 
 ---
 
@@ -243,120 +241,28 @@ Notion API 연동 + 로컬 JSON 파일 fallback (`src/data/DB_company.json`, `DB
 
 ---
 
-### 3-4. 포트폴리오 (`/site`)
+### 3-4. 포트폴리오 (`/portfolio`)
 
-헤더의 **포트폴리오** 배지 버튼으로 진입. 기존 `/portfolio`를 완전히 대체하는 프로페셔널 포트폴리오 페이지.  
-기존 `/resume`, `/dashboard` 데이터를 공유·재사용하면서, 별도의 디자인 언어(카드, 2컬럼 그리드)로 구성.
+사이트의 실질적인 메인 허브 페이지. `/`(GameBoy)는 인트로 역할만 하고, 이 페이지에서 Resume / Dashboard / Projects로 분기됨.
 
-#### 레이아웃 구조
+헤더에서 `Resume`, `Dashboard`, `Projects`, `Portfolio(active)` 링크 제공. 포트폴리오 페이지 자체에서는 아이콘(테마/컬러)만 우측에 표시.
 
-```
-[Header - 홈 링크 + 다크모드 아이콘 + 설정 기어만 표시]
-│
-[SiteSideNav - 뷰포트 왼쪽 고정 (xl+ 전용)]
-│  ● Overview  Projects  Experience  Stats  Contact
-│
-[main .max-w-[860px]]
-├── #overview  (min-h-80vh, SiteHero + SiteOverview)
-├── #projects  (SiteSection + "View all projects →")
-├── #experience (SiteSection)
-├── #stats     (SiteSection + "대시보드 전체 보기 →")
-└── #contact   (SiteSection)
-[footer]
-```
+뷰포트 왼쪽에 `SiteSideNav` 고정 (xl+ 전용) — IntersectionObserver로 활성 섹션 감지, 클릭 시 smooth scroll.
 
-#### 헤더 동작
+섹션 구성: `#overview` (SiteHero + SiteOverview) → `#projects` (카드 + "View all →") → `#experience` (상위 2사 미리보기 + "이력서 보기 →") → `#stats` (숫자 카드 + "대시보드 →") → `#contact`
 
-- `/site` 접속 시 헤더 왼쪽에는 **홈** 링크만 표시 (이력서/대시보드/Projects/Site 숨김)
-- 오른쪽에는 다크모드 토글 + 설정 기어(컬러 설정 드로어)만 표시
-- 각 섹션 내부 링크로 `/resume`, `/dashboard`, `/projects` 이동 가능
+푸터에 `Portfolio / Resume / Dashboard / Projects` 사이트맵 링크 + 🎮 Easter egg (→ `/` GameBoy).
 
-#### 사이드 네비 (`SiteSideNav`)
-
-- 뷰포트 왼쪽에 `fixed` 포지셔닝 (`xl` 1280px+ 에서만 표시)
-- IntersectionObserver로 스크롤 위치 감지 → 활성 섹션 포인트 컬러 하이라이트
-- 클릭 시 `scrollIntoView({ behavior: 'smooth' })`
-
-#### 섹션별 상세
-
-**`#overview` — SiteHero + SiteOverview**
-
-```
-┌──────────────────────────┐  ┌───────────────────────────┐
-│ Frontend Developer       │  │ ● Current Status          │
-│                          │  │ ─────────────────────     │
-│ BAEK                     │  │ • Building at Tindlo      │
-│ JU HEE                   │  │ • Open to opportunities   │
-│                          │  │ • Side projects running   │
-│ 복잡한 워크플로우를...        │  │ ─────────────────────     │
-│                          │  │ Last update   2025.03     │
-│ [Projects 보기] [이력서]    │  └───────────────────────────┘
-└──────────────────────────┘
-[ SiteOverview: description.ts 공유 · 불릿 리스트 카드 ]
-```
-
-- framer-motion stagger 애니메이션 (좌측 텍스트 순차, 우측 카드 slide-in)
-
----
-
-**`#projects` — PROJECTS_SITE 카드 리스트**
-
-- `DB_projects_site.ts`의 `PROJECTS_SITE` 데이터 사용 (3개)
-- 태그 칩, LIVE/WIP/ARCHIVED 뱃지, hover 시 translateY + border 강조
-- whileInView 스태거 애니메이션
-- **"View all projects →"** 링크 → `/projects`
-
----
-
-**`#experience` — SiteExperiencePreview**
-
-- `useCompaniesQuery` + `useProjectsQuery` 재사용 (Notion API + JSON fallback)
-- 상위 회사 2개, 회사당 프로젝트 2개로 slice
-- 기존 `CardListItem` / `SubListItem` 컴포넌트 그대로 재사용
-- "전체 이력서 보기 →" 링크 → `/resume`
-
----
-
-**`#stats` — 숫자 카드 그리드**
-
-```
-[ 5+          ] [ 10+         ] [ 4           ] [ 3+          ]
-  Years Exp       Projects       Companies       Tech Stacks
-```
-
-- scale 기반 whileInView 스태거 애니메이션
-- **"대시보드 전체 보기 →"** 링크 → `/dashboard`
-
----
-
-**`#contact` — SiteContact**
-
-- `VITE_APP_EMAIL` / `VITE_APP_GITHUB` / `VITE_APP_PORTFOLIO` 환경변수 사용
-- `IS_JOB_SEEKING = false`이면 Phone 카드 숨김
-- 2컬럼 그리드 (sm 이상)
-
----
-
-#### 컴포넌트 목록
-
-| 파일 | 역할 |
-|------|------|
-| `src/pages/site/index.tsx` | 페이지 진입점, 섹션 조합 |
-| `src/components/site/SiteSideNav.tsx` | 뷰포트 왼쪽 고정 세로 앵커 네비 (xl+) |
-| `src/components/site/SiteSection.tsx` | 섹션 래퍼 (label 애니메이션 포함) |
-| `src/components/site/SiteHero.tsx` | 2컬럼 히어로 + Status 카드 (framer-motion) |
-| `src/components/site/SiteOverview.tsx` | description.ts 재사용 불릿 카드 |
-| `src/components/site/SiteExperiencePreview.tsx` | 상위 2사 · 2프로젝트 미리보기 |
-| `src/components/site/SiteContact.tsx` | 연락처 카드 (env + IS_JOB_SEEKING) |
+컴포넌트는 `src/components/portfolio/` 하위에 위치.
 
 ---
 
 ### 3-5. 프로젝트 목록 (`/projects`)
 
-`/site`의 **View all projects →** 또는 헤더 **Projects** 링크로 진입.
+`/portfolio`의 **View all projects →** 또는 헤더 **Projects** 링크로 진입.
 
 ```
-[Breadcrumb: ← Site로 돌아가기]
+[Breadcrumb: ← Portfolio로 돌아가기]
 [h1: Projects]
 [p: 설명]
 
@@ -470,22 +376,19 @@ src/
 
 ---
 
-### ~~3-7. 포트폴리오 페이지 (`/portfolio`)~~ ← 제거됨
-
-`/site`가 포트폴리오 역할을 완전히 대체. 라우트 및 `UnderConstruction` 컴포넌트 참조 모두 제거.
-
 ---
 
 ## 4. 공통 UI / 기능
 
 ### 헤더 (Header)
 
-- **기본 nav (비-site 페이지)**: 홈 / 이력서 / 대시보드 / Projects / **포트폴리오** (→ `/site` 배지)
-- **`/site` 접속 시**: 왼쪽 nav는 **홈만** 표시 (나머지 숨김)
-- 다크모드 토글 아이콘 (항상 표시)
-- 프린트 모드 토글 아이콘 **(`/resume` 에서만 표시)**
-- 오른쪽 고정 설정 버튼 → `SwipeableDrawer`로 포인트 컬러 설정 패널 열림
-- 헤더 sticky (`sticky top-0 z-50`) 고정
+- **`/portfolio` 접속 시**: 왼쪽 nav 없음, 우측에 아이콘(테마/컬러)만 표시
+- **그 외 페이지**: 왼쪽에 `← Portfolio` 링크, 우측에 아이콘
+- 🌙 다크모드 토글 (항상 표시)
+- 🖨 프린트 모드 토글 (`/resume` 에서만 표시)
+- 🎨 팔레트 아이콘 → `SwipeableDrawer`로 포인트 컬러 설정 패널 (HEX + 프리셋, 테마 토글 제거)
+- 대시보드 페이지에서만 `+ 사이드` 토글 버튼 표시
+- `sticky top-0 z-50` 고정
 
 ### 전역 설정 (Zustand - `useSettings`)
 
@@ -494,6 +397,7 @@ src/
 | `themeMode` | 라이트 / 다크 모드 | `'light'` |
 | `isPrintMode` | 프린트 모드 활성화 여부 | `false` |
 | `pointColor` | 포인트 컬러 | `#5467f5` (보라 계열) |
+| `showSideProjects` | 대시보드 사이드 프로젝트 포함 여부 | `false` |
 
 ---
 
