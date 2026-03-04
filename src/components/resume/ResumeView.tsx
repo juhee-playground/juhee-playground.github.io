@@ -12,6 +12,16 @@ import LeftSection from '@/components/resume/panel/LeftInfoPanel';
 import SideProjectSection from '@/components/resume/SideProjectSection';
 import { cn } from '@/utils/classNames';
 
+const Divider = ({ isDark, mode }: { isDark: boolean; mode: string }) => (
+  <div
+    className={cn(
+      'h-px w-full my-6',
+      isDark ? 'bg-white/6' : 'bg-black/6',
+      mode === 'print' && 'bg-[#e0e0e0]! my-3',
+    )}
+  />
+);
+
 interface IResumeViewProps {
   isLoading: boolean;
   sortValue: string;
@@ -52,10 +62,10 @@ const ResumeView = ({
       <LeftSection />
       <div
         className={cn(
-          'flex-1 flex flex-col py-3 px-2 min-w-0 min-h-screen',
+          'flex-1 flex flex-col py-3 px-4 min-w-0 min-h-screen',
           theme.palette.mode === 'light'
-            ? 'bg-[ghostwhite] text-[#181717]'
-            : 'bg-[#1d1b1b] text-white',
+            ? 'bg-[#fafafa] text-[#181717]'
+            : 'bg-[#181717] text-white',
           mode === 'print' && 'bg-white border-t-2 border-[#666666]'
         )}
       >
@@ -99,12 +109,12 @@ const ResumeView = ({
             </FormControl>
           </div>
 
-          <hr className='bg-[#dddddd] h-px w-full my-4' />
+          <Divider isDark={theme.palette.mode === 'dark'} mode={mode} />
         </section>
 
         <PointStackCard />
 
-        <hr className='bg-[#dddddd] h-px w-full my-4' />
+        <Divider isDark={theme.palette.mode === 'dark'} mode={mode} />
 
         <CareerSection
           data={parseCompanyQuery}
@@ -113,7 +123,7 @@ const ResumeView = ({
           pointColor={pointColorHex}
         />
 
-        <hr className='bg-[#dddddd] h-px w-full my-4' />
+        <Divider isDark={theme.palette.mode === 'dark'} mode={mode} />
 
         <SideProjectSection
           data={toyProjectData}

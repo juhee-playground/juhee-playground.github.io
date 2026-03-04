@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 import usePrintMode from '@/hooks/usePrintMode';
@@ -12,6 +13,7 @@ const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps)
   const companyData = parseCompanyData(info);
   const { pointColor } = useSettings();
   const { isPrintMode, mode } = usePrintMode();
+  const isDark = useTheme().palette.mode === 'dark';
 
   return (
     <>
@@ -63,10 +65,23 @@ const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps)
           </p>
         </div>
 
-        <div className='flex items-center my-2'>
-          <h4 style={{ color: pointColor.hex }} className='m-0 px-1 leading-7'>
+        <div className='flex items-center gap-3 my-3'>
+          <span
+            className={cn(
+              'text-[10px] font-black tracking-widest uppercase shrink-0',
+              isDark ? 'text-white/35' : 'text-black/35',
+              mode === 'print' && 'text-[#666]!',
+            )}
+          >
             WORK EXPERIENCE
-          </h4>
+          </span>
+          <div
+            className={cn(
+              'flex-1 h-px',
+              isDark ? 'bg-white/6' : 'bg-black/6',
+              mode === 'print' && 'bg-[#ddd]!',
+            )}
+          />
         </div>
 
         <div className='my-3'>
@@ -78,7 +93,15 @@ const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps)
         </div>
       </div>
 
-      {!isLastCompany && <hr className='bg-[#dddddd] h-px border-0' />}
+      {!isLastCompany && (
+        <div
+          className={cn(
+            'h-px w-full my-4',
+            isDark ? 'bg-white/6' : 'bg-black/6',
+            mode === 'print' && 'bg-[#ddd]!',
+          )}
+        />
+      )}
     </>
   );
 };
