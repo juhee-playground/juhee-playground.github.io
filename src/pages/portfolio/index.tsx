@@ -174,21 +174,40 @@ const PortfolioPage = () => {
 
       <footer
         className={cn(
-          'py-8 text-xs border-t flex items-center justify-between px-2',
+          'border-t mt-12 px-2 py-10 flex flex-col gap-6',
           isDark ? 'border-white/10 text-white/30' : 'border-black/10 text-black/30',
         )}
       >
-        <span>© 2025 BAEK JU HEE · Built with React + TypeScript</span>
-        <Link
-          to='/'
-          title='GameBoy ver.'
-          className={cn(
-            'text-base transition-all duration-200 hover:scale-110 hover:opacity-80',
-            isDark ? 'opacity-20' : 'opacity-25',
-          )}
-        >
-          🎮
-        </Link>
+        {/* 사이트맵 */}
+        <nav className='flex gap-6 text-sm font-medium'>
+          {[
+            { to: '/portfolio', label: 'Portfolio' },
+            { to: '/resume',    label: 'Resume' },
+            { to: '/dashboard', label: 'Dashboard' },
+            { to: '/projects',  label: 'Projects' },
+          ].map(({ to, label }) => (
+            <Link
+              key={to}
+              to={to}
+              className={cn(
+                'transition-colors',
+                isDark ? 'text-white/35 hover:text-white/60' : 'text-black/35 hover:text-black/60',
+              )}
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* 카피라이트 + GameBoy Easter egg */}
+        <div className='flex items-center justify-between text-xs'>
+          <span className={isDark ? 'text-white/40' : 'text-black/40'}>
+            © 2025 BAEK JU HEE · Built with React + TypeScript
+          </span>
+          <Link to='/' title='GameBoy ver.' className='text-base transition-transform hover:scale-110'>
+            🎮
+          </Link>
+        </div>
       </footer>
     </div>
   );
