@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 
+import SiteSection from '@/components/site/SiteSection';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
@@ -214,12 +215,7 @@ const SitePage = () => {
         </section>
 
         {/* ─── #projects ─── */}
-        <section
-          id='projects'
-          ref={el => { sectionRefs.current.projects = el; }}
-          className='py-20 flex flex-col gap-8'
-        >
-          <SectionHeading label='Projects' color={pt} />
+        <SiteSection id='projects' title='Projects' sectionRef={el => { sectionRefs.current.projects = el; }}>
           <div className='flex flex-col gap-4'>
             {PROJECTS.map(({ title, desc, tags, status, link }) => (
               <a
@@ -271,15 +267,10 @@ const SitePage = () => {
               </a>
             ))}
           </div>
-        </section>
+        </SiteSection>
 
         {/* ─── #experience ─── */}
-        <section
-          id='experience'
-          ref={el => { sectionRefs.current.experience = el; }}
-          className='py-20 flex flex-col gap-8'
-        >
-          <SectionHeading label='Experience' color={pt} />
+        <SiteSection id='experience' title='Experience' sectionRef={el => { sectionRefs.current.experience = el; }}>
           <ol className='relative flex flex-col gap-0'>
             {EXPERIENCE.map(({ company, role, period, desc, current }, i) => (
               <li key={company} className='flex gap-5'>
@@ -314,15 +305,10 @@ const SitePage = () => {
               </li>
             ))}
           </ol>
-        </section>
+        </SiteSection>
 
         {/* ─── #stats ─── */}
-        <section
-          id='stats'
-          ref={el => { sectionRefs.current.stats = el; }}
-          className='py-20 flex flex-col gap-8'
-        >
-          <SectionHeading label='Stats' color={pt} />
+        <SiteSection id='stats' title='Stats' sectionRef={el => { sectionRefs.current.stats = el; }}>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
             {STATS.map(({ value, label }) => (
               <div
@@ -337,15 +323,10 @@ const SitePage = () => {
               </div>
             ))}
           </div>
-        </section>
+        </SiteSection>
 
         {/* ─── #contact ─── */}
-        <section
-          id='contact'
-          ref={el => { sectionRefs.current.contact = el; }}
-          className='py-20 flex flex-col gap-8'
-        >
-          <SectionHeading label='Contact' color={pt} />
+        <SiteSection id='contact' title='Contact' sectionRef={el => { sectionRefs.current.contact = el; }}>
           <div
             className={cn(
               'rounded-2xl p-8 flex flex-col gap-6',
@@ -380,7 +361,7 @@ const SitePage = () => {
               ))}
             </div>
           </div>
-        </section>
+        </SiteSection>
 
       </main>
 
@@ -395,14 +376,5 @@ const SitePage = () => {
     </div>
   );
 };
-
-const SectionHeading = ({ label, color }: { label: string; color: string }) => (
-  <div className='flex items-center gap-3'>
-    <span className='text-xs font-black tracking-[0.2em] uppercase' style={{ color }}>
-      {label}
-    </span>
-    <div className='flex-1 h-px bg-current opacity-10' />
-  </div>
-);
 
 export default SitePage;
