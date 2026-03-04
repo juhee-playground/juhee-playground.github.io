@@ -52,7 +52,7 @@ const ResumeView = ({
       <LeftSection />
       <div
         className={cn(
-          'flex-[0_0_70%] flex flex-col py-3 px-2',
+          'flex-1 flex flex-col py-3 px-2 min-w-0 min-h-screen',
           theme.palette.mode === 'light'
             ? 'bg-[ghostwhite] text-[#181717]'
             : 'bg-[#1d1b1b] text-white',
@@ -61,7 +61,7 @@ const ResumeView = ({
       >
         {isLoading && <Loading />}
 
-        <section className={`h-[20%] ${mode === 'print' ? 'hidden' : ''}`}>
+        <section className={cn('', mode === 'print' && 'hidden')}>
           <ul className='flex flex-col gap-4'>
             <FilterOption
               options={companies}

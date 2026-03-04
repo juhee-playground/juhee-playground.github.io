@@ -20,7 +20,7 @@ const LeftInfoPanel = () => {
     <aside
       id='profileInfo'
       className={cn(
-        'grid-area-[profile] flex flex-col items-center justify-start py-6 px-3 pb-[18px]',
+        'flex-[0_0_30%] flex flex-col items-center justify-start py-6 px-3 pb-[18px] flex-shrink-0 min-h-screen',
         themeMode === 'light' ? 'bg-[whitesmoke] text-[#181717]' : 'bg-[#181717] text-white',
         isPrintMode && mode === 'print' && 'bg-white text-black'
       )}

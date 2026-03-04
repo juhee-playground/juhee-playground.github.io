@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
@@ -12,6 +13,19 @@ export default function RouterProvider() {
   const location = useLocation();
   const isLandingPage = location.pathname === '/';
   const shouldRenderHeader = validPaths.includes(location.pathname) && !isLandingPage;
+  const isResumePage = location.pathname === '/resume';
+
+  // resume 페이지에서는 body 스크롤 허용
+  useEffect(() => {
+    if (isResumePage) {
+      document.body.style.overflow = 'auto';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'hidden';
+    };
+  }, [isResumePage]);
 
   return (
     <>
@@ -20,9 +34,9 @@ export default function RouterProvider() {
         <Router />
       ) : (
         <Layout>
-      {shouldRenderHeader && <Header />}
-        <Router />
-      </Layout>
+          {shouldRenderHeader && <Header />}
+          <Router />
+        </Layout>
       )}
     </>
   );

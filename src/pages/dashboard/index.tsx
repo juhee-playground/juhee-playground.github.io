@@ -24,6 +24,11 @@ const tasks: ITask[] = [
     startDate: dayjs('2023-07-03').format('YYYY-MM-DD'),
     endDate: dayjs('2023-10-13').format('YYYY-MM-DD'),
   },
+  {
+    name: '틴들로',
+    startDate: dayjs('2025-02-03').format('YYYY-MM-DD'),
+    endDate: dayjs('2026-10-13').format('YYYY-MM-DD'),
+  },
 ];
 
 const stackData = [
@@ -58,6 +63,12 @@ export default function MainPage() {
             </li>
             <li>
               <CardV2 name='YU 파트너스' count={1} unit='year' />
+            </li>
+            <li>
+              <CardV2 name='프리랜서' count={1} unit='year' />
+            </li>
+            <li>
+              <CardV2 name='틴들로' count={1} unit='year' />
             </li>
           </ul>
         </article>
