@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import ClearIcon from '@mui/icons-material/Clear';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -10,6 +10,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import IconButton from '@mui/material/IconButton';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
+import SiteSectionNav from '@/components/site/SiteSectionNav';
 import usePrintMode from '@/hooks/usePrintMode';
 import ThemeCustomized from '@/layout/ThemeCustomized';
 import { useSettings } from '@/stores/useSettings';
@@ -29,6 +30,8 @@ export default function DenseAppBar() {
   const { pointColor, isPrintMode, togglePrintMode, themeMode, toggleThemeMode } = useSettings();
 
   const { mode } = usePrintMode();
+  const { pathname } = useLocation();
+  const isSitePage = pathname === '/site';
 
   const toggleDrawer = (direction: TAnchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -70,26 +73,30 @@ export default function DenseAppBar() {
       )}
     >
       {!isPrintMode && (
-        <ul className='flex gap-3 px-3 [&_a]:text-inherit'>
-          <li role='menuItem'>
-            <Link to='/'>홈</Link>
-          </li>
-          <li role='menuItem'>
-            <Link to='/resume'>이력서</Link>
-          </li>
-          <li role='menuItem'>
-            <Link to='/dashboard'>대시보드</Link>
-          </li>
-          <li role='menuItem'>
-            <Link
-              to='/site'
-              className='font-bold text-white px-2 py-0.5 rounded text-xs'
-              style={{ backgroundColor: pointColor.hex }}
-            >
-              New
-            </Link>
-          </li>
-        </ul>
+        isSitePage ? (
+          <SiteSectionNav />
+        ) : (
+          <ul className='flex gap-3 px-3 [&_a]:text-inherit'>
+            <li role='menuItem'>
+              <Link to='/'>홈</Link>
+            </li>
+            <li role='menuItem'>
+              <Link to='/resume'>이력서</Link>
+            </li>
+            <li role='menuItem'>
+              <Link to='/dashboard'>대시보드</Link>
+            </li>
+            <li role='menuItem'>
+              <Link
+                to='/site'
+                className='font-bold text-white px-2 py-0.5 rounded text-xs'
+                style={{ backgroundColor: pointColor.hex }}
+              >
+                New
+              </Link>
+            </li>
+          </ul>
+        )
       )}
 
       <div className='menu__groups'>

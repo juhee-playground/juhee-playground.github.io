@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
-
 import { useTheme } from '@mui/material/styles';
 
 import SiteContact from '@/components/site/SiteContact';
@@ -9,16 +7,6 @@ import SiteOverview from '@/components/site/SiteOverview';
 import SiteSection from '@/components/site/SiteSection';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
-
-type TSection = 'overview' | 'projects' | 'experience' | 'stats' | 'contact';
-
-const NAV_ITEMS: { id: TSection; label: string }[] = [
-  { id: 'overview', label: 'Overview' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'stats', label: 'Stats' },
-  { id: 'contact', label: 'Contact' },
-];
 
 const PROJECTS = [
   {
@@ -44,7 +32,6 @@ const PROJECTS = [
   },
 ];
 
-
 const STATS = [
   { value: '5+', label: 'Years Experience' },
   { value: '10+', label: 'Projects Shipped' },
@@ -55,85 +42,27 @@ const STATS = [
 const SitePage = () => {
   const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
-  const [activeSection, setActiveSection] = useState<TSection>('overview');
-  const sectionRefs = useRef<Record<TSection, HTMLElement | null>>({
-    overview: null,
-    projects: null,
-    experience: null,
-    stats: null,
-    contact: null,
-  });
-
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    NAV_ITEMS.forEach(({ id }) => {
-      const el = sectionRefs.current[id];
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
-        },
-        { threshold: 0.35 },
-      );
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach(o => o.disconnect());
-  }, []);
-
-  const scrollTo = (id: TSection) => {
-    sectionRefs.current[id]?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const pt = pointColor.hex;
+
+  const scrollToProjects = () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className={cn('min-h-screen w-full', isDark ? 'bg-[#181717] text-white' : 'bg-[#fafafa] text-[#181717]')}>
-
-      {/* ─── Sticky section nav ─── */}
-      <nav
-        className={cn(
-          'sticky top-0 z-30 flex justify-center gap-1 py-2 border-b text-sm',
-          isDark ? 'bg-[#181717]/90 border-white/10' : 'bg-[#fafafa]/90 border-black/10',
-          'backdrop-blur-sm',
-        )}
-      >
-        {NAV_ITEMS.map(({ id, label }) => (
-          <button
-            key={id}
-            onClick={() => scrollTo(id)}
-            className={cn(
-              'px-3 py-1 rounded-full transition-all text-xs font-semibold',
-              activeSection === id
-                ? 'text-white'
-                : isDark
-                  ? 'text-white/50 hover:text-white/80'
-                  : 'text-black/40 hover:text-black/70',
-            )}
-            style={activeSection === id ? { backgroundColor: pt } : {}}
-          >
-            {label}
-          </button>
-        ))}
-      </nav>
-
       <main className='max-w-[860px] mx-auto px-6 pb-24'>
 
         {/* ─── #overview ─── */}
         <section
           id='overview'
-          ref={el => { sectionRefs.current.overview = el; }}
-          className='min-h-[80vh] flex flex-col justify-center py-20 gap-10'
+          className='min-h-[80vh] flex flex-col justify-center py-20 gap-10 scroll-mt-10'
         >
-          <SiteHero onScrollToProjects={() => scrollTo('projects')} />
+          <SiteHero onScrollToProjects={scrollToProjects} />
           <SiteOverview />
         </section>
 
         {/* ─── #projects ─── */}
-        <SiteSection id='projects' title='Projects' sectionRef={el => { sectionRefs.current.projects = el; }}>
+        <SiteSection id='projects' title='Projects'>
           <div className='flex flex-col gap-4'>
             {PROJECTS.map(({ title, desc, tags, status, link }) => (
               <a
@@ -145,7 +74,7 @@ const SitePage = () => {
                   'group flex flex-col md:flex-row md:items-start gap-4 p-5 rounded-2xl border transition-all',
                   isDark
                     ? 'bg-white/3 border-white/10 hover:border-white/25'
-                    : 'bg-white border-black/[0.07] hover:border-black/20',
+                    : 'bg-white border-black/7 hover:border-black/20',
                   'hover:-translate-y-0.5',
                 )}
               >
@@ -188,19 +117,19 @@ const SitePage = () => {
         </SiteSection>
 
         {/* ─── #experience ─── */}
-        <SiteSection id='experience' title='Experience' sectionRef={el => { sectionRefs.current.experience = el; }}>
+        <SiteSection id='experience' title='Experience'>
           <SiteExperiencePreview />
         </SiteSection>
 
         {/* ─── #stats ─── */}
-        <SiteSection id='stats' title='Stats' sectionRef={el => { sectionRefs.current.stats = el; }}>
+        <SiteSection id='stats' title='Stats'>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
             {STATS.map(({ value, label }) => (
               <div
                 key={label}
                 className={cn(
                   'rounded-2xl p-6 flex flex-col gap-1',
-                  isDark ? 'bg-white/5' : 'bg-white border border-black/[0.07]',
+                  isDark ? 'bg-white/5' : 'bg-white border border-black/7',
                 )}
               >
                 <span className='text-4xl font-black' style={{ color: pt }}>{value}</span>
@@ -211,7 +140,7 @@ const SitePage = () => {
         </SiteSection>
 
         {/* ─── #contact ─── */}
-        <SiteSection id='contact' title='Contact' sectionRef={el => { sectionRefs.current.contact = el; }}>
+        <SiteSection id='contact' title='Contact'>
           <SiteContact />
         </SiteSection>
 

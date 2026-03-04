@@ -1,4 +1,4 @@
-import { ReactNode, RefCallback } from 'react';
+import { ReactNode } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 
@@ -8,19 +8,17 @@ import { cn } from '@/utils/classNames';
 interface ISiteSectionProps {
   children: ReactNode;
   id: string;
-  sectionRef?: RefCallback<HTMLElement>;
   title?: string;
 }
 
-const SiteSection = ({ children, id, sectionRef, title }: ISiteSectionProps) => {
+const SiteSection = ({ children, id, title }: ISiteSectionProps) => {
   const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
 
   return (
     <section
       id={id}
-      ref={sectionRef}
-      className='py-20 flex flex-col gap-8'
+      className='py-20 flex flex-col gap-8 scroll-mt-10'
     >
       {title && (
         <div className='flex items-center gap-3'>
