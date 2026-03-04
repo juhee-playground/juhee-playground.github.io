@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 import PhpIcon from '@/assets/icon/PHP-Dark.svg';
 import ReactIcon from '@/assets/icon/React.svg';
@@ -38,56 +40,63 @@ const stackData = [
 ];
 
 export default function MainPage() {
-  return (
-    <div className='w-full flex flex-col items-start gap-4 bg-white'>
-      <section className='w-full flex flex-wrap gap-4 items-center justify-start'>
-        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
-          <h3 className='mb-6 text-2xl'>PROJECTS</h3>
-          <ul className='flex flex-wrap gap-6'>
-            <li>
-              <CardV2 image={ReactIcon} name='React' count={3} />
-            </li>
-            <li>
-              <CardV2 image={VueIcon} name='Vue' count={5} />
-            </li>
-            <li>
-              <CardV2 image={PhpIcon} name='Php' count={2} />
-            </li>
-          </ul>
-        </article>
-        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
-          <h3 className='mb-6 text-2xl'>COMPANYS</h3>
-          <ul className='flex flex-wrap gap-6'>
-            <li>
-              <CardV2 name='Fitogether' count={4} unit='year' />
-            </li>
-            <li>
-              <CardV2 name='YU 파트너스' count={1} unit='year' />
-            </li>
-            <li>
-              <CardV2 name='프리랜서' count={1} unit='year' />
-            </li>
-            <li>
-              <CardV2 name='틴들로' count={1} unit='year' />
-            </li>
-          </ul>
-        </article>
-      </section>
-      <section className='w-full flex flex-wrap gap-4 items-center justify-start'>
-        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
-          <h3 className='mb-6 text-2xl'>MAIN TECH USAGE</h3>
-          <div className='flex flex-wrap gap-6'>
-            <PieChart data={stackData} width={410} height={280} />
-          </div>
-        </article>
+  const navigate = useNavigate();
 
-        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
-          <h3 className='mb-6 text-2xl'>CAREER TIMELINE</h3>
-          <div className='flex flex-wrap gap-6'>
+  return (
+    <motion.div
+      layoutId="game-screen"
+      className="min-h-screen w-full bg-[#d9f99d] text-[#2d321d] flex flex-col"
+    >
+      {/* 8-bit 상단 헤더 바 */}
+      <div className="pixel-font border-b-2 border-[#2d321d]/30 px-6 py-3 flex items-center justify-between shrink-0">
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => navigate('/')}
+            className="text-[10px] font-bold border border-[#2d321d] px-3 py-1 hover:bg-[#2d321d] hover:text-[#d9f99d] transition-colors"
+          >
+            ← BACK
+          </button>
+          <span className="text-[11px] font-bold tracking-widest">CAREER.LOG</span>
+        </div>
+        <div className="flex items-center gap-2 text-[9px] opacity-60">
+          <span className="animate-pulse">●</span>
+          <span>JUHEE-OS v2.0</span>
+        </div>
+      </div>
+
+      {/* 콘텐츠 */}
+      <div className="flex-1 p-6 flex flex-col gap-6">
+        <section className='w-full flex flex-wrap gap-4 items-start'>
+          <article className='flex flex-col items-start p-5 px-6 border border-[#2d321d]/30 bg-[#d9f99d]'>
+            <h3 className='pixel-font mb-6 text-sm text-[#2d321d] tracking-widest'>[ PROJECTS ]</h3>
+            <ul className='flex flex-wrap gap-6'>
+              <li><CardV2 image={ReactIcon} name='React' count={3} /></li>
+              <li><CardV2 image={VueIcon} name='Vue' count={5} /></li>
+              <li><CardV2 image={PhpIcon} name='Php' count={2} /></li>
+            </ul>
+          </article>
+          <article className='flex flex-col items-start p-5 px-6 border border-[#2d321d]/30 bg-[#d9f99d]'>
+            <h3 className='pixel-font mb-6 text-sm text-[#2d321d] tracking-widest'>[ COMPANIES ]</h3>
+            <ul className='flex flex-wrap gap-6'>
+              <li><CardV2 name='Fitogether' count={4} unit='year' /></li>
+              <li><CardV2 name='YU 파트너스' count={1} unit='year' /></li>
+              <li><CardV2 name='프리랜서' count={1} unit='year' /></li>
+              <li><CardV2 name='틴들로' count={1} unit='year' /></li>
+            </ul>
+          </article>
+        </section>
+
+        <section className='w-full flex flex-wrap gap-4 items-start'>
+          <article className='flex flex-col items-start p-5 px-6 border border-[#2d321d]/30 bg-[#d9f99d]'>
+            <h3 className='pixel-font mb-6 text-sm text-[#2d321d] tracking-widest'>[ STACK USAGE ]</h3>
+            <PieChart data={stackData} width={410} height={280} />
+          </article>
+          <article className='flex flex-col items-start p-5 px-6 border border-[#2d321d]/30 bg-[#d9f99d]'>
+            <h3 className='pixel-font mb-6 text-sm text-[#2d321d] tracking-widest'>[ CAREER TIMELINE ]</h3>
             <TimelineChart tasks={tasks} width={500} height={300} />
-          </div>
-        </article>
-      </section>
-    </div>
+          </article>
+        </section>
+      </div>
+    </motion.div>
   );
 }

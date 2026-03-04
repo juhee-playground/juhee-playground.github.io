@@ -12,108 +12,107 @@ interface ScreenContentProps {
 }
 
 export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resumePage = 0, dashboardPage = 0, onPageChange, onDashboardPageChange, onDetailsClick }: ScreenContentProps) {
-  const menuItems = ['RESUME', 'DASHBOARD',];
+  const menuItems = ['PLAYER', 'CAREER LOG', 'PROJECTS'];
 
-  const resumePages = [
-    // ======================
-    // PAGE 1: SKILLS / EXP
-    // ======================
+  // =====================
+  // PLAYER PAGES
+  // =====================
+  const playerPages = [
+    // Page 1: CHARACTER STATS
     (
       <>
-        <p className="font-bold underline mb-1">SKILLS:</p>
+        <p className="font-bold underline mb-2">CHARACTER STATS:</p>
+        <p>NAME  : BAEK JU HEE</p>
+        <p>CLASS : FRONTEND SYSTEM BUILDER</p>
+        <p>EXP   : 5+ YEARS</p>
+
+        <p className="mt-3 font-bold underline mb-1">MISSION:</p>
+        <p className="leading-relaxed">
+          Turning complex workflows<br />
+          into usable interfaces.
+        </p>
+      </>
+    ),
+
+    // Page 2: SKILLS LOADED
+    (
+      <>
+        <p className="font-bold underline mb-2">SKILLS LOADED:</p>
         <p>- REACT / TYPESCRIPT</p>
         <p>- TAILWIND / SCSS</p>
         <p>- NEXT.JS / VITE</p>
+        <p>- ZUSTAND / REACT QUERY</p>
+        <p>- D3 / FRAMER MOTION</p>
 
-        <p className="mt-3 font-bold underline mb-1">EXP:</p>
-        <p>- 5+ YEARS FRONT-END</p>
-        <p>- Frontend Systems Builder</p>
+        <p className="mt-3 font-bold underline mb-1">PHILOSOPHY:</p>
+        <p className="leading-relaxed">
+          Build systems,<br />
+          not just features.
+        </p>
       </>
     ),
 
-    // ======================
-    // PAGE 2: INFO / CONTACT
-    // ======================
+    // Page 3: CONTACT
     (
       <>
-        <p className="font-bold underline mb-1">PROFILE:</p>
-        <p>- BAEK JU HEE</p>
-        <p>- FRONTEND DEVELOPER</p>
-
-        <p className="mt-3 font-bold underline mb-1">CONTACT:</p>
+        <p className="font-bold underline mb-2">CONTACT:</p>
         <p>- EMAIL:</p>
-        <p className="pl-2 break-all">gogumangoguma@gmail.com</p>
+        <p className="pl-2 break-all text-[7px]">gogumangoguma@gmail.com</p>
         <p>- GITHUB:</p>
-        <p className="pl-2 break-all">github.com/juhee-playground</p>
-      </>
-    ),
+        <p className="pl-2 break-all text-[7px]">github.com/juhee-playground</p>
 
-    // ======================
-    // PAGE 3: EDUCATION / WORK
-    // ======================
-    (
-      <>
-        <p className="font-bold underline mb-1">EDUCATION:</p>
-        <p>- 한양여자대학교 (Feb 2014) </p>
-
-        <p className="mt-3 font-bold underline mb-1">WORK:</p>
-        <p>- YU Partners (11 months)</p>
-        <p>- Fitogether (4 years 4 months)</p>
-        <p>- Tindlo (Currently) </p>
-
-        {/* ✅ RESUME LINK */}
         <p className="mt-3 font-bold flex items-center gap-1">
           <span className={detailIndex === 1 ? 'visible animate-pulse' : 'invisible'}>▶</span>
-          <span 
+          <span
             className={`ml-1 underline cursor-pointer ${detailIndex === 1 ? 'bg-[#2d321d] text-[#d9f99d] px-1' : ''}`}
             onClick={onDetailsClick}
-            onMouseEnter={() => {
-              // 마우스 호버 시 선택 효과 (선택적)
-            }}
           >
-            CLICK TO DETAILS
+            FULL RESUME →
           </span>
         </p>
       </>
     ),
   ];
 
-  const dashboardPages = [
-    // PAGE 1: CAREER TIMELINE
+  // =====================
+  // CAREER PAGES
+  // =====================
+  const careerPages = [
+    // Page 1: CAREER TIMELINE
     (
       <>
-<p className="font-bold underline mb-1">CAREER TIMELINE:</p>
-<pre className="whitespace-pre font-mono text-[10px] text-[#1a1c10]">
-{`2017 ─── YU PARTNERS (11M)
-2018 ────────────── FITOGETHER (4Y4M)
-2024 ─── FREELANCE (9M)
-2025 ─── TINDLO (NOW)`}
-</pre>
+        <p className="font-bold underline mb-2">CAREER TIMELINE:</p>
+        <pre className="whitespace-pre font-mono text-[10px] text-[#1a1c10]">
+{`2017 ─ YU PARTNERS (11M)
+2018 ──────── FITOGETHER (4Y4M)
+2024 ─ FREELANCE (9M)
+2025 ─ TINDLO (NOW)`}
+        </pre>
       </>
     ),
 
-    // PAGE 2: STACK USAGE
+    // Page 2: STACK USAGE
     (
       <>
-<p className="font-bold underline mb-1">STACK USAGE:</p>
-<pre className="whitespace-pre font-mono text-[10px] text-[#1a1c10]">
-{`REACT   ██████████          50%
-NEXT.JS ████                 20%
-VUE     ████                 20%
-PHP     ██                   10%`}
-</pre>
+        <p className="font-bold underline mb-2">STACK USAGE:</p>
+        <pre className="whitespace-pre font-mono text-[10px] text-[#1a1c10]">
+{`REACT   ██████████   50%
+NEXT.JS ████         20%
+VUE     ████         20%
+PHP     ██           10%`}
+        </pre>
       </>
     ),
 
-    // PAGE 3: RUNNING MODULES
+    // Page 3: RUNNING MODULES
     (
       <>
-        <p className="font-bold underline mb-1">RUNNING MODULES:</p>
+        <p className="font-bold underline mb-2">RUNNING MODULES:</p>
         <pre className="whitespace-pre-wrap font-mono text-[10px] leading-relaxed font-bold">
 {`✓ FRONTEND SYSTEMS LOADED
 ✓ REFACTOR MODE: ALWAYS ON
-✓ COMPLEX UI INTERACTIONS ENABLED
-✓ STATE SINGLE SOURCE VERIFIED
+✓ COMPLEX UI ENABLED
+✓ SINGLE SOURCE VERIFIED
 ✓ FUTURE ME CONSIDERED
 ✓ SIDE PROJECTS RUNNING`}
         </pre>
@@ -155,117 +154,119 @@ PHP     ██                   10%`}
         </div>
       );
 
-      case PortfolioState.RESUME:
-        return (
-          <div className="h-full text-[#2d321d] space-y-4 pixel-font flex flex-col">
-            {/* HEADER */}
-            <div className="border-b-2 border-[#2d321d] pb-1 flex justify-between">
-              <h3 className="text-[10px] font-bold">RESUME.txt</h3>
-              <span className="text-[8px]">
-                {resumePage + 1}/{resumePages.length}
-              </span>
-            </div>
-  
-            {/* CONTENT */}
-            <div className="flex-1 text-[8px] leading-relaxed">
-              {resumePages[resumePage]}
-            </div>
-  
-            {/* FOOTER */}
-            <div className="pt-2 border-t border-[#2d321d]/20 flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <span className={detailIndex === 0 ? 'visible animate-pulse text-[10px]' : 'invisible text-[10px]'}>▶</span>
-                <button
-                  className={`text-[10px] font-bold px-2 ${detailIndex === 0 ? 'bg-[#2d321d] text-[#d9f99d]' : ''} ${resumePage === 0 ? 'opacity-30' : ''}`}
-                  disabled={resumePage === 0}
-                  onClick={() => onPageChange?.(Math.max(resumePage - 1, 0))}
-                >
-                  {'<'}
-                </button>
-              </div>
-  
-              <p className="text-[7px] animate-pulse text-center">
-                {detailIndex === 0 ? 'ARROW: NAV / UP/DOWN: SELECT' : 'A/ENTER: OPEN DETAILS / B/ESC: MENU'}
-              </p>
-  
-              <div className="flex items-center gap-1">
-                <button
-                  className={`text-[10px] font-bold px-2 ${detailIndex === 0 ? 'bg-[#2d321d] text-[#d9f99d]' : ''} ${resumePage === resumePages.length - 1 ? 'opacity-30' : ''}`}
-                  disabled={resumePage === resumePages.length - 1}
-                  onClick={() => onPageChange?.(Math.min(resumePage + 1, resumePages.length - 1))}
-                >
-                  {'>'}
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-
-    case PortfolioState.DASHBOARD:
+    case PortfolioState.PLAYER:
       return (
         <div className="h-full text-[#2d321d] space-y-4 pixel-font flex flex-col">
-        {/* Header */}
-        <div className="border-b-2 border-[#2d321d] pb-1 flex justify-between">
-          <h3 className="text-[10px] font-bold">DASHBOARD.SYS</h3>
-          <span className="text-[8px]">
-            {dashboardPage + 1}/{dashboardPages.length}
-          </span>
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 text-[8px] leading-relaxed py-1 flex flex-col justify-center">
-          {dashboardPages[dashboardPage]}
-        </div>
-
-        {/* Footer */}
-        <div className="pt-2 border-t border-[#2d321d]/20 flex items-center justify-between">
-          <div className="flex items-center gap-1">
-            <span className="visible animate-pulse text-[10px]">▶</span>
-            <button
-              className="text-[10px] font-bold px-2 bg-[#2d321d] text-[#d9f99d] disabled:opacity-30"
-              disabled={dashboardPage === 0}
-              onClick={() => onDashboardPageChange?.(Math.max(dashboardPage - 1, 0))}
-            >
-              {'<'}
-            </button>
+          {/* HEADER */}
+          <div className="border-b-2 border-[#2d321d] pb-1 flex justify-between">
+            <h3 className="text-[10px] font-bold">PLAYER.EXE</h3>
+            <span className="text-[8px]">
+              {resumePage + 1}/{playerPages.length}
+            </span>
           </div>
 
-          <p className="text-[7px] animate-pulse text-center">ARROW: NAV / B: MENU</p>
+          {/* CONTENT */}
+          <div className="flex-1 text-[8px] leading-relaxed">
+            {playerPages[resumePage]}
+          </div>
 
-          <div className="flex items-center gap-1">
-            <button
-              className="text-[10px] font-bold px-2 bg-[#2d321d] text-[#d9f99d] disabled:opacity-30"
-              disabled={dashboardPage === dashboardPages.length - 1}
-              onClick={() => onDashboardPageChange?.(Math.min(dashboardPage + 1, dashboardPages.length - 1))}
-            >
-              {'>'}
-            </button>
-            <span className="visible animate-pulse text-[10px]">▶</span>
+          {/* FOOTER */}
+          <div className="pt-2 border-t border-[#2d321d]/20 flex items-center justify-between">
+            <div className="flex items-center gap-1">
+              <span className={detailIndex === 0 ? 'visible animate-pulse text-[10px]' : 'invisible text-[10px]'}>▶</span>
+              <button
+                className={`text-[10px] font-bold px-2 ${detailIndex === 0 ? 'bg-[#2d321d] text-[#d9f99d]' : ''} ${resumePage === 0 ? 'opacity-30' : ''}`}
+                disabled={resumePage === 0}
+                onClick={() => onPageChange?.(Math.max(resumePage - 1, 0))}
+              >
+                {'<'}
+              </button>
+            </div>
+
+            <p className="text-[7px] animate-pulse text-center">
+              {detailIndex === 0 ? 'ARROW: NAV / A: DETAILS' : 'A/ENTER: OPEN / B/ESC: MENU'}
+            </p>
+
+            <div className="flex items-center gap-1">
+              <button
+                className={`text-[10px] font-bold px-2 ${detailIndex === 0 ? 'bg-[#2d321d] text-[#d9f99d]' : ''} ${resumePage === playerPages.length - 1 ? 'opacity-30' : ''}`}
+                disabled={resumePage === playerPages.length - 1}
+                onClick={() => onPageChange?.(Math.min(resumePage + 1, playerPages.length - 1))}
+              >
+                {'>'}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
       );
 
-    case PortfolioState.PORTFOLIO:
+    case PortfolioState.CAREER:
       return (
-        <div className="h-full text-[#2d321d] space-y-3 pixel-font">
+        <div className="h-full text-[#2d321d] space-y-4 pixel-font flex flex-col">
+          {/* Header */}
+          <div className="border-b-2 border-[#2d321d] pb-1 flex justify-between">
+            <h3 className="text-[10px] font-bold">CAREER.LOG</h3>
+            <span className="text-[8px]">
+              {dashboardPage + 1}/{careerPages.length}
+            </span>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 text-[8px] leading-relaxed py-1 flex flex-col justify-center">
+            {careerPages[dashboardPage]}
+          </div>
+
+          {/* Footer */}
+          <div className="pt-2 border-t border-[#2d321d]/20 flex items-center justify-between">
+            <div className="flex items-center gap-1">
+              <span className="visible animate-pulse text-[10px]">▶</span>
+              <button
+                className="text-[10px] font-bold px-2 bg-[#2d321d] text-[#d9f99d] disabled:opacity-30"
+                disabled={dashboardPage === 0}
+                onClick={() => onDashboardPageChange?.(Math.max(dashboardPage - 1, 0))}
+              >
+                {'<'}
+              </button>
+            </div>
+
+            <p className="text-[7px] animate-pulse text-center">ARROW: NAV / A: FULL VIEW / B: MENU</p>
+
+            <div className="flex items-center gap-1">
+              <button
+                className="text-[10px] font-bold px-2 bg-[#2d321d] text-[#d9f99d] disabled:opacity-30"
+                disabled={dashboardPage === careerPages.length - 1}
+                onClick={() => onDashboardPageChange?.(Math.min(dashboardPage + 1, careerPages.length - 1))}
+              >
+                {'>'}
+              </button>
+              <span className="visible animate-pulse text-[10px]">▶</span>
+            </div>
+          </div>
+        </div>
+      );
+
+    case PortfolioState.PROJECTS:
+      return (
+        <div className="h-full text-[#2d321d] space-y-3 pixel-font flex flex-col">
           <div className="border-b-2 border-[#2d321d] pb-1">
-            <h3 className="text-[10px] font-bold">포트폴리오.rar</h3>
+            <h3 className="text-[10px] font-bold">PROJECTS.DB</h3>
           </div>
-          <div className="space-y-2">
-            <div className="border border-[#2d321d] p-1 flex justify-between items-center">
-              <span className="text-[7px]">8-BIT ENGINE</span>
-              <span className="text-[6px] bg-[#2d321d] text-[#d9f99d] px-1">NEW</span>
+
+          <div className="flex-1 text-[8px] leading-relaxed space-y-3">
+            <div className="border border-[#2d321d] p-2">
+              <p className="font-bold mb-1">JUHEE-PLAYGROUND</p>
+              <p>PROBLEM : Portfolios lack identity</p>
+              <p>SOLUTION: Retro console UI</p>
+              <p>STATUS  : <span className="bg-[#2d321d] text-[#d9f99d] px-1">LIVE</span></p>
             </div>
-            <div className="border border-[#2d321d] p-1 flex justify-between items-center opacity-60">
-              <span className="text-[7px]">PIXEL CHAT</span>
-            </div>
-            <div className="border border-[#2d321d] p-1 flex justify-between items-center opacity-60">
-              <span className="text-[7px]">D3-VISUALS</span>
+            <div className="border border-[#2d321d] p-2 opacity-60">
+              <p className="font-bold mb-1">MORE PROJECTS</p>
+              <p className="text-[7px] animate-pulse">PRESS A FOR FULL VIEW →</p>
             </div>
           </div>
-          <div className="pt-2 text-center">
-            <p className="text-[7px] animate-pulse">PRESS B TO MENU</p>
+
+          <div className="pt-2 border-t border-[#2d321d]/20 text-center">
+            <p className="text-[7px] animate-pulse">A: FULL VIEW / B: MENU</p>
           </div>
         </div>
       );

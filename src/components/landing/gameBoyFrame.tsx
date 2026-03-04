@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import { PortfolioState, PowerState } from '@/pages/landing/types';
 import { ScreenContent } from './screenContent';
 
@@ -68,7 +70,10 @@ export function GameBoyFrame({
           </div>
           
           {/* LCD Screen - Bright LCD Tint */}
-          <div className={`w-full aspect-[4/3] md:aspect-[4/3] relative overflow-hidden border-4 border-slate-800 rounded-sm ${isPowerOn || isAnimating ? 'bg-[#d9f99d]' : 'bg-[#1e293b]'} transition-colors duration-500`}>
+          <motion.div
+            layoutId="game-screen"
+            className={`w-full aspect-[5/4] md:aspect-[5/4] relative overflow-hidden border-4 border-slate-800 rounded-sm ${isPowerOn || isAnimating ? 'bg-[#d9f99d]' : 'bg-[#1e293b]'} transition-colors duration-500`}
+          >
             {shouldShowContent && (
               <div className={`absolute inset-0 ${getAnimationClass()}`}>
                 <div className="absolute inset-0 scanlines opacity-10 z-10"></div>
@@ -84,7 +89,7 @@ export function GameBoyFrame({
                 )}
               </div>
             )}
-          </div>
+          </motion.div>
 
           <div className="mt-2 flex justify-between items-center text-slate-400 text-[10px] px-2">
              <span className="font-bold uppercase">JUHEE-OS</span>

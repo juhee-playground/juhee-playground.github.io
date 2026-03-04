@@ -16,9 +16,9 @@ const LandingPage = () => {
   const isAnimating = powerState === 'powering-on' || powerState === 'powering-off';
 
   const menuItems = [
-    { label: '이력서', state: PortfolioState.RESUME },
-    { label: '대시보드', state: PortfolioState.DASHBOARD },
-    { label: '포트폴리오', state: PortfolioState.PORTFOLIO }
+    { label: 'PLAYER', state: PortfolioState.PLAYER },
+    { label: 'CAREER LOG', state: PortfolioState.CAREER },
+    { label: 'PROJECTS', state: PortfolioState.PROJECTS },
   ];
 
   const handleStart = useCallback(() => {
@@ -46,19 +46,19 @@ const LandingPage = () => {
       } else if (direction === 'down') {
         setMenuIndex(prev => (prev < menuItems.length - 1 ? prev + 1 : 0));
       }
-    } else if (gameState === PortfolioState.RESUME) {
+    } else if (gameState === PortfolioState.PLAYER) {
       if (direction === 'up' || direction === 'down') {
         setDetailIndex(prev => (prev === 0 ? 1 : 0));
       } else if (direction === 'left' && detailIndex === 0) {
         setResumePage(prev => Math.max(prev - 1, 0));
       } else if (direction === 'right' && detailIndex === 0) {
-        setResumePage(prev => Math.min(prev + 1, 2)); // resumePages.length - 1
+        setResumePage(prev => Math.min(prev + 1, 2));
       }
-    } else if (gameState === PortfolioState.DASHBOARD) {
+    } else if (gameState === PortfolioState.CAREER) {
       if (direction === 'left') {
         setDashboardPage(prev => Math.max(prev - 1, 0));
       } else if (direction === 'right') {
-        setDashboardPage(prev => Math.min(prev + 1, 2)); // dashboardPages.length - 1
+        setDashboardPage(prev => Math.min(prev + 1, 2));
       }
     }
   }, [gameState, menuItems.length, detailIndex]);
@@ -98,14 +98,26 @@ const LandingPage = () => {
       } else if (btn === 'B') {
         setGameState(PortfolioState.START);
       }
-    } else if (gameState === PortfolioState.RESUME) {
+    } else if (gameState === PortfolioState.PLAYER) {
       if (btn === 'A' && detailIndex === 1) {
-        // DETAILS 선택 시 resume 페이지로 이동
         navigate('/resume');
       } else if (btn === 'B') {
         setGameState(PortfolioState.MENU);
         setDetailIndex(0);
         setResumePage(0);
+      }
+    } else if (gameState === PortfolioState.CAREER) {
+      if (btn === 'A') {
+        navigate('/dashboard');
+      } else if (btn === 'B') {
+        setGameState(PortfolioState.MENU);
+        setDashboardPage(0);
+      }
+    } else if (gameState === PortfolioState.PROJECTS) {
+      if (btn === 'A') {
+        navigate('/portfolio');
+      } else if (btn === 'B') {
+        setGameState(PortfolioState.MENU);
       }
     } else {
       if (btn === 'B') {
@@ -115,7 +127,7 @@ const LandingPage = () => {
   }, [gameState, menuIndex, isPowerOn, menuItems, detailIndex]);
 
   const handleDetailsClick = useCallback(() => {
-    if (gameState === PortfolioState.RESUME) {
+    if (gameState === PortfolioState.PLAYER) {
       navigate('/resume');
     }
   }, [gameState, navigate]);

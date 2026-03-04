@@ -1,9 +1,9 @@
 export enum PortfolioState {
   START = 'START',
   MENU = 'MENU',
-  RESUME = 'RESUME',
-  DASHBOARD = 'DASHBOARD',
-  PORTFOLIO = 'PORTFOLIO'
+  PLAYER = 'PLAYER',
+  CAREER = 'CAREER',
+  PROJECTS = 'PROJECTS'
 }
 
 export type PowerState = 'on' | 'off' | 'powering-on' | 'powering-off';

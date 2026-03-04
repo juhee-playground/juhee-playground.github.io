@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { ToastContainer } from 'react-toastify';
 
 import Header from '@/layout/header/Header';
@@ -15,7 +16,6 @@ export default function RouterProvider() {
   const shouldRenderHeader = validPaths.includes(location.pathname) && !isLandingPage;
   const isResumePage = location.pathname === '/resume';
 
-  // resume 페이지에서는 body 스크롤 허용
   useEffect(() => {
     if (isResumePage) {
       document.body.style.overflow = 'auto';
@@ -30,14 +30,16 @@ export default function RouterProvider() {
   return (
     <>
       <ToastContainer />
-      {isLandingPage ? (
-        <Router />
-      ) : (
-        <Layout>
-          {shouldRenderHeader && <Header />}
-          <Router />
-        </Layout>
-      )}
+      <AnimatePresence mode="wait">
+        {isLandingPage ? (
+          <Router key={location.pathname} />
+        ) : (
+          <Layout key={location.pathname}>
+            {shouldRenderHeader && <Header />}
+            <Router />
+          </Layout>
+        )}
+      </AnimatePresence>
     </>
   );
 }
