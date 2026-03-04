@@ -26,7 +26,7 @@ const BootScreen = () => {
       timers.push(setTimeout(() => setVisibleCount(i + 1), BOOT_LINES[i].delay));
     });
 
-    timers.push(setTimeout(() => setShowPrompt(true), 3600));
+    timers.push(setTimeout(() => setShowPrompt(true), 3200));
 
     return () => timers.forEach(clearTimeout);
   }, []);
@@ -41,9 +41,7 @@ const BootScreen = () => {
         ))}
       </div>
       {showPrompt && (
-        <div className="mt-4 border-2 border-[#2d321d] bg-[#d9f99d] px-4 py-2 inline-block animate-blink self-center">
-          <p className="text-[10px] font-bold">PRESS START</p>
-        </div>
+        <p className="mt-4 text-[8px] animate-pulse text-center">INITIALIZING...</p>
       )}
     </div>
   );

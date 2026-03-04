@@ -21,10 +21,23 @@ const LandingPage = () => {
     { label: 'PROJECTS', state: PortfolioState.PROJECTS },
   ];
 
+  // BOOT 완료 후 자동으로 START 화면으로 전환
+  useEffect(() => {
+    if (gameState !== PortfolioState.BOOT || !isPowerOn) return;
+    const timer = setTimeout(() => {
+      setGameState(PortfolioState.START);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [gameState, isPowerOn]);
+
   const handleStart = useCallback(() => {
     if (powerState !== 'on') return;
-    setGameState(PortfolioState.MENU);
-  }, [powerState]);
+    if (gameState === PortfolioState.BOOT) {
+      setGameState(PortfolioState.START);
+    } else if (gameState === PortfolioState.START) {
+      setGameState(PortfolioState.MENU);
+    }
+  }, [powerState, gameState]);
 
   const handleSelect = useCallback(() => {
     if (powerState !== 'on') return;
@@ -85,7 +98,7 @@ const LandingPage = () => {
     if (powerState !== 'on') return;
 
     if (gameState === PortfolioState.BOOT) {
-      if (btn === 'A') setGameState(PortfolioState.MENU);
+      if (btn === 'A') setGameState(PortfolioState.START); // 부팅 중 A → 바로 START 화면으로
     } else if (gameState === PortfolioState.START) {
       if (btn === 'A') setGameState(PortfolioState.MENU);
     } else if (gameState === PortfolioState.MENU) {
