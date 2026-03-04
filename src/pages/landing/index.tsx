@@ -5,7 +5,7 @@ import { PortfolioState, PowerState } from './types';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const [gameState, setGameState] = useState<PortfolioState>(PortfolioState.START);
+  const [gameState, setGameState] = useState<PortfolioState>(PortfolioState.BOOT);
   const [powerState, setPowerState] = useState<PowerState>('on');
   const [menuIndex, setMenuIndex] = useState(0);
   const [detailIndex, setDetailIndex] = useState(0); // 0: 페이지 네비게이션, 1: DETAILS
@@ -23,18 +23,12 @@ const LandingPage = () => {
 
   const handleStart = useCallback(() => {
     if (powerState !== 'on') return;
-    
-    if (gameState === PortfolioState.START) {
-      setGameState(PortfolioState.MENU);
-    } else if (gameState !== PortfolioState.MENU) {
-      setGameState(PortfolioState.MENU);
-    }
-  }, [gameState, powerState]);
+    setGameState(PortfolioState.MENU);
+  }, [powerState]);
 
   const handleSelect = useCallback(() => {
     if (powerState !== 'on') return;
-    // QUICK 버튼: 이력서 페이지로 바로 이동
-    navigate('/resume');
+    navigate('/resume', { state: { gameMode: true } });
   }, [navigate, powerState]);
 
   const handleDPad = useCallback((direction: string) => {
@@ -76,7 +70,7 @@ const LandingPage = () => {
       // Turning ON - 초기 상태로 리셋
       setPowerState('powering-on');
       // 게임 상태 초기화
-      setGameState(PortfolioState.START);
+      setGameState(PortfolioState.BOOT);
       setMenuIndex(0);
       setDetailIndex(0);
       setResumePage(0);
@@ -90,7 +84,9 @@ const LandingPage = () => {
   const handleAction = useCallback((btn: 'A' | 'B') => {
     if (powerState !== 'on') return;
 
-    if (gameState === PortfolioState.START) {
+    if (gameState === PortfolioState.BOOT) {
+      if (btn === 'A') setGameState(PortfolioState.MENU);
+    } else if (gameState === PortfolioState.START) {
       if (btn === 'A') setGameState(PortfolioState.MENU);
     } else if (gameState === PortfolioState.MENU) {
       if (btn === 'A') {
@@ -100,7 +96,7 @@ const LandingPage = () => {
       }
     } else if (gameState === PortfolioState.PLAYER) {
       if (btn === 'A' && detailIndex === 1) {
-        navigate('/resume');
+        navigate('/resume', { state: { gameMode: true } });
       } else if (btn === 'B') {
         setGameState(PortfolioState.MENU);
         setDetailIndex(0);
@@ -108,14 +104,14 @@ const LandingPage = () => {
       }
     } else if (gameState === PortfolioState.CAREER) {
       if (btn === 'A') {
-        navigate('/dashboard');
+        navigate('/dashboard', { state: { gameMode: true } });
       } else if (btn === 'B') {
         setGameState(PortfolioState.MENU);
         setDashboardPage(0);
       }
     } else if (gameState === PortfolioState.PROJECTS) {
       if (btn === 'A') {
-        navigate('/portfolio');
+        navigate('/portfolio', { state: { gameMode: true } });
       } else if (btn === 'B') {
         setGameState(PortfolioState.MENU);
       }
@@ -128,7 +124,7 @@ const LandingPage = () => {
 
   const handleDetailsClick = useCallback(() => {
     if (gameState === PortfolioState.PLAYER) {
-      navigate('/resume');
+      navigate('/resume', { state: { gameMode: true } });
     }
   }, [gameState, navigate]);
 

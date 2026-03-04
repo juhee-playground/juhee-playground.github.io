@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import LiveSection from '@/components/LiveSection';
 import PROJECT_DATA from '@/data/DB_project.json';
@@ -12,7 +12,43 @@ import './Main.scss';
 
 export default function MainPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isGameMode = (location.state as { gameMode?: boolean } | null)?.gameMode === true;
   const { isSuccess, data: projectQueryData } = useProjectsQuery();
+
+  const projectList = (isSuccess ? (projectQueryData || PROJECT_DATA) : PROJECT_DATA) as IProjectProperties[];
+
+  if (!isGameMode) {
+    return (
+      <article className='wrapper'>
+        <h1>Projects</h1>
+        <h2>지금까지 참여한 프로젝트 리스트</h2>
+        <div className='container'>
+          {isSuccess ? (
+            projectList.map((project: IProjectProperties) => {
+              const date = project.period.date;
+              const period = date.start ? `${dayjs(date.start).format('YY/MM')}~${dayjs(date.end).format('YY/MM')}` : '';
+              const mainSkill = project.mainSkill.multi_select.map((select: ISelectProperty) => select.name);
+              return (
+                <ProjectCard
+                  key={project.id}
+                  name={project.name.title[0].plain_text}
+                  period={period}
+                  description={project.description.rich_text[0].plain_text}
+                  borderType={mainSkill.includes('Typescript') ? 'typescript' : 'javascript'}
+                  skill={project.skill.multi_select}
+                  mainSkill={mainSkill}
+                  keywords={project.keywords && project.keywords.multi_select}
+                />
+              );
+            })
+          ) : (
+            <LiveSection message='Please wait. Loading..' />
+          )}
+        </div>
+      </article>
+    );
+  }
 
   return (
     <motion.div
@@ -40,7 +76,7 @@ export default function MainPage() {
       <div className="flex-1 p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {isSuccess ? (
-            (projectQueryData || PROJECT_DATA).map((project: IProjectProperties) => {
+            projectList.map((project: IProjectProperties) => {
               const date = project.period.date;
               const period = date.start ? `${dayjs(date.start).format('YY/MM')}~${dayjs(date.end).format('YY/MM')}` : '';
               const mainSkill = project.mainSkill.multi_select.map((select: ISelectProperty) => select.name);

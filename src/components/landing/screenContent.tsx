@@ -1,4 +1,53 @@
+import { useEffect, useState } from 'react';
+
 import { PortfolioState } from '@/pages/landing/types';
+
+const BOOT_LINES = [
+  { text: 'BOOTING SYSTEM...', delay: 0 },
+  { text: '', delay: 400 },
+  { text: 'LOADING MODULES', delay: 800 },
+  { text: '', delay: 1000 },
+  { text: '  ✓ REACT', delay: 1200 },
+  { text: '  ✓ TYPESCRIPT', delay: 1600 },
+  { text: '  ✓ D3', delay: 2000 },
+  { text: '  ✓ WORKFLOW SYSTEMS', delay: 2400 },
+  { text: '', delay: 2800 },
+  { text: 'SYSTEM READY', delay: 3000 },
+];
+
+const BootScreen = () => {
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [showPrompt, setShowPrompt] = useState(false);
+
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    BOOT_LINES.forEach((_, i) => {
+      timers.push(setTimeout(() => setVisibleCount(i + 1), BOOT_LINES[i].delay));
+    });
+
+    timers.push(setTimeout(() => setShowPrompt(true), 3600));
+
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  return (
+    <div className="h-full flex flex-col justify-center text-[#2d321d] pixel-font px-1">
+      <div className="text-[8px] leading-relaxed space-y-[2px]">
+        {BOOT_LINES.slice(0, visibleCount).map((line, i) => (
+          <p key={i} className={line.text.startsWith('  ✓') ? 'text-[#3a4a10]' : 'font-bold'}>
+            {line.text}
+          </p>
+        ))}
+      </div>
+      {showPrompt && (
+        <div className="mt-4 border-2 border-[#2d321d] bg-[#d9f99d] px-4 py-2 inline-block animate-blink self-center">
+          <p className="text-[10px] font-bold">PRESS START</p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 interface ScreenContentProps {
   gameState: PortfolioState;
@@ -121,6 +170,9 @@ PHP     ██           10%`}
   ];
 
   switch (gameState) {
+    case PortfolioState.BOOT:
+      return <BootScreen />;
+
     case PortfolioState.START:
       return (
         <div className="h-full flex flex-col items-center justify-center text-[#2d321d] text-center pixel-font">

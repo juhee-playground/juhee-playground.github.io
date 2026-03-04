@@ -27,11 +27,13 @@ export default function RouterProvider() {
     };
   }, [isResumePage]);
 
+  const isGameMode = (location.state as { gameMode?: boolean } | null)?.gameMode === true;
+
   return (
     <>
       <ToastContainer />
       <AnimatePresence mode="wait">
-        {isLandingPage ? (
+        {isLandingPage || isGameMode ? (
           <Router key={location.pathname} />
         ) : (
           <Layout key={location.pathname}>

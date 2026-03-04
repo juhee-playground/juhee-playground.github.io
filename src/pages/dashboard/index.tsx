@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import PhpIcon from '@/assets/icon/PHP-Dark.svg';
 import ReactIcon from '@/assets/icon/React.svg';
@@ -41,6 +41,44 @@ const stackData = [
 
 export default function MainPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isGameMode = (location.state as { gameMode?: boolean } | null)?.gameMode === true;
+
+  const classicContent = (
+    <div className='w-full flex flex-col items-start gap-4 bg-white'>
+      <section className='w-full flex flex-wrap gap-4 items-center justify-start'>
+        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
+          <h3 className='mb-6 text-2xl'>PROJECTS</h3>
+          <ul className='flex flex-wrap gap-6'>
+            <li><CardV2 image={ReactIcon} name='React' count={3} /></li>
+            <li><CardV2 image={VueIcon} name='Vue' count={5} /></li>
+            <li><CardV2 image={PhpIcon} name='Php' count={2} /></li>
+          </ul>
+        </article>
+        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
+          <h3 className='mb-6 text-2xl'>COMPANYS</h3>
+          <ul className='flex flex-wrap gap-6'>
+            <li><CardV2 name='Fitogether' count={4} unit='year' /></li>
+            <li><CardV2 name='YU 파트너스' count={1} unit='year' /></li>
+            <li><CardV2 name='프리랜서' count={1} unit='year' /></li>
+            <li><CardV2 name='틴들로' count={1} unit='year' /></li>
+          </ul>
+        </article>
+      </section>
+      <section className='w-full flex flex-wrap gap-4 items-center justify-start'>
+        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
+          <h3 className='mb-6 text-2xl'>MAIN TECH USAGE</h3>
+          <PieChart data={stackData} width={410} height={280} />
+        </article>
+        <article className='flex flex-col items-start justify-center p-5 px-6 rounded-lg bg-[#efefef]'>
+          <h3 className='mb-6 text-2xl'>CAREER TIMELINE</h3>
+          <TimelineChart tasks={tasks} width={500} height={300} />
+        </article>
+      </section>
+    </div>
+  );
+
+  if (!isGameMode) return classicContent;
 
   return (
     <motion.div
