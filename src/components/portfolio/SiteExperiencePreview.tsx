@@ -5,15 +5,13 @@ import { useTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 
 import COMPANY_DATA from '@/data/DB_company.json';
-import PROJECT_DATA from '@/data/DB_project.json';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
-import { parseCompanyData, parseProjectData } from '@/utils/parser';
+import { parseCompanyData } from '@/utils/parser';
 
 const DB_COMPANY = (COMPANY_DATA as ICompanyProperties[]).map(c => parseCompanyData(c));
-const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
 
 const SiteExperiencePreview = () => {
   const { pointColor } = useSettings();
@@ -29,7 +27,7 @@ const SiteExperiencePreview = () => {
       .sort((a, b) => dayjs(b.startDate).valueOf() - dayjs(a.startDate).valueOf());
   }, [companyQuery.data]);
 
-  const projects = projectQuery.data ?? DB_PROJECT;
+  const projects = projectQuery.data ?? [];
 
   const getScaleLabel = (scale: string) => {
     if (!scale?.trim()) return '-';
@@ -78,7 +76,9 @@ const SiteExperiencePreview = () => {
             <span> | 회사규모: </span>
             <span className='font-semibold'>{getScaleLabel(company.scale)}</span>
             <span> | 프로젝트 수: </span>
-            <span className='font-semibold'>{getCompanyProjectCount(company.id)}</span>
+            <span className='font-semibold'>
+              {projectQuery.isLoading ? '-' : getCompanyProjectCount(company.id)}
+            </span>
           </p>
           <p className={cn('text-sm leading-relaxed m-0', isDark ? 'text-white/70' : 'text-black/70')}>
             {company.description.join(' ')}
