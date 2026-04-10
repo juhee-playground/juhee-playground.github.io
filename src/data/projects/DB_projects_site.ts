@@ -1,113 +1,100 @@
-export type TProjectStatus = 'LIVE' | 'WIP' | 'ARCHIVED';
-
-export interface TProject {
+export interface Project {
+  name: string;
+  period: string;
+  techStack: string[];
   slug: string;
-  title: string;
-  tagline: string;
   summary: string;
-  tags: string[];
-  status: TProjectStatus;
-  links?: {
-    live?: string;
-    repo?: string;
-    notion?: string;
-  };
-  // Case study sections
-  problem?: string;
-  solution?: string;
-  architecture?: string;
-  features?: string[];
-  lessons?: string[];
+  hero: string;
+  problem: string;
+  solution: string;
+  architecture: string;
+  keyFeatures: string;
+  impact: string;
+  mainSkill: string;
+  role: string;
+  numberOfParticipants: number;
+  participationRate: number;
+  keywords: string[];
+  url?: string;
+  company: string;
 }
 
-export const PROJECTS_SITE: TProject[] = [
+export const PROJECTS_SITE: Project[] = [
   {
-    slug: 'juhee-playground',
-    title: 'JUHEE PLAYGROUND',
-    tagline: '채용 플랫폼에 종속되지 않는 개인 이력서 포트폴리오',
-    summary:
-      'GameBoy UI 인터랙션, 다크모드, 프린트 PDF 변환 지원. React + TypeScript + Tailwind로 구축된 풀 SPA 포트폴리오. Notion API를 데이터 백엔드로 활용해 별도 서버 없이 실시간 이력서를 관리한다.',
-    tags: ['React', 'TypeScript', 'Tailwind', 'D3', 'Zustand', 'React Query'],
-    status: 'LIVE',
-    links: {
-      live: 'https://juhee-playground.github.io',
-    },
+    name: 'OHCOACH Admin(백오피스)',
+    period: '2020/01/02 → 2021/03/31',
+    techStack: ['GitHub Actions', 'GoogleMap API', 'Javascript', 'Vue', 'Vuex'],
+    slug: 'ohcoach-admin',
+    summary: '관리자 업무 자동화 및 위치 기반 UI 시스템 구축',
+    hero:
+      '관리자 업무 자동화 및 위치 기반 경기장 설정 시스템 구축\n문서 처리 자동화와 지도 기반 UI 개선을 통해 운영 효율성과 정확도를 향상시킨 프로젝트',
     problem:
-      'PDF 기반 이력서는 버전 관리가 어렵고, 채용 플랫폼 전용 포맷은 개성을 표현하기 힘들다. Notion 페이지는 커스텀 UI를 적용할 수 없어 브랜딩에 한계가 있었다.',
+      '• 입고, 출고, 검수 등의 문서 처리가 수작업으로 이루어져\n업무 시간이 오래 걸리고 오류가 자주 발생하는 문제가 있었다.\n\n• 또한 경기장 설정 기능이 없어\n사용자가 원하는 위치를 직접 설정하는 데 불편함이 있었다.',
     solution:
-      'Notion API를 CMS로 사용해 데이터를 분리하고, React SPA로 완전히 커스터마이즈된 이력서 뷰를 구현했다. GameBoy 스타일의 랜딩 페이지로 첫인상을 차별화했다.',
+      '• 문서 처리 프로세스를 개선하여\n출고 과정 내에서 문서를 자동 생성하고 다운로드할 수 있도록 기능을 통합했다.\n\n• Google Maps API의 Polygon 기능을 활용하여\n사용자가 지도 위에서 원하는 영역을 직접 설정할 수 있는 UI를 구현했다.\n\n• 또한 GitHub Actions를 도입하여\n배포 과정을 자동화하고 수동 배포 과정에서 발생하던 오류를 제거했다.',
     architecture:
-      'Vite + React + TypeScript 기반 SPA. Zustand로 전역 상태(다크모드, 포인트 컬러, 프린트 모드) 관리. React Query로 Notion API 데이터 패칭 및 캐싱. D3.js 기반 커리어 타임라인 대시보드. GitHub Pages 배포.',
-    features: [
-      'GameBoy 스타일 인터랙티브 랜딩 페이지 (방향키/버튼 탐색)',
-      'Notion API 연동 실시간 이력서 데이터',
-      '다크모드 / 라이트모드 + 포인트 컬러 테마 커스터마이징',
-      '프린트 PDF 최적화 레이아웃',
-      'D3.js 기반 커리어 타임라인 대시보드',
-      'framer-motion 마이크로 인터랙션',
-    ],
-    lessons: [
-      'Notion API를 CMS로 활용하면 별도 서버 없이 콘텐츠를 실시간 업데이트할 수 있다',
-      '독창적인 인터랙션(GameBoy UI)이 방문자 체류 시간과 기억에 남는 인상을 만든다',
-      'Tailwind JIT + framer-motion 조합으로 빠르게 세련된 UI를 구현할 수 있다',
-      'sticky 헤더 + scroll-mt 조합으로 앵커 링크 UX를 자연스럽게 만들 수 있다',
-    ],
+      '- Vue 기반 관리자 페이지 개발\n- Google Maps API (Polygon) 기반 위치 설정 UI\n- GitHub Actions + CircleCI 기반 CI/CD 구축\n- 문서 자동 생성 및 다운로드 기능 설계',
+    keyFeatures:
+      '- 출고/입고/검수 문서 자동 생성 및 다운로드\n- 지도 기반 경기장 영역 설정 UI\n- 관리자 전용 페이지 분리 구조\n- 자동 배포 파이프라인 구축',
+    impact:
+      '- 문서 처리 속도 향상\n- 배포 오류 감소 및 배포 시간 단축\n- 지도 기반 UI 도입으로 사용자 경험 개선\n- 현장 대응력 향상',
+    mainSkill: 'Vue',
+    role: '서비스 배포 및 운영, 기능 개선',
+    numberOfParticipants: 2,
+    participationRate: 80,
+    keywords: ['GoogleMap API 활용', '문서 다운로드 기능', '배포 및 운영'],
+    url: 'https://dino100.notion.site/OHCOACH-Admin-19c653a2c55e4ff7a3ae601aef929362?pvs=4',
+    company: '핏투게더 (https://www.notion.so/ac39715c45de4b359daa30cf52a10664?pvs=21)',
   },
   {
+    name: 'OHCOACH Ultimate(자사서비스)',
+    period: '2020/09/01 → 2022/11/30',
+    techStack: ['D3', 'GoogleMap API', 'Highcharts.js', 'Javascript', 'Scss', 'Storybook', 'Vue', 'Vuex'],
     slug: 'ohcoach-ultimate',
-    title: 'OHCOACH ULTIMATE',
-    tagline: '웨어러블 EPTS 기반 스포츠 데이터 시각화 플랫폼',
-    summary:
-      'GPS 및 심박수 센서 데이터를 실시간으로 시각화하고 선수 퍼포먼스를 분석하는 웹 플랫폼. 전문가용 대시보드, 다국어(한/영) 지원, 팀 관리 기능을 포함한다.',
-    tags: ['Vue 3', 'D3.js', 'NodeJS', 'i18n'],
-    status: 'ARCHIVED',
-    links: {
-      notion: 'https://dino100.notion.site/OHCOACH-Ultimate-fd838cf131fc4d718d2b4d89e7d42dd8',
-    },
+    summary: '데이터 시각화를 통한 축구 분석 서비스 구조 개선 및 리포트 자동화',
+    hero:
+      '축구 데이터 시각화 서비스 고도화 및 관리자/사용자 구조 분리\n데이터 전달력을 높이기 위한 커스텀 차트와 리포트 시스템을 구축한 프로젝트',
     problem:
-      '스포츠 현장에서 선수의 GPS·심박수 데이터를 실시간 모니터링하고, 경기 후 분석 리포트를 빠르게 생성할 방법이 없었다. 기존 솔루션은 고가의 전용 소프트웨어에 의존하고 있었다.',
+      '• 관리자 기능과 사용자 기능이 하나의 서비스에 혼합되어 있어\nUI와 기능 측면에서 사용성이 떨어지는 문제가 있었다.\n\n• 또한 기존 차트 라이브러리로는 요구사항에 맞는 복잡한 데이터 시각화를 구현하는 데 한계가 있었다.\n\n• 데이터를 효과적으로 전달하지 못해 사용자 의사결정에 어려움이 있었다.',
     solution:
-      'Vue 기반 SPA에 D3.js로 커스텀 차트를 구현하고, 웨어러블 기기의 HTTP 스트리밍 데이터를 폴링 방식으로 실시간 업데이트하도록 설계했다. 경기 종료 후 자동 리포트를 PDF로 출력할 수 있도록 했다.',
+      '• 관리자(Admin)와 사용자(User) 도메인을 분리하여\n각 역할에 맞는 UI와 기능을 독립적으로 구성했다.\n\n• 경기 데이터를 요약하여 PDF로 출력할 수 있는 리포트 기능을 구현하여\n데이터 전달 과정을 단순화했다.\n\n• 복잡한 시각화 요구사항을 해결하기 위해\n기존 라이브러리 대신 D3를 도입하여 커스텀 차트를 직접 구현했다.',
     architecture:
-      'Vue 3 + Vuex + D3.js 프론트엔드. NodeJS 미들웨어 서버를 통해 EPTS 기기 데이터를 중계. vue-i18n으로 한/영 다국어 지원. 선수·팀 데이터는 REST API 기반으로 CRUD 처리.',
-    features: [
-      'GPS 궤적 실시간 시각화 (필드 오버레이)',
-      'D3.js 기반 심박수·속도·가속도 시계열 차트',
-      '경기 후 자동 퍼포먼스 리포트 생성',
-      '팀 / 선수 프로파일 관리',
-      '한국어 / 영어 다국어 지원',
-    ],
-    lessons: [
-      '실시간 데이터 폴링은 주기 설정과 상태 동기화 전략이 성능에 크게 영향을 미친다',
-      'D3.js 커스텀 차트는 자유도가 높지만 진입 장벽이 높아 초기 설계가 중요하다',
-      '다국어 지원은 처음부터 설계에 포함해야 나중에 텍스트 추출 비용이 적다',
-    ],
+      '- Vue 기반 서비스 및 관리자 페이지 분리 구조\n- D3 기반 커스텀 데이터 시각화 시스템\n- PDF 리포트 생성 기능\n- GitHub Actions 기반 CI/CD 구축',
+    keyFeatures:
+      '- 관리자/사용자 도메인 분리 구조\n- 경기 데이터 요약 및 PDF 리포트 기능\n- D3 기반 커스텀 차트 구현\n- 데이터 시각화 고도화',
+    impact:
+      '- 관리자 UX 개선 및 사용자 인터페이스 품질 향상\n- 리포트 자동화를 통해 감독 보고 업무 효율 증가\n- 다양한 데이터 시각화 요구사항 대응 가능\n- 서비스 구조 개선으로 유지보수 효율 향상',
+    mainSkill: 'Vue',
+    role: '서비스 개발, 고도화 및 유지보수',
+    numberOfParticipants: 3,
+    participationRate: 50,
+    keywords: ['D3', 'UX 개선기획', 'chart', 'pdf기능', '데이터 시각화', '리펙토링'],
+    url: 'https://dino100.notion.site/OHCOACH-Ultimate-fd838cf131fc4d718d2b4d89e7d42dd8',
+    company: '핏투게더 (https://www.notion.so/ac39715c45de4b359daa30cf52a10664?pvs=21)',
   },
   {
+    name: '사내 ERP 시스템',
+    period: '2019/01/02 → 2019/04/30',
+    techStack: ['GoogleSheet API', 'Javascript', 'Slack Webhook', 'Vue', 'Zapier'],
     slug: 'erp-system',
-    title: 'ERP SYSTEM',
-    tagline: '운영·자문·펀딩 플랫폼 내 어드민 ERP',
-    summary:
-      '스포츠 에이전시의 선수 계약·정산·스케줄을 통합 관리하는 어드민. 재사용 가능한 UI 컴포넌트 시스템을 구축해 개발 속도를 높이고, PHP 백엔드와의 레거시 연동을 유지했다.',
-    tags: ['React', 'TypeScript', 'PHP', 'MySQL'],
-    status: 'ARCHIVED',
+    summary: '분산된 사내 업무를 통합하고 자동화를 통해 운영 효율을 개선한 ERP 시스템 구축',
+    hero: '분산된 사내 업무를 통합하고 자동화를 통해 운영 효율을 개선한 ERP 시스템 구축',
     problem:
-      '엑셀 기반 수작업으로 처리하던 선수 계약·정산·스케줄 관리를 디지털화해야 했다. 기존 PHP 레거시 백엔드를 전면 교체하기 어려운 상황에서 현대적인 프론트엔드를 올려야 했다.',
+      '근태, 생산, 자산 관리 등 사내 업무가 각각 분리되어 있어\n데이터 접근성이 낮고 업무 처리 효율이 떨어지는 문제가 있었다.\n\n또한 출퇴근 기록과 업무 관리가 수작업으로 이루어져\n정보 공유가 늦고 오류가 발생하는 상황이 반복되었다.\n\n데이터가 분산되어 있어 의사결정에 필요한 정보를 빠르게 확인하기 어려웠다.',
     solution:
-      'React를 프론트엔드로 도입해 SPA 어드민을 구축하고, PHP REST API와 연동했다. 반복되는 폼·테이블·모달 컴포넌트를 추상화한 내부 컴포넌트 라이브러리를 만들어 팀 개발 생산성을 높였다.',
+      '• 근태, 생산, 자산 관리 기능을 통합한 ERP 시스템을 구축하여\n사내 업무를 하나의 플랫폼에서 관리할 수 있도록 개선했다.\n\n• Google Sheets API를 활용하여\n경영관리팀이 데이터를 쉽게 조회하고 관리할 수 있는 구조를 설계했다.\n\n• Slack Webhook과 Zapier를 활용하여\n출퇴근 기록을 자동으로 입력하고 공유되도록 자동화했다.\n\n• QR 코드 생성 기능을 통해\n자산 추적 및 검증 과정을 자동화하고 대량 생성 기능을 구현했다.',
     architecture:
-      'React 17 + TypeScript + Context API. PHP Laravel REST API 연동. MySQL 기반 관계형 데이터 모델. JWT 인증. 사내 전용 배포 환경.',
-    features: [
-      '선수 계약·정산 통합 관리 화면',
-      '스케줄 캘린더 뷰 (월·주·일 보기)',
-      '역할 기반 접근 제어 (RBAC)',
-      '재사용 가능한 폼·테이블·모달 컴포넌트 시스템',
-      'PHP Laravel REST API 연동',
-    ],
-    lessons: [
-      '레거시 백엔드를 유지하면서 프론트엔드만 현대화하는 전략이 리스크를 낮추면서 효과적이다',
-      '내부 컴포넌트 추상화에 초기 투자를 하면 장기적으로 개발 속도가 크게 빨라진다',
-      'PHP와 React의 조합은 점진적 마이그레이션 시나리오에서 유효한 선택이다',
-    ],
+      '- Vue 기반 ERP 프론트엔드 개발\n- Google Sheets API 기반 데이터 관리 구조\n- Slack Webhook + Zapier 자동화 파이프라인\n- QR 코드 생성 및 자산 추적 시스템',
+    keyFeatures:
+      '- 근태 / 생산 / 자산 관리 통합 ERP 시스템\n- Google Sheets 기반 데이터 관리\n- Slack 연동 출퇴근 자동 기록 시스템\n- QR 코드 대량 생성 및 자산 추적 기능',
+    impact:
+      '- 수작업 업무 제거 및 업무 시간 단축\n- 데이터 입력 오류 감소 및 정보 정확도 향상\n- 자산 관리 자동화로 재고 추적 효율 개선\n- Slack 연동을 통한 실시간 업무 공유',
+    mainSkill: 'Vue',
+    role: '서비스 배포 및 운영',
+    numberOfParticipants: 2,
+    participationRate: 80,
+    keywords: ['구글 시트 API', '사내 최적화 ERP 모듈 개발', '슬랙 웹 훅'],
+    url: 'https://dino100.notion.site/ERP-3e2c2b03001f4989b54164f087c9f269',
+    company: '핏투게더 (https://www.notion.so/ac39715c45de4b359daa30cf52a10664?pvs=21)',
   },
 ];

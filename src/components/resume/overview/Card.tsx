@@ -21,18 +21,19 @@ const PointStackCard = () => {
       <div className='flex items-center gap-3 mb-4'>
         <span
           className={cn(
-            'text-xs font-black tracking-widest uppercase shrink-0',
+            'text-xs font-black tracking-widest uppercase shrink-0 inline-flex items-center',
             isDark ? 'text-white/40' : 'text-black/40',
-            mode === 'print' && '!text-[#555]',
+            mode === 'print' && 'text-[#555]!',
           )}
         >
-          ⚽️ OVERVIEW
+          <i className='pixel-icon pixel-icon-overview' aria-hidden='true' />
+          OVERVIEW
         </span>
         <div
           className={cn(
             'flex-1 h-px',
-            isDark ? 'bg-white/10' : 'bg-black/[0.08]',
-            mode === 'print' && '!bg-[#ccc]',
+            isDark ? 'bg-white/10' : 'bg-black/8',
+            mode === 'print' && 'bg-[#ccc]!',
           )}
         />
       </div>

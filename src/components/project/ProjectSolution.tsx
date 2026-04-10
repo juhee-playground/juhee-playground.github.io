@@ -12,7 +12,7 @@ const ProjectSolution = ({ content }: IProjectSolutionProps) => {
 
   return (
     <ProjectSection id='solution' label='Solution' delay={0.04}>
-      <p className={cn('text-sm leading-relaxed', isDark ? 'text-white/65' : 'text-black/60')}>
+      <p className={cn('text-sm leading-relaxed whitespace-pre-line', isDark ? 'text-white/65' : 'text-black/60')}>
         {content}
       </p>
     </ProjectSection>

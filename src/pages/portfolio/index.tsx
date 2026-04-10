@@ -9,15 +9,9 @@ import SiteHero from '@/components/portfolio/SiteHero';
 import SiteOverview from '@/components/portfolio/SiteOverview';
 import SiteSection from '@/components/portfolio/SiteSection';
 import SiteSideNav from '@/components/portfolio/SiteSideNav';
-import { PROJECTS_SITE, TProjectStatus } from '@/data/projects/DB_projects_site';
+import { PROJECTS_SITE } from '@/data/projects/DB_projects_site';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
-
-const STATUS_COLOR: Record<TProjectStatus, string> = {
-  LIVE: '#22c55e',
-  WIP: '#f59e0b',
-  ARCHIVED: '#888',
-};
 
 const STATS = [
   { value: '5+', label: 'Years Experience' },
@@ -52,11 +46,11 @@ const PortfolioPage = () => {
         {/* ─── #projects ─── */}
         <SiteSection id='projects' title='Projects'>
           <div className='flex flex-col gap-4'>
-            {PROJECTS_SITE.map(({ slug, title, tagline, tags, status, links }, i) => (
+            {PROJECTS_SITE.map(({ slug, hero, name, techStack, url }, i) => (
               <motion.a
                 key={slug}
-                href={links?.live ?? links?.notion ?? '#'}
-                target={links?.live || links?.notion ? '_blank' : undefined}
+                href={url ?? '#'}
+                target={url ? '_blank' : undefined}
                 rel='noreferrer'
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -72,19 +66,13 @@ const PortfolioPage = () => {
               >
                 <div className='flex-1 flex flex-col gap-2'>
                   <div className='flex items-center gap-2'>
-                    <span className='text-xs font-black tracking-widest'>{title}</span>
-                    <span
-                      className='text-[9px] font-bold px-1.5 py-0.5 rounded text-white'
-                      style={{ backgroundColor: STATUS_COLOR[status] }}
-                    >
-                      {status}
-                    </span>
+                    <span className='text-xs font-black tracking-widest'>{name}</span>
                   </div>
                   <p className={cn('text-sm leading-relaxed', isDark ? 'text-white/55' : 'text-black/55')}>
-                    {tagline}
+                    {hero}
                   </p>
                   <div className='flex flex-wrap gap-1 mt-1'>
-                    {tags.map(tag => (
+                    {techStack.map(tag => (
                       <span
                         key={tag}
                         className={cn(

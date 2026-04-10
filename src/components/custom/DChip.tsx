@@ -13,7 +13,7 @@ const DEFAULT_NOTION_COLOR = {
 
 const NOT_FOUND = -1;
 
-function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, handleChipSelect }: ICustomChip) {
+function DChip({ color = 'default', selectedItems = [], size, label, clickable, handleChipSelect }: ICustomChip) {
   const [selected, setSelected] = useState(false);
 
   const handleClick = (): void => {
@@ -27,7 +27,8 @@ function DChip({ color = 'deafult', selectedItems = [], size, label, clickable, 
   };
 
   const isMainSkillChip = color !== 'grey' && !clickable;
-  const colorSet = selected || isMainSkillChip ? NOTION_COLOR_SET[color] : DEFAULT_NOTION_COLOR;
+  const notionColor = NOTION_COLOR_SET[color] ?? DEFAULT_NOTION_COLOR;
+  const colorSet = selected || isMainSkillChip ? notionColor : DEFAULT_NOTION_COLOR;
 
   const customTheme = createTheme({
     components: {

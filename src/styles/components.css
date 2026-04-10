@@ -186,6 +186,86 @@
     text-rendering: optimizeSpeed;
   }
 
+  /* Resume section pixel icons */
+  .pixel-icon {
+    display: inline-block;
+    width: 1px;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  .pixel-icon::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -12px;
+    left: 0;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* OVERVIEW - pixel lightbulb */
+  .pixel-icon-overview::after {
+    box-shadow:
+      /* outline */
+      9px 3px 0 0 #000, 10px 3px 0 0 #000,
+      8px 4px 0 0 #000, 11px 4px 0 0 #000,
+      7px 5px 0 0 #000, 12px 5px 0 0 #000,
+      7px 6px 0 0 #000, 12px 6px 0 0 #000,
+      8px 7px 0 0 #000, 11px 7px 0 0 #000,
+      /* bulb */
+      9px 4px 0 0 #facc15, 10px 4px 0 0 #facc15,
+      8px 5px 0 0 #fde047, 9px 5px 0 0 #facc15, 10px 5px 0 0 #facc15, 11px 5px 0 0 #fde047,
+      8px 6px 0 0 #facc15, 9px 6px 0 0 #fde047, 10px 6px 0 0 #fde047, 11px 6px 0 0 #facc15,
+      /* socket */
+      9px 8px 0 0 #a1a1aa, 10px 8px 0 0 #a1a1aa,
+      9px 9px 0 0 #71717a, 10px 9px 0 0 #71717a,
+      /* shine */
+      5px 3px 0 0 #facc15, 13px 3px 0 0 #facc15, 6px 2px 0 0 #fde047;
+  }
+
+  /* CAREER - pixel sword */
+  .pixel-icon-career::after {
+    box-shadow:
+      /* blade outline */
+      10px 2px 0 0 #000, 11px 2px 0 0 #000,
+      9px 3px 0 0 #000, 12px 3px 0 0 #000,
+      9px 4px 0 0 #000, 12px 4px 0 0 #000,
+      9px 5px 0 0 #000, 12px 5px 0 0 #000,
+      /* blade */
+      10px 3px 0 0 #e4e4e7, 11px 3px 0 0 #d4d4d8,
+      10px 4px 0 0 #f4f4f5, 11px 4px 0 0 #e4e4e7,
+      10px 5px 0 0 #e4e4e7, 11px 5px 0 0 #d4d4d8,
+      /* guard */
+      8px 6px 0 0 #000, 9px 6px 0 0 #facc15, 10px 6px 0 0 #facc15, 11px 6px 0 0 #facc15, 12px 6px 0 0 #facc15, 13px 6px 0 0 #000,
+      /* hilt */
+      10px 7px 0 0 #000, 11px 7px 0 0 #000,
+      10px 8px 0 0 #78350f, 11px 8px 0 0 #92400e,
+      10px 9px 0 0 #78350f, 11px 9px 0 0 #92400e;
+  }
+
+  /* SIDE PROJECT - pixel potion */
+  .pixel-icon-sideproject::after {
+    box-shadow:
+      /* cork */
+      9px 3px 0 0 #78350f, 10px 3px 0 0 #92400e,
+      /* bottle outline */
+      8px 4px 0 0 #000, 11px 4px 0 0 #000,
+      7px 5px 0 0 #000, 12px 5px 0 0 #000,
+      7px 8px 0 0 #000, 12px 8px 0 0 #000,
+      8px 9px 0 0 #000, 11px 9px 0 0 #000,
+      /* potion body */
+      9px 4px 0 0 #c084fc, 10px 4px 0 0 #a855f7,
+      8px 5px 0 0 #a855f7, 9px 5px 0 0 #c084fc, 10px 5px 0 0 #a855f7, 11px 5px 0 0 #9333ea,
+      8px 6px 0 0 #9333ea, 9px 6px 0 0 #a855f7, 10px 6px 0 0 #c084fc, 11px 6px 0 0 #a855f7,
+      8px 7px 0 0 #a855f7, 9px 7px 0 0 #9333ea, 10px 7px 0 0 #a855f7, 11px 7px 0 0 #c084fc,
+      9px 8px 0 0 #9333ea, 10px 8px 0 0 #a855f7,
+      /* shine */
+      6px 5px 0 0 #d8b4fe;
+  }
+
   /* Lexical 체크리스트 아이템 */
   li[role='checkbox'] {
     list-style: none;

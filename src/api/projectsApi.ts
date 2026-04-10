@@ -4,21 +4,21 @@
  *   GET /projects        → fetchProjects
  *   GET /projects/:slug  → fetchProjectBySlug
  */
-import { PROJECTS_SITE, TProject } from '@/data/projects/DB_projects_site';
+import { PROJECTS_SITE, Project } from '@/data/projects/DB_projects_site';
 
-export type TProjectListItem = Pick<TProject, 'slug' | 'title' | 'tagline' | 'status' | 'tags' | 'links'>;
+export type TProjectListItem = Pick<Project, 'slug' | 'name' | 'hero' | 'techStack' | 'period' | 'url'>;
 
 export const fetchProjects = (): Promise<TProjectListItem[]> =>
   Promise.resolve(
-    PROJECTS_SITE.map(({ slug, title, tagline, status, tags, links }) => ({
+    PROJECTS_SITE.map(({ slug, name, hero, techStack, period, url }) => ({
       slug,
-      title,
-      tagline,
-      status,
-      tags,
-      links,
+      name,
+      hero,
+      techStack,
+      period,
+      url,
     })),
   );
 
-export const fetchProjectBySlug = (slug: string): Promise<TProject | undefined> =>
+export const fetchProjectBySlug = (slug: string): Promise<Project | undefined> =>
   Promise.resolve(PROJECTS_SITE.find(p => p.slug === slug));

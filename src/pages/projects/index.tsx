@@ -3,15 +3,9 @@ import { Link } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
 
-import { PROJECTS_SITE, TProjectStatus } from '@/data/projects/DB_projects_site';
+import { PROJECTS_SITE } from '@/data/projects/DB_projects_site';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
-
-const STATUS_COLOR: Record<TProjectStatus, string> = {
-  LIVE: '#22c55e',
-  WIP: '#f59e0b',
-  ARCHIVED: '#888',
-};
 
 const container = {
   hidden: {},
@@ -72,7 +66,7 @@ const ProjectsPage = () => {
           initial='hidden'
           animate='show'
         >
-          {PROJECTS_SITE.map(({ slug, title, tagline, tags, status, links }) => (
+          {PROJECTS_SITE.map(({ slug, name, hero, period, techStack, url }) => (
             <motion.article
               key={slug}
               variants={cardVariant}
@@ -84,25 +78,21 @@ const ProjectsPage = () => {
                 'hover:-translate-y-1',
               )}
             >
-              {/* Title + Status */}
               <div className='flex items-start justify-between gap-3'>
-                <h2 className='text-sm font-black tracking-widest leading-tight'>{title}</h2>
-                <span
-                  className='shrink-0 text-[9px] font-bold px-1.5 py-0.5 rounded text-white'
-                  style={{ backgroundColor: STATUS_COLOR[status] }}
-                >
-                  {status}
+                <h2 className='text-sm font-black tracking-widest leading-tight'>{name}</h2>
+                <span className={cn('shrink-0 text-[10px] font-semibold', isDark ? 'text-white/45' : 'text-black/45')}>
+                  {period}
                 </span>
               </div>
 
               {/* Tagline */}
               <p className={cn('text-sm leading-relaxed flex-1', isDark ? 'text-white/55' : 'text-black/55')}>
-                {tagline}
+                {hero}
               </p>
 
               {/* Tags */}
               <div className='flex flex-wrap gap-1'>
-                {tags.map(tag => (
+                {techStack.map(tag => (
                   <span
                     key={tag}
                     className={cn(
@@ -127,9 +117,9 @@ const ProjectsPage = () => {
                 >
                   Case Study →
                 </Link>
-                {links?.live && (
+                {url && (
                   <a
-                    href={links.live}
+                    href={url}
                     target='_blank'
                     rel='noreferrer'
                     className={cn(
@@ -139,37 +129,7 @@ const ProjectsPage = () => {
                         : 'border-black/15 hover:border-black/30 text-black/60',
                     )}
                   >
-                    Live ↗
-                  </a>
-                )}
-                {links?.repo && (
-                  <a
-                    href={links.repo}
-                    target='_blank'
-                    rel='noreferrer'
-                    className={cn(
-                      'text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all',
-                      isDark
-                        ? 'border-white/20 hover:border-white/40 text-white/70'
-                        : 'border-black/15 hover:border-black/30 text-black/60',
-                    )}
-                  >
-                    Repo ↗
-                  </a>
-                )}
-                {links?.notion && (
-                  <a
-                    href={links.notion}
-                    target='_blank'
-                    rel='noreferrer'
-                    className={cn(
-                      'text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all',
-                      isDark
-                        ? 'border-white/20 hover:border-white/40 text-white/70'
-                        : 'border-black/15 hover:border-black/30 text-black/60',
-                    )}
-                  >
-                    Notion ↗
+                    Open ↗
                   </a>
                 )}
               </div>

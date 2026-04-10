@@ -12,7 +12,7 @@ const ProjectArchitecture = ({ content }: IProjectArchitectureProps) => {
 
   return (
     <ProjectSection id='architecture' label='Architecture' delay={0.04}>
-      <p className={cn('text-sm leading-relaxed font-mono', isDark ? 'text-white/65' : 'text-black/60')}>
+      <p className={cn('text-sm leading-relaxed font-mono whitespace-pre-line', isDark ? 'text-white/65' : 'text-black/60')}>
         {content}
       </p>
     </ProjectSection>

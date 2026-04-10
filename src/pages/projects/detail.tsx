@@ -2,12 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
 
-import ProjectArchitecture from '@/components/project/ProjectArchitecture';
-import ProjectFeatures from '@/components/project/ProjectFeatures';
 import ProjectHero from '@/components/project/ProjectHero';
-import ProjectLessons from '@/components/project/ProjectLessons';
-import ProjectProblem from '@/components/project/ProjectProblem';
-import ProjectSolution from '@/components/project/ProjectSolution';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 import { getProjectBySlug } from '@/utils/getProjectBySlug';
@@ -40,7 +35,22 @@ const ProjectDetailPage = () => {
     );
   }
 
-  const { problem, solution, architecture, features, lessons } = project;
+  const summary = project.summary || '';
+  const problem = project.problem || '';
+  const solution = project.solution || '';
+  const impact = project.impact || '';
+  const techStack = project.techStack || [];
+
+  const StorySection = ({ title, content }: { title: string; content: string }) => (
+    <section className='mb-8 flex flex-col gap-2'>
+      <h2 className={cn('text-xs font-black tracking-widest uppercase', isDark ? 'text-white/45' : 'text-black/45')}>
+        {title}
+      </h2>
+      <p className={cn('text-sm leading-relaxed whitespace-pre-line', isDark ? 'text-white/70' : 'text-black/65')}>
+        {content}
+      </p>
+    </section>
+  );
 
   return (
     <div className={bg}>
@@ -61,11 +71,30 @@ const ProjectDetailPage = () => {
 
         <ProjectHero project={project} />
 
-        {problem && <ProjectProblem content={problem} />}
-        {solution && <ProjectSolution content={solution} />}
-        {architecture && <ProjectArchitecture content={architecture} />}
-        {features && features.length > 0 && <ProjectFeatures features={features} />}
-        {lessons && lessons.length > 0 && <ProjectLessons lessons={lessons} />}
+        {!!summary && <StorySection title='Summary' content={summary} />}
+        {!!problem && <StorySection title='Problem' content={problem} />}
+        {!!solution && <StorySection title='Solution' content={solution} />}
+        {!!impact && <StorySection title='Impact' content={impact} />}
+        {techStack.length > 0 && (
+          <section className='mb-8 flex flex-col gap-2'>
+            <h2 className={cn('text-xs font-black tracking-widest uppercase', isDark ? 'text-white/45' : 'text-black/45')}>
+              Tech Stack
+            </h2>
+            <div className='flex flex-wrap gap-1'>
+              {techStack.map(tag => (
+                <span
+                  key={tag}
+                  className={cn(
+                    'text-[10px] px-2 py-0.5 rounded-full font-semibold',
+                    isDark ? 'bg-white/10 text-white/70' : 'bg-black/6 text-black/60',
+                  )}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
 
       </main>
 

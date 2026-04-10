@@ -57,6 +57,12 @@ declare global {
     challenge: INotionText;
     tobe: INotionText;
     mainSkill: INotionMultiSelect;
+    summary?: INotionText;
+    problem?: INotionText;
+    solution?: INotionText;
+    impact?: INotionText;
+    techStack?: INotionMultiSelect;
+    slug?: INotionText;
     name: INotionTitleName;
   }
 
@@ -216,9 +222,16 @@ declare global {
 
   interface IProjectData {
     id: string;
+    slug: string;
     companyId: string;
     name: string;
     period: string;
+    techStack: string[];
+    techStackOptions: ISelectProperty[];
+    summary: string;
+    problem: string;
+    solution: string;
+    impact: string;
     mainSkills: ISelectProperty[];
     skills: ISelectProperty[];
     role: string;
