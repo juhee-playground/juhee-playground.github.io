@@ -43,8 +43,8 @@ export const NOTION_COLOR_SET: ISelectChipColor = {
     text: grey[600],
   },
   gray: {
-    bg: green[100],
-    text: green[600],
+    bg: grey[100],
+    text: grey[600],
   },
   pink: {
     bg: pink[100],

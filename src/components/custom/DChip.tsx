@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import CheckIcon from '@mui/icons-material/Check';
 import Chip from '@mui/material/Chip';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { NOTION_COLOR_SET } from '@/constants/notion';
 
@@ -29,6 +29,10 @@ function DChip({ color = 'default', selectedItems = [], size, label, clickable, 
   const isMainSkillChip = color !== 'grey' && !clickable;
   const notionColor = NOTION_COLOR_SET[color] ?? DEFAULT_NOTION_COLOR;
   const colorSet = selected || isMainSkillChip ? notionColor : DEFAULT_NOTION_COLOR;
+  const chipAccent = colorSet.text === 'white' ? '#9ca3af' : colorSet.text;
+  const borderAccent = alpha(chipAccent, 0.25);
+  const shadowAccent = alpha(chipAccent, 0.42);
+  const hoverShadowAccent = alpha(chipAccent, 0.3);
 
   const customTheme = createTheme({
     components: {
@@ -37,7 +41,16 @@ function DChip({ color = 'default', selectedItems = [], size, label, clickable, 
           root: {
             backgroundColor: colorSet.bg,
             color: colorSet.text,
-            borderColor: colorSet.bg,
+            borderColor: borderAccent,
+            borderWidth: '2px',
+            borderStyle: 'solid',
+            borderRadius: 4,
+            boxShadow: `2px 2px 0px 0px ${shadowAccent}`,
+            transition: 'all 0.1s',
+            '&:hover': {
+              transform: 'translate(1px, 1px)',
+              boxShadow: `1px 1px 0px 0px ${hoverShadowAccent}`,
+            },
           },
         },
       },
@@ -52,7 +65,10 @@ function DChip({ color = 'default', selectedItems = [], size, label, clickable, 
   return (
     <ThemeProvider theme={customTheme}>
       <Chip
-        sx={{ borderRadius: 1 }}
+        sx={{
+          px: 0.5,
+          py: 0.25,
+        }}
         label={<div className='dChip__label'> {label}</div>}
         size={size}
         variant='outlined'
