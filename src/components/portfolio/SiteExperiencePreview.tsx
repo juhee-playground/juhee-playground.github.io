@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-
 import { Link } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
@@ -8,7 +7,6 @@ import COMPANY_DATA from '@/data/DB_company.json';
 import PROJECT_DATA from '@/data/DB_project.json';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
-import CardListItem from '@/components/resume/card/CardListItem';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 import { parseCompanyData, parseProjectData } from '@/utils/parser';
@@ -17,7 +15,6 @@ const DB_COMPANY = (COMPANY_DATA as ICompanyProperties[]).map(c => parseCompanyD
 const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
 
 const MAX_COMPANIES = 2;
-const MAX_PROJECTS_PER_COMPANY = 2;
 
 const SiteExperiencePreview = () => {
   const { pointColor } = useSettings();
@@ -34,46 +31,60 @@ const SiteExperiencePreview = () => {
       .slice(0, MAX_COMPANIES);
   }, [companyQuery.data]);
 
-  const slicedProjects = useMemo(() => {
-    const all = projectQuery.data ?? DB_PROJECT;
-    return companies.flatMap(company =>
-      all
-        .filter(p => p.companyId === company.id)
-        .slice(0, MAX_PROJECTS_PER_COMPANY),
-    );
-  }, [projectQuery.data, companies]);
+  const projects = projectQuery.data ?? DB_PROJECT;
 
-  const companyNames = useMemo(
-    () => companies.map(c => c.name),
-    [companies],
-  );
+  const getScaleLabel = (scale: string) => {
+    if (!scale?.trim()) return '-';
+    return scale.includes('+') ? scale : `${scale}+`;
+  };
+
+  const getCompanyProjectCount = (companyId: string) =>
+    projects.filter(project => project.companyId === companyId).length;
+
+  const getCompanyHighlight = (companyId: string) => {
+    const companyProjects = projects.filter(project => project.companyId === companyId);
+    const candidate =
+      companyProjects
+        .map(project => (project.impact || project.summary || '').trim())
+        .find(Boolean) ?? '';
+
+    if (!candidate) return '핵심 성과 데이터 업데이트 예정';
+    return candidate.split('\n')[0];
+  };
 
   return (
     <div className='flex flex-col gap-6'>
-      <div
-        className={cn(
-          'rounded-2xl overflow-hidden border',
-          isDark ? 'border-white/10' : 'border-black/8',
-        )}
-      >
-        {companies.map((company, i) => (
-          <div
-            key={company.id}
-            className={cn(
-              'px-2 py-1',
-              isDark ? 'bg-white/2' : 'bg-white',
-              i < companies.length - 1 && (isDark ? 'border-b border-white/10' : 'border-b border-black/8'),
-            )}
-          >
-            <CardListItem
-              info={company}
-              subInfo={slicedProjects}
-              filters={companyNames}
-              isLastCompany={i === companies.length - 1}
-            />
+      {companies.map(company => (
+        <div
+          key={company.id}
+          className={cn(
+            'rounded-2xl border p-5 flex flex-col gap-3',
+            isDark ? 'bg-white/3 border-white/10' : 'bg-white border-black/8',
+          )}
+        >
+          <div className='flex items-center justify-between gap-3'>
+            <h3 className='text-2xl font-semibold leading-none m-0'>{company.name}</h3>
+            <span className={cn('text-sm font-semibold', isDark ? 'text-white/55' : 'text-black/50')}>
+              {company.startDate}~{company.endDate ?? 'Now'}
+            </span>
           </div>
-        ))}
-      </div>
+          <p className='text-sm leading-relaxed m-0'>
+            <span className='font-semibold'>{company.role}</span>
+            <span> | {company.department}</span>
+            <span> | 회사규모: </span>
+            <span className='font-semibold'>{getScaleLabel(company.scale)}</span>
+            <span> | 프로젝트 수: </span>
+            <span className='font-semibold'>{getCompanyProjectCount(company.id)}</span>
+          </p>
+          <p className={cn('text-sm leading-relaxed m-0', isDark ? 'text-white/70' : 'text-black/70')}>
+            {company.description.join(' ')}
+          </p>
+          <p className={cn('text-sm leading-relaxed m-0', isDark ? 'text-white/70' : 'text-black/70')}>
+            <span className='font-semibold'>핵심 성과: </span>
+            <span>{getCompanyHighlight(company.id)}</span>
+          </p>
+        </div>
+      ))}
 
       <div className='flex justify-end'>
         <Link
