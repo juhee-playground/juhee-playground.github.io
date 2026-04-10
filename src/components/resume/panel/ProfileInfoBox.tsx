@@ -32,8 +32,8 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
   return (
     <>
       <div className='flex items-center'>
-        <span className='px-1'>{info.icon}</span>
-        <h4 style={{ color: pointColor.hex }} className='m-0 px-1 leading-7'>
+        <i className='pixel-icon-common' aria-hidden='true' />
+        <h4 style={{ color: pointColor.hex }} className='pixel-font m-0 px-1 leading-7 text-[13px]'>
           {info.title}
         </h4>
       </div>
@@ -48,7 +48,7 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
               return (
                 <div className='flex flex-col gap-2 leading-6' key={`profile_subTitle_${index}`}>
                   <dt className='font-semibold text-[15px] m-0'>{item.subTitle}</dt>
-                  <dd className='font-normal text-[13px] m-0 break-words'>
+                  <dd className='font-normal text-[13px] m-0 wrap-break-word'>
                     {key === 'github' || key === 'portfolio' ? (
                       <a href={contactInfo[key]} className='text-inherit underline' color='inherit'>
                         {displayValue(key)}
@@ -81,7 +81,7 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
           <ul className='w-full list-none p-0 m-0 flex flex-col gap-2'>
             {info.spaceBetween.map((item: IDateItem, index: number) => (
               <li className='flex flex-row justify-between leading-6' key={`spaceBetween_${index}`}>
-                <span className='font-normal text-[13px] m-0 break-words'>{item.text[lang]}</span>
+                <span className='font-normal text-[13px] m-0 wrap-break-word'>{item.text[lang]}</span>
                 <span className='text-[13px]'>{item.date}</span>
               </li>
             ))}

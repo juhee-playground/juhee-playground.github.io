@@ -209,6 +209,18 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23000' d='M6 1h4v1H6zM5 2h1v5H5zM10 2h1v5H10zM6 8h4v1H6zM7 9h2v3H7zM6 12h4v1H6z'/%3E%3Cpath fill='%23facc15' d='M6 2h4v6H6zM5 3h1v4H5zM10 3h1v4H10z'/%3E%3Cpath fill='%23fff' d='M6 3h1v2H6z'/%3E%3C/svg%3E");
   }
 
+  .pixel-icon-common {
+    display: inline-block;
+    width: 20px;   /* 크기를 살짝 키워 시원하게 배치 */
+    height: 20px;
+    /* 삐뚤어짐 없는 완벽한 대칭 다이아몬드 SVG */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%23000' d='M7 2h2v1H7zM6 3h1v1H6zM9 3h1v1H9zM5 4h1v1H5zM10 4h1v1H10zM4 5h1v1H4zM11 5h1v1H11zM3 6h1v4H3zM12 6h1v4H12zM4 10h1v1H4zM11 10h1v1H11zM5 11h1v1H5zM10 11h1v1H10zM6 12h1v1H6zM9 12h1v1H9zM7 13h2v1H7z'/%3E%3Cpath fill='%23facc15' d='M7 3h2v1H7zM6 4h4v1H6zM5 5h6v1H5zM4 6h8v4H4zM5 10h6v1H5zM6 11h4v1H6zM7 12h2v1H7z'/%3E%3Cpath fill='%23fff' d='M6 6h2v2H6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
   /* Lexical 체크리스트 아이템 */
   li[role='checkbox'] {
     list-style: none;

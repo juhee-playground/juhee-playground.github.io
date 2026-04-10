@@ -31,8 +31,6 @@ const LeftInfoPanel = () => {
         className={cn(
           'flex flex-wrap justify-center w-full',
           isPrintMode && 'print:grid print:grid-cols-[0.5fr_1fr_1fr] print:gap-4 print:grid-areas-[profile_contact_aside]',
-          'md:grid md:grid-cols-[0.5fr_1fr_1fr] md:gap-4 md:grid-areas-[profile_contact_aside]',
-          'max-md:flex'
         )}
       >
         <section className='flex flex-col justify-center my-2 w-[80%] print:w-full print:justify-start'>
@@ -43,10 +41,10 @@ const LeftInfoPanel = () => {
               '[&_h2]:mt-4 [&_h2]:m-0 [&_h2]:text-[30px]'
             )}
           >
-            <h2 style={{ color: pointColor.hex }} className='m-0'>
+            <h2 style={{ color: pointColor.hex }} className='pixel-font m-0'>
               BAEK
             </h2>
-            <h2 className='m-0'>JU HEE</h2>
+            <h2 className='pixel-font m-0'>JU HEE</h2>
             <p className='my-2'>Front Developer</p>
           </header>
         </section>
