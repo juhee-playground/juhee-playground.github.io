@@ -1,17 +1,18 @@
+import dayjs from 'dayjs';
+
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 import usePrintMode from '@/hooks/usePrintMode';
-import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
-import { parseCompanyData } from '@/utils/parser';
 
 import SubListItem from './SubListItem';
 
 const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps) => {
-  const companyData = parseCompanyData(info);
-  const { pointColor } = useSettings();
+  const companyData = info;
+  const displayStart = companyData.startDate ? dayjs(companyData.startDate).format('YYYY/MM') : '';
+  const displayEnd = companyData.endDate ? dayjs(companyData.endDate).format('YYYY/MM') : '';
   const { isPrintMode, mode } = usePrintMode();
   const isDark = useTheme().palette.mode === 'dark';
 
@@ -28,15 +29,15 @@ const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps)
 
             <Box className='ml-5'>
               <Typography variant='caption' color='text.primary' className='text-sm font-semibold leading-none m-0'>
-                {companyData.startDate}
+                {displayStart}
               </Typography>
-              {companyData.startDate && (
+              {displayStart && (
                 <Typography variant='caption' color='text.primary' className='text-sm leading-none m-0'>
                   ~
                 </Typography>
               )}
               <Typography variant='caption' color='text.primary' className='text-sm font-semibold leading-none m-0'>
-                {companyData.endDate}
+                {displayEnd}
               </Typography>
               <Typography variant='caption' color='text.primary' className='text-sm leading-none m-0'>
                 {companyData.period}
@@ -86,8 +87,8 @@ const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps)
 
         <div className='my-3'>
           {subInfo
-            ?.filter(project => project.company?.relation?.[0]?.id === companyData.id)
-            .map((project: IProjectProperties, index: number) => (
+            ?.filter(project => project.companyId === companyData.id)
+            .map((project: IProjectData, index: number) => (
               <SubListItem key={`${index}_${project.id}`} filters={filters} info={project} />
             ))}
         </div>

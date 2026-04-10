@@ -11,10 +11,10 @@ import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import CardListItem from '@/components/resume/card/CardListItem';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
-import { getPlainText } from '@/utils/notions';
+import { parseCompanyData, parseProjectData } from '@/utils/parser';
 
-const DB_COMPANY = COMPANY_DATA as ICompanyProperties[];
-const DB_PROJECT = PROJECT_DATA as IProjectProperties[];
+const DB_COMPANY = (COMPANY_DATA as ICompanyProperties[]).map(c => parseCompanyData(c));
+const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
 
 const MAX_COMPANIES = 2;
 const MAX_PROJECTS_PER_COMPANY = 2;
@@ -27,24 +27,24 @@ const SiteExperiencePreview = () => {
   const projectQuery = useProjectsQuery();
 
   const companies = useMemo(() => {
-    const data = companyQuery.data || DB_COMPANY;
+    const data = companyQuery.data ?? DB_COMPANY;
     return data
-      .filter(c => getPlainText(c.type, 'rich_text') === 'C')
-      .sort((a, b) => (a.order.number > b.order.number ? 1 : -1))
+      .filter(c => c.type === 'C')
+      .sort((a, b) => (a.order > b.order ? 1 : -1))
       .slice(0, MAX_COMPANIES);
   }, [companyQuery.data]);
 
   const slicedProjects = useMemo(() => {
-    const all = projectQuery.data || DB_PROJECT;
+    const all = projectQuery.data ?? DB_PROJECT;
     return companies.flatMap(company =>
       all
-        .filter(p => p.company?.relation?.[0]?.id === company.id)
+        .filter(p => p.companyId === company.id)
         .slice(0, MAX_PROJECTS_PER_COMPANY),
     );
   }, [projectQuery.data, companies]);
 
   const companyNames = useMemo(
-    () => companies.map(c => getPlainText(c.name, 'title')),
+    () => companies.map(c => c.name),
     [companies],
   );
 

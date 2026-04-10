@@ -2,10 +2,10 @@ import dayjs from 'dayjs';
 
 const COUNT_OF_MONTH = 12;
 
-export function parserPeriod(date: IPeriodDate): string {
-  const year = dayjs(date.end).diff(date.start, 'year');
-  const month = dayjs(date.end).diff(date.start, 'month');
-
+export function parserPeriod(start: string, end: string | null): string {
+  const endDate = end ?? dayjs().format('YYYY-MM-DD');
+  const year = dayjs(endDate).diff(start, 'year');
+  const month = dayjs(endDate).diff(start, 'month');
   const numberOfMonths = month - year * COUNT_OF_MONTH;
 
   return `(${[`${year}년`, `${numberOfMonths}개월`].filter(dateItem => !/^0/.test(dateItem)).join(' ')})`;
@@ -13,19 +13,22 @@ export function parserPeriod(date: IPeriodDate): string {
 
 export const parseCompanyData = (info: ICompanyProperties) => {
   const date = info.period?.date;
+  const start = date?.start ?? '';
+  const end = date?.end ?? null;
 
   return {
     id: info.id,
     name: info.name?.title?.[0]?.plain_text || '',
     description: info.description?.rich_text?.[0]?.plain_text.split('- ') || [],
     type: info.type?.rich_text?.[0]?.plain_text || '',
-    startDate: date?.start ? dayjs(date.start).format('YYYY/MM') : '',
-    endDate: date?.end ? dayjs(date.end).format('YYYY/MM') : '',
+    startDate: start,
+    endDate: end,
     year: info.year?.number || 0,
     scale: info.scale?.rich_text?.[0]?.plain_text || '',
     department: info.department?.rich_text?.[0]?.plain_text || '',
     role: info.role?.select?.name || '',
-    period: date?.start ? parserPeriod(date) : '',
+    period: start ? parserPeriod(start, end) : '',
+    order: info.order?.number || 0,
   };
 };
 export const parseProjectData = (info: IProjectProperties) => {

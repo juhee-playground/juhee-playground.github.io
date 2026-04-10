@@ -199,10 +199,42 @@ declare global {
     handleChipSelect?: (label: string) => void;
   }
 
+  interface ICompanyData {
+    id: string;
+    name: string;
+    description: string[];
+    type: string;
+    startDate: string;       // raw: "2025-02-03"
+    endDate: string | null;  // raw: "2025-12-31" | null (재직중)
+    year: number;
+    scale: string;
+    department: string;
+    role: string;
+    period: string;
+    order: number;
+  }
+
+  interface IProjectData {
+    id: string;
+    companyId: string;
+    name: string;
+    period: string;
+    mainSkills: ISelectProperty[];
+    skills: ISelectProperty[];
+    role: string;
+    description: string;
+    asls: IRichText[];
+    challenge: IRichText[];
+    tobe: IRichText[];
+    experience: IRichText[];
+    numberOfParticipants: number;
+    url: string;
+  }
+
   interface ICardListProps {
     key: string;
-    info: ICompanyProperties;
-    subInfo: IProjectProperties[];
+    info: ICompanyData;
+    subInfo: IProjectData[];
     filters: TFilterSelected;
     isLastCompany: boolean;
   }
@@ -210,7 +242,7 @@ declare global {
   interface ISubListProps {
     key: string | number;
     filters: TFilterSelected;
-    info: IProjectProperties;
+    info: IProjectData;
   }
 
   interface INavInfoItems {

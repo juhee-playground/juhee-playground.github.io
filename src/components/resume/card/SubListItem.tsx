@@ -8,14 +8,12 @@ import Typography from '@mui/material/Typography';
 import Accordion from '@/components/Accordion';
 import DChip from '@/components/custom/DChip';
 import usePrintMode from '@/hooks/usePrintMode';
-import { parseProjectData } from '@/utils/parser';
-
 import RenderText from '../RenderText';
 
 const SubListItem = ({ info, filters }: ISubListProps) => {
-  const projectData = parseProjectData(info);
+  const projectData = info;
 
-  const { mode, isPrintMode } = usePrintMode();
+  const { isPrintMode } = usePrintMode();
 
   return (
     <section className='my-3' key={`project__${projectData.id}`}>

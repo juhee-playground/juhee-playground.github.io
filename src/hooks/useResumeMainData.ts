@@ -4,7 +4,7 @@ import COMPANY_DATA from '@/data/DB_company.json';
 import PROJECT_DATA from '@/data/DB_project.json';
 import DB_SKILL from '@/data/DB_skill.json';
 
-import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
+import useCompaniesQuery, { useTimelineCompaniesQuery } from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import useSkillOptionQuery from '@/hooks/queries/useSkillOptionsQuery';
 

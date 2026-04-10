@@ -1,5 +1,4 @@
 
-import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -15,6 +14,7 @@ import VueLightIcon from '@/assets/icon/VueJS-Light.svg';
 import PieChart from '@/components/chart/pie/d3Pie';
 import TimelineChart from '@/components/chart/TimelineChart';
 import CardV2 from '@/components/common/CardVersion2';
+import { useCompanyTimelineQuery } from '@/hooks/queries/useCompaniesQuery';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
@@ -37,13 +37,6 @@ const SIDE_TECH_ADDITIONS: Record<string, number> = {
   Vue: 1,   // erp-system
 };
 
-// 회사 타임라인 (프리랜서 제외)
-const COMPANY_TASKS: ITask[] = [
-  { name: 'YU파트너스', startDate: '2017-05-02', endDate: '2018-02-28', color: STACK_COLORS.php },
-  { name: 'Fitogether',  startDate: '2018-07-01', endDate: '2022-11-30', color: STACK_COLORS.vue },
-  { name: '틴들로',       startDate: '2025-02-03', endDate: dayjs().format('YYYY-MM-DD'), color: STACK_COLORS.react },
-];
-
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -51,6 +44,8 @@ export default function MainPage() {
   const isGameMode = (location.state as { gameMode?: boolean } | null)?.gameMode === true;
   const isDark = useTheme().palette.mode === 'dark';
   const { showSideProjects } = useSettings();
+
+  const { data: timelineTasks = [] } = useCompanyTimelineQuery();
 
   const techIcons: Record<string, string> = {
     React: isDark ? ReactDarkIcon : ReactLightIcon,
@@ -70,9 +65,6 @@ export default function MainPage() {
     { id: 'React', label: 'React', value: pct('React'), color: STACK_COLORS.react },
     { id: 'PHP',   label: 'PHP',   value: pct('Php'),   color: STACK_COLORS.php },
   ];
-
-  // 타임라인은 항상 회사만 표시 (토글 영향 없음)
-  const timelineTasks = COMPANY_TASKS;
 
   const articleClass = cn(
     'flex flex-col gap-5 p-6 rounded-2xl border',
