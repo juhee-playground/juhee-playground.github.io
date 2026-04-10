@@ -45,6 +45,8 @@ export const parseProjectData = (info: IProjectProperties) => {
     problem?: string;
     solution?: string;
     impact?: string;
+    architecture?: string;
+    keyFeatures?: string;
     numberOfParticipants?: number;
     url?: string;
   };
@@ -92,6 +94,8 @@ export const parseProjectData = (info: IProjectProperties) => {
     problem: getRichTextValue(info.problem) || getRichTextValue(info.asls) || raw.problem || '',
     solution: getRichTextValue(info.solution) || getRichTextValue(info.challenge) || raw.solution || '',
     impact: getRichTextValue(info.impact) || getRichTextValue(info.tobe) || raw.impact || '',
+    architecture: getRichTextValue(info.architecture) || raw.architecture || '',
+    keyFeatures: getRichTextValue(info.keyFeatures) || raw.keyFeatures || '',
     mainSkills: notionMainSkills,
     skills: notionSkills,
     role: info.role?.rich_text?.[0]?.plain_text || raw.role || '',

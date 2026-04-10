@@ -61,6 +61,8 @@ declare global {
     problem?: INotionText;
     solution?: INotionText;
     impact?: INotionText;
+    architecture?: INotionText;
+    keyFeatures?: INotionText;
     techStack?: INotionMultiSelect;
     slug?: INotionText;
     name: INotionTitleName;
@@ -232,6 +234,8 @@ declare global {
     problem: string;
     solution: string;
     impact: string;
+    architecture: string;
+    keyFeatures: string;
     mainSkills: ISelectProperty[];
     skills: ISelectProperty[];
     role: string;

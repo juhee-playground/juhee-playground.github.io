@@ -7,7 +7,7 @@ import { validPaths } from '@/router/paths';
 const Dashboard = lazy(() => import('../pages/dashboard'));
 const LandingPage = lazy(() => import('../pages/landing'));
 const Main = lazy(() => import('../pages/resume'));
-const ProjectDetailPage = lazy(() => import('../pages/projects/detail'));
+const ProjectDetailPage = lazy(() => import('../pages/projects/ProjectDetailPage'));
 const ProjectsPage = lazy(() => import('../pages/projects'));
 const PortfolioPage = lazy(() => import('../pages/portfolio'));
 
