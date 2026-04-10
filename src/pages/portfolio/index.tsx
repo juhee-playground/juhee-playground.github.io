@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
@@ -11,25 +12,50 @@ import SiteOverview from '@/components/portfolio/SiteOverview';
 import SiteSection from '@/components/portfolio/SiteSection';
 import SiteSideNav from '@/components/portfolio/SiteSideNav';
 import PROJECT_DATA from '@/data/DB_project.json';
+import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 import { parseProjectData } from '@/utils/parser';
 
-const STATS = [
-  { value: '5+', label: 'Years Experience' },
-  { value: '10+', label: 'Projects Shipped' },
-  { value: '4', label: 'Companies' },
-  { value: '3+', label: 'Tech Stacks' },
-];
 const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
 
 const PortfolioPage = () => {
   const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
   const pt = pointColor.hex;
+  const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
   const projects = (projectQuery.data ?? DB_PROJECT).slice(0, 3);
+  const companies = (companyQuery.data ?? []).filter(company => company.type === 'C');
+  const projectsForStats = projectQuery.data ?? [];
+
+  const projectCount = projectsForStats.length;
+  const techStackCount = new Set(
+    projectsForStats.flatMap(project => project.techStackOptions.map(stack => stack.name)),
+  ).size;
+  const startDates = companies
+    .map(company => ({
+      start: company.startDate,
+      end: company.endDate ?? dayjs().format('YYYY-MM-DD'),
+    }))
+    .filter(period => Boolean(period.start));
+
+  const totalWorkedMonths = startDates.reduce((acc, period) => {
+    const start = dayjs(period.start);
+    const end = dayjs(period.end);
+    if (!start.isValid() || !end.isValid() || end.isBefore(start)) return acc;
+    return acc + end.diff(start, 'month');
+  }, 0);
+
+  const yearsExperience = Math.floor(totalWorkedMonths / 12);
+
+  const stats = [
+    { value: `${Math.max(0, yearsExperience)}+`, label: 'Years Experience' },
+    { value: `${projectCount}`, label: 'Projects Shipped' },
+    { value: `${companies.length}`, label: 'Companies' },
+    { value: `${techStackCount}+`, label: 'Tech Stacks' },
+  ];
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -136,7 +162,7 @@ const PortfolioPage = () => {
         {/* ─── #stats ─── */}
         <SiteSection id='stats' title='Stats'>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
-            {STATS.map(({ value, label }, i) => (
+            {stats.map(({ value, label }, i) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, scale: 0.92 }}
