@@ -4,14 +4,14 @@ import COMPANY_DATA from '@/data/DB_company.json';
 import PROJECT_DATA from '@/data/DB_project.json';
 import DB_SKILL from '@/data/DB_skill.json';
 
-import useCompaniesQuery, { useTimelineCompaniesQuery } from '@/hooks/queries/useCompaniesQuery';
+import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import useSkillOptionQuery from '@/hooks/queries/useSkillOptionsQuery';
 
-import { getPlainText } from '@/utils/notions';
+import { parseCompanyData, parseProjectData } from '@/utils/parser';
 
-const DB_COMPANY_DATAS = COMPANY_DATA as ICompanyProperties[];
-const DB_PROJECT_DATAS = PROJECT_DATA as IProjectProperties[];
+const DB_COMPANY_DATAS = (COMPANY_DATA as ICompanyProperties[]).map(company => parseCompanyData(company));
+const DB_PROJECT_DATAS = (PROJECT_DATA as IProjectProperties[]).map(project => parseProjectData(project));
 
 const ASCENDING_ORDER = 1;
 const DESCENDING_ORDER = -1;
@@ -32,15 +32,15 @@ export default function useResumeMainData({
   const mainSkillSelectOptions = useSkillOptionQuery('mainSkill');
 
   const toyProjectData = useMemo(() => {
-    const data = companyQuery.data || DB_COMPANY_DATAS;
-    return data.filter(company => getPlainText(company.type, 'rich_text') === 'T');
+    const data = companyQuery.data ?? DB_COMPANY_DATAS;
+    return data.filter(company => company.type === 'T');
   }, [companyQuery.data]);
 
   const companies = useMemo(() => {
-    const data = companyQuery.data || DB_COMPANY_DATAS;
+    const data = companyQuery.data ?? DB_COMPANY_DATAS;
     return data
-      .filter(company => getPlainText(company.type, 'rich_text') === 'C')
-      .map(company => getPlainText(company.name, 'title'))
+      .filter(company => company.type === 'C')
+      .map(company => company.name)
       .filter(Boolean);
   }, [companyQuery.data]);
 
@@ -49,17 +49,17 @@ export default function useResumeMainData({
     [mainSkillSelectOptions.data],
   );
 
-  const parseCompanyQuery: ICompanyProperties[] = useMemo(() => {
-    const companyData = (companyQuery.data || DB_COMPANY_DATAS)
-      .filter(company => selectedCompanies?.includes(getPlainText(company.name, 'title')))
-      .sort((a, b) => (a.order.number > b.order.number ? ASCENDING_ORDER : DESCENDING_ORDER));
+  const parseCompanyQuery: ICompanyData[] = useMemo(() => {
+    const companyData = (companyQuery.data ?? DB_COMPANY_DATAS)
+      .filter(company => selectedCompanies?.includes(company.name))
+      .sort((a, b) => (a.order > b.order ? ASCENDING_ORDER : DESCENDING_ORDER));
 
     return /O/.test(sortValue) ? companyData.reverse() : companyData;
   }, [companyQuery.data, sortValue, selectedCompanies]);
 
-  const parseProjectQuery: IProjectProperties[] = useMemo(() => {
-    return (projectQuery.data || DB_PROJECT_DATAS).filter(project => {
-      const skillInfo = JSON.stringify(project.mainSkill.multi_select);
+  const parseProjectQuery: IProjectData[] = useMemo(() => {
+    return (projectQuery.data ?? DB_PROJECT_DATAS).filter(project => {
+      const skillInfo = JSON.stringify(project.mainSkills);
       return selectedSkillOptions?.some(item => new RegExp(item).test(skillInfo));
     });
   }, [projectQuery.data, selectedSkillOptions]);

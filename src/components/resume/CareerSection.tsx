@@ -4,8 +4,8 @@ import CardListItem from '@/components/resume/card/CardListItem';
 import { cn } from '@/utils/classNames';
 
 interface ICareerSectionProps {
-  data: ICompanyProperties[];
-  projects: IProjectProperties[];
+  data: ICompanyData[];
+  projects: IProjectData[];
   filters: string[];
   pointColor: string;
 }
@@ -24,7 +24,7 @@ const CareerSection = ({ data, projects, filters }: ICareerSectionProps) => {
         >
           ⚽️ CAREER
         </span>
-        <div className={cn('flex-1 h-px', isDark ? 'bg-white/10' : 'bg-black/[0.08]')} />
+        <div className={cn('flex-1 h-px', isDark ? 'bg-white/10' : 'bg-black/8')} />
       </div>
 
       {data.map((company, index) => (

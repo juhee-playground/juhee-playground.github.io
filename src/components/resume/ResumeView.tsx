@@ -34,9 +34,9 @@ interface IResumeViewProps {
   onChangeSkill: (skill: string) => void;
   pointColorHex: string;
   mode: 'print' | '';
-  parseCompanyQuery: ICompanyProperties[];
-  parseProjectQuery: IProjectProperties[];
-  toyProjectData: ICompanyProperties[];
+  parseCompanyQuery: ICompanyData[];
+  parseProjectQuery: IProjectData[];
+  toyProjectData: ICompanyData[];
 }
 
 const ResumeView = ({

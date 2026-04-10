@@ -4,8 +4,8 @@ import CardListItem from '@/components/resume/card/CardListItem';
 import { cn } from '@/utils/classNames';
 
 interface ISideProjectSectionProps {
-  data: ICompanyProperties[];
-  projects: IProjectProperties[];
+  data: ICompanyData[];
+  projects: IProjectData[];
   filters: string[];
   pointColor: string;
 }
