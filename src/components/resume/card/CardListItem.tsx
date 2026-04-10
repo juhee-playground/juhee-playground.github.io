@@ -21,10 +21,10 @@ const CardListItem = ({ info, subInfo, filters }: ICardListProps) => {
       <div
         key={`company__${companyData.id}`}
         className={cn(
-          'flex flex-col px-3 py-2 mb-6 rounded-none border border-gray-100', // 테두리는 아주 연하게
+          'flex flex-col px-3 py-2 mb-6 rounded-lg', // border-gray-200를 과감히 제거하세요!
           isDark
-            ? 'bg-zinc-900 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.05)]' // 다크모드용 은은한 광채
-            : 'bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]',         // 라이트모드용 은은한 그림자
+            ? 'bg-zinc-900 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.02)]' 
+            : 'bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,0.06)]', // 오른쪽 2px, 아래쪽 2px만 확실히 보임
           isPrintMode && `box__container--${mode}`,
         )}
         id={companyData.id}

@@ -21,13 +21,18 @@ const SubListItem = ({ info }: ISubListProps) => {
   return (
     <section className='my-3' key={`project__${projectData.id}`}>
       <div className='flex flex-col gap-1 my-1'>
-        {projectData.slug ? (
-          <Link to={`/projects/${projectData.slug}`} className='text-xl font-semibold leading-none m-0 hover:underline'>
-            {projectData.name}
-          </Link>
-        ) : (
-          <h6 className='text-xl font-semibold leading-none m-0'>{projectData.name}</h6>
-        )}
+        <div className='flex items-center gap-2'>
+          <span aria-hidden='true' className='inline-block shrink-0 text-xs font-black leading-none'>
+            ▶
+          </span>
+          {projectData.slug ? (
+            <Link to={`/projects/${projectData.slug}`} className='text-xl font-semibold leading-none m-0 hover:underline'>
+              {projectData.name}
+            </Link>
+          ) : (
+            <h6 className='text-xl font-semibold leading-none m-0'>{projectData.name}</h6>
+          )}
+        </div>
 
         <Box className='px-1'>
           <Typography variant='caption' color='text.primary' className='text-xs font-bold leading-none m-0' gutterBottom>
