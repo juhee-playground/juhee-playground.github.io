@@ -4,7 +4,7 @@ import { IS_JOB_SEEKING } from '@/constants/config';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
-type TContactKey = 'email' | 'github' | 'portfolio' | 'phone';
+type TContactKey = 'email' | 'github' | 'phone';
 
 interface IContactCard {
   key: TContactKey;
@@ -16,7 +16,6 @@ interface IContactCard {
 
 const email = import.meta.env.VITE_APP_EMAIL;
 const github = import.meta.env.VITE_APP_GITHUB;
-const portfolio = import.meta.env.VITE_APP_PORTFOLIO;
 const phone = import.meta.env.VITE_APP_PHONE_NUMBER;
 
 const CONTACT_CARDS: IContactCard[] = [
@@ -31,12 +30,6 @@ const CONTACT_CARDS: IContactCard[] = [
     label: 'GitHub',
     value: github ?? 'https://github.com/juhee-playground',
     href: github ?? 'https://github.com/juhee-playground',
-  },
-  {
-    key: 'portfolio',
-    label: 'Portfolio',
-    value: portfolio ?? 'https://juhee-playground.github.io',
-    href: portfolio ?? 'https://juhee-playground.github.io',
   },
   {
     key: 'phone',
