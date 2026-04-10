@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
 
-import { PROJECTS_SITE } from '@/data/projects/DB_projects_site';
+import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
@@ -21,23 +21,12 @@ const ProjectsPage = () => {
   const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
   const pt = pointColor.hex;
+  const projectQuery = useProjectsQuery();
+  const projects = projectQuery.data ?? [];
 
   return (
     <div className={cn('min-h-screen w-full', isDark ? 'bg-[#181717] text-white' : 'bg-[#fafafa] text-[#181717]')}>
       <main className='max-w-[900px] mx-auto px-6 py-16'>
-
-        {/* Breadcrumb */}
-        <nav aria-label='breadcrumb' className='mb-10'>
-          <Link
-            to='/portfolio'
-            className={cn(
-              'text-sm transition-colors',
-              isDark ? 'text-white/40 hover:text-white/75' : 'text-black/35 hover:text-black/65',
-            )}
-          >
-            ← Site로 돌아가기
-          </Link>
-        </nav>
 
         {/* Page Header */}
         <header className='mb-12'>
@@ -66,9 +55,9 @@ const ProjectsPage = () => {
           initial='hidden'
           animate='show'
         >
-          {PROJECTS_SITE.map(({ slug, name, hero, period, techStack, url }) => (
+          {projects.map(({ id, slug, name, summary, period, techStack, url }) => (
             <motion.article
-              key={slug}
+              key={id || slug || name}
               variants={cardVariant}
               className={cn(
                 'group flex flex-col gap-4 p-6 rounded-2xl border transition-all duration-300',
@@ -87,7 +76,7 @@ const ProjectsPage = () => {
 
               {/* Tagline */}
               <p className={cn('text-sm leading-relaxed flex-1', isDark ? 'text-white/55' : 'text-black/55')}>
-                {hero}
+                {summary}
               </p>
 
               {/* Tags */}
@@ -111,7 +100,7 @@ const ProjectsPage = () => {
                 style={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)' }}
               >
                 <Link
-                  to={`/projects/${slug}`}
+                  to={slug ? `/projects/${slug}` : '/projects'}
                   className='text-xs font-semibold px-3 py-1.5 rounded-lg text-white transition-opacity hover:opacity-85'
                   style={{ backgroundColor: pt }}
                 >
@@ -136,6 +125,11 @@ const ProjectsPage = () => {
             </motion.article>
           ))}
         </motion.div>
+        {!projectQuery.isLoading && projects.length === 0 && (
+          <p className={cn('mt-6 text-sm', isDark ? 'text-white/50' : 'text-black/50')}>
+            프로젝트 데이터가 없습니다.
+          </p>
+        )}
 
       </main>
 
