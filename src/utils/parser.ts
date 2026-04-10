@@ -11,14 +11,23 @@ export function parserPeriod(start: string, end: string | null): string {
   return `(${[`${year}년`, `${numberOfMonths}개월`].filter(dateItem => !/^0/.test(dateItem)).join(' ')})`;
 }
 
-export const parseCompanyData = (info: ICompanyProperties) => {
+export const parseCompanyData = (
+  info: ICompanyProperties & {
+    icon?: {
+      type?: 'emoji' | 'file';
+      emoji?: string;
+      file?: { url?: string };
+    };
+  },
+) => {
   const date = info.period?.date;
   const start = date?.start ?? '';
   const end = date?.end ?? null;
-
   return {
     id: info.id,
     name: info.name?.title?.[0]?.plain_text || '',
+    iconEmoji: info.icon?.type === 'emoji' ? info.icon.emoji : undefined,
+    iconUrl: info.icon?.type === 'file' ? info.icon.file?.url : undefined,
     description: info.description?.rich_text?.[0]?.plain_text.split('- ') || [],
     type: info.type?.rich_text?.[0]?.plain_text || '',
     startDate: start,

@@ -210,6 +210,8 @@ declare global {
   interface ICompanyData {
     id: string;
     name: string;
+    iconEmoji?: string;
+    iconUrl?: string;
     description: string[];
     type: string;
     startDate: string;       // raw: "2025-02-03"

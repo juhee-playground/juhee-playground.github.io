@@ -11,7 +11,7 @@ export default function useCompaniesQuery() {
   return useQuery(notionQueryKeys.companies(), () => requestCompanies(), {
     select: query =>
       query.map(data =>
-        parseCompanyData({ ...data.properties, id: data.id }),
+        parseCompanyData({ ...data.properties, id: data.id, icon: data.icon }),
       )
   });
 }

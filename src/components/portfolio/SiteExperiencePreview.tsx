@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
+import dayjs from 'dayjs';
 
 import COMPANY_DATA from '@/data/DB_company.json';
 import PROJECT_DATA from '@/data/DB_project.json';
@@ -14,8 +15,6 @@ import { parseCompanyData, parseProjectData } from '@/utils/parser';
 const DB_COMPANY = (COMPANY_DATA as ICompanyProperties[]).map(c => parseCompanyData(c));
 const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
 
-const MAX_COMPANIES = 2;
-
 const SiteExperiencePreview = () => {
   const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
@@ -27,8 +26,7 @@ const SiteExperiencePreview = () => {
     const data = companyQuery.data ?? DB_COMPANY;
     return data
       .filter(c => c.type === 'C')
-      .sort((a, b) => (a.order > b.order ? 1 : -1))
-      .slice(0, MAX_COMPANIES);
+      .sort((a, b) => dayjs(b.startDate).valueOf() - dayjs(a.startDate).valueOf());
   }, [companyQuery.data]);
 
   const projects = projectQuery.data ?? DB_PROJECT;
@@ -63,7 +61,13 @@ const SiteExperiencePreview = () => {
           )}
         >
           <div className='flex items-center justify-between gap-3'>
-            <h3 className='text-2xl font-semibold leading-none m-0'>{company.name}</h3>
+            <h3 className='text-2xl font-semibold leading-none m-0 flex items-center gap-2'>
+              {company.iconEmoji && <span>{company.iconEmoji}</span>}
+              {!company.iconEmoji && company.iconUrl && (
+                <img src={company.iconUrl} alt='' className='w-6 h-6 rounded-sm object-cover' />
+              )}
+              <span>{company.name}</span>
+            </h3>
             <span className={cn('text-sm font-semibold', isDark ? 'text-white/55' : 'text-black/50')}>
               {company.startDate}~{company.endDate ?? 'Now'}
             </span>
