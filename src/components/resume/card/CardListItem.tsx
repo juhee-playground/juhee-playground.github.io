@@ -9,7 +9,7 @@ import { cn } from '@/utils/classNames';
 
 import SubListItem from './SubListItem';
 
-const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps) => {
+const CardListItem = ({ info, subInfo, filters }: ICardListProps) => {
   const companyData = info;
   const displayStart = companyData.startDate ? dayjs(companyData.startDate).format('YYYY/MM') : '';
   const displayEnd = companyData.endDate ? dayjs(companyData.endDate).format('YYYY/MM') : '';
@@ -20,7 +20,13 @@ const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps)
     <>
       <div
         key={`company__${companyData.id}`}
-        className={cn('flex flex-col px-3', isPrintMode && `box__container--${mode}`)}
+        className={cn(
+          'flex flex-col px-3 py-2 mb-6 rounded-none border border-gray-100', // 테두리는 아주 연하게
+          isDark
+            ? 'bg-zinc-900 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.05)]' // 다크모드용 은은한 광채
+            : 'bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]',         // 라이트모드용 은은한 그림자
+          isPrintMode && `box__container--${mode}`,
+        )}
         id={companyData.id}
       >
         <div className='flex flex-col'>
@@ -93,16 +99,6 @@ const CardListItem = ({ isLastCompany, info, subInfo, filters }: ICardListProps)
             ))}
         </div>
       </div>
-
-      {!isLastCompany && (
-        <div
-          className={cn(
-            'h-px w-full my-4',
-            isDark ? 'bg-white/6' : 'bg-black/6',
-            mode === 'print' && 'bg-[#ddd]!',
-          )}
-        />
-      )}
     </>
   );
 };

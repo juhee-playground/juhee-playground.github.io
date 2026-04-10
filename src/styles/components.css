@@ -221,6 +221,16 @@
     margin-right: 8px;
   }
 
+  @media print {
+    .pixel-icon,
+    .pixel-icon-common,
+    .pixel-font {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      forced-color-adjust: none;
+    }
+  }
+
   /* Lexical 체크리스트 아이템 */
   li[role='checkbox'] {
     list-style: none;

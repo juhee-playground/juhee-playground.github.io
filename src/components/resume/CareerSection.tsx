@@ -13,13 +13,15 @@ interface ICareerSectionProps {
 const CareerSection = ({ data, projects, filters }: ICareerSectionProps) => {
   const isDark = useTheme().palette.mode === 'dark';
 
+  
   return (
-    <section className='p-1 px-2'>
+    <section className='p-2'>
       <div className='flex items-center gap-3 mb-4'>
         <span
           className={cn(
-            'pixel-font text-xs font-black tracking-widest uppercase shrink-0 inline-flex items-center',
-            isDark ? 'text-white/40' : 'text-black/40',
+            'text-xs font-black tracking-widest uppercase shrink-0 inline-flex items-center',
+            'pixel-font',
+            'text-[#8a8a8a]',
           )}
         >
           <i className='pixel-icon pixel-icon-career' aria-hidden='true' />

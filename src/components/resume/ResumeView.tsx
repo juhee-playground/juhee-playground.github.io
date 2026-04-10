@@ -64,9 +64,8 @@ const ResumeView = ({
         className={cn(
           'flex-1 flex flex-col py-3 px-4 min-w-0 min-h-screen',
           theme.palette.mode === 'light'
-            ? 'bg-[#fafafa] text-[#181717]'
-            : 'bg-[#181717] text-white',
-          mode === 'print' && 'bg-white border-t-2 border-[#666666]'
+            ? 'bg-white text-[#181717]'
+            : 'bg-[#181717] text-white'
         )}
       >
         {isLoading && <Loading />}
@@ -109,12 +108,9 @@ const ResumeView = ({
             </FormControl>
           </div>
 
-          <Divider isDark={theme.palette.mode === 'dark'} mode={mode} />
         </section>
 
         <PointStackCard />
-
-        <Divider isDark={theme.palette.mode === 'dark'} mode={mode} />
 
         <CareerSection
           data={parseCompanyQuery}
@@ -122,8 +118,6 @@ const ResumeView = ({
           filters={companies}
           pointColor={pointColorHex}
         />
-
-        <Divider isDark={theme.palette.mode === 'dark'} mode={mode} />
 
         <SideProjectSection
           data={toyProjectData}

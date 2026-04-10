@@ -14,7 +14,7 @@ interface IFilterOptionProps {
 const FilterOption = ({ title, options, colorOptions, color, selected, onChange }: IFilterOptionProps) => {
   return (
     <li className='flex items-center my-2 md:flex-row flex-col'>
-      <p className='mr-4 w-[15%] border-r-2 border-[#dddddd] py-2 px-2 flex items-center justify-center md:border-r-2 md:self-auto md:border-r self-start border-r-0'>
+      <p className='mr-4 w-[15%] border-[#dddddd] py-2 px-2 flex items-center justify-start md:self-auto self-start'>
         <span className='pixel-font text-sm font-bold text-[#4b5563]'>{formatFirstLetterToUpper(title)}</span>
       </p>
 

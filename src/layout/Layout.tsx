@@ -52,9 +52,10 @@ export default function Layout({ children }: IMainLayoutProps) {
         className={cn(
           'flex gap-[0.4em] flex-1',
           isPrintMode && 'flex-col',
+          isPrintMode && 'items-stretch',
           isErrorPage && 'justify-center items-center min-h-[80vh]',
-          'md:flex-row',
-          isResumePage && 'items-start'
+          !isPrintMode && 'md:flex-row',
+          isResumePage && !isPrintMode && 'items-start'
         )}
       >
         {contentChildren}

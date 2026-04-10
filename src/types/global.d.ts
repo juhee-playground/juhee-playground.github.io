@@ -249,7 +249,6 @@ declare global {
   }
 
   interface ICardListProps {
-    key: string;
     info: ICompanyData;
     subInfo: IProjectData[];
     filters: TFilterSelected;
@@ -257,7 +256,6 @@ declare global {
   }
 
   interface ISubListProps {
-    key: string | number;
     filters: TFilterSelected;
     info: IProjectData;
   }

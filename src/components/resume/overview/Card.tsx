@@ -17,13 +17,13 @@ const PointStackCard = () => {
   const { mode } = usePrintMode();
 
   return (
-    <div className='px-3'>
+    <div className='p-3'>
       <div className='flex items-center gap-3 mb-4'>
         <span
           className={cn(
-            'pixel-font text-xs font-black tracking-widest uppercase shrink-0 inline-flex items-center',
-            isDark ? 'text-white/40' : 'text-black/40',
-            mode === 'print' && 'text-[#555]!',
+            'text-xs font-black tracking-widest uppercase shrink-0 inline-flex items-center',
+            'pixel-font',
+            'text-[#8a8a8a]',
           )}
         >
           <i className='pixel-icon pixel-icon-overview' aria-hidden='true' />
