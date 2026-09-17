@@ -1,6 +1,8 @@
+import { TShellStyle } from '@/stores/useSettings';
+
 /**
- * 포트폴리오 게임보이 스킨 팔레트.
- * light = DMG 셸 그레이, dark = POCKET 차콜.
+ * 포트폴리오 게임보이 스킨 팔레트 (3종).
+ * dmg = 오리지널 셸 그레이, light = 깔끔한 오프화이트, pocket = 차콜(다크).
  * 배경/테두리는 무채색(눈 편함).
  * accent(초록이던 것들)는 pointColor에서 주입 → 팔레트에서 색을 바꾸면 액센트가 전부 함께 변함.
  */
@@ -18,7 +20,12 @@ export interface IGameBoyPalette {
   lcdInk: string;
 }
 
-const BASE_DMG = {
+type TShellBase = Pick<
+  IGameBoyPalette,
+  'bg' | 'panel' | 'panel2' | 'border' | 'borderStrong' | 'text' | 'textDim'
+>;
+
+const BASE_DMG: TShellBase = {
   bg: '#d8d8d1',
   panel: '#e9e9e3',
   panel2: '#f0f0ea',
@@ -26,11 +33,19 @@ const BASE_DMG = {
   borderStrong: '#6a6a62',
   text: '#2b2b28',
   textDim: '#74746b',
-  lcd: '#c2d199',
-  lcdInk: '#2d321d',
 };
 
-const BASE_POCKET = {
+const BASE_LIGHT: TShellBase = {
+  bg: '#f2f2ee',
+  panel: '#ffffff',
+  panel2: '#fafaf7',
+  border: '#e2e2da',
+  borderStrong: '#c2c2b8',
+  text: '#23231f',
+  textDim: '#7a7a70',
+};
+
+const BASE_POCKET: TShellBase = {
   bg: '#1b2029',
   panel: '#232a35',
   panel2: '#2b333f',
@@ -38,8 +53,12 @@ const BASE_POCKET = {
   borderStrong: '#48515f',
   text: '#e6e9ef',
   textDim: '#8b95a5',
-  lcd: '#3c4a2a',
-  lcdInk: '#cfe89a',
+};
+
+const BASE_BY_SHELL: Record<TShellStyle, TShellBase> = {
+  dmg: BASE_DMG,
+  light: BASE_LIGHT,
+  pocket: BASE_POCKET,
 };
 
 const DEFAULT_ACCENT = '#a7d94a';
@@ -70,12 +89,15 @@ const lighten = (hex: string, ratio: number): string => {
 };
 
 /**
- * @param isDark 다크(POCKET) 여부
+ * @param shellStyle 'dmg' | 'light' | 'pocket'
  * @param accent 포인트 컬러 hex (미지정 시 기본 그린).
  * LCD(스탯 카드) 배경/글자는 accent에서 파생 → 색을 바꾸면 스탯 화면도 함께 변함.
  */
-export const getGameBoyPalette = (isDark: boolean, accent: string = DEFAULT_ACCENT): IGameBoyPalette => {
-  const base = isDark ? BASE_POCKET : BASE_DMG;
+export const getGameBoyPalette = (
+  shellStyle: TShellStyle,
+  accent: string = DEFAULT_ACCENT,
+): IGameBoyPalette => {
+  const base = BASE_BY_SHELL[shellStyle] ?? BASE_DMG;
   return {
     ...base,
     accent,

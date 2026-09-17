@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useTheme } from '@mui/material/styles';
 import dayjs from 'dayjs';
 
 import COMPANY_DATA from '@/data/DB_company.json';
@@ -14,9 +13,8 @@ import { getGameBoyPalette } from './gameboyPalette';
 const DB_COMPANY = (COMPANY_DATA as ICompanyProperties[]).map(c => parseCompanyData(c));
 
 const SiteExperiencePreview = () => {
-  const { pointColor } = useSettings();
-  const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark, pointColor.hex);
+  const { pointColor, shellStyle } = useSettings();
+  const gb = getGameBoyPalette(shellStyle, pointColor.hex);
 
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();

@@ -1,5 +1,3 @@
-import { useTheme } from '@mui/material/styles';
-
 import { IS_JOB_SEEKING } from '@/constants/config';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
@@ -42,9 +40,8 @@ const CONTACT_CARDS: IContactCard[] = [
 ];
 
 const SiteContact = () => {
-  const { pointColor } = useSettings();
-  const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark, pointColor.hex);
+  const { pointColor, shellStyle } = useSettings();
+  const gb = getGameBoyPalette(shellStyle, pointColor.hex);
 
   const visibleCards = CONTACT_CARDS.filter(c => !c.hidden);
 

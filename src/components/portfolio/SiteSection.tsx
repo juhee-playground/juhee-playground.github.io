@@ -2,8 +2,6 @@ import { ReactNode } from 'react';
 
 import { motion } from 'framer-motion';
 
-import { useTheme } from '@mui/material/styles';
-
 import { useSettings } from '@/stores/useSettings';
 import { getGameBoyPalette } from './gameboyPalette';
 
@@ -14,9 +12,8 @@ interface ISiteSectionProps {
 }
 
 const SiteSection = ({ children, id, title }: ISiteSectionProps) => {
-  const { pointColor } = useSettings();
-  const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark, pointColor.hex);
+  const { pointColor, shellStyle } = useSettings();
+  const gb = getGameBoyPalette(shellStyle, pointColor.hex);
 
   return (
     <section

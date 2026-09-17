@@ -1,5 +1,3 @@
-import { useTheme } from '@mui/material/styles';
-
 import CONTENT_MAIN from '@/constants/description';
 import { useSettings } from '@/stores/useSettings';
 import { getGameBoyPalette } from './gameboyPalette';
@@ -11,9 +9,8 @@ interface IContentItem {
 }
 
 const SiteOverview = () => {
-  const { pointColor } = useSettings();
-  const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark, pointColor.hex);
+  const { pointColor, shellStyle } = useSettings();
+  const gb = getGameBoyPalette(shellStyle, pointColor.hex);
 
   return (
     <div

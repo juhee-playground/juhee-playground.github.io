@@ -2,8 +2,6 @@ import { motion } from 'framer-motion';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
-import { useTheme } from '@mui/material/styles';
-
 import DChip from '@/components/custom/DChip';
 import SiteContact from '@/components/portfolio/SiteContact';
 import SiteExperiencePreview from '@/components/portfolio/SiteExperiencePreview';
@@ -21,9 +19,8 @@ import { parseProjectData } from '@/utils/parser';
 const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
 
 const PortfolioPage = () => {
-  const { pointColor } = useSettings();
-  const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark, pointColor.hex);
+  const { pointColor, shellStyle } = useSettings();
+  const gb = getGameBoyPalette(shellStyle, pointColor.hex);
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
   const projects = (projectQuery.data ?? DB_PROJECT).slice(0, 3);

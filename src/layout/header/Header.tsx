@@ -12,7 +12,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 import usePrintMode from '@/hooks/usePrintMode';
 import ThemeCustomized from '@/layout/ThemeCustomized';
-import { useSettings } from '@/stores/useSettings';
+import { useSettings, TShellStyle } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
 const anchor = 'right';
@@ -24,7 +24,7 @@ export default function DenseAppBar() {
     top: false, left: false, bottom: false, right: false,
   });
 
-  const { pointColor, isPrintMode, togglePrintMode, themeMode, toggleThemeMode, showSideProjects, toggleSideProjects } = useSettings();
+  const { pointColor, isPrintMode, togglePrintMode, themeMode, toggleThemeMode, showSideProjects, toggleSideProjects, shellStyle, setShellStyle } = useSettings();
   const { mode } = usePrintMode();
   const { pathname } = useLocation();
 
@@ -50,23 +50,49 @@ export default function DenseAppBar() {
   const borderColor = themeMode === 'light' ? 'border-black/8' : 'border-white/8';
 
   // ─── 포트폴리오: 게임보이 HUD 바 ───
-  // light = DMG 셸 그레이 톤, dark = POCKET 차콜 톤
+  // 셸 스타일(dmg/light/pocket) 3버튼 토글. pocket일 때만 다크 HUD.
   if (isPortfolioPage && !isPrintMode) {
-    const hudBg = themeMode === 'dark' ? 'bg-[#48515f]' : 'bg-[#6a6a62]';
+    const hudBg = shellStyle === 'pocket' ? 'bg-[#48515f]' : 'bg-[#6a6a62]';
+    const shellButtons: { key: TShellStyle; label: string }[] = [
+      { key: 'dmg', label: 'DMG' },
+      { key: 'light', label: 'LIGHT' },
+      { key: 'pocket', label: 'POCKET' },
+    ];
     return (
       <header className='flex flex-col max-w-[1080px] mx-auto w-full'>
         <div className={cn('h-11 flex justify-between items-center px-4 text-white', hudBg)}>
           {/* 좌: OS 라벨 + 브레드크럼 */}
           <div className='flex items-center gap-3'>
             <span className='pixel-font text-[9px] tracking-wider'>JUHEE-OS</span>
-            <span className='pixel-font text-[8px]' style={{ color: pointColor.hex }}>
+            <span className='hidden sm:inline pixel-font text-[8px]' style={{ color: pointColor.hex }}>
               ▸ PORTFOLIO.EXE
             </span>
           </div>
 
-          {/* 우: LED + 아이콘 + 버전 */}
+          {/* 우: 셸 토글 + LED + 팔레트 + 버전 */}
           <div className='flex items-center gap-2'>
-            <span className='flex items-center gap-1.5 pixel-font text-[8px]'>
+            {/* DMG / LIGHT / POCKET 3버튼 */}
+            <div className='flex gap-1'>
+              {shellButtons.map(({ key, label }) => {
+                const active = shellStyle === key;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setShellStyle(key)}
+                    className='pixel-font text-[7px] px-1.5 py-1 rounded-[3px] border-2 transition-colors'
+                    style={
+                      active
+                        ? { backgroundColor: '#fff', color: '#48515f', borderColor: '#fff' }
+                        : { backgroundColor: 'transparent', color: '#fff', borderColor: 'rgba(255,255,255,0.55)' }
+                    }
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+
+            <span className='hidden sm:flex items-center gap-1.5 pixel-font text-[8px] ml-1'>
               <span
                 className='inline-block w-2 h-2 rounded-full'
                 style={{ backgroundColor: pointColor.hex, boxShadow: `0 0 8px ${pointColor.hex}` }}
@@ -74,9 +100,6 @@ export default function DenseAppBar() {
               ON
             </span>
 
-            <IconButton aria-label='toggleTheme' onClick={toggleThemeMode} size='small' sx={{ color: '#fff' }}>
-              {themeMode === 'light' ? <DarkModeIcon fontSize='small' /> : <LightModeIcon fontSize='small' />}
-            </IconButton>
             <IconButton
               aria-label='color settings'
               onClick={toggleDrawer(anchor, true)}
@@ -86,7 +109,7 @@ export default function DenseAppBar() {
               <PaletteIcon fontSize='small' />
             </IconButton>
 
-            <span className='pixel-font text-[8px] ml-1'>V2.0</span>
+            <span className='hidden sm:inline pixel-font text-[8px] ml-1'>V2.0</span>
           </div>
         </div>
 
