@@ -2,8 +2,7 @@ import { motion } from 'framer-motion';
 
 import { useTheme } from '@mui/material/styles';
 
-import { useSettings } from '@/stores/useSettings';
-import { cn } from '@/utils/classNames';
+import { getGameBoyPalette } from './gameboyPalette';
 
 interface ISiteHeroProps {
   onScrollToProjects: () => void;
@@ -26,9 +25,8 @@ const itemVariant = {
 };
 
 const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
-  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
-  const pt = pointColor.hex;
+  const gb = getGameBoyPalette(isDark);
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center'>
@@ -42,22 +40,24 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
       >
         <motion.p
           variants={itemVariant}
-          className='text-xs font-bold tracking-[0.25em] uppercase'
-          style={{ color: pt }}
+          className='pixel-font text-[9px] tracking-[0.15em] uppercase'
+          style={{ color: gb.accent }}
         >
-          Frontend Developer
+          ▸ Frontend Developer
         </motion.p>
 
         <motion.h1
           variants={itemVariant}
           className='text-5xl md:text-6xl font-black tracking-tight leading-none'
+          style={{ color: gb.text }}
         >
           BAEK<br />JU HEE
         </motion.h1>
 
         <motion.p
           variants={itemVariant}
-          className={cn('text-base leading-relaxed max-w-[420px]', isDark ? 'text-white/60' : 'text-black/55')}
+          className='text-base leading-relaxed max-w-[420px]'
+          style={{ color: gb.textDim }}
         >
           복잡한 워크플로우를 직관적인 인터페이스로.
           <br />
@@ -67,21 +67,28 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
         <motion.div variants={itemVariant} className='flex flex-wrap gap-3 pt-1'>
           <button
             onClick={onScrollToProjects}
-            className='px-5 py-2.5 text-sm font-bold text-white rounded-lg transition-all hover:opacity-80 hover:-translate-y-0.5'
-            style={{ backgroundColor: pt }}
+            className='pixel-font text-[9px] px-5 py-3 transition-all hover:-translate-y-0.5 active:translate-y-0.5'
+            style={{
+              backgroundColor: gb.accent,
+              color: gb.accentInk,
+              border: `2px solid ${gb.accent}`,
+              borderRadius: 4,
+              boxShadow: `3px 3px 0 ${gb.border}`,
+            }}
           >
-            Projects 보기
+            PROJECTS
           </button>
           <a
             href='/resume'
-            className={cn(
-              'px-5 py-2.5 text-sm font-bold rounded-lg border-2 transition-all hover:-translate-y-0.5',
-              isDark
-                ? 'border-white/20 hover:border-white/40 text-white'
-                : 'border-black/15 hover:border-black/30 text-[#181717]',
-            )}
+            className='pixel-font text-[9px] px-5 py-3 transition-all hover:-translate-y-0.5 active:translate-y-0.5'
+            style={{
+              color: gb.text,
+              border: `2px solid ${gb.border}`,
+              borderRadius: 4,
+              boxShadow: `3px 3px 0 ${gb.border}`,
+            }}
           >
-            이력서 보기
+            RESUME
           </a>
         </motion.div>
       </motion.div>
@@ -91,17 +98,20 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className={cn(
-          'rounded-2xl p-6 flex flex-col gap-5',
-          isDark ? 'bg-white/5 border border-white/10' : 'bg-white border border-black/8',
-        )}
+        className='p-6 flex flex-col gap-5'
+        style={{
+          backgroundColor: gb.panel,
+          border: `2px solid ${gb.border}`,
+          borderRadius: 4,
+          boxShadow: `3px 3px 0 ${gb.border}`,
+        }}
       >
         <div className='flex items-center gap-2'>
           <span
-            className='w-2 h-2 rounded-full shrink-0 animate-pulse'
-            style={{ backgroundColor: pt }}
+            className='w-2 h-2 shrink-0 animate-pulse'
+            style={{ backgroundColor: gb.accent }}
           />
-          <span className='text-xs font-bold tracking-widest uppercase' style={{ color: pt }}>
+          <span className='pixel-font text-[9px] tracking-wider uppercase' style={{ color: gb.text }}>
             Current Status
           </span>
         </div>
@@ -116,10 +126,10 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
               className='flex items-start gap-2.5'
             >
               <span
-                className='mt-1.5 w-1 h-1 rounded-full shrink-0'
-                style={{ backgroundColor: pt }}
+                className='mt-1.5 w-1.5 h-1.5 shrink-0'
+                style={{ backgroundColor: gb.accent }}
               />
-              <span className={cn('text-sm leading-relaxed', isDark ? 'text-white/70' : 'text-black/65')}>
+              <span className='text-sm leading-relaxed' style={{ color: gb.textDim }}>
                 {line}
               </span>
             </motion.li>
@@ -127,15 +137,13 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
         </ul>
 
         <div
-          className={cn(
-            'pt-4 border-t flex items-center justify-between',
-            isDark ? 'border-white/10' : 'border-black/8',
-          )}
+          className='pt-4 flex items-center justify-between'
+          style={{ borderTop: `2px solid ${gb.border}` }}
         >
-          <span className={cn('text-[10px] font-semibold uppercase tracking-widest', isDark ? 'text-white/30' : 'text-black/30')}>
+          <span className='pixel-font text-[7px] uppercase tracking-wider' style={{ color: gb.textDim }}>
             Last update
           </span>
-          <span className={cn('text-[11px] font-bold tabular-nums', isDark ? 'text-white/50' : 'text-black/45')}>
+          <span className='pixel-font text-[8px] tabular-nums' style={{ color: gb.text }}>
             2025.03
           </span>
         </div>

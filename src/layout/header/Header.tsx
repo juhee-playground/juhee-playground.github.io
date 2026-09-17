@@ -49,6 +49,59 @@ export default function DenseAppBar() {
   const bgColor = themeMode === 'light' ? 'bg-[#fefefe] text-[#181717]' : 'bg-[#181717] text-white';
   const borderColor = themeMode === 'light' ? 'border-black/8' : 'border-white/8';
 
+  // ─── 포트폴리오: 게임보이 HUD 바 ───
+  // light = DMG 셸 그레이 톤, dark = POCKET 차콜 톤
+  if (isPortfolioPage && !isPrintMode) {
+    const hudBg = themeMode === 'dark' ? 'bg-[#48515f]' : 'bg-[#6a6a62]';
+    return (
+      <header className='flex flex-col max-w-[1080px] mx-auto w-full'>
+        <div className={cn('h-11 flex justify-between items-center px-4 text-white', hudBg)}>
+          {/* 좌: OS 라벨 + 브레드크럼 */}
+          <div className='flex items-center gap-3'>
+            <span className='pixel-font text-[9px] tracking-wider'>JUHEE-OS</span>
+            <span className='pixel-font text-[8px]' style={{ color: '#a7d94a' }}>
+              ▸ PORTFOLIO.EXE
+            </span>
+          </div>
+
+          {/* 우: LED + 아이콘 + 버전 */}
+          <div className='flex items-center gap-2'>
+            <span className='flex items-center gap-1.5 pixel-font text-[8px]'>
+              <span
+                className='inline-block w-2 h-2 rounded-full'
+                style={{ backgroundColor: '#a7d94a', boxShadow: '0 0 8px #a7d94a' }}
+              />
+              ON
+            </span>
+
+            <IconButton aria-label='toggleTheme' onClick={toggleThemeMode} size='small' sx={{ color: '#fff' }}>
+              {themeMode === 'light' ? <DarkModeIcon fontSize='small' /> : <LightModeIcon fontSize='small' />}
+            </IconButton>
+            <IconButton
+              aria-label='color settings'
+              onClick={toggleDrawer(anchor, true)}
+              size='small'
+              sx={{ color: '#fff' }}
+            >
+              <PaletteIcon fontSize='small' />
+            </IconButton>
+
+            <span className='pixel-font text-[8px] ml-1'>V2.0</span>
+          </div>
+        </div>
+
+        <SwipeableDrawer
+          anchor={anchor}
+          open={menuDirection[anchor]}
+          onClose={toggleDrawer(anchor, false)}
+          onOpen={toggleDrawer(anchor, true)}
+        >
+          <ThemeCustomized />
+        </SwipeableDrawer>
+      </header>
+    );
+  }
+
   return (
     <header
       className={cn(

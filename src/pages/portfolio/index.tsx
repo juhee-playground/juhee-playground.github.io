@@ -11,19 +11,17 @@ import SiteHero from '@/components/portfolio/SiteHero';
 import SiteOverview from '@/components/portfolio/SiteOverview';
 import SiteSection from '@/components/portfolio/SiteSection';
 import SiteSideNav from '@/components/portfolio/SiteSideNav';
+import { getGameBoyPalette } from '@/components/portfolio/gameboyPalette';
 import PROJECT_DATA from '@/data/DB_project.json';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
-import { useSettings } from '@/stores/useSettings';
-import { cn } from '@/utils/classNames';
 import { parseProjectData } from '@/utils/parser';
 
 const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
 
 const PortfolioPage = () => {
-  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
-  const pt = pointColor.hex;
+  const gb = getGameBoyPalette(isDark);
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
   const projects = (projectQuery.data ?? DB_PROJECT).slice(0, 3);
@@ -62,7 +60,7 @@ const PortfolioPage = () => {
   };
 
   return (
-    <div className={cn('min-h-screen w-full', isDark ? 'bg-[#181717] text-white' : 'bg-[#fafafa] text-[#181717]')}>
+    <div className='min-h-screen w-full' style={{ backgroundColor: gb.bg, color: gb.text }}>
       <SiteSideNav />
       <main className='max-w-[860px] mx-auto px-6 pb-24'>
 
@@ -85,35 +83,47 @@ const PortfolioPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className={cn(
-                  'group flex flex-col gap-4 p-5 rounded-2xl border transition-all duration-300',
-                  isDark
-                    ? 'bg-white/3 border-white/10 hover:border-white/25 hover:bg-white/5'
-                    : 'bg-white border-black/7 hover:border-black/20 hover:shadow-md',
-                  'hover:-translate-y-0.5',
-                )}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translate(-2px, -2px)';
+                  e.currentTarget.style.boxShadow = `5px 5px 0 ${gb.accent}`;
+                  e.currentTarget.style.borderColor = gb.accent;
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translate(0, 0)';
+                  e.currentTarget.style.boxShadow = `3px 3px 0 ${gb.border}`;
+                  e.currentTarget.style.borderColor = gb.border;
+                }}
+                className='group flex flex-col gap-4 p-5 transition-all duration-150'
+                style={{
+                  backgroundColor: gb.panel,
+                  border: `2px solid ${gb.border}`,
+                  borderRadius: 4,
+                  boxShadow: `3px 3px 0 ${gb.border}`,
+                }}
               >
                 <div className='flex-1 flex flex-col gap-2'>
                   <div className='flex items-center justify-between gap-2'>
-                    <span className='text-xs font-black tracking-widest'>{project.name}</span>
-                    <span className={cn('text-xs font-semibold', isDark ? 'text-white/50' : 'text-black/45')}>
+                    <span className='pixel-font text-[10px] tracking-wider' style={{ color: gb.text }}>
+                      {project.name}
+                    </span>
+                    <span className='text-xs font-semibold' style={{ color: gb.textDim }}>
                       {project.period}
                     </span>
                   </div>
-                  <p className={cn('text-sm leading-relaxed', isDark ? 'text-white/55' : 'text-black/55')}>
+                  <p className='text-sm leading-relaxed' style={{ color: gb.textDim }}>
                     <span>참여인원: </span>
-                    <span className='font-semibold'>
+                    <span className='font-semibold' style={{ color: gb.text }}>
                       {typeof project.numberOfParticipants === 'number' && project.numberOfParticipants > 0
                         ? `${project.numberOfParticipants}`
                         : '-'}
                     </span>
                     <span> | 역할: </span>
-                    <span className='font-semibold'>{project.role || '-'}</span>
+                    <span className='font-semibold' style={{ color: gb.text }}>{project.role || '-'}</span>
                   </p>
-                  <p className={cn('text-sm leading-relaxed', isDark ? 'text-white/70' : 'text-black/70')}>
+                  <p className='text-sm leading-relaxed' style={{ color: gb.text }}>
                     {project.summary || project.description}
                   </p>
-                  <div className='flex flex-wrap gap-2 mt-1'>
+                  <div className='flex flex-wrap gap-2 mt-1 [&_.dChip__label]:pixel-font [&_.dChip__label]:text-[8px]'>
                     {project.techStackOptions.slice(0, 6).map(stack => (
                       <DChip
                         key={`${project.id}_${stack.id}`}
@@ -127,10 +137,8 @@ const PortfolioPage = () => {
                   <div className='flex justify-end mt-1'>
                     <Link
                       to={`/projects/${project.slug}`}
-                      className={cn(
-                        'text-sm font-semibold transition-transform group-hover:translate-x-1 shrink-0',
-                        isDark ? 'text-white/45 hover:text-white/80' : 'text-black/40 hover:text-black/70',
-                      )}
+                      className='pixel-font text-[8px] transition-transform group-hover:translate-x-1 shrink-0'
+                      style={{ color: gb.accent }}
                     >
                       자세히 보기 →
                     </Link>
@@ -144,10 +152,8 @@ const PortfolioPage = () => {
           <div className='flex justify-end mt-2'>
             <Link
               to='/projects'
-              className={cn(
-                'text-sm font-semibold transition-colors',
-                isDark ? 'text-white/45 hover:text-white/80' : 'text-black/40 hover:text-black/70',
-              )}
+              className='pixel-font text-[8px] transition-transform hover:translate-x-1'
+              style={{ color: gb.accent }}
             >
               View all projects →
             </Link>
@@ -169,15 +175,17 @@ const PortfolioPage = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.4, delay: i * 0.07 }}
-                className={cn(
-                  'rounded-2xl p-6 flex flex-col gap-1',
-                  isDark ? 'bg-white/5' : 'bg-white border border-black/7',
-                )}
+                className='relative overflow-hidden p-5 flex flex-col gap-2 items-center text-center'
+                style={{
+                  backgroundColor: gb.lcd,
+                  color: gb.lcdInk,
+                  border: `2px solid ${gb.border}`,
+                  borderRadius: 4,
+                }}
               >
-                <span className='text-4xl font-black' style={{ color: pt }}>{value}</span>
-                <span className={cn('text-xs font-semibold', isDark ? 'text-white/50' : 'text-black/45')}>
-                  {label}
-                </span>
+                <div className='scanlines absolute inset-0 opacity-20' />
+                <span className='pixel-font text-lg relative z-10'>{value}</span>
+                <span className='text-[11px] font-semibold relative z-10'>{label}</span>
               </motion.div>
             ))}
           </div>
@@ -186,10 +194,8 @@ const PortfolioPage = () => {
           <div className='flex justify-end mt-2'>
             <Link
               to='/dashboard'
-              className={cn(
-                'text-sm font-semibold transition-colors',
-                isDark ? 'text-white/45 hover:text-white/80' : 'text-black/40 hover:text-black/70',
-              )}
+              className='pixel-font text-[8px] transition-transform hover:translate-x-1'
+              style={{ color: gb.accent }}
             >
               대시보드 전체 보기 →
             </Link>
@@ -204,26 +210,22 @@ const PortfolioPage = () => {
       </main>
 
       <footer
-        className={cn(
-          'border-t mt-12 px-2 py-4 flex flex-col gap-6',
-          isDark ? 'border-white/10 text-white/30' : 'border-black/10 text-black/30',
-        )}
+        className='mt-12 px-2 py-4 flex flex-col gap-6'
+        style={{ borderTop: `2px solid ${gb.border}`, color: gb.textDim }}
       >
         {/* 사이트맵 */}
-        <nav className='flex gap-6 text-sm font-medium'>
+        <nav className='flex gap-6 pixel-font text-[8px]'>
           {[
-            { to: '/portfolio', label: 'Portfolio' },
-            { to: '/resume',    label: 'Resume' },
-            { to: '/dashboard', label: 'Dashboard' },
-            { to: '/projects',  label: 'Projects' },
+            { to: '/portfolio', label: 'PORTFOLIO' },
+            { to: '/resume',    label: 'RESUME' },
+            { to: '/dashboard', label: 'DASHBOARD' },
+            { to: '/projects',  label: 'PROJECTS' },
           ].map(({ to, label }) => (
             <Link
               key={to}
               to={to}
-              className={cn(
-                'transition-colors',
-                isDark ? 'text-white/35 hover:text-white/60' : 'text-black/35 hover:text-black/60',
-              )}
+              className='transition-transform hover:translate-x-0.5'
+              style={{ color: gb.textDim }}
             >
               {label}
             </Link>
@@ -232,7 +234,7 @@ const PortfolioPage = () => {
 
         {/* 카피라이트 + GameBoy Easter egg */}
         <div className='flex items-center justify-between text-xs'>
-          <span className={isDark ? 'text-white/40' : 'text-black/40'}>
+          <span style={{ color: gb.textDim }}>
             © 2025 BAEK JU HEE · Built with React + TypeScript
           </span>
           <Link to='/' title='GameBoy ver.' className='text-base transition-transform hover:scale-110'>

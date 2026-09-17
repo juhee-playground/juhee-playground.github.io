@@ -18,9 +18,9 @@ interface ISettingsStore {
 }
 
 const defaultColor: IColor = {
-  hex: '#5467f5',
-  rgb: { r: 84, g: 103, b: 245, a: 1 },
-  hsv: { h: 231, s: 65, v: 96, a: 1 },
+  hex: '#a7d94a',
+  rgb: { r: 167, g: 217, b: 74, a: 1 },
+  hsv: { h: 80, s: 66, v: 85, a: 1 },
 };
 
 export const useSettings = create<ISettingsStore>(set => ({

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { useSettings } from '@/stores/useSettings';
+import { useTheme } from '@mui/material/styles';
+
 import { cn } from '@/utils/classNames';
+import { getGameBoyPalette } from './gameboyPalette';
 
 type TSection = 'overview' | 'projects' | 'experience' | 'stats' | 'contact';
 
@@ -18,8 +20,8 @@ const scrollToSection = (id: string) => {
 };
 
 const SiteSideNav = () => {
-  const { pointColor, themeMode } = useSettings();
-  const isDark = themeMode === 'dark';
+  const isDark = useTheme().palette.mode === 'dark';
+  const gb = getGameBoyPalette(isDark);
   const [active, setActive] = useState<TSection>('overview');
 
   useEffect(() => {
@@ -55,28 +57,14 @@ const SiteSideNav = () => {
         >
           <span
             className={cn(
-              'w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-200',
+              'w-1.5 h-1.5 shrink-0 transition-all duration-200',
               active === id ? 'scale-125' : 'scale-100',
             )}
-            style={{
-              backgroundColor:
-                active === id
-                  ? pointColor.hex
-                  : isDark
-                    ? 'rgba(255,255,255,0.2)'
-                    : 'rgba(0,0,0,0.18)',
-            }}
+            style={{ backgroundColor: active === id ? gb.accent : gb.border }}
           />
           <span
-            className={cn(
-              'text-[11px] font-semibold tracking-wide transition-all duration-200',
-              active === id
-                ? ''
-                : isDark
-                  ? 'text-white/30 group-hover:text-white/60'
-                  : 'text-black/30 group-hover:text-black/60',
-            )}
-            style={active === id ? { color: pointColor.hex } : {}}
+            className='pixel-font text-[7px] tracking-wide transition-all duration-200'
+            style={{ color: active === id ? gb.accent : gb.textDim }}
           >
             {label}
           </span>

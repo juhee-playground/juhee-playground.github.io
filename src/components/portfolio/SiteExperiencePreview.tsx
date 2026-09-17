@@ -7,15 +7,14 @@ import dayjs from 'dayjs';
 import COMPANY_DATA from '@/data/DB_company.json';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
-import { useSettings } from '@/stores/useSettings';
-import { cn } from '@/utils/classNames';
 import { parseCompanyData } from '@/utils/parser';
+import { getGameBoyPalette } from './gameboyPalette';
 
 const DB_COMPANY = (COMPANY_DATA as ICompanyProperties[]).map(c => parseCompanyData(c));
 
 const SiteExperiencePreview = () => {
-  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
+  const gb = getGameBoyPalette(isDark);
 
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
@@ -53,37 +52,40 @@ const SiteExperiencePreview = () => {
       {companies.map(company => (
         <div
           key={company.id}
-          className={cn(
-            'rounded-2xl border p-5 flex flex-col gap-3',
-            isDark ? 'bg-white/3 border-white/10' : 'bg-white border-black/8',
-          )}
+          className='p-5 flex flex-col gap-3'
+          style={{
+            backgroundColor: gb.panel,
+            border: `2px solid ${gb.border}`,
+            borderRadius: 4,
+            boxShadow: `3px 3px 0 ${gb.border}`,
+          }}
         >
           <div className='flex items-center justify-between gap-3'>
-            <h3 className='text-2xl font-semibold leading-none m-0 flex items-center gap-2'>
+            <h3 className='text-xl font-semibold leading-none m-0 flex items-center gap-2' style={{ color: gb.text }}>
               {company.iconEmoji && <span>{company.iconEmoji}</span>}
               {!company.iconEmoji && company.iconUrl && (
                 <img src={company.iconUrl} alt='' className='w-6 h-6 rounded-sm object-cover' />
               )}
               <span>{company.name}</span>
             </h3>
-            <span className={cn('text-sm font-semibold', isDark ? 'text-white/55' : 'text-black/50')}>
+            <span className='pixel-font text-[8px]' style={{ color: gb.textDim }}>
               {company.startDate}~{company.endDate ?? 'Now'}
             </span>
           </div>
-          <p className='text-sm leading-relaxed m-0'>
-            <span className='font-semibold'>{company.role}</span>
+          <p className='text-sm leading-relaxed m-0' style={{ color: gb.textDim }}>
+            <span className='font-semibold' style={{ color: gb.text }}>{company.role}</span>
             <span> | {company.department}</span>
             <span> | 회사규모: </span>
-            <span className='font-semibold'>{getScaleLabel(company.scale)}</span>
+            <span className='font-semibold' style={{ color: gb.text }}>{getScaleLabel(company.scale)}</span>
             <span> | 프로젝트 수: </span>
-            <span className='font-semibold'>
+            <span className='font-semibold' style={{ color: gb.text }}>
               {projectQuery.isLoading ? '-' : getCompanyProjectCount(company.id)}
             </span>
           </p>
-          <p className={cn('text-sm leading-relaxed m-0', isDark ? 'text-white/70' : 'text-black/70')}>
+          <p className='text-sm leading-relaxed m-0' style={{ color: gb.text }}>
             {company.description.join(' ')}
           </p>
-          <p className={cn('text-sm leading-relaxed m-0', isDark ? 'text-white/70' : 'text-black/70')}>
+          <p className='text-sm leading-relaxed m-0' style={{ color: gb.text }}>
             <span className='font-semibold'>핵심 성과: </span>
             <span>{getCompanyHighlight(company.id)}</span>
           </p>
@@ -93,10 +95,8 @@ const SiteExperiencePreview = () => {
       <div className='flex justify-end'>
         <Link
           to='/resume'
-          className={cn(
-            'text-xs font-bold flex items-center gap-1 transition-opacity hover:opacity-70',
-          )}
-          style={{ color: pointColor.hex }}
+          className='pixel-font text-[8px] flex items-center gap-1 transition-transform hover:translate-x-1'
+          style={{ color: gb.accent }}
         >
           전체 이력서 보기 →
         </Link>

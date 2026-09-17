@@ -1,8 +1,8 @@
 import { useTheme } from '@mui/material/styles';
 
 import { IS_JOB_SEEKING } from '@/constants/config';
-import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
+import { getGameBoyPalette } from './gameboyPalette';
 
 type TContactKey = 'email' | 'github' | 'phone';
 
@@ -41,15 +41,14 @@ const CONTACT_CARDS: IContactCard[] = [
 ];
 
 const SiteContact = () => {
-  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
-  const pt = pointColor.hex;
+  const gb = getGameBoyPalette(isDark);
 
   const visibleCards = CONTACT_CARDS.filter(c => !c.hidden);
 
   return (
     <div className='flex flex-col gap-6'>
-      <p className={cn('text-sm leading-relaxed', isDark ? 'text-white/55' : 'text-black/50')}>
+      <p className='text-sm leading-relaxed' style={{ color: gb.textDim }}>
         새로운 기회나 협업에 열려 있습니다. 언제든지 연락주세요.
       </p>
 
@@ -57,29 +56,24 @@ const SiteContact = () => {
         {visibleCards.map(({ key, label, value, href }) => {
           const inner = (
             <>
-              <div className='flex flex-col gap-1'>
+              <div className='flex flex-col gap-1.5'>
                 <span
-                  className='text-[10px] font-black tracking-[0.2em] uppercase'
-                  style={{ color: pt }}
+                  className='pixel-font text-[8px] tracking-[0.1em] uppercase'
+                  style={{ color: gb.accent }}
                 >
                   {label}
                 </span>
                 <span
-                  className={cn(
-                    'text-sm break-all',
-                    isDark ? 'text-white/80' : 'text-black/70',
-                    href && 'group-hover:underline underline-offset-2',
-                  )}
+                  className={cn('text-sm break-all', href && 'group-hover:underline underline-offset-2')}
+                  style={{ color: gb.text }}
                 >
                   {value}
                 </span>
               </div>
               {href && (
                 <span
-                  className={cn(
-                    'text-base shrink-0 transition-transform group-hover:translate-x-1',
-                    isDark ? 'text-white/25' : 'text-black/20',
-                  )}
+                  className='text-base shrink-0 transition-transform group-hover:translate-x-1'
+                  style={{ color: gb.textDim }}
                 >
                   →
                 </span>
@@ -87,20 +81,23 @@ const SiteContact = () => {
             </>
           );
 
+          const cardStyle = {
+            backgroundColor: gb.panel,
+            border: `2px solid ${gb.border}`,
+            borderRadius: 4,
+            boxShadow: `3px 3px 0 ${gb.border}`,
+          };
           const cardClass = cn(
-            'group flex items-center justify-between p-5 rounded-2xl border transition-all',
-            isDark
-              ? 'bg-white/3 border-white/10 hover:border-white/25'
-              : 'bg-white border-black/8 hover:border-black/20',
+            'group flex items-center justify-between p-5 transition-all',
             !href && 'cursor-default',
           );
 
           return href ? (
-            <a key={key} href={href} target='_blank' rel='noreferrer' className={cardClass}>
+            <a key={key} href={href} target='_blank' rel='noreferrer' className={cardClass} style={cardStyle}>
               {inner}
             </a>
           ) : (
-            <div key={key} className={cardClass}>
+            <div key={key} className={cardClass} style={cardStyle}>
               {inner}
             </div>
           );

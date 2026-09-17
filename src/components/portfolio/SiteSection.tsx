@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 
 import { useTheme } from '@mui/material/styles';
 
-import { useSettings } from '@/stores/useSettings';
-import { cn } from '@/utils/classNames';
+import { getGameBoyPalette } from './gameboyPalette';
 
 interface ISiteSectionProps {
   children: ReactNode;
@@ -14,8 +13,8 @@ interface ISiteSectionProps {
 }
 
 const SiteSection = ({ children, id, title }: ISiteSectionProps) => {
-  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
+  const gb = getGameBoyPalette(isDark);
 
   return (
     <section
@@ -30,13 +29,16 @@ const SiteSection = ({ children, id, title }: ISiteSectionProps) => {
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.4 }}
         >
+          <span className='animate-blink text-sm leading-none' style={{ color: gb.accent }}>
+            ▶
+          </span>
           <span
-            className='text-xs font-black tracking-[0.2em] uppercase'
-            style={{ color: pointColor.hex }}
+            className='pixel-font text-[11px] tracking-[0.15em] uppercase'
+            style={{ color: gb.text }}
           >
             {title}
           </span>
-          <div className={cn('flex-1 h-px', isDark ? 'bg-white/10' : 'bg-black/10')} />
+          <div className='flex-1 h-[2px] rounded-[4px]' style={{ backgroundColor: gb.border }} />
         </motion.div>
       )}
       {children}
