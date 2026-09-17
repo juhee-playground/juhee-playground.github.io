@@ -1,4 +1,4 @@
-import { red, purple, yellow, orange, lightGreen, pink, grey, green, blue, brown } from '@mui/material/colors';
+import { red, purple, yellow, orange, lightGreen, pink, grey, blue, brown } from '@mui/material/colors';
 
 interface IActionComponentColor {
   bg: string;

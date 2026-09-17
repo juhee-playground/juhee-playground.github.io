@@ -12,16 +12,6 @@ import LeftSection from '@/components/resume/panel/LeftInfoPanel';
 import SideProjectSection from '@/components/resume/SideProjectSection';
 import { cn } from '@/utils/classNames';
 
-const Divider = ({ isDark, mode }: { isDark: boolean; mode: string }) => (
-  <div
-    className={cn(
-      'h-px w-full my-6',
-      isDark ? 'bg-white/6' : 'bg-black/6',
-      mode === 'print' && 'bg-[#e0e0e0]! my-3',
-    )}
-  />
-);
-
 interface IResumeViewProps {
   isLoading: boolean;
   sortValue: string;
