@@ -7,14 +7,16 @@ import dayjs from 'dayjs';
 import COMPANY_DATA from '@/data/DB_company.json';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
+import { useSettings } from '@/stores/useSettings';
 import { parseCompanyData } from '@/utils/parser';
 import { getGameBoyPalette } from './gameboyPalette';
 
 const DB_COMPANY = (COMPANY_DATA as ICompanyProperties[]).map(c => parseCompanyData(c));
 
 const SiteExperiencePreview = () => {
+  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark);
+  const gb = getGameBoyPalette(isDark, pointColor.hex);
 
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();

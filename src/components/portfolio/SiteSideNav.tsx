@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 
+import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 import { getGameBoyPalette } from './gameboyPalette';
 
@@ -20,8 +21,9 @@ const scrollToSection = (id: string) => {
 };
 
 const SiteSideNav = () => {
+  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark);
+  const gb = getGameBoyPalette(isDark, pointColor.hex);
   const [active, setActive] = useState<TSection>('overview');
 
   useEffect(() => {

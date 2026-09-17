@@ -59,7 +59,7 @@ export default function DenseAppBar() {
           {/* 좌: OS 라벨 + 브레드크럼 */}
           <div className='flex items-center gap-3'>
             <span className='pixel-font text-[9px] tracking-wider'>JUHEE-OS</span>
-            <span className='pixel-font text-[8px]' style={{ color: '#a7d94a' }}>
+            <span className='pixel-font text-[8px]' style={{ color: pointColor.hex }}>
               ▸ PORTFOLIO.EXE
             </span>
           </div>
@@ -69,7 +69,7 @@ export default function DenseAppBar() {
             <span className='flex items-center gap-1.5 pixel-font text-[8px]'>
               <span
                 className='inline-block w-2 h-2 rounded-full'
-                style={{ backgroundColor: '#a7d94a', boxShadow: '0 0 8px #a7d94a' }}
+                style={{ backgroundColor: pointColor.hex, boxShadow: `0 0 8px ${pointColor.hex}` }}
               />
               ON
             </span>

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 
 import { useTheme } from '@mui/material/styles';
 
+import { useSettings } from '@/stores/useSettings';
 import { getGameBoyPalette } from './gameboyPalette';
 
 interface ISiteHeroProps {
@@ -25,8 +26,9 @@ const itemVariant = {
 };
 
 const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
+  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark);
+  const gb = getGameBoyPalette(isDark, pointColor.hex);
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center'>

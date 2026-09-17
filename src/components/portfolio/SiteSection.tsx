@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 import { useTheme } from '@mui/material/styles';
 
+import { useSettings } from '@/stores/useSettings';
 import { getGameBoyPalette } from './gameboyPalette';
 
 interface ISiteSectionProps {
@@ -13,8 +14,9 @@ interface ISiteSectionProps {
 }
 
 const SiteSection = ({ children, id, title }: ISiteSectionProps) => {
+  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark);
+  const gb = getGameBoyPalette(isDark, pointColor.hex);
 
   return (
     <section

@@ -15,13 +15,15 @@ import { getGameBoyPalette } from '@/components/portfolio/gameboyPalette';
 import PROJECT_DATA from '@/data/DB_project.json';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
+import { useSettings } from '@/stores/useSettings';
 import { parseProjectData } from '@/utils/parser';
 
 const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
 
 const PortfolioPage = () => {
+  const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
-  const gb = getGameBoyPalette(isDark);
+  const gb = getGameBoyPalette(isDark, pointColor.hex);
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
   const projects = (projectQuery.data ?? DB_PROJECT).slice(0, 3);
