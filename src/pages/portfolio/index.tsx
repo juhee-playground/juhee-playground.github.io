@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
 import SiteContact from '@/components/portfolio/SiteContact';
@@ -32,24 +31,11 @@ const PortfolioPage = () => {
   const techStackCount = new Set(
     projectsForStats.flatMap(project => project.techStackOptions.map(stack => stack.name)),
   ).size;
-  const startDates = companies
-    .map(company => ({
-      start: company.startDate,
-      end: company.endDate ?? dayjs().format('YYYY-MM-DD'),
-    }))
-    .filter(period => Boolean(period.start));
-
-  const totalWorkedMonths = startDates.reduce((acc, period) => {
-    const start = dayjs(period.start);
-    const end = dayjs(period.end);
-    if (!start.isValid() || !end.isValid() || end.isBefore(start)) return acc;
-    return acc + end.diff(start, 'month');
-  }, 0);
-
-  const yearsExperience = Math.floor(totalWorkedMonths / 12);
+  // 커리어 연차 — 공백 구간이 있어 재직 합산보다 체감 연차(6+)를 사용
+  const CAREER_YEARS = 6;
 
   const stats = [
-    { value: `${Math.max(0, yearsExperience)}+`, label: 'Years Experience' },
+    { value: `${CAREER_YEARS}+`, label: 'Years Experience' },
     { value: `${projectCount}`, label: 'Projects Shipped' },
     { value: `${companies.length}`, label: 'Companies' },
     { value: `${techStackCount}+`, label: 'Tech Stacks' },

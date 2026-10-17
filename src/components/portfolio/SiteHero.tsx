@@ -11,7 +11,8 @@ interface ISiteHeroProps {
 const CURRENT_STATUS = {
   asOf: '2026.10',
   bullets: [
-    'Frontend engineer at Tindlo — building product systems',
+    'Frontend engineer at Tindlo',
+    '6+ years in frontend',
     'Side projects & personal portfolio in progress',
     'Open to new opportunities',
   ],
