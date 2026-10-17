@@ -1,6 +1,6 @@
+import { useTheme } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 
-import { useTheme } from '@mui/material/styles';
 
 import { Project } from '@/data/projects/DB_projects_site';
 import { useSettings } from '@/stores/useSettings';

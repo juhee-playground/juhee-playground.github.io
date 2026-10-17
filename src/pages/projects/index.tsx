@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import { useSettings } from '@/stores/useSettings';

@@ -4,8 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import ClearIcon from '@mui/icons-material/Clear';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import PrintIcon from '@mui/icons-material/Print';
 import PaletteIcon from '@mui/icons-material/Palette';
+import PrintIcon from '@mui/icons-material/Print';
 
 import IconButton from '@mui/material/IconButton';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';

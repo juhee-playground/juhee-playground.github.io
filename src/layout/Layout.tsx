@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
 
-import Header from '@/layout/header/Header';
 import usePrintMode from '@/hooks/usePrintMode';
+import Header from '@/layout/header/Header';
 import { cn } from '@/utils/classNames';
 
 interface IMainLayoutProps {

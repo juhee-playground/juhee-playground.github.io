@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
+
 import { getGameBoyPalette } from './gameboyPalette';
 
 type TSection = 'overview' | 'projects' | 'experience' | 'stats' | 'contact';

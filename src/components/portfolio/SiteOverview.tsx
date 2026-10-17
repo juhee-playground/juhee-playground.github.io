@@ -1,5 +1,6 @@
 import CONTENT_MAIN, { DEVELOPER_OVERVIEW } from '@/constants/description';
 import { useSettings } from '@/stores/useSettings';
+
 import { getGameBoyPalette } from './gameboyPalette';
 
 interface IContentItem {

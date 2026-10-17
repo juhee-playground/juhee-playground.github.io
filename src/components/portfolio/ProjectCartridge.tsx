@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { useSettings } from '@/stores/useSettings';
+
 import { CART_SHELL } from './cartShell';
 import { CompanyCartDeco, getCompanyCartTheme } from './CompanyCartridge';
 import { getGameBoyPalette } from './gameboyPalette';

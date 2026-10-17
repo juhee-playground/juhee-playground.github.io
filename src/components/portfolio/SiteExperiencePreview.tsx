@@ -8,6 +8,7 @@ import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import { useSettings } from '@/stores/useSettings';
 import { parseCompanyData } from '@/utils/parser';
+
 import { CompanyCartridge, getCompanyCartTheme } from './CompanyCartridge';
 import { getGameBoyPalette } from './gameboyPalette';
 

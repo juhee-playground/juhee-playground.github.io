@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { motion } from 'framer-motion';
 
 import ResumeContainer from '@/components/resume/ResumeContainer';
 

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 
 import { PortfolioState, PowerState } from '@/pages/landing/types';
+
 import { ScreenContent } from './screenContent';
 
 interface GameBoyFrameProps {

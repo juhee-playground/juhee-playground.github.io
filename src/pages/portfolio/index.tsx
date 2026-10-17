@@ -1,14 +1,15 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
+import { motion } from 'framer-motion';
+
+import { getGameBoyPalette } from '@/components/portfolio/gameboyPalette';
+import { ProjectCartridge } from '@/components/portfolio/ProjectCartridge';
 import SiteContact from '@/components/portfolio/SiteContact';
 import SiteExperiencePreview from '@/components/portfolio/SiteExperiencePreview';
 import SiteHero from '@/components/portfolio/SiteHero';
 import SiteOverview from '@/components/portfolio/SiteOverview';
 import SiteSection from '@/components/portfolio/SiteSection';
 import SiteSideNav from '@/components/portfolio/SiteSideNav';
-import { ProjectCartridge } from '@/components/portfolio/ProjectCartridge';
-import { getGameBoyPalette } from '@/components/portfolio/gameboyPalette';
 import PROJECT_DATA from '@/data/DB_project.json';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';

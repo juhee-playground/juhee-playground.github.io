@@ -1,10 +1,11 @@
 import { useQuery } from 'react-query';
 
+import dayjs from 'dayjs';
+
 import { requestCompanies } from '@/api/notion';
+import { COMPANY_COLORS, STACK_COLORS } from '@/constants/dashboard';
 import { notionQueryKeys } from '@/queryKeys/notion';
 import { parseCompanyData } from '@/utils/parser';
-import dayjs from 'dayjs';
-import { COMPANY_COLORS, STACK_COLORS } from '@/constants/dashboard';
 
 
 export default function useCompaniesQuery() {

@@ -1,4 +1,5 @@
 import { useSettings } from '@/stores/useSettings';
+
 import { CART_SHELL } from './cartShell';
 
 type TCartDeco = 'calendar' | 'pitch' | 'invest';

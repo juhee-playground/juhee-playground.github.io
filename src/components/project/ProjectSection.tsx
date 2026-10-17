@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
+import { useTheme } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 
-import { useTheme } from '@mui/material/styles';
 
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';

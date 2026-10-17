@@ -1,6 +1,7 @@
 import { IS_JOB_SEEKING } from '@/constants/config';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
+
 import { getGameBoyPalette } from './gameboyPalette';
 
 type TContactKey = 'email' | 'github' | 'phone';

@@ -1,6 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { GameBoyFrame } from '@/components/landing/gameBoyFrame';
+
 import { PortfolioState, PowerState } from './types';
 
 const LandingPage = () => {

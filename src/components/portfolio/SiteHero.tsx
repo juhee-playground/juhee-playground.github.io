@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 
 import { useSettings } from '@/stores/useSettings';
+
 import { getGameBoyPalette } from './gameboyPalette';
 
 interface ISiteHeroProps {
