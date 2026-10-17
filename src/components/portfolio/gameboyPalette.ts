@@ -2,9 +2,8 @@ import { TShellStyle } from '@/stores/useSettings';
 
 /**
  * 포트폴리오 게임보이 스킨 팔레트 (3종).
- * dmg = 오리지널 셸 그레이, light = 깔끔한 오프화이트, pocket = 차콜(다크).
- * 배경/테두리는 무채색(눈 편함).
- * accent(초록이던 것들)는 pointColor에서 주입 → 팔레트에서 색을 바꾸면 액센트가 전부 함께 변함.
+ * dmg = 오리지널 웜 올리브 셸(포인트 대비), light = 순백/고스트, pocket = 차콜.
+ * accent는 pointColor에서 주입 → 팔레트에서 색을 바꾸면 액센트가 전부 함께 변함.
  */
 export interface IGameBoyPalette {
   bg: string;
@@ -15,6 +14,8 @@ export interface IGameBoyPalette {
   text: string;
   textDim: string;
   accent: string;
+  /** 밝은 셸 위 글자/링크용 — accent보다 진함 */
+  accentText: string;
   accentInk: string;
   lcd: string;
   lcdInk: string;
@@ -26,23 +27,23 @@ type TShellBase = Pick<
 >;
 
 const BASE_DMG: TShellBase = {
-  bg: '#d8d8d1',
-  panel: '#e9e9e3',
-  panel2: '#f0f0ea',
-  border: '#b6b6ac',
-  borderStrong: '#6a6a62',
+  bg: '#d2d1c4',
+  panel: '#e2e1d6',
+  panel2: '#ebeae0',
+  border: '#b4b3a4',
+  borderStrong: '#6a695e',
   text: '#2b2b28',
-  textDim: '#74746b',
+  textDim: '#6e6d62',
 };
 
 const BASE_LIGHT: TShellBase = {
-  bg: '#f2f2ee',
-  panel: '#ffffff',
-  panel2: '#fafaf7',
-  border: '#e2e2da',
-  borderStrong: '#c2c2b8',
-  text: '#23231f',
-  textDim: '#7a7a70',
+  bg: '#ffffff',
+  panel: '#f7f8fb',
+  panel2: '#eef0f4',
+  border: '#e4e7ee',
+  borderStrong: '#c8ced8',
+  text: '#1a1d24',
+  textDim: '#8a91a0',
 };
 
 const BASE_POCKET: TShellBase = {
@@ -98,9 +99,11 @@ export const getGameBoyPalette = (
   accent: string = DEFAULT_ACCENT,
 ): IGameBoyPalette => {
   const base = BASE_BY_SHELL[shellStyle] ?? BASE_DMG;
+  const accentText = shellStyle === 'pocket' ? accent : darken(accent, 0.28);
   return {
     ...base,
     accent,
+    accentText,
     accentInk: '#161a12',
     // LCD 화면 느낌: accent를 크게 어둡게 깐 배경 + 밝게 띄운 글자
     lcd: darken(accent, 0.78),

@@ -28,16 +28,16 @@ const SiteSection = ({ children, id, title }: ISiteSectionProps) => {
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.4 }}
         >
-          <span className='animate-blink text-sm leading-none' style={{ color: gb.accent }}>
+          <span className='animate-blink text-sm leading-none' style={{ color: gb.accentText }}>
             ▶
           </span>
           <span
-            className='pixel-font text-[11px] tracking-[0.15em] uppercase'
+            className='pixel-font text-avatar tracking-[0.15em] uppercase'
             style={{ color: gb.text }}
           >
             {title}
           </span>
-          <div className='flex-1 h-[2px] rounded-[4px]' style={{ backgroundColor: gb.border }} />
+          <div className='flex-1 h-0.5 rounded-sm' style={{ backgroundColor: gb.border }} />
         </motion.div>
       )}
       {children}

@@ -39,8 +39,8 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
       >
         <motion.p
           variants={itemVariant}
-          className='pixel-font text-[9px] tracking-[0.15em] uppercase'
-          style={{ color: gb.accent }}
+          className='pixel-font text-body-3xs tracking-[0.15em] uppercase'
+          style={{ color: gb.accentText }}
         >
           ▸ Frontend Developer
         </motion.p>
@@ -55,7 +55,7 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
 
         <motion.p
           variants={itemVariant}
-          className='text-base leading-relaxed max-w-[420px]'
+          className='text-base leading-relaxed max-w-105'
           style={{ color: gb.textDim }}
         >
           복잡한 워크플로우를 직관적인 인터페이스로.
@@ -66,7 +66,7 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
         <motion.div variants={itemVariant} className='flex flex-wrap gap-3 pt-1'>
           <button
             onClick={onScrollToProjects}
-            className='pixel-font text-[9px] px-5 py-3 transition-all hover:-translate-y-0.5 active:translate-y-0.5'
+            className='pixel-font text-body-3xs px-5 py-3 transition-all hover:-translate-y-0.5 active:translate-y-0.5'
             style={{
               backgroundColor: gb.accent,
               color: gb.accentInk,
@@ -79,7 +79,7 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
           </button>
           <a
             href='/resume'
-            className='pixel-font text-[9px] px-5 py-3 transition-all hover:-translate-y-0.5 active:translate-y-0.5'
+            className='pixel-font text-body-3xs px-5 py-3 transition-all hover:-translate-y-0.5 active:translate-y-0.5'
             style={{
               color: gb.text,
               border: `2px solid ${gb.border}`,
@@ -110,7 +110,7 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
             className='w-2 h-2 shrink-0 animate-pulse'
             style={{ backgroundColor: gb.accent }}
           />
-          <span className='pixel-font text-[9px] tracking-wider uppercase' style={{ color: gb.text }}>
+          <span className='pixel-font text-body-3xs tracking-wider uppercase' style={{ color: gb.text }}>
             Current Status
           </span>
         </div>

@@ -63,7 +63,7 @@ const SiteSideNav = () => {
           />
           <span
             className='pixel-font text-[7px] tracking-wide transition-all duration-200'
-            style={{ color: active === id ? gb.accent : gb.textDim }}
+            style={{ color: active === id ? gb.accentText : gb.textDim }}
           >
             {label}
           </span>

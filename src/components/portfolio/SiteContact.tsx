@@ -51,19 +51,24 @@ const SiteContact = () => {
         새로운 기회나 협업에 열려 있습니다. 언제든지 연락주세요.
       </p>
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+      <ul className='flex flex-col gap-5 m-0 p-0 list-none'>
         {visibleCards.map(({ key, label, value, href }) => {
-          const inner = (
+          const rowClass = cn(
+            'group flex items-baseline justify-between gap-4',
+            href && 'cursor-pointer',
+          );
+
+          const content = (
             <>
-              <div className='flex flex-col gap-1.5'>
+              <div className='flex flex-col gap-1 min-w-0'>
                 <span
-                  className='pixel-font text-[8px] tracking-[0.1em] uppercase'
-                  style={{ color: gb.accent }}
+                  className='pixel-font text-body-2xs tracking-[0.12em] uppercase'
+                  style={{ color: gb.accentText }}
                 >
                   {label}
                 </span>
                 <span
-                  className={cn('text-sm break-all', href && 'group-hover:underline underline-offset-2')}
+                  className={cn('text-base break-all', href && 'group-hover:underline underline-offset-2')}
                   style={{ color: gb.text }}
                 >
                   {value}
@@ -71,8 +76,8 @@ const SiteContact = () => {
               </div>
               {href && (
                 <span
-                  className='text-base shrink-0 transition-transform group-hover:translate-x-1'
-                  style={{ color: gb.textDim }}
+                  className='pixel-font text-body-2xs shrink-0 transition-transform group-hover:translate-x-1'
+                  style={{ color: gb.accentText }}
                 >
                   →
                 </span>
@@ -80,28 +85,25 @@ const SiteContact = () => {
             </>
           );
 
-          const cardStyle = {
-            backgroundColor: gb.panel,
-            border: `2px solid ${gb.border}`,
-            borderRadius: 4,
-            boxShadow: `3px 3px 0 ${gb.border}`,
-          };
-          const cardClass = cn(
-            'group flex items-center justify-between p-5 transition-all',
-            !href && 'cursor-default',
-          );
-
-          return href ? (
-            <a key={key} href={href} target='_blank' rel='noreferrer' className={cardClass} style={cardStyle}>
-              {inner}
-            </a>
-          ) : (
-            <div key={key} className={cardClass} style={cardStyle}>
-              {inner}
-            </div>
+          return (
+            <li key={key}>
+              {href ? (
+                <a
+                  href={href}
+                  target='_blank'
+                  rel='noreferrer'
+                  className={rowClass}
+                  style={{ textDecoration: 'none' }}
+                >
+                  {content}
+                </a>
+              ) : (
+                <div className={rowClass}>{content}</div>
+              )}
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };

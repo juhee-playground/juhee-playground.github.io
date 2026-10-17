@@ -52,18 +52,23 @@ export default function DenseAppBar() {
   // ─── 포트폴리오: 게임보이 HUD 바 ───
   // 셸 스타일(dmg/light/pocket) 3버튼 토글. pocket일 때만 다크 HUD.
   if (isPortfolioPage && !isPrintMode) {
-    const hudBg = shellStyle === 'pocket' ? 'bg-[#48515f]' : 'bg-[#6a6a62]';
+    const hudBg =
+      shellStyle === 'pocket'
+        ? 'bg-[#48515f]'
+        : shellStyle === 'light'
+          ? 'bg-[#c8ced8]'
+          : 'bg-[#6a6a62]';
     const shellButtons: { key: TShellStyle; label: string }[] = [
       { key: 'dmg', label: 'DMG' },
       { key: 'light', label: 'LIGHT' },
       { key: 'pocket', label: 'POCKET' },
     ];
     return (
-      <header className='flex flex-col max-w-[1080px] mx-auto w-full'>
+      <header className='flex flex-col max-w-270 mx-auto w-full'>
         <div className={cn('h-11 flex justify-between items-center px-4 text-white', hudBg)}>
           {/* 좌: OS 라벨 + 브레드크럼 */}
           <div className='flex items-center gap-3'>
-            <span className='pixel-font text-[9px] tracking-wider'>JUHEE-OS</span>
+            <span className='pixel-font text-body-3xs tracking-wider'>JUHEE-OS</span>
             <span className='hidden sm:inline pixel-font text-[8px]' style={{ color: pointColor.hex }}>
               ▸ PORTFOLIO.EXE
             </span>
@@ -128,7 +133,7 @@ export default function DenseAppBar() {
   return (
     <header
       className={cn(
-        'flex flex-col max-w-[1080px] mx-auto w-full',
+        'flex flex-col max-w-270 mx-auto w-full',
         bgColor,
         isPrintMode && mode === 'print' && '[&_.menu__groups]:hidden [&:hover_.menu__groups]:inline',
       )}
