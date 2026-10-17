@@ -40,5 +40,8 @@ dist-ssr
 .env.development
 .env.production
 
+# TypeScript incremental build cache
+*.tsbuildinfo
+
 
 *storybook.log
