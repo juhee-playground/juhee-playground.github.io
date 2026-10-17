@@ -1,20 +1,27 @@
 const CONTENT_MAIN = [
   {
-    content: '웹 프론트엔드 개발 실무 경력 3년 이상',
-    link: 'https://dino100.notion.site/OHCOACH-Ultimate-fd838cf131fc4d718d2b4d89e7d42dd8',
-    bold: '개발 실무 경력 3년',
+    content: '복잡한 워크플로우·상태를 직관적인 인터페이스로 설계하고 구현',
+    bold: '직관적인 인터페이스',
   },
   {
-    content: '팀 플레이 및 소통을 중요하게 생각하고 행동',
-    bold: '팀 플레이 및 소통',
+    content: 'React·TypeScript로 아키텍처와 데이터 흐름의 책임을 명확히 하는 데 집중',
+    bold: '아키텍처와 데이터 흐름',
   },
   {
-    content: 'jest와 Storybook을 활용하여 단위테스트 코드 작성',
-    bold: 'jest와 Storybook',
+    content: '현상 수정이 아니라 원인을 분석하고, 유지보수·확장까지 고려해 개선',
+    bold: '유지보수·확장',
   },
   {
-    content: '1명에서 10명 이상의 개발팀으로 성장하기까지의 초기 스타트업 경험 ',
-    bold: '초기 스타트업 경험',
+    content: '초기 스타트업에서 제품 사용성과 지속 가능한 개발 프로세스를 함께 구축',
+    bold: '지속 가능한 개발 프로세스',
   },
 ];
+
 export default CONTENT_MAIN;
+
+/** Overview 상단 / 소개용 한 줄 정의 */
+export const DEVELOPER_OVERVIEW = {
+  title: 'Product-Oriented Frontend Engineer',
+  summary:
+    '사용자 경험과 기술적 완성도 사이를 균형 있게 다루는 프론트엔드. 복잡한 인터랙션과 상태를 시스템으로 정리하고, 기능 구현을 넘어 아키텍처·데이터 흐름·정보 구조까지 책임진다.',
+};
