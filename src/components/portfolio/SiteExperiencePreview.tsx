@@ -9,7 +9,8 @@ import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import { useSettings } from '@/stores/useSettings';
 import { parseCompanyData } from '@/utils/parser';
 
-import { CompanyCartridge, getCompanyCartTheme } from './CompanyCartridge';
+import { CompanyCartridge } from './CompanyCartridge';
+import { getCompanyCartTheme } from './companyCartTheme';
 import { getGameBoyPalette } from './gameboyPalette';
 
 const DB_COMPANY = (COMPANY_DATA as ICompanyProperties[]).map(c => parseCompanyData(c));
