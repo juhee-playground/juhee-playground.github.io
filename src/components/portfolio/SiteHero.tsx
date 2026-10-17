@@ -7,11 +7,15 @@ interface ISiteHeroProps {
   onScrollToProjects: () => void;
 }
 
-const STATUS_BULLETS = [
-  'Building frontend systems at Tindlo',
-  'Open to new opportunities & collaborations',
-  'Side projects always in progress',
-];
+/** Current Status — 문구 바꿀 때 asOf도 같이 갱신 (이력서 기준) */
+const CURRENT_STATUS = {
+  asOf: '2026.10',
+  bullets: [
+    'Frontend engineer at Tindlo — building product systems',
+    'Side projects & personal portfolio in progress',
+    'Open to new opportunities',
+  ],
+} as const;
 
 const leftVariants = {
   hidden: {},
@@ -116,7 +120,7 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
         </div>
 
         <ul className='flex flex-col gap-3'>
-          {STATUS_BULLETS.map((line, i) => (
+          {CURRENT_STATUS.bullets.map((line, i) => (
             <motion.li
               key={line}
               initial={{ opacity: 0, x: 10 }}
@@ -140,10 +144,10 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
           style={{ borderTop: `2px solid ${gb.border}` }}
         >
           <span className='pixel-font text-[7px] uppercase tracking-wider' style={{ color: gb.textDim }}>
-            Last update
+            As of
           </span>
           <span className='pixel-font text-[8px] tabular-nums' style={{ color: gb.text }}>
-            2025.03
+            {CURRENT_STATUS.asOf}
           </span>
         </div>
       </motion.div>
