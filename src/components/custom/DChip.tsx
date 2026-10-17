@@ -12,6 +12,9 @@ const DEFAULT_NOTION_COLOR = {
 };
 
 const NOT_FOUND = -1;
+const CHIP_BORDER_ALPHA = 0.25;
+const CHIP_SHADOW_ALPHA = 0.42;
+const CHIP_HOVER_SHADOW_ALPHA = 0.3;
 
 function DChip({ color = 'default', selectedItems = [], size, label, clickable, handleChipSelect }: ICustomChip) {
   const [selected, setSelected] = useState(false);
@@ -30,9 +33,9 @@ function DChip({ color = 'default', selectedItems = [], size, label, clickable, 
   const notionColor = NOTION_COLOR_SET[color] ?? DEFAULT_NOTION_COLOR;
   const colorSet = selected || isMainSkillChip ? notionColor : DEFAULT_NOTION_COLOR;
   const chipAccent = colorSet.text === 'white' ? '#9ca3af' : colorSet.text;
-  const borderAccent = alpha(chipAccent, 0.25);
-  const shadowAccent = alpha(chipAccent, 0.42);
-  const hoverShadowAccent = alpha(chipAccent, 0.3);
+  const borderAccent = alpha(chipAccent, CHIP_BORDER_ALPHA);
+  const shadowAccent = alpha(chipAccent, CHIP_SHADOW_ALPHA);
+  const hoverShadowAccent = alpha(chipAccent, CHIP_HOVER_SHADOW_ALPHA);
 
   const customTheme = createTheme({
     components: {

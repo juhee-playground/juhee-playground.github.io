@@ -15,12 +15,13 @@ interface ITimeScaleChartProps {
 
 const today = dayjs();
 const firstDay = dayjs('2017-05-02');
+const INITIAL_CHART_WIDTH = 400;
 
 const TimelineChart = ({ height, tasks, isDark = false }: ITimeScaleChartProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
   const margin = { top: 40, right: 16, bottom: 50, left: 16 };
-  const [width, setWidth] = useState(400);
+  const [width, setWidth] = useState(INITIAL_CHART_WIDTH);
 
   const [tooltip, setTooltip] = useState<{ content: string; x: number; y: number; color: string } | null>(null);
 

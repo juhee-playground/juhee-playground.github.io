@@ -1,4 +1,14 @@
+import {
+  COLOR_CHANNEL_MAX,
+  HEX_GREEN_SHIFT,
+  HEX_RADIX,
+  HEX_RED_SHIFT,
+} from '@/constants/color';
 import { TShellStyle } from '@/stores/useSettings';
+
+const ACCENT_TEXT_DARKEN_RATIO = 0.28;
+const LCD_BG_DARKEN_RATIO = 0.78;
+const LCD_INK_LIGHTEN_RATIO = 0.45;
 
 /**
  * 포트폴리오 게임보이 스킨 팔레트 (3종).
@@ -68,11 +78,18 @@ const DEFAULT_ACCENT = '#a7d94a';
 const parseHex = (hex: string): { r: number; g: number; b: number } | null => {
   const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
   if (!m) return null;
-  const int = parseInt(m[1], 16);
-  return { r: (int >> 16) & 255, g: (int >> 8) & 255, b: int & 255 };
+  const int = parseInt(m[1], HEX_RADIX);
+  return {
+    r: (int >> HEX_RED_SHIFT) & COLOR_CHANNEL_MAX,
+    g: (int >> HEX_GREEN_SHIFT) & COLOR_CHANNEL_MAX,
+    b: int & COLOR_CHANNEL_MAX,
+  };
 };
 
-const toHex = (n: number) => Math.max(0, Math.min(255, Math.round(n))).toString(16).padStart(2, '0');
+const toHex = (n: number) =>
+  Math.max(0, Math.min(COLOR_CHANNEL_MAX, Math.round(n)))
+    .toString(HEX_RADIX)
+    .padStart(2, '0');
 
 /** ratio(0~1)만큼 검정과 섞어 어둡게. LCD 배경용. */
 const darken = (hex: string, ratio: number): string => {
@@ -86,7 +103,7 @@ const darken = (hex: string, ratio: number): string => {
 const lighten = (hex: string, ratio: number): string => {
   const c = parseHex(hex);
   if (!c) return hex;
-  return `#${toHex(c.r + (255 - c.r) * ratio)}${toHex(c.g + (255 - c.g) * ratio)}${toHex(c.b + (255 - c.b) * ratio)}`;
+  return `#${toHex(c.r + (COLOR_CHANNEL_MAX - c.r) * ratio)}${toHex(c.g + (COLOR_CHANNEL_MAX - c.g) * ratio)}${toHex(c.b + (COLOR_CHANNEL_MAX - c.b) * ratio)}`;
 };
 
 /**
@@ -99,14 +116,15 @@ export const getGameBoyPalette = (
   accent: string = DEFAULT_ACCENT,
 ): IGameBoyPalette => {
   const base = BASE_BY_SHELL[shellStyle] ?? BASE_DMG;
-  const accentText = shellStyle === 'pocket' ? accent : darken(accent, 0.28);
+  const accentText =
+    shellStyle === 'pocket' ? accent : darken(accent, ACCENT_TEXT_DARKEN_RATIO);
   return {
     ...base,
     accent,
     accentText,
     accentInk: '#161a12',
     // LCD 화면 느낌: accent를 크게 어둡게 깐 배경 + 밝게 띄운 글자
-    lcd: darken(accent, 0.78),
-    lcdInk: lighten(accent, 0.45),
+    lcd: darken(accent, LCD_BG_DARKEN_RATIO),
+    lcdInk: lighten(accent, LCD_INK_LIGHTEN_RATIO),
   };
 };

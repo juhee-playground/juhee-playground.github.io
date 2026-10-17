@@ -36,6 +36,14 @@ interface ICompanyCartridgeProps {
   readonly company: ICompanyCartridgeItem;
 }
 
+const TINDLO_HOUR_START_Y = 28;
+const TINDLO_HOUR_STEP_Y = 24;
+const TINDLO_HOUR_COUNT = 7;
+const TINDLO_HOUR_YS = Array.from(
+  { length: TINDLO_HOUR_COUNT },
+  (_, i) => TINDLO_HOUR_START_Y + i * TINDLO_HOUR_STEP_Y,
+);
+
 /** 일간 타임라인 + 일정 카드 (틴들로) */
 const TindloBackground = () => (
   <svg
@@ -46,7 +54,7 @@ const TindloBackground = () => (
   >
     {/* hour grid lines */}
     <g stroke='#ffffff' strokeWidth='0.8' opacity='0.22'>
-      {[28, 52, 76, 100, 124, 148, 172].map(y => (
+      {TINDLO_HOUR_YS.map(y => (
         <line key={y} x1='36' y1={y} x2='196' y2={y} />
       ))}
     </g>

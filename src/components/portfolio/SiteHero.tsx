@@ -19,6 +19,9 @@ const CURRENT_STATUS = {
   ],
 } as const;
 
+const STATUS_ITEM_DELAY_BASE = 0.5;
+const STATUS_ITEM_DELAY_STEP = 0.1;
+
 const leftVariants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
@@ -127,7 +130,7 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
               key={line}
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+              transition={{ duration: 0.4, delay: STATUS_ITEM_DELAY_BASE + i * STATUS_ITEM_DELAY_STEP }}
               className='flex items-start gap-2.5'
             >
               <span

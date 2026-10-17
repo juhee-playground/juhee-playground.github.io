@@ -5,6 +5,9 @@ import { GameBoyFrame } from '@/components/landing/gameBoyFrame';
 
 import { PORTFOLIO_STATE, TPortfolioState, TPowerState } from './types';
 
+const BOOT_TO_START_MS = 4000;
+const POWER_ANIMATION_MS = 400;
+
 const LandingPage = () => {
   const navigate = useNavigate();
   const [gameState, setGameState] = useState<TPortfolioState>(PORTFOLIO_STATE.BOOT);
@@ -30,7 +33,7 @@ const LandingPage = () => {
     }
     const timer = setTimeout(() => {
       setGameState(PORTFOLIO_STATE.START);
-    }, 4000);
+    }, BOOT_TO_START_MS);
     return () => clearTimeout(timer);
   }, [gameState, isPowerOn]);
 
@@ -82,7 +85,7 @@ const LandingPage = () => {
       setPowerState('powering-off');
       setTimeout(() => {
         setPowerState('off');
-      }, 400);
+      }, POWER_ANIMATION_MS);
     } else if (powerState === 'off') {
       // Turning ON - 초기 상태로 리셋
       setPowerState('powering-on');
@@ -94,7 +97,7 @@ const LandingPage = () => {
       setDashboardPage(0);
       setTimeout(() => {
         setPowerState('on');
-      }, 400);
+      }, POWER_ANIMATION_MS);
     }
   }, [powerState, isAnimating]);
 

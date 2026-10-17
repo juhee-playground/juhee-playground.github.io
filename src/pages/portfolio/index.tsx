@@ -18,12 +18,16 @@ import { parseProjectData } from '@/utils/parser';
 
 const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
 
+const FEATURED_PROJECT_COUNT = 3;
+const PROJECT_CARD_STAGGER = 0.08;
+const STATS_CARD_STAGGER = 0.07;
+
 const PortfolioPage = () => {
   const { pointColor, shellStyle } = useSettings();
   const gb = getGameBoyPalette(shellStyle, pointColor.hex);
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
-  const projects = (projectQuery.data ?? DB_PROJECT).slice(0, 3);
+  const projects = (projectQuery.data ?? DB_PROJECT).slice(0, FEATURED_PROJECT_COUNT);
   const companies = (companyQuery.data ?? []).filter(company => company.type === 'C');
   const companyNameById = Object.fromEntries(companies.map(company => [company.id, company.name]));
   const projectsForStats = projectQuery.data ?? [];
@@ -69,7 +73,7 @@ const PortfolioPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                transition={{ duration: 0.4, delay: i * PROJECT_CARD_STAGGER }}
               >
                 <ProjectCartridge
                   project={project}
@@ -106,7 +110,7 @@ const PortfolioPage = () => {
                 initial={{ opacity: 0, scale: 0.92 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, delay: i * 0.07 }}
+                transition={{ duration: 0.4, delay: i * STATS_CARD_STAGGER }}
                 className='flex flex-col items-center gap-1.5 text-center'
               >
                 <span className='pixel-font text-2xl' style={{ color: gb.accentText }}>

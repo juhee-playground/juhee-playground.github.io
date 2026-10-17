@@ -15,6 +15,8 @@ const BOOT_LINES = [
   { text: 'SYSTEM READY', delay: 3000 },
 ];
 
+const BOOT_PROMPT_DELAY_MS = 3200;
+
 const BootScreen = () => {
   const [visibleCount, setVisibleCount] = useState(0);
   const [showPrompt, setShowPrompt] = useState(false);
@@ -26,7 +28,7 @@ const BootScreen = () => {
       timers.push(setTimeout(() => setVisibleCount(i + 1), BOOT_LINES[i].delay));
     });
 
-    timers.push(setTimeout(() => setShowPrompt(true), 3200));
+    timers.push(setTimeout(() => setShowPrompt(true), BOOT_PROMPT_DELAY_MS));
 
     return () => timers.forEach(clearTimeout);
   }, []);

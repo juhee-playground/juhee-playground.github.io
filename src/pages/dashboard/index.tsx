@@ -59,7 +59,9 @@ export default function MainPage() {
   ).map(t => ({ ...t, image: techIcons[t.name] }));
 
   const total = techData.reduce((s, t) => s + t.count, 0);
-  const pct = (name: string) => Math.round((techData.find(t => t.name === name)?.count ?? 0) / total * 100);
+  const PERCENT_SCALE = 100;
+  const pct = (name: string) =>
+    Math.round(((techData.find(t => t.name === name)?.count ?? 0) / total) * PERCENT_SCALE);
   const pieData = [
     { id: 'Vue',   label: 'Vue',   value: pct('Vue'),   color: STACK_COLORS.vue },
     { id: 'React', label: 'React', value: pct('React'), color: STACK_COLORS.react },
