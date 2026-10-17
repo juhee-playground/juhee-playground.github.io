@@ -1,31 +1,7 @@
 import { useSettings } from '@/stores/useSettings';
+import { CART_SHELL } from './cartShell';
 
 type TCartDeco = 'calendar' | 'pitch' | 'invest';
-
-/** 회사 카트리지 플라스틱 — pocket 검정 / light 흰색 / dmg 크림 */
-const PLASTIC_BY_SHELL = {
-  dmg: {
-    shell: '#f3f1ea',
-    shellBorder: '#ddd8ce',
-    shellShadow: '#cfc9bc',
-    ink: '#2b2b28',
-    muted: '#7a7a70',
-  },
-  light: {
-    shell: '#ffffff',
-    shellBorder: '#e8ebf0',
-    shellShadow: '#d5dae3',
-    ink: '#1a1d24',
-    muted: '#8a91a0',
-  },
-  pocket: {
-    shell: '#0c0e12',
-    shellBorder: '#3a424e',
-    shellShadow: '#050608',
-    ink: '#e6e9ef',
-    muted: '#8b95a5',
-  },
-} as const;
 
 type TCartTheme = {
   readonly shell: string;
@@ -309,20 +285,8 @@ export const getCompanyCartTheme = (name: string): TCartTheme =>
 export const CompanyCartridge = ({ company }: ICompanyCartridgeProps) => {
   const { theme } = company;
   const { shellStyle } = useSettings();
-  const plastic = PLASTIC_BY_SHELL[shellStyle] ?? PLASTIC_BY_SHELL.dmg;
-  const isPocket = shellStyle === 'pocket';
-
-  const dropShadow = isPocket
-    ? `0 2px 0 ${plastic.shellShadow}, 0 4px 10px rgba(0,0,0,0.35)`
-    : `0 2px 0 ${plastic.shellShadow}, 0 4px 10px rgba(0,0,0,0.16)`;
-
-  const faceShadow = isPocket
-    ? company.isActive
-      ? `inset 0 3px 8px rgba(0,0,0,0.45), inset 1px 1px 0 rgba(255,255,255,0.08)`
-      : `inset 1px 1px 0 rgba(255,255,255,0.1)`
-    : company.isActive
-      ? `inset 0 3px 8px rgba(0,0,0,0.12), inset 1px 0 0 rgba(255,255,255,0.7)`
-      : `inset 1px 0 0 rgba(255,255,255,0.8)`;
+  const cart = CART_SHELL[shellStyle] ?? CART_SHELL.dmg;
+  const { body, bodyHi, edgeHi, edgeLo, well, step, ink, muted } = cart;
 
   return (
     <button
@@ -332,134 +296,160 @@ export const CompanyCartridge = ({ company }: ICompanyCartridgeProps) => {
       aria-label={`${company.name} 경력 상세 보기`}
       className='group w-full max-w-56 cursor-pointer border-0 bg-transparent p-0 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500'
     >
-      {/* drop shadow outside clip — 프로젝트 팩과 동일 계열 */}
       <div
-        className='rounded-b-xl transition-shadow duration-200'
-        style={{ boxShadow: company.isActive ? 'none' : dropShadow }}
-      >
-      <div className='relative overflow-hidden rounded-b-xl'>
-      <div
-        className={
-          company.isActive
-            ? 'relative aspect-5/6 flex flex-col overflow-hidden rounded-t-xl rounded-b-[9px] px-2.5 pb-4 pt-2.5 transition-[transform,box-shadow] duration-200 translate-y-7'
-            : 'relative aspect-5/6 flex flex-col overflow-hidden rounded-t-xl rounded-b-[9px] px-2.5 pb-4 pt-2.5 transition-[transform,box-shadow] duration-200 group-hover:-translate-y-1 group-active:translate-y-px'
-        }
+        className='rounded-b-xl transition-[filter] duration-200'
         style={{
-          backgroundColor: plastic.shell,
-          border: `1px solid ${plastic.shellBorder}`,
-          boxShadow: faceShadow,
+          filter: company.isActive
+            ? 'none'
+            : `drop-shadow(0 3px 0 ${step}) drop-shadow(0 6px 14px rgba(0,0,0,0.22))`,
         }}
       >
-        <div className='mb-1.5 flex items-start justify-between px-0.5'>
-          <div className='flex flex-col leading-none gap-0.5'>
-            <span className='text-xs font-semibold tracking-wide' style={{ color: plastic.ink }}>
-              JUHEE-OS
-            </span>
-            <span className='text-body-2xs font-medium tracking-[0.08em]' style={{ color: plastic.muted }}>
-              WORK CARTRIDGE
-            </span>
-          </div>
-          <span className='text-avatar font-semibold tabular-nums' style={{ color: plastic.muted }}>
-            {company.orderLabel}
-          </span>
-        </div>
-
-        <div
-          className='relative flex flex-1 flex-col overflow-hidden rounded-[7px] border px-2.5 pb-2 pt-2'
-          style={{
-            borderColor: 'rgba(255,255,255,0.65)',
-            background: `linear-gradient(165deg, ${theme.labelFrom} 0%, ${theme.labelTo} 100%)`,
-          }}
-        >
-          <CompanyCartDeco type={theme.deco} />
-
-          <div className='relative z-1 flex items-start justify-between gap-2'>
-            <span
-              className='shrink-0 rounded-full px-2 py-0.5 text-body-2xs font-bold tracking-wide text-white'
-              style={{ backgroundColor: theme.accent }}
+        <div className='relative overflow-hidden rounded-b-xl'>
+          {/* bevel rim — 프로젝트 팩과 동일 */}
+          <div
+            className={
+              company.isActive
+                ? 'rounded-[14px] p-[3px] transition-transform duration-200 translate-y-7'
+                : 'rounded-[14px] p-[3px] transition-transform duration-200 group-hover:-translate-y-1 group-active:translate-y-px'
+            }
+            style={{
+              background: `linear-gradient(145deg, ${edgeHi} 0%, ${body} 42%, ${edgeLo} 100%)`,
+            }}
+          >
+            <div
+              className='relative flex aspect-5/6 flex-col overflow-hidden rounded-[11px] px-3 pb-3 pt-2.5'
+              style={{
+                background: `linear-gradient(180deg, ${bodyHi} 0%, ${body} 28%, ${body} 100%)`,
+                boxShadow: company.isActive
+                  ? 'inset 0 3px 8px rgba(0,0,0,0.28), inset 1px 1px 0 rgba(255,255,255,0.08)'
+                  : 'inset 1px 1px 0 rgba(255,255,255,0.18), inset -1px -1px 0 rgba(0,0,0,0.18)',
+              }}
             >
-              WORK {company.orderLabel}
-            </span>
-            <span
-              className='text-right text-avatar font-medium leading-tight tabular-nums'
-              style={{ color: theme.ink }}
-            >
-              {company.period}
-            </span>
-          </div>
+              <div
+                aria-hidden
+                className='mx-auto mb-2 h-1.5 w-8 rounded-sm'
+                style={{
+                  backgroundColor: edgeLo,
+                  boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.12)',
+                }}
+              />
 
-          <div className='relative z-1 mt-2 flex flex-1 flex-col items-center justify-center text-center'>
-            <div className='mb-1.5 flex h-12 w-full items-center justify-center'>
-              {company.logoLabel ? (
-                <span
-                  className='flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold tracking-wide'
-                  style={{ backgroundColor: theme.accent, color: '#fff' }}
-                >
-                  {company.logoLabel}
+              <div className='mb-2 flex items-start justify-between px-0.5'>
+                <div className='flex flex-col leading-none gap-0.5'>
+                  <span className='text-xs font-semibold tracking-wide' style={{ color: ink }}>
+                    JUHEE-OS
+                  </span>
+                  <span
+                    className='text-body-2xs font-medium tracking-[0.08em]'
+                    style={{ color: muted }}
+                  >
+                    WORK CARTRIDGE
+                  </span>
+                </div>
+                <span className='text-avatar font-semibold tabular-nums' style={{ color: muted }}>
+                  {company.orderLabel}
                 </span>
-              ) : company.logoSrc ? (
-                <img
-                  src={company.logoSrc}
-                  alt={`${company.name} 로고`}
-                  className='block max-h-12 max-w-[78%] object-contain drop-shadow-sm'
+              </div>
+
+              {/* recessed label well */}
+              <div
+                className='relative flex flex-1 flex-col rounded-md p-1.5'
+                style={{
+                  backgroundColor: well,
+                  boxShadow:
+                    'inset 0 2px 4px rgba(0,0,0,0.35), inset 0 -1px 0 rgba(255,255,255,0.08)',
+                }}
+              >
+                <div
+                  className='relative flex flex-1 flex-col overflow-hidden rounded-[4px] px-2.5 pb-2 pt-2'
+                  style={{
+                    background: `linear-gradient(165deg, ${theme.labelFrom} 0%, ${theme.labelTo} 100%)`,
+                    boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.4)',
+                  }}
+                >
+                  <div className='pointer-events-none absolute inset-0 opacity-[0.32]' aria-hidden>
+                    <CompanyCartDeco type={theme.deco} />
+                  </div>
+
+                  <div className='relative z-1 flex items-start justify-between gap-2'>
+                    <span
+                      className='shrink-0 rounded-sm px-2 py-0.5 text-body-2xs font-bold tracking-wide text-white'
+                      style={{ backgroundColor: theme.accent }}
+                    >
+                      WORK {company.orderLabel}
+                    </span>
+                    <span
+                      className='text-right text-avatar font-medium leading-tight tabular-nums'
+                      style={{ color: theme.muted }}
+                    >
+                      {company.period}
+                    </span>
+                  </div>
+
+                  <div className='relative z-1 mt-2 flex flex-1 flex-col items-center justify-center text-center'>
+                    <div className='mb-1.5 flex h-12 w-full items-center justify-center'>
+                      {company.logoLabel ? (
+                        <span
+                          className='flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold tracking-wide'
+                          style={{ backgroundColor: theme.accent, color: '#fff' }}
+                        >
+                          {company.logoLabel}
+                        </span>
+                      ) : company.logoSrc ? (
+                        <img
+                          src={company.logoSrc}
+                          alt={`${company.name} 로고`}
+                          className='block max-h-12 max-w-[78%] object-contain drop-shadow-sm'
+                        />
+                      ) : company.logoEmoji ? (
+                        <span className='text-[36px] leading-none drop-shadow-sm'>
+                          {company.logoEmoji}
+                        </span>
+                      ) : (
+                        <span
+                          className='flex h-10 w-10 items-center justify-center rounded-full text-base font-semibold'
+                          style={{ backgroundColor: theme.accentSoft, color: theme.ink }}
+                        >
+                          {company.name.slice(0, 1)}
+                        </span>
+                      )}
+                    </div>
+                    <span
+                      className='text-base font-semibold tracking-tight'
+                      style={{ color: theme.ink }}
+                    >
+                      {company.name}
+                    </span>
+                    {company.description && (
+                      <span className='mt-0.5 text-xs font-normal' style={{ color: theme.muted }}>
+                        {company.description}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {company.isActive && (
+                <div
+                  aria-hidden
+                  className='pointer-events-none absolute inset-x-0 bottom-0 h-14'
+                  style={{
+                    background:
+                      'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.14) 100%)',
+                  }}
                 />
-              ) : company.logoEmoji ? (
-                <span className='text-[36px] leading-none drop-shadow-sm'>{company.logoEmoji}</span>
-              ) : (
-                <span
-                  className='flex h-10 w-10 items-center justify-center rounded-full text-base font-semibold'
-                  style={{ backgroundColor: theme.accentSoft, color: theme.ink }}
-                >
-                  {company.name.slice(0, 1)}
-                </span>
               )}
             </div>
-            <span className='text-base font-semibold tracking-tight' style={{ color: theme.ink }}>
-              {company.name}
-            </span>
-            {company.description && (
-              <span className='mt-0.5 text-xs font-normal text-slate-500'>
-                {company.description}
-              </span>
-            )}
           </div>
+
+          {company.isActive && (
+            <div
+              aria-hidden
+              className='pointer-events-none absolute inset-x-0 bottom-0 z-10 h-4'
+              style={{ boxShadow: 'inset 0 10px 12px rgba(0,0,0,0.16)' }}
+            />
+          )}
         </div>
-
-        {/* top / bottom cartridge notches */}
-        <div
-          aria-hidden
-          className='absolute top-1.5 left-1/2 h-1.25 w-5 -translate-x-1/2 rounded-t-[5px] border border-t-0'
-          style={{ borderColor: plastic.shellShadow }}
-        />
-        <div
-          aria-hidden
-          className='absolute bottom-1.5 left-1/2 h-1.25 w-5 -translate-x-1/2 rounded-b-[5px] border border-b-0'
-          style={{ borderColor: plastic.shellShadow }}
-        />
-
-        {/* soft shade where pack enters the slot */}
-        {company.isActive && (
-          <div
-            aria-hidden
-            className='pointer-events-none absolute inset-x-0 bottom-0 h-14'
-            style={{
-              background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.14) 100%)',
-            }}
-          />
-        )}
-      </div>
-
-      {/* slot rim shadow — clips the sunk edge without a muddy box */}
-      {company.isActive && (
-        <div
-          aria-hidden
-          className='pointer-events-none absolute inset-x-0 bottom-0 z-10 h-4'
-          style={{
-            boxShadow: 'inset 0 10px 12px rgba(0,0,0,0.16)',
-          }}
-        />
-      )}
-      </div>
       </div>
     </button>
   );
