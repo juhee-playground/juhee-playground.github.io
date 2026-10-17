@@ -1,0 +1,301 @@
+const e=[{content:"복잡한 워크플로우·상태를 직관적인 인터페이스로 설계하고 구현",bold:"직관적인 인터페이스"},{content:"React·TypeScript로 아키텍처와 데이터 흐름의 책임을 명확히 하는 데 집중",bold:"아키텍처와 데이터 흐름"},{content:"현상 수정이 아니라 원인을 분석하고, 유지보수·확장까지 고려해 개선",bold:"유지보수·확장"},{content:"초기 스타트업에서 제품 사용성과 지속 가능한 개발 프로세스를 함께 구축",bold:"지속 가능한 개발 프로세스"}],t={title:"Product-Oriented Frontend Engineer",summary:"사용자 경험과 기술적 완성도 사이를 균형 있게 다루는 프론트엔드. 복잡한 인터랙션과 상태를 시스템으로 정리하고, 기능 구현을 넘어 아키텍처·데이터 흐름·정보 구조까지 책임진다."},l=[{order:{id:"Bl%5E%5C",type:"number",number:3},period:{id:"JUrG",type:"date",date:null},type:{id:"L_q%3B",type:"rich_text",rich_text:[{type:"text",text:{content:"T",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"T",href:null}]},year:{id:"PbKf",type:"number",number:2019},description:{id:"fs%7C%3D",type:"rich_text",rich_text:[{type:"text",text:{content:"좋아하는 일을 자기개발로 발전시키기 위한 토이 프로젝트.",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"좋아하는 일을 자기개발로 발전시키기 위한 토이 프로젝트.",href:null}]},scale:{id:"lJzh",type:"rich_text",rich_text:[{type:"text",text:{content:"-",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"-",href:null}]},role:{id:"oB_p",type:"select",select:{id:"acd6def7-0b70-4dc1-aacf-f510c864ed57",name:"개발자",color:"purple"}},department:{id:"q%3A~g",type:"rich_text",rich_text:[{type:"text",text:{content:"-",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"-",href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"토이프로젝트",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"토이프로젝트",href:null}]},id:"02458f34-9632-4ee9-9363-ec9b4dd9af2f"},{order:{id:"Bl%5E%5C",type:"number",number:1},period:{id:"JUrG",type:"date",date:{start:"2018-07-02",end:"2022-11-30",time_zone:null}},type:{id:"L_q%3B",type:"rich_text",rich_text:[{type:"text",text:{content:"C",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"C",href:null}]},year:{id:"PbKf",type:"number",number:2016},description:{id:"fs%7C%3D",type:"rich_text",rich_text:[{type:"text",text:{content:`- 웨어러블 EPTS를 기반으로 스포츠 데이터를 분석하여 전문가를 위한 데이터 시각화 서비스를 제공.
+- 다양한 국가의 고객들에게 서비스를 제공하며, 특히 축구팀의 경기력 향상을 위해 다양한 각도에서 데이터를 분석하고 제공.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`- 웨어러블 EPTS를 기반으로 스포츠 데이터를 분석하여 전문가를 위한 데이터 시각화 서비스를 제공.
+- 다양한 국가의 고객들에게 서비스를 제공하며, 특히 축구팀의 경기력 향상을 위해 다양한 각도에서 데이터를 분석하고 제공.`,href:null}]},scale:{id:"lJzh",type:"rich_text",rich_text:[{type:"text",text:{content:"30",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"30",href:null}]},role:{id:"oB_p",type:"select",select:{id:"LgOg",name:"프런트 개발자",color:"green"}},department:{id:"q%3A~g",type:"rich_text",rich_text:[{type:"text",text:{content:"소프트웨어팀",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"소프트웨어팀",href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"핏투게더",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"핏투게더",href:null}]},id:"ac39715c-45de-4b35-9daa-30cf52a10664"},{order:{id:"Bl%5E%5C",type:"number",number:2},period:{id:"JUrG",type:"date",date:{start:"2017-03-01",end:"2018-02-28",time_zone:null}},type:{id:"L_q%3B",type:"rich_text",rich_text:[{type:"text",text:{content:"C",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"C",href:null}]},year:{id:"PbKf",type:"number",number:2014},description:{id:"fs%7C%3D",type:"rich_text",rich_text:[{type:"text",text:{content:"운영/ 자문/ 펀딩 플랫폼을 제공하며 브랜딩관련 유통 사업을 주요 서비스로 운영.",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"운영/ 자문/ 펀딩 플랫폼을 제공하며 브랜딩관련 유통 사업을 주요 서비스로 운영.",href:null}]},scale:{id:"lJzh",type:"rich_text",rich_text:[{type:"text",text:{content:"20",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"20",href:null}]},role:{id:"oB_p",type:"select",select:{id:"UXQP",name:"웹 개발자",color:"yellow"}},department:{id:"q%3A~g",type:"rich_text",rich_text:[{type:"text",text:{content:"소프트웨어팀",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"소프트웨어팀",href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"와이유파트너스",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"와이유파트너스",href:null}]},id:"f194e7b4-3174-4fd2-8dfc-17ea186dd8ed"}],n=[{details:{id:"%3ApdX",type:"rich_text",rich_text:[]},period:{id:"Bhjf",type:"date",date:{start:"2022-10-03",end:"2022-12-12",time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"ac39715c-45de-4b35-9daa-30cf52a10664"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[{id:"43af207d-af4a-44a9-944b-fbffaa13360c",name:"안정적 서비스 운영지원",color:"blue"},{id:"a8c73797-8766-4129-9d0e-763d91765918",name:"재사용 가능한 UI 생성",color:"blue"},{id:"7ece856a-346c-4a85-ae5c-c5de1149234d",name:"마이그레이션",color:"red"}]},url:{id:"KBJJ",type:"url",url:"-"},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"서비스 개발",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"서비스 개발",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"자사 서비스의 Vue2 서비스 종료를 해결하기 위한 마이그레이션 작업",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"자사 서비스의 Vue2 서비스 종료를 해결하기 위한 마이그레이션 작업",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:`•Javascript 코드를 Typescript로 변환하여 타입 안정성을 확보하고, 코드 품질을 향상. 이를 통해 버그 발생률을 낮춤.
+• Vue에서 React로의 마이그레이션을 준비하며, 기존 Vue 컴포넌트를 React로 변환하고, 최적의 성능을 위한 초기 설정을 완료.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`•Javascript 코드를 Typescript로 변환하여 타입 안정성을 확보하고, 코드 품질을 향상. 이를 통해 버그 발생률을 낮춤.
+• Vue에서 React로의 마이그레이션을 준비하며, 기존 Vue 컴포넌트를 React로 변환하고, 최적의 성능을 위한 초기 설정을 완료.`,href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:`•Javascript 코드를 Typescript로 변환하여 타입 안정성을 확보하고, 코드 품질을 향상. 이를 통해 버그 발생률을 낮춤.
+• Vue에서 React로의 마이그레이션을 준비하며, 기존 Vue 컴포넌트를 React로 변환하고, 최적의 성능을 위한 초기 설정을 완료.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`•Javascript 코드를 Typescript로 변환하여 타입 안정성을 확보하고, 코드 품질을 향상. 이를 통해 버그 발생률을 낮춤.
+• Vue에서 React로의 마이그레이션을 준비하며, 기존 Vue 컴포넌트를 React로 변환하고, 최적의 성능을 위한 초기 설정을 완료.`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:30},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:`문제사항
+`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`문제사항
+`,href:null},{type:"text",text:{content:`• 자사 서비스에서 사용하던 Vue의 서비스 지원 종료로 인한 대체 작업이 필요.
+• 메인 언어와 함께 기존에 사용하고 있던 javascript도 typescript로 변경하기로 결정.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 자사 서비스에서 사용하던 Vue의 서비스 지원 종료로 인한 대체 작업이 필요.
+• 메인 언어와 함께 기존에 사용하고 있던 javascript도 typescript로 변경하기로 결정.`,href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[{id:"254c4a7a-4c56-49d3-a7f2-92635f9b60ee",name:"TypeScript",color:"yellow"},{id:"32998093-c710-4210-81d1-509df0e0d654",name:"Redux",color:"brown"},{id:"13fb0684-7bee-4ee6-8de0-a8e5258b14bf",name:"Scss",color:"pink"},{id:"749ec31e-d31e-4f1f-9d01-535f1b580b8a",name:"D3",color:"gray"}]},numberOfParticipants:{id:"u%60lW",type:"number",number:3},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"af40e4bf-c112-4451-bb62-2897117b04d2",name:"React",color:"blue"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:`• Vue3로 넘어갈지 React를 사용할지 팀원들과 고민했을 때 충원 인력풀이 풍부하고 선택의 폭이 넓은 라이브러리 등의 이점으로 React로 변경하기로 결정.
+• 협업하기 쉽고 좀 더 명확한 타입으로 코드의 견고함을 높이며 잦은 수정으로 인한 오류를 줄이기 위해 typescript 로 변경하기로 결정.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• Vue3로 넘어갈지 React를 사용할지 팀원들과 고민했을 때 충원 인력풀이 풍부하고 선택의 폭이 넓은 라이브러리 등의 이점으로 React로 변경하기로 결정.
+• 협업하기 쉽고 좀 더 명확한 타입으로 코드의 견고함을 높이며 잦은 수정으로 인한 오류를 줄이기 위해 typescript 로 변경하기로 결정.`,href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"자사 서비스 React 마이그레이션",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"자사 서비스 React 마이그레이션",href:null}]},id:"c45bc8dc-95c8-49e0-99d3-d33c9ae46195"},{details:{id:"%3ApdX",type:"rich_text",rich_text:[]},period:{id:"Bhjf",type:"date",date:{start:"2020-09-01",end:"2022-11-30",time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"ac39715c-45de-4b35-9daa-30cf52a10664"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[{id:"cbd78716-cfe1-495b-8ebf-abe064436fd1",name:"데이터 시각화",color:"brown"},{id:"c4a157e2-6e3d-4aa4-a0b0-6e3f5921c2da",name:"D3",color:"yellow"},{id:"173be1dc-beff-4d27-b781-e3be7a0a2a71",name:"chart",color:"red"},{id:"a42ba1db-698e-40f3-a0fd-f9b7d1968c2d",name:"pdf기능",color:"purple"},{id:"69f7e944-b37a-4f61-a047-3c92a6eefe0c",name:"UX 개선기획",color:"pink"},{id:"f74ca7d6-745e-4ef4-8e1b-5c1d0eca605e",name:"리펙토링",color:"gray"}]},url:{id:"KBJJ",type:"url",url:"https://dino100.notion.site/OHCOACH-Ultimate-fd838cf131fc4d718d2b4d89e7d42dd8"},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"서비스 개발, 고도화 및 유지보수",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"서비스 개발, 고도화 및 유지보수",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"축구 데이터를 시각화하여 데이터를 효과적으로 전달하고 업무 효율을 높이기 위한 서비스를 개발.",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"축구 데이터를 시각화하여 데이터를 효과적으로 전달하고 업무 효율을 높이기 위한 서비스를 개발.",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:`• 서비스를 분리하여 필요한 기능들에 맞게 사이트를 관리할 수 있게됨.
+• 경기의 데이터를 요약하여 PDF 리포트 기능으로 출력할 수 있게 하여 감독들에게 간소화된 보고 기능을 할 수 있도록 도움.
+• 사용자들에게 더 편리하고 효과적으로 데이터를 전달하고 사용성을 극대화 시킴.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 서비스를 분리하여 필요한 기능들에 맞게 사이트를 관리할 수 있게됨.
+• 경기의 데이터를 요약하여 PDF 리포트 기능으로 출력할 수 있게 하여 감독들에게 간소화된 보고 기능을 할 수 있도록 도움.
+• 사용자들에게 더 편리하고 효과적으로 데이터를 전달하고 사용성을 극대화 시킴.`,href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:`• 기존 PHP 코드를 Vue.js 프로젝트로 전환하는 작업에 참여, 프로젝트 초기 설정 및 환경 구축에 기여.
+• Highcharts 및 D3.js를 활용한 데이터 시각화 구현, 복잡한 데이터 세트를 직관적으로 표현하여 사용자 경험을 향상.
+•  PDF 다운로드 기능을 구현하여 사용자들이 리포트를 쉽게 다운로드할 수 있도록 개선.
+• 초기 Vue.js 코드의 품질을 향상시키기 위해 반복문을 map 함수로 리팩토링, 코드 가독성과 유지보수성을 크게 개선
+• 데모 기능을 구현하고 기획팀에 제안하여 서비스 품질을 향상, 기획 단계에서부터 개발자 의견을 반영하여 더 나은 결과 도출.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 기존 PHP 코드를 Vue.js 프로젝트로 전환하는 작업에 참여, 프로젝트 초기 설정 및 환경 구축에 기여.
+• Highcharts 및 D3.js를 활용한 데이터 시각화 구현, 복잡한 데이터 세트를 직관적으로 표현하여 사용자 경험을 향상.
+•  PDF 다운로드 기능을 구현하여 사용자들이 리포트를 쉽게 다운로드할 수 있도록 개선.
+• 초기 Vue.js 코드의 품질을 향상시키기 위해 반복문을 map 함수로 리팩토링, 코드 가독성과 유지보수성을 크게 개선
+• 데모 기능을 구현하고 기획팀에 제안하여 서비스 품질을 향상, 기획 단계에서부터 개발자 의견을 반영하여 더 나은 결과 도출.`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:50},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:`문제사항
+`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`문제사항
+`,href:null},{type:"text",text:{content:"Business",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Business",href:null},{type:"text",text:{content:`
+• 서비스에 관리자페이지와 사용자 페이지가 같이 들어 있어 두개의 역활을 한 서비스에서 관리하는 것이 UI적으로 또는 기능적으로 불편한 부분이 많아 두개를 분리하기로 결정.
+• 사용자에게 불편한 부분들과 필요한 기능들을 발견하게 됨.
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 서비스에 관리자페이지와 사용자 페이지가 같이 들어 있어 두개의 역활을 한 서비스에서 관리하는 것이 UI적으로 또는 기능적으로 불편한 부분이 많아 두개를 분리하기로 결정.
+• 사용자에게 불편한 부분들과 필요한 기능들을 발견하게 됨.
+`,href:null},{type:"text",text:{content:"Tech",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Tech",href:null},{type:"text",text:{content:`
+• 라이브러리에서 구현할 수 없는 차트들이 생김.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 라이브러리에서 구현할 수 없는 차트들이 생김.`,href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[{id:"f8094f60-d8c1-438a-be6c-7698c392804b",name:"Javascript",color:"yellow"},{id:"99183b8f-896b-470f-a159-2cbb24333280",name:"Vuex",color:"brown"},{id:"13fb0684-7bee-4ee6-8de0-a8e5258b14bf",name:"Scss",color:"pink"},{id:"04e253fa-81d3-452d-979d-0599ddf68d7b",name:"Highcharts.js",color:"gray"},{id:"749ec31e-d31e-4f1f-9d01-535f1b580b8a",name:"D3",color:"gray"},{id:"d1d01b78-51c2-4595-8b43-80420bea5729",name:"GoogleMap API",color:"gray"},{id:"b98ab924-b278-4fa5-a203-9aaf964679be",name:"Storybook",color:"pink"}]},numberOfParticipants:{id:"u%60lW",type:"number",number:3},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 프로젝트 기초
+2. 데이터 시각화
+3. pdf 리포트 기능
+4. 코드 품질최적화
+5. 기획 역제안 `,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 프로젝트 기초
+2. 데이터 시각화
+3. pdf 리포트 기능
+4. 코드 품질최적화
+5. 기획 역제안 `,href:null}]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"877802a8-8154-409d-a0e0-f10ac71c0b8c",name:"Vue",color:"green"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:`• admin페이지와 서비스 페이지를 분리하기로 결정한 후 접근하기 쉽고 빨리 배울 수 있도록 개발언어를 Vue로 결정.
+• 필요한 기능을 파악한 후 최대한 새로운 기능을 빨리 사용하기 위해 최소한의 기능으로 프린트 pdf 기능을 붙여서 리포트 기능 개발.
+• 라이브러리를 커스텀해서 사용하기 난해한 차트들이 많아져서 구현할 때 제약이 없고 요구사항에 맞춰서 차트들을 구현하기 위해 D3를 사용`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• admin페이지와 서비스 페이지를 분리하기로 결정한 후 접근하기 쉽고 빨리 배울 수 있도록 개발언어를 Vue로 결정.
+• 필요한 기능을 파악한 후 최대한 새로운 기능을 빨리 사용하기 위해 최소한의 기능으로 프린트 pdf 기능을 붙여서 리포트 기능 개발.
+• 라이브러리를 커스텀해서 사용하기 난해한 차트들이 많아져서 구현할 때 제약이 없고 요구사항에 맞춰서 차트들을 구현하기 위해 D3를 사용`,href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"OHCOACH Ultimate(자사서비스)",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"OHCOACH Ultimate(자사서비스)",href:null}]},id:"fd838cf1-31fc-4d71-8d2b-4d89e7d42dd8"},{details:{id:"%3ApdX",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 기본 서비스 페이지를 개선하면서 관리자 전용 페이지를 새로 개발.
+2. 소스 관리, 배포, 운영을 담당하여 프로젝트를 관리.
+3. 다양한 맞춤형 문서 다운로드 기능(출고, 입고, 검수 등)을 구현하여 업무 효율성을 높임.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 기본 서비스 페이지를 개선하면서 관리자 전용 페이지를 새로 개발.
+2. 소스 관리, 배포, 운영을 담당하여 프로젝트를 관리.
+3. 다양한 맞춤형 문서 다운로드 기능(출고, 입고, 검수 등)을 구현하여 업무 효율성을 높임.`,href:null}]},period:{id:"Bhjf",type:"date",date:{start:"2020-01-02",end:"2021-03-31",time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"ac39715c-45de-4b35-9daa-30cf52a10664"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[{id:"3831288c-76f4-45fe-90e2-172da51b7123",name:"배포 및 운영",color:"orange"},{id:"41b4e2d1-98db-454c-a7b4-3402effd477a",name:"문서 다운로드 기능",color:"orange"},{id:"73da21d9-ffb4-43e8-8220-6b149fefcf92",name:"GoogleMap API 활용",color:"default"}]},url:{id:"KBJJ",type:"url",url:"https://dino100.notion.site/OHCOACH-Admin-19c653a2c55e4ff7a3ae601aef929362?pvs=4"},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"서비스 배포 및 운영, 기능 개선",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"서비스 배포 및 운영, 기능 개선",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"기본 서비스 페이지와 관리자 페이지를 분리하여 관리자 전용 페이지를 개발.",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"기본 서비스 페이지와 관리자 페이지를 분리하여 관리자 전용 페이지를 개발.",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:`• 자동화된 배포 프로세스를 도입하여 배포 시간을 단축하며 오류 발생률도 낮춤.
+• 다양한 커스텀 문서 다운로드 기능을 활용하여, 퍼포먼스팀의 업무 처리 속도를 40% 향상.
+• Google Map API를 활용하여 지리적 데이터를 시각화하고, 사용자 경험을 개선.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 자동화된 배포 프로세스를 도입하여 배포 시간을 단축하며 오류 발생률도 낮춤.
+• 다양한 커스텀 문서 다운로드 기능을 활용하여, 퍼포먼스팀의 업무 처리 속도를 40% 향상.
+• Google Map API를 활용하여 지리적 데이터를 시각화하고, 사용자 경험을 개선.`,href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:`• GitHub Actions를 사용하여 CI/CD 파이프라인을 구축, 자동화된 배포 프로세스를 도입하여 배포 시간을 50% 단축.
+• 관리자 페이지에 출고, 입고, 검수 등 다양한 커스텀 문서 다운로드 기능을 구현하여, 업무 처리 속도를 40% 향상.
+• Google Map API를 활용하여 지리적 데이터를 시각화하고, 사용자 경험을 개선.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• GitHub Actions를 사용하여 CI/CD 파이프라인을 구축, 자동화된 배포 프로세스를 도입하여 배포 시간을 50% 단축.
+• 관리자 페이지에 출고, 입고, 검수 등 다양한 커스텀 문서 다운로드 기능을 구현하여, 업무 처리 속도를 40% 향상.
+• Google Map API를 활용하여 지리적 데이터를 시각화하고, 사용자 경험을 개선.`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:80},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:`문제사항
+`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`문제사항
+`,href:null},{type:"text",text:{content:"Business",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Business",href:null},{type:"text",text:{content:`
+• 입고, 출고, 검수 등의 문서 처리가 수동으로 이루어져 많은 시간이 소요되며, 문서 오류 발생률 높고 헷갈리는 일이 빈번하게 발생.
+• 축구장을 자유롭게 사용자가 설정하기 위해 구글 MAP API를 사용하기로 결정.
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 입고, 출고, 검수 등의 문서 처리가 수동으로 이루어져 많은 시간이 소요되며, 문서 오류 발생률 높고 헷갈리는 일이 빈번하게 발생.
+• 축구장을 자유롭게 사용자가 설정하기 위해 구글 MAP API를 사용하기로 결정.
+`,href:null},{type:"text",text:{content:"Tech",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Tech",href:null},{type:"text",text:{content:`
+• 배포에 쏟는 시간을 줄이고 사람의 실수를 줄이기 위해 자동 배포 프로세스를 도입하기로 결정.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 배포에 쏟는 시간을 줄이고 사람의 실수를 줄이기 위해 자동 배포 프로세스를 도입하기로 결정.`,href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[{id:"f8094f60-d8c1-438a-be6c-7698c392804b",name:"Javascript",color:"yellow"},{id:"99183b8f-896b-470f-a159-2cbb24333280",name:"Vuex",color:"brown"},{id:"d1d01b78-51c2-4595-8b43-80420bea5729",name:"GoogleMap API",color:"gray"}]},numberOfParticipants:{id:"u%60lW",type:"number",number:2},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 서비스 페이지 개선
+2. 프로젝트 관리
+3. 효율성 향상`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 서비스 페이지 개선
+2. 프로젝트 관리
+3. 효율성 향상`,href:null}]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"877802a8-8154-409d-a0e0-f10ac71c0b8c",name:"Vue",color:"green"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:`• 다양한 문서를 작성해야 하는  퍼포먼스팀의 불편함을 개선 하기 위해 출고를 하는 과정 속에 문서를 다운로드 하는 과정을 추가하여 검수를 하고 문서도 작성할 수 있도록 수정.
+• Google Map API 에서 Polygon 기능을 사용하여 사용자가 쉽게 정보를 파악하고 자신이 원하는 곳에 경기장을 입력할 수 있는 UI로 구현.
+• GitHub Actions을 선택한 이유는 추가적인 외부 서비스 연동 없이도 사용할 수 있던 부분이 가장 컸고 한 번 적용하고 싶었던 부분이라 선택하였습니다.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 다양한 문서를 작성해야 하는  퍼포먼스팀의 불편함을 개선 하기 위해 출고를 하는 과정 속에 문서를 다운로드 하는 과정을 추가하여 검수를 하고 문서도 작성할 수 있도록 수정.
+• Google Map API 에서 Polygon 기능을 사용하여 사용자가 쉽게 정보를 파악하고 자신이 원하는 곳에 경기장을 입력할 수 있는 UI로 구현.
+• GitHub Actions을 선택한 이유는 추가적인 외부 서비스 연동 없이도 사용할 수 있던 부분이 가장 컸고 한 번 적용하고 싶었던 부분이라 선택하였습니다.`,href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"OHCOACH Admin(백오피스)",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"OHCOACH Admin(백오피스)",href:null}]},id:"19c653a2-c55e-4ff7-a3ae-601aef929362"},{details:{id:"%3ApdX",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 경영지원팀 지원팀의 효율적인 업무 처리를 위해 최적화된 ERP 모듈을 개발.
+2. Google 스프레드시트를 비즈니스 관리팀의 데이터베이스로 사용하여 비즈니스 유용성을 향상.
+3. 출석모듈을 통해 근태처리 및 근무기록 관리에 기여.
+4. QR코드 대량생산 기능을 구현하여 업무 효율성을 상승.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 경영지원팀 지원팀의 효율적인 업무 처리를 위해 최적화된 ERP 모듈을 개발.
+2. Google 스프레드시트를 비즈니스 관리팀의 데이터베이스로 사용하여 비즈니스 유용성을 향상.
+3. 출석모듈을 통해 근태처리 및 근무기록 관리에 기여.
+4. QR코드 대량생산 기능을 구현하여 업무 효율성을 상승.`,href:null}]},period:{id:"Bhjf",type:"date",date:{start:"2019-01-02",end:"2019-04-30",time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"ac39715c-45de-4b35-9daa-30cf52a10664"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[{id:"1e540f1b-5b10-4f29-aab4-9bfddec37ba0",name:"사내 최적화 ERP 모듈 개발",color:"pink"},{id:"52b02ec3-e415-49f6-97e6-0c3029fafcd0",name:"구글 시트 API",color:"blue"},{id:"04ea9782-1771-4c0e-94bf-58328eaa3c9e",name:"슬랙 웹 훅",color:"default"}]},url:{id:"KBJJ",type:"url",url:"https://dino100.notion.site/ERP-3e2c2b03001f4989b54164f087c9f269"},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"서비스 배포 및 운영",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"서비스 배포 및 운영",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"타사 서비스를 대체하기 위해 회사에 맞춤형으로 개발된 사내 시스템을 구축. 이 시스템은 구매, 근태, 생산, 출고 등 다양한 모듈을 포함.",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"타사 서비스를 대체하기 위해 회사에 맞춤형으로 개발된 사내 시스템을 구축. 이 시스템은 구매, 근태, 생산, 출고 등 다양한 모듈을 포함.",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:`• 데이터베이스를 구글 시트 API로 관리하여 경영관리 팀의 업무 사용성을 향상.
+• 근태 모듈을 작업을 통해 출퇴근 처리 및 업무 기록을 통한 분기별 통계 작성.
+• QR 코드 대량 생산 기능 작업으로 업무 효율성을 80% 이상 향상.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 데이터베이스를 구글 시트 API로 관리하여 경영관리 팀의 업무 사용성을 향상.
+• 근태 모듈을 작업을 통해 출퇴근 처리 및 업무 기록을 통한 분기별 통계 작성.
+• QR 코드 대량 생산 기능 작업으로 업무 효율성을 80% 이상 향상.`,href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:`• 경영지원팀을 지원하기 위해 사내 최적화 ERP 모듈을 개발.
+• 경영관리 팀의 업무 사용성을 향상을 위해 데이터베이스를 구글 시트 API로 관리.
+• 슬랙 웹훅을 이용한 출퇴근 처리 및 업무 기록 관리를 위한 근태 모듈 개발. 
+• 업무 비효율성 개선을 위한 QR 코드 대량 생산 기능 작업 개발.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 경영지원팀을 지원하기 위해 사내 최적화 ERP 모듈을 개발.
+• 경영관리 팀의 업무 사용성을 향상을 위해 데이터베이스를 구글 시트 API로 관리.
+• 슬랙 웹훅을 이용한 출퇴근 처리 및 업무 기록 관리를 위한 근태 모듈 개발. 
+• 업무 비효율성 개선을 위한 QR 코드 대량 생산 기능 작업 개발.`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:80},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:`문제사항
+`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`문제사항
+`,href:null},{type:"text",text:{content:"Business",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Business",href:null},{type:"text",text:{content:`
+• 기존의 경영지원 시스템이 통합되지 않아 데이터 접근성과 상호간의 처리 효율성이 낮음.
+• 직원들의 출퇴근 기록과 업무 정리를 위한 관리를 한 번에 해주는 서비스가 없음.
+• 기기에 부착될 QR코드에 기기의 시리얼 넘버를 규칙적으로 붙이기 위한 방법 논의.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 기존의 경영지원 시스템이 통합되지 않아 데이터 접근성과 상호간의 처리 효율성이 낮음.
+• 직원들의 출퇴근 기록과 업무 정리를 위한 관리를 한 번에 해주는 서비스가 없음.
+• 기기에 부착될 QR코드에 기기의 시리얼 넘버를 규칙적으로 붙이기 위한 방법 논의.`,href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[{id:"ba3b3815-dc62-4aee-bec5-b6337e235417",name:"GoogleSheet API",color:"gray"}]},numberOfParticipants:{id:"u%60lW",type:"number",number:2},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[{type:"text",text:{content:"1. ERP 모듈 개발",link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"1. ERP 모듈 개발",href:null},{type:"text",text:{content:`
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+`,href:null},{type:"text",text:{content:`2. 데이터베이스 통합
+3. 출근 모듈`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`2. 데이터베이스 통합
+3. 출근 모듈`,href:null},{type:"text",text:{content:`
+4. `,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+4. `,href:null},{type:"text",text:{content:"효율성 향상",link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"효율성 향상",href:null}]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"877802a8-8154-409d-a0e0-f10ac71c0b8c",name:"Vue",color:"green"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:`• 직원들이 필요한 정보를 쉽게 입력할 수 있도록 사용자 인터페이스 페이지 구현. 경영지원팀이 쉽게 조회할 수 있도록 구글 엑셀시트를 사용.
+• 슬랙 웹 훅과 Zapier를 사용하여 출퇴근 기록을 입력되게 하여 정보가 공유되도록 자동화 시킴.
+• QR 코드를 활용하여 자산 추적 및 검증 과정을 자동화하기 위해 QR 코드 생성 라이브러리를 통해 대량의 QR 코드를 자동으로 생성 후 이미지 다운로드.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 직원들이 필요한 정보를 쉽게 입력할 수 있도록 사용자 인터페이스 페이지 구현. 경영지원팀이 쉽게 조회할 수 있도록 구글 엑셀시트를 사용.
+• 슬랙 웹 훅과 Zapier를 사용하여 출퇴근 기록을 입력되게 하여 정보가 공유되도록 자동화 시킴.
+• QR 코드를 활용하여 자산 추적 및 검증 과정을 자동화하기 위해 QR 코드 생성 라이브러리를 통해 대량의 QR 코드를 자동으로 생성 후 이미지 다운로드.`,href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"사내 ERP 시스템",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"사내 ERP 시스템",href:null}]},id:"3e2c2b03-001f-4989-b541-64f087c9f269"},{details:{id:"%3ApdX",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 레거시 코드를 리팩터링하여 가독성과 유지 관리성을 향상시키는 노력을 주도.
+2. 프로젝트 역량을 선보일 수 있는 전문 차트를 통합하여 데모 페이지 개발.
+3. 차트 생성 방법을 라이브러리 기반 접근 방식으로 전환하여 팀 구성원이 더 쉽게 유지 관리 용이.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 레거시 코드를 리팩터링하여 가독성과 유지 관리성을 향상시키는 노력을 주도.
+2. 프로젝트 역량을 선보일 수 있는 전문 차트를 통합하여 데모 페이지 개발.
+3. 차트 생성 방법을 라이브러리 기반 접근 방식으로 전환하여 팀 구성원이 더 쉽게 유지 관리 용이.`,href:null}]},period:{id:"Bhjf",type:"date",date:{start:"2018-07-02",end:"2019-12-31",time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"ac39715c-45de-4b35-9daa-30cf52a10664"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[{id:"f74ca7d6-745e-4ef4-8e1b-5c1d0eca605e",name:"리펙토링",color:"gray"},{id:"3454de94-4c07-4193-8450-8bb5f66d474b",name:"다양한 차트 구현",color:"brown"},{id:"43af207d-af4a-44a9-944b-fbffaa13360c",name:"안정적 서비스 운영지원",color:"blue"}]},url:{id:"KBJJ",type:"url",url:"https://dino100.notion.site/OHCOACH-Essential-d82674764f3e40f6818aaab191950c69"},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"기능개발",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"기능개발",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"자사 서비스의 초기 버전으로, 관리자 메뉴와 사용자 메뉴가 통합된 형태로 제공.",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"자사 서비스의 초기 버전으로, 관리자 메뉴와 사용자 메뉴가 통합된 형태로 제공.",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:` • 전시회 출품을 위해 고도화된 데모 페이지를 개발하여 전시회에서 긍정적인 반응을 얻으며, 잠재 고객들의 관심을 끌어 올림.
+• 리펙토링으로 인한 팀의 개발 속도 향상.
+• 라이브러리 사용으로 인해 쉽게 유지보수할 수 있도록 수정.
+					
+				
+	
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:` • 전시회 출품을 위해 고도화된 데모 페이지를 개발하여 전시회에서 긍정적인 반응을 얻으며, 잠재 고객들의 관심을 끌어 올림.
+• 리펙토링으로 인한 팀의 개발 속도 향상.
+• 라이브러리 사용으로 인해 쉽게 유지보수할 수 있도록 수정.
+					
+				
+	
+`,href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:` • 전시회 출품을 위해 고도화된 데모 페이지를 개발하여 전시회에서 긍정적인 반응을 얻으며, 잠재 고객들의 관심을 끌어 올림.
+• 리펙토링으로 인한 팀의 개발 속도 향상.
+• 라이브러리 사용으로 인해 쉽게 유지보수할 수 있도록 수정.
+					
+				
+	
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:` • 전시회 출품을 위해 고도화된 데모 페이지를 개발하여 전시회에서 긍정적인 반응을 얻으며, 잠재 고객들의 관심을 끌어 올림.
+• 리펙토링으로 인한 팀의 개발 속도 향상.
+• 라이브러리 사용으로 인해 쉽게 유지보수할 수 있도록 수정.
+					
+				
+	
+`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:50},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:"문제사항",link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"문제사항",href:null},{type:"text",text:{content:`
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+`,href:null},{type:"text",text:{content:"Business",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Business",href:null},{type:"text",text:{content:`
+• 전시회에 출품하기 위한 데모페이지 개발
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 전시회에 출품하기 위한 데모페이지 개발
+`,href:null},{type:"text",text:{content:"Tech",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Tech",href:null},{type:"text",text:{content:`
+• 가독성이 떨어지는 레거시 코드 리펙토링 수행
+• 아무나 수정하기 쉽지 않은 코드를 누구나 유지보수할 수 있도록 라이브러리를 통한 개발.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 가독성이 떨어지는 레거시 코드 리펙토링 수행
+• 아무나 수정하기 쉽지 않은 코드를 누구나 유지보수할 수 있도록 라이브러리를 통한 개발.`,href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[{id:"04e253fa-81d3-452d-979d-0599ddf68d7b",name:"Highcharts.js",color:"gray"},{id:"07714c07-815c-4289-8206-c25e388edfec",name:"MySQL",color:"purple"}]},numberOfParticipants:{id:"u%60lW",type:"number",number:2},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 코드 리팩토링
+2. 데모 페이지 개발
+3. 차트 라이브러리 적용`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 코드 리팩토링
+2. 데모 페이지 개발
+3. 차트 라이브러리 적용`,href:null}]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"5768898a-63ef-47b2-ba46-ec949b014307",name:"php",color:"purple"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:`• 가독성이 떨어지는 애매한 변수명을 의미 있는 변수명으로 고치고 lalabel과 같은 프레임워크 사용할지 고민 후, v2 버전출시로 인해 리펙토링만 하기로 결정.
+• 태그로 만들어진 차트를 라이브러리 사용하기로 결정. 여러가지 차트 라이브러리 고민, google chart api, chart.js, highcharts.js 등 조사 후 좀 더 다양한 차트를 구현할 수 있는 highcharts.js 사용하기로 결정.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 가독성이 떨어지는 애매한 변수명을 의미 있는 변수명으로 고치고 lalabel과 같은 프레임워크 사용할지 고민 후, v2 버전출시로 인해 리펙토링만 하기로 결정.
+• 태그로 만들어진 차트를 라이브러리 사용하기로 결정. 여러가지 차트 라이브러리 고민, google chart api, chart.js, highcharts.js 등 조사 후 좀 더 다양한 차트를 구현할 수 있는 highcharts.js 사용하기로 결정.`,href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"OHCOACH Essential",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"OHCOACH Essential",href:null}]},id:"d8267476-4f3e-40f6-818a-aab191950c69"},{details:{id:"%3ApdX",type:"rich_text",rich_text:[]},period:{id:"Bhjf",type:"date",date:{start:"2017-05-01",end:"2018-02-28",time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"f194e7b4-3174-4fd2-8dfc-17ea186dd8ed"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[{id:"9b3a7198-6cc0-4fa9-9808-67c690d74d70",name:"UI/UX개선",color:"orange"},{id:"43af207d-af4a-44a9-944b-fbffaa13360c",name:"안정적 서비스 운영지원",color:"blue"}]},url:{id:"KBJJ",type:"url",url:null},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"기능개발",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"기능개발",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"자사 웹 쇼핑몰",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"자사 웹 쇼핑몰",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:`• 자사 쇼핑몰 유지보수.
+• 다양한 장치와 플랫폼에서 사이트를 액세스하고 효율적으로 사용할 수 있도록 반응형 디자인으로 구현.
+• 불필요한 기능을 제거하고 빠르고 직관적인 쇼핑 경험을 촉진하기 위한 사용자 인터페이스 단순화에 초점을 두고 개발.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 자사 쇼핑몰 유지보수.
+• 다양한 장치와 플랫폼에서 사이트를 액세스하고 효율적으로 사용할 수 있도록 반응형 디자인으로 구현.
+• 불필요한 기능을 제거하고 빠르고 직관적인 쇼핑 경험을 촉진하기 위한 사용자 인터페이스 단순화에 초점을 두고 개발.`,href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:`• 자사 쇼핑몰 유지보수.
+• 다양한 장치와 플랫폼에서 사이트를 액세스하고 효율적으로 사용할 수 있도록 반응형 디자인으로 구현.
+• 불필요한 기능을 제거하고 빠르고 직관적인 쇼핑 경험을 촉진하기 위한 사용자 인터페이스 단순화에 초점을 두고 개발.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 자사 쇼핑몰 유지보수.
+• 다양한 장치와 플랫폼에서 사이트를 액세스하고 효율적으로 사용할 수 있도록 반응형 디자인으로 구현.
+• 불필요한 기능을 제거하고 빠르고 직관적인 쇼핑 경험을 촉진하기 위한 사용자 인터페이스 단순화에 초점을 두고 개발.`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:100},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:"문제사항",link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"문제사항",href:null},{type:"text",text:{content:`
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+`,href:null},{type:"text",text:{content:"Business",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Business",href:null},{type:"text",text:{content:`
+• 불필요한 기능이 많아 로딩 시간이 길어짐으로 사용자의 사이트 이탈율이 생김.
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 불필요한 기능이 많아 로딩 시간이 길어짐으로 사용자의 사이트 이탈율이 생김.
+`,href:null},{type:"text",text:{content:"Tech",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Tech",href:null},{type:"text",text:{content:`
+• 다양한 장치에서 접속할 때 사이트의 레이아웃이 깨지고 사용자 인터페이스가 일관되지 않아 사용자 경험이 저하.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 다양한 장치에서 접속할 때 사이트의 레이아웃이 깨지고 사용자 인터페이스가 일관되지 않아 사용자 경험이 저하.`,href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[]},numberOfParticipants:{id:"u%60lW",type:"number",number:1},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"5768898a-63ef-47b2-ba46-ec949b014307",name:"php",color:"purple"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:`• 사용자 설문조사 분석을 바탕으로 불필요하거나 사용 빈도가 낮은 기능을 제거하여 사용자 인터페이스를 단순화.
+• 다양한 장치에서 테스트 하여 좀 더 일관된 레이아웃과 인터페이스를 제공.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 사용자 설문조사 분석을 바탕으로 불필요하거나 사용 빈도가 낮은 기능을 제거하여 사용자 인터페이스를 단순화.
+• 다양한 장치에서 테스트 하여 좀 더 일관된 레이아웃과 인터페이스를 제공.`,href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"자사 쇼핑몰",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"자사 쇼핑몰",href:null}]},id:"e0c1949b-a3da-4af1-8efc-13261ce4ca9c"},{details:{id:"%3ApdX",type:"rich_text",rich_text:[]},period:{id:"Bhjf",type:"date",date:{start:"2024-01-22",end:null,time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"02458f34-9632-4ee9-9363-ec9b4dd9af2f"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[]},url:{id:"KBJJ",type:"url",url:"https://www.notion.so/dino100/b76d36e7d6574886bf76052cb9ba668e?pvs=4"},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"기획서 작성, 기능개발",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"기획서 작성, 기능개발",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"풋살 대회에서 사용하는 실시간 경기 결과 및 대진표 알림 서비스.",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"풋살 대회에서 사용하는 실시간 경기 결과 및 대진표 알림 서비스.",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:"-",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"-",href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:`• 피그마 사용하여 화면기획서 작성
+• storybook 활용하여 컴포넌트 UI doc 작성.
+• jest 활용하여 컴포넌트 단위테스트 작성.
+• 디자인 시스템 작성하기 위한 기본 밑작업.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 피그마 사용하여 화면기획서 작성
+• storybook 활용하여 컴포넌트 UI doc 작성.
+• jest 활용하여 컴포넌트 단위테스트 작성.
+• 디자인 시스템 작성하기 위한 기본 밑작업.`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:70},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:"-",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"-",href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[{id:"d538e679-289e-4995-beee-01d15c22a34c",name:"StyledComponent",color:"green"},{id:"026e2b10-cd4d-496d-99ed-b5656c5f741e",name:"React-testing-library",color:"blue"},{id:"b98ab924-b278-4fa5-a203-9aaf964679be",name:"Storybook",color:"pink"},{id:"a8685704-6f9f-41bc-a839-8afc51d095c1",name:"ReactQuery",color:"default"},{id:"018a2a7b-cddf-450f-aaf2-536094ddde04",name:"zustand",color:"red"},{id:"c3d50285-3b3c-4936-b540-651ca1812408",name:"NestJS",color:"pink"}]},numberOfParticipants:{id:"u%60lW",type:"number",number:2},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"af40e4bf-c112-4451-bb62-2897117b04d2",name:"React",color:"blue"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:"-",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"-",href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"매치몬",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"매치몬",href:null}]},id:"b76d36e7-d657-4886-bf76-052cb9ba668e"},{details:{id:"%3ApdX",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 강력한 사용자 인증 및 데이터 보안을 보장하기 위해 JWT 토큰을 활용한 보안 로그인 기능을 개발.
+2. 엑셀 파일 업로드, 다운로드 기능을 구현하여 사용자 간 연구데이터를 효율적으로 공유하고 관리.
+3. 재사용 가능한 Form 구성 요소를 생성하고 중복성을 줄이고 향후 업데이트 및 수정을 더 쉽게 함으로써 코드 유지 관리성이 향상.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 강력한 사용자 인증 및 데이터 보안을 보장하기 위해 JWT 토큰을 활용한 보안 로그인 기능을 개발.
+2. 엑셀 파일 업로드, 다운로드 기능을 구현하여 사용자 간 연구데이터를 효율적으로 공유하고 관리.
+3. 재사용 가능한 Form 구성 요소를 생성하고 중복성을 줄이고 향후 업데이트 및 수정을 더 쉽게 함으로써 코드 유지 관리성이 향상.`,href:null}]},period:{id:"Bhjf",type:"date",date:{start:"2023-09-04",end:"2023-10-31",time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"02458f34-9632-4ee9-9363-ec9b4dd9af2f"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[{id:"a8c73797-8766-4129-9d0e-763d91765918",name:"재사용 가능한 UI 생성",color:"blue"},{id:"805121a4-60a8-467e-8ea3-66ec589a65fa",name:"JWT Token 로그인 기능",color:"red"}]},url:{id:"KBJJ",type:"url",url:"https://dino100.notion.site/Rna-frontend-587102b381734784919851a49bbd2a6c"},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"기능개발",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"기능개발",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"대학병원의 연구과제 관리를 간소화하기 위해 제작된 웹 애플리케이션",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"대학병원의 연구과제 관리를 간소화하기 위해 제작된 웹 애플리케이션",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:`• 권한에 따른 인터페이스 설계.
+• S3 사용으로 인한 비용 절감.
+• 공용 컴포넌트로 인한 프론트엔드 코드 유지보수 비용 감소.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 권한에 따른 인터페이스 설계.
+• S3 사용으로 인한 비용 절감.
+• 공용 컴포넌트로 인한 프론트엔드 코드 유지보수 비용 감소.`,href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:`• JWT 토큰을 활용하여 로그인 기능 개발.
+• 엑셀 파일의 업로드 및 다운로드 기능 개발.
+• 비슷한 포맷의 컴포넌트를 공통 컴포넌트로 설계하여 재사용 가능한 UI 생성.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• JWT 토큰을 활용하여 로그인 기능 개발.
+• 엑셀 파일의 업로드 및 다운로드 기능 개발.
+• 비슷한 포맷의 컴포넌트를 공통 컴포넌트로 설계하여 재사용 가능한 UI 생성.`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:100},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:"문제사항",link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"문제사항",href:null},{type:"text",text:{content:`
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+`,href:null},{type:"text",text:{content:"Business",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Business",href:null},{type:"text",text:{content:`
+• 과제 등록, 수정, 삭제, 과제 다운로드는 교수 권한만 가능합니다. 
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 과제 등록, 수정, 삭제, 과제 다운로드는 교수 권한만 가능합니다. 
+`,href:null},{type:"text",text:{content:"Tech",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Tech",href:null},{type:"text",text:{content:`
+• 다운로드 로직에 버그로 인해 다운로드가 실패하곤 했습니다.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 다운로드 로직에 버그로 인해 다운로드가 실패하곤 했습니다.`,href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[{id:"99183b8f-896b-470f-a159-2cbb24333280",name:"Vuex",color:"brown"}]},numberOfParticipants:{id:"u%60lW",type:"number",number:1},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[{type:"text",text:{content:"1. ",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"1. ",href:null},{type:"text",text:{content:"인증 시스템",link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"인증 시스템",href:null},{type:"text",text:{content:`
+2. `,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+2. `,href:null},{type:"text",text:{content:`파일 관리
+3. 코드 재사용성`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`파일 관리
+3. 코드 재사용성`,href:null}]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"877802a8-8154-409d-a0e0-f10ac71c0b8c",name:"Vue",color:"green"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:`• JWT를 이용하여 로그인 프로세스 구현, 학생과 교수에 대한 인가 처리.
+• 파일을 다운로드하고 업로드 하는 부분에 AWS S3 채택
+• 애매한 부분들이 많아서 좀 더 작은 단위로 쪼개고 UI 디자인에서 재사용될 요소를 분리하여, 이를 범용 컴포넌트로 분리하여 개발.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• JWT를 이용하여 로그인 프로세스 구현, 학생과 교수에 대한 인가 처리.
+• 파일을 다운로드하고 업로드 하는 부분에 AWS S3 채택
+• 애매한 부분들이 많아서 좀 더 작은 단위로 쪼개고 UI 디자인에서 재사용될 요소를 분리하여, 이를 범용 컴포넌트로 분리하여 개발.`,href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"[외주개발] 대학병원 연구과제 관리 시스템",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"[외주개발] 대학병원 연구과제 관리 시스템",href:null}]},id:"587102b3-8173-4784-9198-51a49bbd2a6c"},{details:{id:"%3ApdX",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 사용자 정의 가능한 시각적 환경 설정이 활성화
+2. 세부 정보 페이지를 효율적으로 연결하기 위한 링크된 API
+3. 필터 및 정렬 기능이 개선
+4. 확장성을 위해 AWS Lambda를 사용하여 구현.
+5. 강력하고 유지 관리가 가능한 UI를 위해 사용.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 사용자 정의 가능한 시각적 환경 설정이 활성화
+2. 세부 정보 페이지를 효율적으로 연결하기 위한 링크된 API
+3. 필터 및 정렬 기능이 개선
+4. 확장성을 위해 AWS Lambda를 사용하여 구현.
+5. 강력하고 유지 관리가 가능한 UI를 위해 사용.`,href:null}]},period:{id:"Bhjf",type:"date",date:{start:"2023-04-03",end:"2023-07-30",time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"02458f34-9632-4ee9-9363-ec9b4dd9af2f"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[{id:"d8e21c80-9c61-4140-9317-9890780b6b66",name:"Notion API 사용",color:"purple"},{id:"a6c3491c-02ef-409f-bab9-ec99d2ed405c",name:"람다 백엔드 서버리스",color:"brown"},{id:"6bcb7332-f14d-4dea-9d1d-ea7fb4960919",name:"스토리북 활용",color:"yellow"},{id:"36d86dca-c6ad-43e6-a596-f0d1c3473b47",name:"테스트 코드 작성",color:"red"}]},url:{id:"KBJJ",type:"url",url:"https://dino100.notion.site/135e25adcbe64a1da56c5510688fd50c"},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"배포, 기능개발",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"배포, 기능개발",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"Notion에서 정리한 경력 이력을 API로 불러와 사이트에 이력서로 표시하는 서비스.",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Notion에서 정리한 경력 이력을 API로 불러와 사이트에 이력서로 표시하는 서비스.",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:`• 데이터 관리 시간 100% 단축
+• 실시간 데이터 업데이트로 인한 정보 정확도 유지
+• 서버 유지보수 비용 한달에 1000원 미만 사용.
+• UI 개발 시간 단축, 문서화로 코드 이해 시간 단축.
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 데이터 관리 시간 100% 단축
+• 실시간 데이터 업데이트로 인한 정보 정확도 유지
+• 서버 유지보수 비용 한달에 1000원 미만 사용.
+• UI 개발 시간 단축, 문서화로 코드 이해 시간 단축.
+`,href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:`• 테마 기능과 다크 모드 기능을 구현.
+• Notion을 데이터베이스로 활용하여 API를 연동하고 상세 페이지를 연결.
+• 사용자 경험을 향상시키기 위한 필터 기능과 정렬 기능 개발.
+• 람다를 사용하여 백엔드를 서버리스 아키텍처로 구현.
+• storyboook 작성하여 컴포넌트 개발.
+• Jest를 이용한 컴포넌트 테스트 코드 작성.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 테마 기능과 다크 모드 기능을 구현.
+• Notion을 데이터베이스로 활용하여 API를 연동하고 상세 페이지를 연결.
+• 사용자 경험을 향상시키기 위한 필터 기능과 정렬 기능 개발.
+• 람다를 사용하여 백엔드를 서버리스 아키텍처로 구현.
+• storyboook 작성하여 컴포넌트 개발.
+• Jest를 이용한 컴포넌트 테스트 코드 작성.`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:100},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:"문제사항",link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"문제사항",href:null},{type:"text",text:{content:`
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+`,href:null},{type:"text",text:{content:"Business",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Business",href:null},{type:"text",text:{content:`
+• 여러 채용 사이트들에 각기 다른 이력서 포맷으로 인해 반복된 작업 소요 시간이 상당함.
+`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 여러 채용 사이트들에 각기 다른 이력서 포맷으로 인해 반복된 작업 소요 시간이 상당함.
+`,href:null},{type:"text",text:{content:"Tech",link:null},annotations:{bold:!0,italic:!0,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"Tech",href:null},{type:"text",text:{content:`
+• React 경험 부족 문제
+• storybook에 새로은 것들이 추가될 때마다 에러가 나는 현상 발생.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• React 경험 부족 문제
+• storybook에 새로은 것들이 추가될 때마다 에러가 나는 현상 발생.`,href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[{id:"32998093-c710-4210-81d1-509df0e0d654",name:"Redux",color:"brown"},{id:"a8685704-6f9f-41bc-a839-8afc51d095c1",name:"ReactQuery",color:"default"},{id:"b98ab924-b278-4fa5-a203-9aaf964679be",name:"Storybook",color:"pink"},{id:"026e2b10-cd4d-496d-99ed-b5656c5f741e",name:"React-testing-library",color:"blue"}]},numberOfParticipants:{id:"u%60lW",type:"number",number:1},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 테마 및 다크 모드 구현
+2. Notion 데이터베이스 통합
+3. 사용자 경험 향상
+4. 서버리스 백엔드
+5.  Storybook, TestCode`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 테마 및 다크 모드 구현
+2. Notion 데이터베이스 통합
+3. 사용자 경험 향상
+4. 서버리스 백엔드
+5.  Storybook, TestCode`,href:null}]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"af40e4bf-c112-4451-bb62-2897117b04d2",name:"React",color:"blue"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:`• 이력서의 업데이트와 포맷을 동일하게 유지하고 데이터 중앙화를 시키기 위해 Notion을 데이터베이스로 활용하여 쉽게 수정하고 입력할 수 있도록 결정.
+• React 경험과 활용도를 높이기 위한 언어 선택. 실제로 사용할 수 있는 코드를 만들기 위한 전략.
+• 인프라 관리를 최소화하고, 코드 실행에만 집중할 수 있도록 서버리스 아키텍처인 AWS Lambda를 도입하여 백엔드 로직을 구현, 유지보수 및 확장성을 크게 향상 시킴.
+• 작은 단위의 컴포넌트부터 jest로 테스트 코드를 작성하고 storybook을 활용하여 공용 컴포넌트 문서로 활용.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 이력서의 업데이트와 포맷을 동일하게 유지하고 데이터 중앙화를 시키기 위해 Notion을 데이터베이스로 활용하여 쉽게 수정하고 입력할 수 있도록 결정.
+• React 경험과 활용도를 높이기 위한 언어 선택. 실제로 사용할 수 있는 코드를 만들기 위한 전략.
+• 인프라 관리를 최소화하고, 코드 실행에만 집중할 수 있도록 서버리스 아키텍처인 AWS Lambda를 도입하여 백엔드 로직을 구현, 유지보수 및 확장성을 크게 향상 시킴.
+• 작은 단위의 컴포넌트부터 jest로 테스트 코드를 작성하고 storybook을 활용하여 공용 컴포넌트 문서로 활용.`,href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"이력서-포트폴리오",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"이력서-포트폴리오",href:null}]},id:"135e25ad-cbe6-4a1d-a56c-5510688fd50c"},{details:{id:"%3ApdX",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 클럽 출석 및 일정에 대한 서비스를 개발 및 유지하며, 회원들의 피드백을 바탕으로 지속적으로 개선.
+2. 팀 배치 시스템을 최적화하여 팀 구성의 효율성을 높이는 알고리즘을 개발.
+3. 게임 기록을 분석하여 플레이어를 효과적으로 매칭하고 경쟁 스쿼드를 최적화.
+4. 누적된 데이터를 활용하여 랭킹 시스템을 구현하고 연말 시상식 이벤트를 개최.
+5. 효율적인 프로젝트 배포 및 데이터 관리를 위해 AWS EC2 서버 설정을 구성하고 RDS DB를 활용.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 클럽 출석 및 일정에 대한 서비스를 개발 및 유지하며, 회원들의 피드백을 바탕으로 지속적으로 개선.
+2. 팀 배치 시스템을 최적화하여 팀 구성의 효율성을 높이는 알고리즘을 개발.
+3. 게임 기록을 분석하여 플레이어를 효과적으로 매칭하고 경쟁 스쿼드를 최적화.
+4. 누적된 데이터를 활용하여 랭킹 시스템을 구현하고 연말 시상식 이벤트를 개최.
+5. 효율적인 프로젝트 배포 및 데이터 관리를 위해 AWS EC2 서버 설정을 구성하고 RDS DB를 활용.`,href:null}]},period:{id:"Bhjf",type:"date",date:{start:"2020-01-01",end:"2021-07-31",time_zone:null}},company:{id:"Ep%3Eh",type:"relation",relation:[{id:"02458f34-9632-4ee9-9363-ec9b4dd9af2f"}],has_more:!1},keywords:{id:"IqY%3C",type:"multi_select",multi_select:[{id:"3f102198-7a12-47d7-aadd-c1d5be45bef7",name:"참석 일정 관리 개발",color:"default"},{id:"ec7089b7-389d-4762-9a38-81228d632caa",name:"팀 배치 시스템",color:"orange"},{id:"fbcb5728-e4f6-4e22-9379-05c26e49d134",name:"경기 기록 분석",color:"blue"},{id:"967d6a0d-eccc-4939-a2d2-32d2dc8c0ee0",name:"랭킹시스템",color:"brown"},{id:"1c12859f-7fea-4cd9-99d4-b9ce874c6653",name:"AWS EC2 RDS DB활용",color:"yellow"}]},url:{id:"KBJJ",type:"url",url:"https://dino100.notion.site/NNNN-465ebd26b8f044dc9dd842adcfb68082"},role:{id:"S_%5C%5C",type:"rich_text",rich_text:[{type:"text",text:{content:"배포, 운영, 기능개발",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"배포, 운영, 기능개발",href:null}]},description:{id:"WyDJ",type:"rich_text",rich_text:[{type:"text",text:{content:"현재 활동 중인 동호회를 효율적으로 관리하기 위해 개발된 프로젝트.",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"현재 활동 중인 동호회를 효율적으로 관리하기 위해 개발된 프로젝트.",href:null}]},tobe:{id:"Zmlj",type:"rich_text",rich_text:[{type:"text",text:{content:`• 동호회 관리를 효율적으로 하기 위한 플랫폼 구축하여 일정 관리 시간과 회원들의 참여도를 높임.
+• 팀 구성 시간 80% 감소,  참여자 불만 감소.
+• 주장의 대회 라인업을 짜는 스트레스를 줄여줌, 확실한 데이터로 회원들의 불만을 어느정도 해소함.
+• 랭킹 시스템으로 회원들의 동기부여를 자극함.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 동호회 관리를 효율적으로 하기 위한 플랫폼 구축하여 일정 관리 시간과 회원들의 참여도를 높임.
+• 팀 구성 시간 80% 감소,  참여자 불만 감소.
+• 주장의 대회 라인업을 짜는 스트레스를 줄여줌, 확실한 데이터로 회원들의 불만을 어느정도 해소함.
+• 랭킹 시스템으로 회원들의 동기부여를 자극함.`,href:null}]},experience:{id:"_z%7D~",type:"rich_text",rich_text:[{type:"text",text:{content:`• Vue.js, node.js 를 사용한 동호회 참석 및 일정을 관리 서비스 개발.
+• 랜덤 팀 배치 알고리즘을 활용하여 효율적으로 하고자 알고리즘을 개발.
+• 대회 스쿼드에 사용 하기 위한 경기 기록 분석 서비스 개발.
+• 랭킹 시스템 및 연말 시상식 이벤트에 활용하기 위한 축적된 데이터를 활용.
+• AWS EC2 서버 설정과 RDS DB를 활용.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• Vue.js, node.js 를 사용한 동호회 참석 및 일정을 관리 서비스 개발.
+• 랜덤 팀 배치 알고리즘을 활용하여 효율적으로 하고자 알고리즘을 개발.
+• 대회 스쿼드에 사용 하기 위한 경기 기록 분석 서비스 개발.
+• 랭킹 시스템 및 연말 시상식 이벤트에 활용하기 위한 축적된 데이터를 활용.
+• AWS EC2 서버 설정과 RDS DB를 활용.`,href:null}]},participationRate:{id:"%60Ybl",type:"number",number:70},asls:{id:"ftyK",type:"rich_text",rich_text:[{type:"text",text:{content:"문제사항",link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"문제사항",href:null},{type:"text",text:{content:`
+• 다양한 서비스를 통해 동호회 관리를 해야하는 불편함을 발생.
+• 팀을 수동으로 구성할 때 편향성이 발생하고 시간이 오래 걸리는 문제 발생.
+• 대회 준비 시 기록을 없고 매번 어떤 스쿼드를 짜야할지 많은 시간을 소비.
+• 팀원들의 참여율을 높이기 위한 방안 고민.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`
+• 다양한 서비스를 통해 동호회 관리를 해야하는 불편함을 발생.
+• 팀을 수동으로 구성할 때 편향성이 발생하고 시간이 오래 걸리는 문제 발생.
+• 대회 준비 시 기록을 없고 매번 어떤 스쿼드를 짜야할지 많은 시간을 소비.
+• 팀원들의 참여율을 높이기 위한 방안 고민.`,href:null}]},skill:{id:"g%3CEO",type:"multi_select",multi_select:[{id:"055f592f-c6d8-41b7-b769-d764b6310d53",name:"AWS",color:"orange"},{id:"13fb0684-7bee-4ee6-8de0-a8e5258b14bf",name:"Scss",color:"pink"},{id:"99183b8f-896b-470f-a159-2cbb24333280",name:"Vuex",color:"brown"}]},numberOfParticipants:{id:"u%60lW",type:"number",number:2},keyContributions:{id:"xrg%3C",type:"rich_text",rich_text:[{type:"text",text:{content:`1. 관리 서비스 개발 및 유지
+2. 효율적인 팀 배치 알고리즘
+3. 플레이어 매칭 알고리즘
+4. 랭킹 시스템 및 이벤트를 위한 데이터 활용
+5. AWS EC2 서버 및 RDS DB 활용`,link:null},annotations:{bold:!0,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`1. 관리 서비스 개발 및 유지
+2. 효율적인 팀 배치 알고리즘
+3. 플레이어 매칭 알고리즘
+4. 랭킹 시스템 및 이벤트를 위한 데이터 활용
+5. AWS EC2 서버 및 RDS DB 활용`,href:null}]},mainSkill:{id:"yOc%3F",type:"multi_select",multi_select:[{id:"877802a8-8154-409d-a0e0-f10ac71c0b8c",name:"Vue",color:"green"},{id:"71c31d7e-ec29-466c-a158-77888f16dd51",name:"NodeJS",color:"gray"}]},challenge:{id:"y%7Drd",type:"rich_text",rich_text:[{type:"text",text:{content:`• 회사에서 사용하던 언어를 내꺼로 만들기 위해 Vue를 활용하기로 결정, 백엔드를 최소한의 구현을 통해 서비스를 만들기  위해 node.js를 이용하기로 결정.
+• 참여 선수를 무작위로 나열한 후 지정된 팀 수대로 순차적으로 팀을 배분 하는 알고리즘을 구현.
+• 경기 중 생성한 데이터를 수집하고 통계를 구해 결과를 시각화하여 제공.
+• 전년 동안의 참여 데이터 및 성적을 기빈으로 각 데이터의 랭킹을 생성하고, 시상식에서 이를 활용.`,link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:`• 회사에서 사용하던 언어를 내꺼로 만들기 위해 Vue를 활용하기로 결정, 백엔드를 최소한의 구현을 통해 서비스를 만들기  위해 node.js를 이용하기로 결정.
+• 참여 선수를 무작위로 나열한 후 지정된 팀 수대로 순차적으로 팀을 배분 하는 알고리즘을 구현.
+• 경기 중 생성한 데이터를 수집하고 통계를 구해 결과를 시각화하여 제공.
+• 전년 동안의 참여 데이터 및 성적을 기빈으로 각 데이터의 랭킹을 생성하고, 시상식에서 이를 활용.`,href:null}]},name:{id:"title",type:"title",title:[{type:"text",text:{content:"NNNN(동호회관리)",link:null},annotations:{bold:!1,italic:!1,strikethrough:!1,underline:!1,code:!1,color:"default"},plain_text:"NNNN(동호회관리)",href:null}]},id:"465ebd26-b8f0-44dc-9dd8-42adcfb68082"}];export{e as C,t as D,n as P,l as a};
