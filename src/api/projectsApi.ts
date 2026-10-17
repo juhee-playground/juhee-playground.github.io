@@ -4,9 +4,9 @@
  *   GET /projects        → fetchProjects
  *   GET /projects/:slug  → fetchProjectBySlug
  */
-import { PROJECTS_SITE, Project } from '@/data/projects/DB_projects_site';
+import { PROJECTS_SITE, ISiteProject } from '@/data/projects/DB_projects_site';
 
-export type TProjectListItem = Pick<Project, 'slug' | 'name' | 'hero' | 'techStack' | 'period' | 'url'>;
+export type TProjectListItem = Pick<ISiteProject, 'slug' | 'name' | 'hero' | 'techStack' | 'period' | 'url'>;
 
 export const fetchProjects = (): Promise<TProjectListItem[]> =>
   Promise.resolve(
@@ -20,5 +20,5 @@ export const fetchProjects = (): Promise<TProjectListItem[]> =>
     })),
   );
 
-export const fetchProjectBySlug = (slug: string): Promise<Project | undefined> =>
+export const fetchProjectBySlug = (slug: string): Promise<ISiteProject | undefined> =>
   Promise.resolve(PROJECTS_SITE.find(p => p.slug === slug));

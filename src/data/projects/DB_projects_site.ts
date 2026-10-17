@@ -1,4 +1,4 @@
-export interface Project {
+export interface ISiteProject {
   name: string;
   period: string;
   techStack: string[];
@@ -19,7 +19,7 @@ export interface Project {
   company: string;
 }
 
-export const PROJECTS_SITE: Project[] = [
+export const PROJECTS_SITE: ISiteProject[] = [
   {
     name: 'OHCOACH Admin(백오피스)',
     period: '2020/01/02 → 2021/03/31',

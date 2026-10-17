@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { GameBoyFrame } from '@/components/landing/gameBoyFrame';
 
-import { PortfolioState, PowerState } from './types';
+import { PORTFOLIO_STATE, TPortfolioState, TPowerState } from './types';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const [gameState, setGameState] = useState<PortfolioState>(PortfolioState.BOOT);
-  const [powerState, setPowerState] = useState<PowerState>('on');
+  const [gameState, setGameState] = useState<TPortfolioState>(PORTFOLIO_STATE.BOOT);
+  const [powerState, setPowerState] = useState<TPowerState>('on');
   const [menuIndex, setMenuIndex] = useState(0);
   const [detailIndex, setDetailIndex] = useState(0); // 0: 페이지 네비게이션, 1: DETAILS
   const [resumePage, setResumePage] = useState(0);
@@ -18,26 +18,28 @@ const LandingPage = () => {
   const isAnimating = powerState === 'powering-on' || powerState === 'powering-off';
 
   const menuItems = [
-    { label: 'PLAYER', state: PortfolioState.PLAYER },
-    { label: 'CAREER LOG', state: PortfolioState.CAREER },
-    { label: 'PROJECTS', state: PortfolioState.PROJECTS },
+    { label: 'PLAYER', state: PORTFOLIO_STATE.PLAYER },
+    { label: 'CAREER LOG', state: PORTFOLIO_STATE.CAREER },
+    { label: 'PROJECTS', state: PORTFOLIO_STATE.PROJECTS },
   ];
 
   // BOOT 완료 후 자동으로 START 화면으로 전환
   useEffect(() => {
-    if (gameState !== PortfolioState.BOOT || !isPowerOn) return;
+    if (gameState !== PORTFOLIO_STATE.BOOT || !isPowerOn) {
+      return undefined;
+    }
     const timer = setTimeout(() => {
-      setGameState(PortfolioState.START);
+      setGameState(PORTFOLIO_STATE.START);
     }, 4000);
     return () => clearTimeout(timer);
   }, [gameState, isPowerOn]);
 
   const handleStart = useCallback(() => {
     if (powerState !== 'on') return;
-    if (gameState === PortfolioState.BOOT) {
-      setGameState(PortfolioState.START);
-    } else if (gameState === PortfolioState.START) {
-      setGameState(PortfolioState.MENU);
+    if (gameState === PORTFOLIO_STATE.BOOT) {
+      setGameState(PORTFOLIO_STATE.START);
+    } else if (gameState === PORTFOLIO_STATE.START) {
+      setGameState(PORTFOLIO_STATE.MENU);
     }
   }, [powerState, gameState]);
 
@@ -49,13 +51,13 @@ const LandingPage = () => {
   const handleDPad = useCallback((direction: string) => {
     if (powerState !== 'on') return;
     
-    if (gameState === PortfolioState.MENU) {
+    if (gameState === PORTFOLIO_STATE.MENU) {
       if (direction === 'up') {
         setMenuIndex(prev => (prev > 0 ? prev - 1 : menuItems.length - 1));
       } else if (direction === 'down') {
         setMenuIndex(prev => (prev < menuItems.length - 1 ? prev + 1 : 0));
       }
-    } else if (gameState === PortfolioState.PLAYER) {
+    } else if (gameState === PORTFOLIO_STATE.PLAYER) {
       if (direction === 'up' || direction === 'down') {
         setDetailIndex(prev => (prev === 0 ? 1 : 0));
       } else if (direction === 'left' && detailIndex === 0) {
@@ -63,7 +65,7 @@ const LandingPage = () => {
       } else if (direction === 'right' && detailIndex === 0) {
         setResumePage(prev => Math.min(prev + 1, 2));
       }
-    } else if (gameState === PortfolioState.CAREER) {
+    } else if (gameState === PORTFOLIO_STATE.CAREER) {
       if (direction === 'left') {
         setDashboardPage(prev => Math.max(prev - 1, 0));
       } else if (direction === 'right') {
@@ -85,7 +87,7 @@ const LandingPage = () => {
       // Turning ON - 초기 상태로 리셋
       setPowerState('powering-on');
       // 게임 상태 초기화
-      setGameState(PortfolioState.BOOT);
+      setGameState(PORTFOLIO_STATE.BOOT);
       setMenuIndex(0);
       setDetailIndex(0);
       setResumePage(0);
@@ -99,46 +101,46 @@ const LandingPage = () => {
   const handleAction = useCallback((btn: 'A' | 'B') => {
     if (powerState !== 'on') return;
 
-    if (gameState === PortfolioState.BOOT) {
-      if (btn === 'A') setGameState(PortfolioState.START); // 부팅 중 A → 바로 START 화면으로
-    } else if (gameState === PortfolioState.START) {
-      if (btn === 'A') setGameState(PortfolioState.MENU);
-    } else if (gameState === PortfolioState.MENU) {
+    if (gameState === PORTFOLIO_STATE.BOOT) {
+      if (btn === 'A') setGameState(PORTFOLIO_STATE.START); // 부팅 중 A → 바로 START 화면으로
+    } else if (gameState === PORTFOLIO_STATE.START) {
+      if (btn === 'A') setGameState(PORTFOLIO_STATE.MENU);
+    } else if (gameState === PORTFOLIO_STATE.MENU) {
       if (btn === 'A') {
         setGameState(menuItems[menuIndex].state);
       } else if (btn === 'B') {
-        setGameState(PortfolioState.START);
+        setGameState(PORTFOLIO_STATE.START);
       }
-    } else if (gameState === PortfolioState.PLAYER) {
+    } else if (gameState === PORTFOLIO_STATE.PLAYER) {
       if (btn === 'A' && detailIndex === 1) {
         navigate('/resume');
       } else if (btn === 'B') {
-        setGameState(PortfolioState.MENU);
+        setGameState(PORTFOLIO_STATE.MENU);
         setDetailIndex(0);
         setResumePage(0);
       }
-    } else if (gameState === PortfolioState.CAREER) {
+    } else if (gameState === PORTFOLIO_STATE.CAREER) {
       if (btn === 'A') {
         navigate('/dashboard');
       } else if (btn === 'B') {
-        setGameState(PortfolioState.MENU);
+        setGameState(PORTFOLIO_STATE.MENU);
         setDashboardPage(0);
       }
-    } else if (gameState === PortfolioState.PROJECTS) {
+    } else if (gameState === PORTFOLIO_STATE.PROJECTS) {
       if (btn === 'A') {
         navigate('/portfolio');
       } else if (btn === 'B') {
-        setGameState(PortfolioState.MENU);
+        setGameState(PORTFOLIO_STATE.MENU);
       }
     } else {
       if (btn === 'B') {
-        setGameState(PortfolioState.MENU);
+        setGameState(PORTFOLIO_STATE.MENU);
       }
     }
   }, [gameState, menuIndex, isPowerOn, menuItems, detailIndex]);
 
   const handleDetailsClick = useCallback(() => {
-    if (gameState === PortfolioState.PLAYER) {
+    if (gameState === PORTFOLIO_STATE.PLAYER) {
       navigate('/resume');
     }
   }, [gameState, navigate]);

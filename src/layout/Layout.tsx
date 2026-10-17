@@ -11,6 +11,24 @@ interface IMainLayoutProps {
   children: ReactNode;
 }
 
+type TComponentType = {
+  readonly name?: string;
+};
+
+const isHeaderChild = (child: React.ReactNode): boolean => {
+  if (!React.isValidElement(child)) {
+    return false;
+  }
+  if (child.type === Header) {
+    return true;
+  }
+  const type = child.type as TComponentType | string;
+  if (typeof type === 'string') {
+    return false;
+  }
+  return type.name === 'Header' || type.name === 'DenseAppBar';
+};
+
 export default function Layout({ children }: IMainLayoutProps) {
   const { isPrintMode } = usePrintMode();
   const theme = useTheme();
@@ -20,21 +38,9 @@ export default function Layout({ children }: IMainLayoutProps) {
   const isResumePage = pathname === '/resume';
   const isErrorPage = pathname === '/404';
 
-  // children을 배열로 변환하여 Header와 컨텐츠 분리
   const childrenArray = React.Children.toArray(children);
-  const headerChild = childrenArray.find((child: any) => {
-    // Header 컴포넌트인지 확인
-    if (React.isValidElement(child)) {
-      return child.type === Header || (child.type as any)?.name === 'Header' || (child.type as any)?.name === 'DenseAppBar';
-    }
-    return false;
-  });
-  const contentChildren = childrenArray.filter((child: any) => {
-    if (React.isValidElement(child)) {
-      return child.type !== Header && (child.type as any)?.name !== 'Header' && (child.type as any)?.name !== 'DenseAppBar';
-    }
-    return true;
-  });
+  const headerChild = childrenArray.find(isHeaderChild);
+  const contentChildren = childrenArray.filter(child => !isHeaderChild(child));
 
   return (
     <main

@@ -27,7 +27,9 @@ const TimelineChart = ({ height, tasks, isDark = false }: ITimeScaleChartProps) 
   // 컨테이너 폭에 맞게 SVG 폭 동적 계산
   useEffect(() => {
     const el = containerRef.current;
-    if (!el) return;
+    if (!el) {
+      return undefined;
+    }
     setWidth(el.clientWidth);
 
     const observer = new ResizeObserver(entries => {

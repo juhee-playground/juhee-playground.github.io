@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { PortfolioState } from '@/pages/landing/types';
+import { PORTFOLIO_STATE, TPortfolioState } from '@/pages/landing/types';
 
 const BOOT_LINES = [
   { text: 'BOOTING SYSTEM...', delay: 0 },
@@ -47,8 +47,8 @@ const BootScreen = () => {
   );
 };
 
-interface ScreenContentProps {
-  gameState: PortfolioState;
+interface IScreenContentProps {
+  gameState: TPortfolioState;
   menuIndex?: number;
   detailIndex?: number;
   resumePage?: number;
@@ -58,7 +58,7 @@ interface ScreenContentProps {
   onDetailsClick?: () => void;
 }
 
-export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resumePage = 0, dashboardPage = 0, onPageChange, onDashboardPageChange, onDetailsClick }: ScreenContentProps) {
+export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resumePage = 0, dashboardPage = 0, onPageChange, onDashboardPageChange, onDetailsClick }: IScreenContentProps) {
   const menuItems = ['PLAYER', 'CAREER LOG', 'PROJECTS'];
 
   // =====================
@@ -168,14 +168,16 @@ PHP     ██           10%`}
   ];
 
   switch (gameState) {
-    case PortfolioState.BOOT:
+    case PORTFOLIO_STATE.BOOT:
       return <BootScreen />;
 
-    case PortfolioState.START:
+    case PORTFOLIO_STATE.START:
       return (
         <div className="h-full flex flex-col items-center justify-center text-[#2d321d] text-center pixel-font">
           <p className="text-[10px] mb-2">WELCOME TO</p>
-          <h2 className="text-xl md:text-2xl mb-8 leading-tight font-black tracking-tighter">JUHEE'S PLAYGROUND</h2>
+          <h2 className="text-xl md:text-2xl mb-8 leading-tight font-black tracking-tighter">
+            JUHEE&apos;S PLAYGROUND
+          </h2>
           <div className="mt-4 border-2 border-[#2d321d] bg-[#d9f99d] px-8 py-3 inline-block animate-blink">
             <p className="text-[10px] font-bold">PRESS START</p>
           </div>
@@ -185,7 +187,7 @@ PHP     ██           10%`}
         </div>
       );
 
-    case PortfolioState.MENU:
+    case PORTFOLIO_STATE.MENU:
       return (
         <div className="h-full text-[#2d321d] flex flex-col pixel-font">
           <div className="border-b-2 border-[#2d321d] pb-1 mb-4">
@@ -207,7 +209,7 @@ PHP     ██           10%`}
         </div>
       );
 
-    case PortfolioState.PLAYER:
+    case PORTFOLIO_STATE.PLAYER:
       return (
         <div className="h-full text-[#2d321d] space-y-4 pixel-font flex flex-col">
           {/* HEADER */}
@@ -253,7 +255,7 @@ PHP     ██           10%`}
         </div>
       );
 
-    case PortfolioState.CAREER:
+    case PORTFOLIO_STATE.CAREER:
       return (
         <div className="h-full text-[#2d321d] space-y-4 pixel-font flex flex-col">
           {/* Header */}
@@ -298,7 +300,7 @@ PHP     ██           10%`}
         </div>
       );
 
-    case PortfolioState.PROJECTS:
+    case PORTFOLIO_STATE.PROJECTS:
       return (
         <div className="h-full text-[#2d321d] space-y-3 pixel-font flex flex-col">
           <div className="border-b-2 border-[#2d321d] pb-1">

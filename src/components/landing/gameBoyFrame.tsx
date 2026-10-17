@@ -1,17 +1,17 @@
 import { motion } from 'framer-motion';
 
-import { PortfolioState, PowerState } from '@/pages/landing/types';
+import { TPortfolioState, TPowerState } from '@/pages/landing/types';
 
 import { ScreenContent } from './screenContent';
 
-interface GameBoyFrameProps {
-  gameState: PortfolioState;
+interface IGameBoyFrameProps {
+  gameState: TPortfolioState;
   menuIndex: number;
   detailIndex?: number;
   resumePage?: number;
   dashboardPage?: number;
   isPowerOn: boolean;
-  powerState: PowerState;
+  powerState: TPowerState;
   onStart: () => void;
   onSelect: () => void;
   onAction: (btn: 'A' | 'B') => void;
@@ -38,7 +38,7 @@ export function GameBoyFrame({
   onPageChange,
   onDashboardPageChange,
   onDetailsClick
-}: GameBoyFrameProps) {
+}: IGameBoyFrameProps) {
   const shouldShowContent = powerState === 'on' || powerState === 'powering-on' || powerState === 'powering-off';
   const isAnimating = powerState === 'powering-on' || powerState === 'powering-off';
   

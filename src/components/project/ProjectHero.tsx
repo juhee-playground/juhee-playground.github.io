@@ -2,12 +2,12 @@ import { useTheme } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 
 
-import { Project } from '@/data/projects/DB_projects_site';
+import { ISiteProject } from '@/data/projects/DB_projects_site';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
 interface IProjectHeroProps {
-  project: Project;
+  project: ISiteProject;
 }
 
 const ProjectHero = ({ project }: IProjectHeroProps) => {
