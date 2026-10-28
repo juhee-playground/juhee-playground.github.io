@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { SelectChangeEvent } from '@mui/material/Select';
 
@@ -14,14 +14,24 @@ const ResumeContainer = () => {
 
   const { pointColor } = useSettings();
   const { mode } = usePrintMode();
+  const seenCompaniesRef = useRef<readonly string[]>([]);
 
   const { projectQuery, toyProjectData, companies, skillOptions, parseCompanyQuery, parseProjectQuery } = useResumeData(
     { selectedCompanies, selectedSkillOptions, sortValue },
   );
 
   useEffect(() => {
-    if (!selectedCompanies) setSelectedCompanies(companies);
-  }, [companies, selectedCompanies]);
+    const seen = seenCompaniesRef.current;
+    const arrived = companies.filter(name => !seen.includes(name));
+    seenCompaniesRef.current = companies;
+    if (arrived.length === 0) return;
+
+    setSelectedCompanies(current => {
+      if (!current) return [...companies];
+      const added = arrived.filter(name => !current.includes(name));
+      return added.length === 0 ? current : [...current, ...added];
+    });
+  }, [companies]);
 
   useEffect(() => {
     if (!selectedSkillOptions) setSelectedSkillOptions(skillOptions);

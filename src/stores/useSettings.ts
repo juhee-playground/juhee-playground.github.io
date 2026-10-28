@@ -23,13 +23,13 @@ interface ISettingsStore {
 }
 
 const defaultColor: IColor = {
-  hex: '#a7d94a',
-  rgb: { r: 167, g: 217, b: 74, a: 1 },
-  hsv: { h: 80, s: 66, v: 85, a: 1 },
+  hex: '#3b9eff',
+  rgb: { r: 59, g: 158, b: 255, a: 1 },
+  hsv: { h: 210, s: 77, v: 100, a: 1 },
 };
 
 export const useSettings = create<ISettingsStore>(set => ({
-  themeMode: 'dark',
+  themeMode: 'light',
   shellStyle: 'pocket',
   isPrintMode: false,
   pointColor: defaultColor,

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { motion } from 'framer-motion';
 
 import { useSettings } from '@/stores/useSettings';
@@ -86,8 +88,8 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
           >
             PROJECTS
           </button>
-          <a
-            href='/resume'
+          <Link
+            to='/resume'
             className='pixel-font text-body-3xs px-5 py-3 transition-all hover:-translate-y-0.5 active:translate-y-0.5'
             style={{
               color: gb.text,
@@ -97,7 +99,7 @@ const SiteHero = ({ onScrollToProjects }: ISiteHeroProps) => {
             }}
           >
             RESUME
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
 

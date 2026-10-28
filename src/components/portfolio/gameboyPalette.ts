@@ -6,7 +6,6 @@ import {
 } from '@/constants/color';
 import { TShellStyle } from '@/stores/useSettings';
 
-const ACCENT_TEXT_DARKEN_RATIO = 0.28;
 const LCD_BG_DARKEN_RATIO = 0.78;
 const LCD_INK_LIGHTEN_RATIO = 0.45;
 
@@ -24,7 +23,7 @@ export interface IGameBoyPalette {
   text: string;
   textDim: string;
   accent: string;
-  /** 밝은 셸 위 글자/링크용 — accent보다 진함 */
+  /** 글자/링크용. 라이트·다크 모두 같은 accent */
   accentText: string;
   accentInk: string;
   lcd: string;
@@ -72,7 +71,7 @@ const BASE_BY_SHELL: Record<TShellStyle, TShellBase> = {
   pocket: BASE_POCKET,
 };
 
-const DEFAULT_ACCENT = '#a7d94a';
+const DEFAULT_ACCENT = '#3b9eff';
 
 /** hex 파싱 → {r,g,b}. 실패 시 null. */
 const parseHex = (hex: string): { r: number; g: number; b: number } | null => {
@@ -116,8 +115,7 @@ export const getGameBoyPalette = (
   accent: string = DEFAULT_ACCENT,
 ): IGameBoyPalette => {
   const base = BASE_BY_SHELL[shellStyle] ?? BASE_DMG;
-  const accentText =
-    shellStyle === 'pocket' ? accent : darken(accent, ACCENT_TEXT_DARKEN_RATIO);
+  const accentText = accent;
   return {
     ...base,
     accent,
