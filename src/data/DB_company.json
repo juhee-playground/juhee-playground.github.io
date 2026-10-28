@@ -432,5 +432,168 @@
             ]
         },
         "id": "f194e7b4-3174-4fd2-8dfc-17ea186dd8ed"
+    },
+    {
+        "order": {
+            "id": "Bl%5E%5C",
+            "type": "number",
+            "number": 3
+        },
+        "period": {
+            "id": "JUrG",
+            "type": "date",
+            "date": {
+                "start": "2025-02-03",
+                "end": null,
+                "time_zone": null
+            }
+        },
+        "type": {
+            "id": "L_q%3B",
+            "type": "rich_text",
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "C",
+                        "link": null
+                    },
+                    "annotations": {
+                        "bold": false,
+                        "italic": false,
+                        "strikethrough": false,
+                        "underline": false,
+                        "code": false,
+                        "color": "default"
+                    },
+                    "plain_text": "C",
+                    "href": null
+                }
+            ]
+        },
+        "year": {
+            "id": "PbKf",
+            "type": "number",
+            "number": 2025
+        },
+        "description": {
+            "id": "fs%7C%3D",
+            "type": "rich_text",
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "Tindlo는 일정, 태스크, 로드맵을 단일 데이터 모델로 통합하는 협업 플랫폼.\n- ",
+                        "link": null
+                    },
+                    "annotations": {
+                        "bold": true,
+                        "italic": false,
+                        "strikethrough": false,
+                        "underline": false,
+                        "code": false,
+                        "color": "default"
+                    },
+                    "plain_text": "Tindlo는 일정, 태스크, 로드맵을 단일 데이터 모델로 통합하는 협업 플랫폼.\n- ",
+                    "href": null
+                },
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "시간 기반 뷰와 자유 배치 캔버스를 통해 동일한 태스크를 다양한 관점에서 표현.\n- 실시간 동기화로 복잡한 팀 워크플로우를 유연하게 관리.",
+                        "link": null
+                    },
+                    "annotations": {
+                        "bold": false,
+                        "italic": false,
+                        "strikethrough": false,
+                        "underline": false,
+                        "code": false,
+                        "color": "default"
+                    },
+                    "plain_text": "시간 기반 뷰와 자유 배치 캔버스를 통해 동일한 태스크를 다양한 관점에서 표현.\n- 실시간 동기화로 복잡한 팀 워크플로우를 유연하게 관리.",
+                    "href": null
+                }
+            ]
+        },
+        "scale": {
+            "id": "lJzh",
+            "type": "rich_text",
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "5",
+                        "link": null
+                    },
+                    "annotations": {
+                        "bold": false,
+                        "italic": false,
+                        "strikethrough": false,
+                        "underline": false,
+                        "code": false,
+                        "color": "default"
+                    },
+                    "plain_text": "5",
+                    "href": null
+                }
+            ]
+        },
+        "role": {
+            "id": "oB_p",
+            "type": "select",
+            "select": {
+                "id": "LgOg",
+                "name": "프런트 리드개발자",
+                "color": "green"
+            }
+        },
+        "department": {
+            "id": "q%3A~g",
+            "type": "rich_text",
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "소프트웨어팀",
+                        "link": null
+                    },
+                    "annotations": {
+                        "bold": false,
+                        "italic": false,
+                        "strikethrough": false,
+                        "underline": false,
+                        "code": false,
+                        "color": "default"
+                    },
+                    "plain_text": "소프트웨어팀",
+                    "href": null
+                }
+            ]
+        },
+        "name": {
+            "id": "title",
+            "type": "title",
+            "title": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "틴들로",
+                        "link": null
+                    },
+                    "annotations": {
+                        "bold": false,
+                        "italic": false,
+                        "strikethrough": false,
+                        "underline": false,
+                        "code": false,
+                        "color": "default"
+                    },
+                    "plain_text": "틴들로",
+                    "href": null
+                }
+            ]
+        },
+        "id": "1c47a4e7-c64c-800f-9af1-d29630c9e352"
     }
 ]
