@@ -1,1 +1,0 @@
-import"./index-CTsws5HD.js";import{u as s,a as t,c as o,n as u}from"./parser-XBHK4B3b.js";function c(){return s(u.projects(),()=>o(),{select:r=>r.map(e=>t({...e.properties,id:e.id}))})}export{c as u};
