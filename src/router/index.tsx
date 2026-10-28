@@ -1,10 +1,9 @@
 import { lazy, Suspense } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import NotFound from '@/components/NotFound';
 import { validPaths } from '@/router/paths';
 
-const Dashboard = lazy(() => import('../pages/dashboard'));
 const LandingPage = lazy(() => import('../pages/landing'));
 const Main = lazy(() => import('../pages/resume'));
 const ProjectDetailPage = lazy(() => import('../pages/projects/ProjectDetailPage'));
@@ -25,7 +24,7 @@ export default function Router() {
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/resume' element={<Main />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/dashboard' element={<Navigate to='/portfolio' replace />} />
           <Route path='/projects' element={<ProjectsPage />} />
           <Route path='/projects/:slug' element={<ProjectDetailPage />} />
           <Route path='/portfolio' element={<PortfolioPage />} />

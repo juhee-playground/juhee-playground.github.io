@@ -123,9 +123,7 @@ const LandingPage = () => {
         setResumePage(0);
       }
     } else if (gameState === PORTFOLIO_STATE.CAREER) {
-      if (btn === 'A') {
-        navigate('/dashboard');
-      } else if (btn === 'B') {
+      if (btn === 'B') {
         setGameState(PORTFOLIO_STATE.MENU);
         setDashboardPage(0);
       }

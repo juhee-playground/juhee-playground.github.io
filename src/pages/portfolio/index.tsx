@@ -122,17 +122,6 @@ const PortfolioPage = () => {
               </motion.div>
             ))}
           </div>
-
-          {/* Dashboard link */}
-          <div className='flex justify-end mt-2'>
-            <Link
-              to='/dashboard'
-              className='pixel-font text-[8px] transition-transform hover:translate-x-1'
-              style={{ color: gb.accentText }}
-            >
-              대시보드 전체 보기 →
-            </Link>
-          </div>
         </SiteSection>
 
         {/* ─── #contact ─── */}
@@ -150,9 +139,8 @@ const PortfolioPage = () => {
         <nav className='flex gap-6 pixel-font text-[8px]'>
           {[
             { to: '/portfolio', label: 'PORTFOLIO' },
-            { to: '/resume',    label: 'RESUME' },
-            { to: '/dashboard', label: 'DASHBOARD' },
-            { to: '/projects',  label: 'PROJECTS' },
+            { to: '/resume', label: 'RESUME' },
+            { to: '/projects', label: 'PROJECTS' },
           ].map(({ to, label }) => (
             <Link
               key={to}
