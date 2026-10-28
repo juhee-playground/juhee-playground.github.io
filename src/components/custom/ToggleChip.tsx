@@ -4,7 +4,6 @@ import CheckIcon from '@mui/icons-material/Check';
 import Chip from '@mui/material/Chip';
 import { useTheme } from '@mui/material/styles';
 
-
 const ToggleChip = ({ label, color, checked, handleChipSelect }: IToggleChipProps) => {
   const [selected, setSelected] = useState(true);
 
@@ -27,7 +26,7 @@ const ToggleChip = ({ label, color, checked, handleChipSelect }: IToggleChipProp
       className={`chip__toggle chip__toggle--${theme.palette.mode}`}
       aria-pressed={selected}
       sx={{ borderRadius: 1 }}
-      style={selected ? { color: color, borderColor: color, backgroundColor: theme.palette.mode === 'dark' ? 'black' : '' } : { color: 'grey' }}
+      style={selected ? { color, borderColor: color, backgroundColor: theme.palette.mode === 'dark' ? 'black' : '' } : { color: 'grey' }}
       label={label}
       size='small'
       variant='outlined'
