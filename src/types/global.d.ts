@@ -53,14 +53,18 @@ declare global {
     skill: INotionMultiSelect;
     keywords?: INotionMultiSelect;
     numberOfParticipants: INotionNumber;
+    participationRate?: INotionNumber;
     asls: INotionText;
     challenge: INotionText;
     tobe: INotionText;
     mainSkill: INotionMultiSelect;
     summary?: INotionText;
+    hero?: INotionText;
     problem?: INotionText;
     solution?: INotionText;
     impact?: INotionText;
+    mainWork?: INotionText;
+    keyContributions?: INotionText;
     architecture?: INotionText;
     keyFeatures?: INotionText;
     techStack?: INotionMultiSelect;
@@ -233,20 +237,25 @@ declare global {
     techStack: string[];
     techStackOptions: ISelectProperty[];
     summary: string;
+    hero: string;
     problem: string;
     solution: string;
     impact: string;
+    mainWork: string;
+    keyContributions: string;
     architecture: string;
     keyFeatures: string;
     mainSkills: ISelectProperty[];
     skills: ISelectProperty[];
     role: string;
+    keywords: readonly ISelectProperty[];
     description: string;
     asls: IRichText[];
     challenge: IRichText[];
     tobe: IRichText[];
     experience: IRichText[];
     numberOfParticipants: number;
+    participationRate: number | null;
     url: string;
   }
 

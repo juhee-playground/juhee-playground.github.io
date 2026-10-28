@@ -51,12 +51,16 @@ export const parseProjectData = (info: IProjectProperties) => {
     techStack?: string[];
     role?: string;
     summary?: string;
+    hero?: string;
     problem?: string;
     solution?: string;
     impact?: string;
+    mainWork?: string;
+    keyContributions?: string;
     architecture?: string;
     keyFeatures?: string;
     numberOfParticipants?: number;
+    participationRate?: number;
     url?: string;
   };
   const date = info.period?.date;
@@ -100,14 +104,18 @@ export const parseProjectData = (info: IProjectProperties) => {
     techStack: mergedTechStack,
     techStackOptions,
     summary: getRichTextValue(info.summary) || getRichTextValue(info.description) || raw.summary || '',
+    hero: getRichTextValue(info.hero) || raw.hero || '',
     problem: getRichTextValue(info.problem) || getRichTextValue(info.asls) || raw.problem || '',
     solution: getRichTextValue(info.solution) || getRichTextValue(info.challenge) || raw.solution || '',
     impact: getRichTextValue(info.impact) || getRichTextValue(info.tobe) || raw.impact || '',
+    mainWork: getRichTextValue(info.mainWork) || raw.mainWork || '',
+    keyContributions: getRichTextValue(info.keyContributions) || raw.keyContributions || '',
     architecture: getRichTextValue(info.architecture) || raw.architecture || '',
     keyFeatures: getRichTextValue(info.keyFeatures) || raw.keyFeatures || '',
     mainSkills: notionMainSkills,
     skills: notionSkills,
     role: info.role?.rich_text?.[0]?.plain_text || raw.role || '',
+    keywords: Array.isArray(info.keywords?.multi_select) ? info.keywords.multi_select : [],
     description: getRichTextValue(info.description) || raw.summary || '',
     asls: Array.isArray(info.asls?.rich_text) ? info.asls.rich_text : [],
     challenge: Array.isArray(info.challenge?.rich_text) ? info.challenge.rich_text : [],
@@ -119,6 +127,12 @@ export const parseProjectData = (info: IProjectProperties) => {
         : typeof raw.numberOfParticipants === 'number'
           ? raw.numberOfParticipants
           : 0,
+    participationRate:
+      typeof info.participationRate?.number === 'number'
+        ? info.participationRate.number
+        : typeof raw.participationRate === 'number'
+          ? raw.participationRate
+          : null,
     url: info.url?.url || raw.url || '',
   };
 };
