@@ -286,7 +286,7 @@ PHP     ██           10%`}
               </button>
             </div>
 
-            <p className="text-[7px] animate-pulse text-center">ARROW: NAV / A: FULL VIEW / B: MENU</p>
+            <p className="text-[7px] animate-pulse text-center">ARROW: NAV / B: MENU</p>
 
             <div className="flex items-center gap-1">
               <button
