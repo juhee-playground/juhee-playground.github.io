@@ -114,26 +114,30 @@ const SubListItem = ({ info }: ISubListProps) => {
         <span className='text-sm font-semibold leading-none m-0'>{projectData.numberOfParticipants}</span>
         {participationRate !== null && (
           <>
-            <span className='text-sm leading-none m-0'> | 참여비율</span>
-            <span
-              role='progressbar'
-              aria-valuenow={participationRate}
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-label='참여비율'
-              className={cn(
-                'inline-block h-1.5 w-16 overflow-hidden rounded-full',
-                isPrintMode ? 'bg-[#ddd]' : isDark ? 'bg-white/12' : 'bg-black/10',
-              )}
-            >
+            <span className='text-sm leading-none m-0'> | 참여비율 </span>
+            {isPrintMode ? (
+              <span className='text-sm font-semibold leading-none m-0'>{participationRate}%</span>
+            ) : (
               <span
+                role='progressbar'
+                aria-valuenow={participationRate}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label='참여비율'
                 className={cn(
-                  'block h-full rounded-full',
-                  isPrintMode ? 'bg-[#444]' : isDark ? 'bg-white/70' : 'bg-black/55',
+                  'inline-block h-1.5 w-16 overflow-hidden rounded-full',
+                  isDark ? 'bg-white/12' : 'bg-black/10',
                 )}
-                style={{ width: `${participationRate}%` }}
-              />
-            </span>
+              >
+                <span
+                  className={cn(
+                    'block h-full rounded-full',
+                    isDark ? 'bg-white/70' : 'bg-black/55',
+                  )}
+                  style={{ width: `${participationRate}%` }}
+                />
+              </span>
+            )}
           </>
         )}
       </p>
