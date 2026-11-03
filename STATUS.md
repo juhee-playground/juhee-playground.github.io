@@ -71,7 +71,7 @@
 - light 셸: 순백/고스트, 회사 팩은 그림자로 배경과 구분
 
 ### 2-5. Overview / Current Status 카피 (최근) ✅
-- Overview: **Product-Oriented Frontend Engineer** + 요약 + 불릿 4개
+- Overview: **Product-minded Frontend Engineer** + 요약 + 불릿 4개
 - Current Status: 틴들로 재직 · 6+ years · 사이드/포트폴리오 · Open to new opportunities
 - `AS OF 2026.10` (이력서 기준)
 - Stats Years Experience: **6+** 고정 (공백 구간 있어 재직 합산 대신 체감 연차)
