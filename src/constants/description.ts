@@ -4,7 +4,7 @@ const CONTENT_MAIN = [
     bold: '직관적인 인터페이스',
   },
   {
-    content: 'React·TypeScript로 아키텍처와 데이터 흐름의 책임을 명확히 하는 데 집중',
+    content: 'React·TypeScript 기반으로 역할과 데이터 흐름이 명확한 구조를 설계',
     bold: '아키텍처와 데이터 흐름',
   },
   {
