@@ -21,7 +21,7 @@ export default CONTENT_MAIN;
 
 /** Overview 상단 / 소개용 한 줄 정의 */
 export const DEVELOPER_OVERVIEW = {
-  title: 'Product-Oriented Frontend Engineer',
+  title: 'Product-minded Frontend Engineer',
   summary:
-    '사용자 경험과 기술적 완성도 사이를 균형 있게 다루는 프론트엔드. 복잡한 인터랙션과 상태를 시스템으로 정리하고, 기능 구현을 넘어 아키텍처·데이터 흐름·정보 구조까지 책임진다.',
+    '사용자와 제품의 문제를 이해하고, 이를 실질적인 기능과 직관적인 사용자 경험으로 구현하는 프런트엔드 개발자입니다.\n 단순한 UI 구현을 넘어 서비스의 목적과 사용자의 맥락을 고려하며, 유지보수하기 좋은 구조와 일관된 사용자 경험을 만드는 데 집중합니다.',
 };
