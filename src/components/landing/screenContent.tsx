@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { SecretText } from '@/components/common/SecretText';
 import { PORTFOLIO_STATE, TPortfolioState } from '@/pages/landing/types';
+import { useSettings } from '@/stores/useSettings';
 
 const BOOT_LINES = [
   { text: 'BOOTING SYSTEM...', delay: 0 },
@@ -62,6 +64,8 @@ interface IScreenContentProps {
 
 export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resumePage = 0, dashboardPage = 0, onPageChange, onDashboardPageChange, onDetailsClick }: IScreenContentProps) {
   const menuItems = ['PLAYER', 'CAREER LOG', 'PROJECTS'];
+  const toggleContactVisible = useSettings(state => state.toggleContactVisible);
+  const email = import.meta.env.VITE_APP_EMAIL ?? 'gogumangoguma@gmail.com';
 
   // =====================
   // PLAYER PAGES
@@ -104,9 +108,19 @@ export function ScreenContent({ gameState, menuIndex = 0, detailIndex = 0, resum
     // Page 3: CONTACT
     (
       <>
-        <p className="font-bold underline mb-2">CONTACT:</p>
+        <button
+          type="button"
+          tabIndex={-1}
+          aria-hidden="true"
+          className="m-0 mb-2 cursor-default appearance-none border-0 bg-transparent p-0 text-inherit font-bold underline"
+          onClick={toggleContactVisible}
+        >
+          CONTACT:
+        </button>
         <p>- EMAIL:</p>
-        <p className="pl-2 break-all text-[7px]">gogumangoguma@gmail.com</p>
+        <p className="pl-2 break-all text-[7px]">
+          <SecretText value={email} />
+        </p>
         <p>- GITHUB:</p>
         <p className="pl-2 break-all text-[7px]">github.com/juhee-playground</p>
 

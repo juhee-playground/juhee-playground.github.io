@@ -23,7 +23,7 @@ const PROJECT_CARD_STAGGER = 0.08;
 const STATS_CARD_STAGGER = 0.07;
 
 const PortfolioPage = () => {
-  const { pointColor, shellStyle } = useSettings();
+  const { pointColor, shellStyle, toggleContactVisible } = useSettings();
   const gb = getGameBoyPalette(shellStyle, pointColor.hex);
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
@@ -125,7 +125,7 @@ const PortfolioPage = () => {
         </SiteSection>
 
         {/* ─── #contact ─── */}
-        <SiteSection id='contact' title='Contact'>
+        <SiteSection id='contact' title='Contact' onTitleClick={toggleContactVisible}>
           <SiteContact />
         </SiteSection>
 

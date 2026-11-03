@@ -1,4 +1,4 @@
-import { IS_JOB_SEEKING } from '@/constants/config';
+import { ContactRevealButton, SecretText } from '@/components/common/SecretText';
 import { useSettings } from '@/stores/useSettings';
 
 interface IContactProperties {
@@ -24,15 +24,13 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
     portfolio: import.meta.env.VITE_APP_PORTFOLIO,
   };
 
-  const displayValue = (key: keyof IContactProperties): string | undefined => {
-    if (!IS_JOB_SEEKING && key === 'phone_number') return '현재 구직 중이 아니므로 연락처는 비공개입니다.';
-    return contactInfo[key];
-  };
+  const isContact = info.title === 'CONTACT';
+  const headingIcon = <i className='pixel-icon-common' aria-hidden='true' />;
 
   return (
     <>
       <div className='flex items-center'>
-        <i className='pixel-icon-common' aria-hidden='true' />
+        {isContact ? <ContactRevealButton>{headingIcon}</ContactRevealButton> : headingIcon}
         <h4 style={{ color: pointColor.hex }} className='pixel-font m-0 px-1 leading-7 text-[13px]'>
           {info.title}
         </h4>
@@ -49,12 +47,14 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
                 <div className='flex flex-col gap-2 leading-6' key={`profile_subTitle_${index}`}>
                   <dt className='font-semibold text-[15px] m-0'>{item.subTitle}</dt>
                   <dd className='font-normal text-[13px] m-0 wrap-break-word'>
-                    {key === 'github' || key === 'portfolio' ? (
+                    {key === 'email' || key === 'phone_number' ? (
+                      <SecretText value={contactInfo[key]} />
+                    ) : key === 'github' || key === 'portfolio' ? (
                       <a href={contactInfo[key]} className='text-inherit underline' color='inherit'>
-                        {displayValue(key)}
+                        {contactInfo[key]}
                       </a>
                     ) : (
-                      displayValue(key)
+                      contactInfo[key]
                     )}
                   </dd>
                 </div>
