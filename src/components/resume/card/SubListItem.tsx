@@ -80,7 +80,7 @@ const SubListItem = ({ info }: ISubListProps) => {
   const { pointColor } = useSettings();
   const isDark = useTheme().palette.mode === 'dark';
   const periodLabel = projectData.period.replace('~', ' ~ ');
-  const showFolded = isPrintMode || isDetailOpen;
+  const showFolded = isDetailOpen;
   const participationRate = typeof projectData.participationRate === 'number'
     ? Math.min(100, Math.max(0, projectData.participationRate))
     : null;
@@ -226,7 +226,7 @@ const SubListItem = ({ info }: ISubListProps) => {
       </ul>
 
       {foldedSections.length > 0 && (
-        <div id={`project-detail-${projectData.id}`} className={cn(!showFolded && 'hidden print:block')}>
+        <div id={`project-detail-${projectData.id}`} className={cn(!showFolded && 'hidden')}>
           {foldedSections.map(section => (
             <DetailBlock
               key={`${projectData.id}_${section.key}`}
