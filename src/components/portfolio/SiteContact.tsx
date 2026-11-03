@@ -1,4 +1,4 @@
-import { IS_JOB_SEEKING } from '@/constants/config';
+import { SecretText } from '@/components/common/SecretText';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
@@ -34,14 +34,14 @@ const CONTACT_CARDS: IContactCard[] = [
   {
     key: 'phone',
     label: 'Phone',
-    value: IS_JOB_SEEKING ? phone : '현재 구직 중이 아니므로 비공개입니다.',
-    href: IS_JOB_SEEKING && phone ? `tel:${phone}` : undefined,
-    hidden: !IS_JOB_SEEKING,
+    value: phone,
+    href: phone ? `tel:${phone}` : undefined,
+    hidden: !phone,
   },
 ];
 
 const SiteContact = () => {
-  const { pointColor, shellStyle } = useSettings();
+  const { pointColor, shellStyle, isContactVisible } = useSettings();
   const gb = getGameBoyPalette(shellStyle, pointColor.hex);
 
   const visibleCards = CONTACT_CARDS.filter(c => !c.hidden);
@@ -54,9 +54,11 @@ const SiteContact = () => {
 
       <ul className='flex flex-col gap-5 m-0 p-0 list-none'>
         {visibleCards.map(({ key, label, value, href }) => {
+          const isSecret = key === 'email' || key === 'phone';
+          const openHref = href && (!isSecret || isContactVisible) ? href : undefined;
           const rowClass = cn(
             'group flex items-baseline justify-between gap-4',
-            href && 'cursor-pointer',
+            openHref && 'cursor-pointer',
           );
 
           const content = (
@@ -69,13 +71,13 @@ const SiteContact = () => {
                   {label}
                 </span>
                 <span
-                  className={cn('text-base break-all', href && 'group-hover:underline underline-offset-2')}
+                  className={cn('text-base break-all', openHref && 'group-hover:underline underline-offset-2')}
                   style={{ color: gb.text }}
                 >
-                  {value}
+                  {isSecret ? <SecretText value={value} /> : value}
                 </span>
               </div>
-              {href && (
+              {openHref && (
                 <span
                   className='pixel-font text-body-2xs shrink-0 transition-transform group-hover:translate-x-1'
                   style={{ color: gb.accentText }}
@@ -88,9 +90,9 @@ const SiteContact = () => {
 
           return (
             <li key={key}>
-              {href ? (
+              {openHref ? (
                 <a
-                  href={href}
+                  href={openHref}
                   target='_blank'
                   rel='noreferrer'
                   className={rowClass}

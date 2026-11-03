@@ -12,6 +12,7 @@ interface ISettingsStore {
   isPrintMode: boolean;
   pointColor: IColor;
   showSideProjects: boolean;
+  isContactVisible: boolean;
 
   toggleThemeMode: () => void;
   setThemeMode: (mode: PaletteMode) => void;
@@ -20,6 +21,7 @@ interface ISettingsStore {
   setPrintMode: (enabled: boolean) => void;
   setPointColor: (color: IColor) => void;
   toggleSideProjects: () => void;
+  toggleContactVisible: () => void;
 }
 
 const defaultColor: IColor = {
@@ -34,6 +36,7 @@ export const useSettings = create<ISettingsStore>(set => ({
   isPrintMode: false,
   pointColor: defaultColor,
   showSideProjects: false,
+  isContactVisible: false,
 
   toggleThemeMode: () =>
     set(state => ({
@@ -47,4 +50,5 @@ export const useSettings = create<ISettingsStore>(set => ({
   setPrintMode: enabled => set({ isPrintMode: enabled }),
   setPointColor: color => set({ pointColor: color }),
   toggleSideProjects: () => set(state => ({ showSideProjects: !state.showSideProjects })),
+  toggleContactVisible: () => set(state => ({ isContactVisible: !state.isContactVisible })),
 }));

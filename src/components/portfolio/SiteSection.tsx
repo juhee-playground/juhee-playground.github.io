@@ -10,9 +10,10 @@ interface ISiteSectionProps {
   children: ReactNode;
   id: string;
   title?: string;
+  onTitleClick?: () => void;
 }
 
-const SiteSection = ({ children, id, title }: ISiteSectionProps) => {
+const SiteSection = ({ children, id, title, onTitleClick }: ISiteSectionProps) => {
   const { pointColor, shellStyle } = useSettings();
   const gb = getGameBoyPalette(shellStyle, pointColor.hex);
 
@@ -29,15 +30,37 @@ const SiteSection = ({ children, id, title }: ISiteSectionProps) => {
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.4 }}
         >
-          <span className='animate-blink text-sm leading-none' style={{ color: gb.accentText }}>
-            ▶
-          </span>
-          <span
-            className='pixel-font text-avatar tracking-[0.15em] uppercase'
-            style={{ color: gb.text }}
-          >
-            {title}
-          </span>
+          {onTitleClick ? (
+            <button
+              type='button'
+              tabIndex={-1}
+              aria-hidden='true'
+              className='m-0 flex cursor-default items-center gap-3 appearance-none border-0 bg-transparent p-0 font-[inherit] text-inherit'
+              onClick={onTitleClick}
+            >
+              <span className='animate-blink text-sm leading-none' style={{ color: gb.accentText }}>
+                ▶
+              </span>
+              <span
+                className='pixel-font text-avatar tracking-[0.15em] uppercase'
+                style={{ color: gb.text }}
+              >
+                {title}
+              </span>
+            </button>
+          ) : (
+            <>
+              <span className='animate-blink text-sm leading-none' style={{ color: gb.accentText }}>
+                ▶
+              </span>
+              <span
+                className='pixel-font text-avatar tracking-[0.15em] uppercase'
+                style={{ color: gb.text }}
+              >
+                {title}
+              </span>
+            </>
+          )}
           <div className='flex-1 h-0.5 rounded-sm' style={{ backgroundColor: gb.border }} />
         </motion.div>
       )}
