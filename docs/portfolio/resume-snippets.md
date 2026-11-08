@@ -65,3 +65,33 @@
 패키지 매니저는 yarn (`yarn.lock`). pnpm 스크립트는 없어 `yarn lint`, `yarn build`, `yarn jest --watchAll=false --ci`로 봤다.  
 `yarn build` (`tsc && vite build`) 통과. `yarn lint` 실패 (warning 13, max-warnings 0).  
 테스트는 없음이 아니다. Jest 파일 3개, 15개 중 9개 통과, 6개 실패.
+
+## 프로젝트 properties
+
+```
+mainSkill
+techStack
+company
+period
+url
+slug
+description
+summary
+hero
+problem
+architecture
+keyFeatures
+impact
+keywords
+domain
+numberOfParticipants
+participationRate
+role
+isVisible
+background
+result
+mainWork
+solution
+keyContributions
+details
+```
