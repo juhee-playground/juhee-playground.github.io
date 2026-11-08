@@ -38,7 +38,7 @@ export const getCellText = (project: IProjectData, columnId: TSearchColumnId): s
     case 'isFeatured':
       return project.isFeatured ? 'true' : 'false';
     case 'featuredOrder':
-      return project.featuredOrder == null ? '' : String(project.featuredOrder);
+      return String(project.featuredOrder ?? '');
     case 'hero':
       return asCellText(project.hero);
     case 'problem':
@@ -52,7 +52,7 @@ export const getCellText = (project: IProjectData, columnId: TSearchColumnId): s
     case 'numberOfParticipants':
       return String(project.numberOfParticipants ?? '');
     case 'participationRate':
-      return project.participationRate == null ? '' : String(project.participationRate);
+      return String(project.participationRate ?? '');
     case 'companyId':
       return asCellText(project.companyId);
     default:

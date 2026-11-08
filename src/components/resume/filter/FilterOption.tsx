@@ -1,7 +1,7 @@
 import DChip from '@/components/custom/DChip';
 import ToggleChip from '@/components/custom/ToggleChip';
-import { formatFirstLetterToUpper } from '@/utils/formatter';
 import { cn } from '@/utils/classNames';
+import { formatFirstLetterToUpper } from '@/utils/formatter';
 
 interface IFilterOptionProps {
   title: string;

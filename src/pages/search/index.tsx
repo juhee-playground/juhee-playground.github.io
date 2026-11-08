@@ -10,6 +10,7 @@ import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 import { parseCompanyData, parseProjectData } from '@/utils/parser';
 
+import { buildFilteredCsv } from './buildFilteredCsv';
 import {
   buildCompanyCounts,
   buildDomainCounts,
@@ -20,7 +21,6 @@ import {
   buildVisibilityCounts,
   getProjectTechNames,
 } from './buildTagCounts';
-import { buildFilteredCsv } from './buildFilteredCsv';
 import { DEFAULT_VISIBLE_COLUMN_IDS, SEARCH_COLUMNS, TSearchColumnId } from './columns';
 import { FilterChipPanel } from './FilterChipPanel';
 import { getCellTags, getCellText } from './getCellValue';
@@ -28,6 +28,7 @@ import { reorderColumns } from './reorderColumns';
 import { useTableDragScroll } from './useTableDragScroll';
 
 const FALLBACK_PROJECTS = (PROJECT_DATA as IProjectProperties[]).map(project => parseProjectData(project));
+const COPY_STATUS_RESET_MS = 1800;
 const FALLBACK_COMPANIES = (COMPANY_DATA as ICompanyProperties[]).map(company => parseCompanyData(company));
 const INITIAL_COLUMN_ORDER = SEARCH_COLUMNS.map(column => column.id);
 const COLUMN_BY_ID = Object.fromEntries(SEARCH_COLUMNS.map(column => [column.id, column])) as Record<
@@ -214,7 +215,7 @@ const SearchPage = () => {
       setCopyStatus('failed');
     }
 
-    copyResetTimerRef.current = window.setTimeout(() => setCopyStatus('idle'), 1800);
+    copyResetTimerRef.current = window.setTimeout(() => setCopyStatus('idle'), COPY_STATUS_RESET_MS);
   };
 
   const panelClass = isDark ? 'bg-white/4 border-white/10' : 'bg-white border-black/8';
