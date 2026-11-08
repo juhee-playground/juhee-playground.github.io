@@ -13,7 +13,9 @@ import { parseCompanyData, parseProjectData } from '@/utils/parser';
 import {
   buildCompanyCounts,
   buildDomainCounts,
+  buildFeaturedCounts,
   buildKeywordCounts,
+  buildProjectTypeCounts,
   buildTechCounts,
   buildVisibilityCounts,
   getProjectTechNames,
@@ -52,6 +54,8 @@ const SearchPage = () => {
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
   const [selectedVisibility, setSelectedVisibility] = useState<string | null>(null);
+  const [selectedProjectType, setSelectedProjectType] = useState<string | null>(null);
+  const [selectedFeatured, setSelectedFeatured] = useState<string | null>(null);
   const [columnOrder, setColumnOrder] = useState<readonly TSearchColumnId[]>(INITIAL_COLUMN_ORDER);
   const [visibleColumnIds, setVisibleColumnIds] = useState<readonly TSearchColumnId[]>(DEFAULT_VISIBLE_COLUMN_IDS);
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'failed'>('idle');
@@ -76,6 +80,8 @@ const SearchPage = () => {
   const companyCounts = useMemo(() => buildCompanyCounts(projects, companyNameById), [projects, companyNameById]);
   const techCounts = useMemo(() => buildTechCounts(projects), [projects]);
   const visibilityCounts = useMemo(() => buildVisibilityCounts(projects), [projects]);
+  const projectTypeCounts = useMemo(() => buildProjectTypeCounts(projects), [projects]);
+  const featuredCounts = useMemo(() => buildFeaturedCounts(projects), [projects]);
 
   const filteredProjects = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -86,12 +92,26 @@ const SearchPage = () => {
       const companyName = companyNameById[project.companyId] || project.companyId;
       const techNames = getProjectTechNames(project);
       const visibility = project.isVisible ? 'true' : 'false';
+      const featured = project.isFeatured ? 'true' : 'false';
       const matchesKeyword = selectedKeyword ? keywordNames.includes(selectedKeyword) : true;
       const matchesDomain = selectedDomain ? domainNames.includes(selectedDomain) : true;
       const matchesCompany = selectedCompany ? companyName === selectedCompany : true;
       const matchesTech = selectedTech ? techNames.includes(selectedTech) : true;
       const matchesVisibility = selectedVisibility ? visibility === selectedVisibility : true;
-      if (!matchesKeyword || !matchesDomain || !matchesCompany || !matchesTech || !matchesVisibility) return false;
+      const projectTypeNames = (project.projectType ?? []).map((tag: ISelectProperty) => tag.name);
+      const matchesProjectType = selectedProjectType ? projectTypeNames.includes(selectedProjectType) : true;
+      const matchesFeatured = selectedFeatured ? featured === selectedFeatured : true;
+      if (
+        !matchesKeyword ||
+        !matchesDomain ||
+        !matchesCompany ||
+        !matchesTech ||
+        !matchesVisibility ||
+        !matchesProjectType ||
+        !matchesFeatured
+      ) {
+        return false;
+      }
       if (!normalizedQuery) return true;
 
       const haystack = [
@@ -99,6 +119,7 @@ const SearchPage = () => {
         companyName,
         ...techNames,
         visibility,
+        featured,
       ]
         .join(' ')
         .toLowerCase();
@@ -110,13 +131,22 @@ const SearchPage = () => {
     query,
     selectedCompany,
     selectedDomain,
+    selectedFeatured,
     selectedKeyword,
+    selectedProjectType,
     selectedTech,
     selectedVisibility,
   ]);
 
   const hasActiveFilters = Boolean(
-    selectedKeyword || selectedDomain || selectedCompany || selectedTech || selectedVisibility || query,
+    selectedKeyword ||
+      selectedDomain ||
+      selectedCompany ||
+      selectedTech ||
+      selectedVisibility ||
+      selectedProjectType ||
+      selectedFeatured ||
+      query,
   );
 
   useEffect(
@@ -258,6 +288,28 @@ const SearchPage = () => {
           activeColor={pointColor.hex}
           onSelect={setSelectedVisibility}
         />
+        <FilterChipPanel
+          title='projectType'
+          items={projectTypeCounts}
+          selectedName={selectedProjectType}
+          emptyText='아직 비어 있음 · Notion/데이터에 projectType 채우면 여기 뜸'
+          panelClass={panelClass}
+          mutedText={mutedText}
+          chipIdle={chipIdle}
+          activeColor={pointColor.hex}
+          onSelect={setSelectedProjectType}
+        />
+        <FilterChipPanel
+          title='isFeatured'
+          items={featuredCounts}
+          selectedName={selectedFeatured}
+          emptyText='값 없음'
+          panelClass={panelClass}
+          mutedText={mutedText}
+          chipIdle={chipIdle}
+          activeColor={pointColor.hex}
+          onSelect={setSelectedFeatured}
+        />
       </div>
 
       <section className={cn('mb-3 rounded-xl border p-4', panelClass)}>
@@ -331,6 +383,8 @@ const SearchPage = () => {
               setSelectedCompany(null);
               setSelectedTech(null);
               setSelectedVisibility(null);
+              setSelectedProjectType(null);
+              setSelectedFeatured(null);
             }}
             className={cn('rounded-md px-2.5 py-1.5 text-xs font-medium', chipIdle)}
           >

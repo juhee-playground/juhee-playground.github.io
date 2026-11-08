@@ -88,6 +88,9 @@ numberOfParticipants
 participationRate
 role
 isVisible
+projectType
+isFeatured
+featuredOrder
 background
 result
 mainWork

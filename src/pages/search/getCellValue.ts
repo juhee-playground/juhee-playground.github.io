@@ -33,6 +33,12 @@ export const getCellText = (project: IProjectData, columnId: TSearchColumnId): s
       return asCellText(project.background);
     case 'isVisible':
       return project.isVisible ? 'true' : 'false';
+    case 'projectType':
+      return joinSelectNames(project.projectType);
+    case 'isFeatured':
+      return project.isFeatured ? 'true' : 'false';
+    case 'featuredOrder':
+      return project.featuredOrder == null ? '' : String(project.featuredOrder);
     case 'hero':
       return asCellText(project.hero);
     case 'problem':
@@ -63,6 +69,8 @@ export const getCellTags = (
       return project.domain ?? [];
     case 'keywords':
       return project.keywords ?? [];
+    case 'projectType':
+      return project.projectType ?? [];
     case 'mainSkills':
       return project.mainSkills ?? [];
     case 'techStack':

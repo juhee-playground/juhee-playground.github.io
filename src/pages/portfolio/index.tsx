@@ -28,7 +28,11 @@ const PortfolioPage = () => {
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
   const visibleProjects = (projectQuery.data ?? DB_PROJECT).filter(project => project.isVisible);
-  const projects = visibleProjects.slice(0, FEATURED_PROJECT_COUNT);
+  const featuredProjects = visibleProjects
+    .filter(project => project.isFeatured)
+    .sort((a, b) => (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) - (b.featuredOrder ?? Number.MAX_SAFE_INTEGER));
+  const projects =
+    featuredProjects.length > 0 ? featuredProjects : visibleProjects.slice(0, FEATURED_PROJECT_COUNT);
   const companies = (companyQuery.data ?? []).filter(company => company.type === 'C');
   const companyNameById = Object.fromEntries(companies.map(company => [company.id, company.name]));
   const projectsForStats = visibleProjects;

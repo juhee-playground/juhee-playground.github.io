@@ -1,6 +1,7 @@
 export type TSearchColumnId =
   | 'name'
   | 'domain'
+  | 'projectType'
   | 'keywords'
   | 'role'
   | 'summary'
@@ -18,7 +19,9 @@ export type TSearchColumnId =
   | 'description'
   | 'details'
   | 'background'
-  | 'isVisible';
+  | 'isVisible'
+  | 'isFeatured'
+  | 'featuredOrder';
 
 export type TSearchCellKind = 'text' | 'tags' | 'number' | 'link';
 
@@ -53,6 +56,9 @@ export const SEARCH_COLUMNS: readonly ISearchColumn[] = [
   { id: 'details', label: 'details', kind: 'text', defaultVisible: false, minWidth: '240px' },
   { id: 'background', label: 'background', kind: 'text', defaultVisible: false, minWidth: '240px' },
   { id: 'isVisible', label: 'isVisible', kind: 'text', defaultVisible: true, minWidth: '100px' },
+  { id: 'projectType', label: 'projectType', kind: 'tags', defaultVisible: true, minWidth: '140px' },
+  { id: 'isFeatured', label: 'isFeatured', kind: 'text', defaultVisible: true, minWidth: '100px' },
+  { id: 'featuredOrder', label: 'featuredOrder', kind: 'number', defaultVisible: true, minWidth: '110px' },
 ] as const;
 
 export const DEFAULT_VISIBLE_COLUMN_IDS: readonly TSearchColumnId[] = SEARCH_COLUMNS.filter(

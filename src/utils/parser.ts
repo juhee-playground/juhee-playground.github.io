@@ -109,6 +109,19 @@ export const parseProjectData = (info: IProjectProperties) => {
         : typeof raw.isVisible === 'boolean'
           ? raw.isVisible
           : true,
+    projectType: Array.isArray(info.projectType?.multi_select) ? info.projectType.multi_select : [],
+    isFeatured:
+      typeof info.isFeatured?.checkbox === 'boolean'
+        ? info.isFeatured.checkbox
+        : typeof raw.isFeatured === 'boolean'
+          ? raw.isFeatured
+          : false,
+    featuredOrder:
+      typeof info.featuredOrder?.number === 'number'
+        ? info.featuredOrder.number
+        : typeof raw.featuredOrder === 'number'
+          ? raw.featuredOrder
+          : null,
     asls: Array.isArray(info.asls?.rich_text) ? info.asls.rich_text : [],
     challenge: Array.isArray(info.challenge?.rich_text) ? info.challenge.rich_text : [],
     tobe: Array.isArray(info.tobe?.rich_text) ? info.tobe.rich_text : [],

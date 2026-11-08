@@ -17,6 +17,9 @@ export interface ISiteProject {
   keywords: string[];
   domain: string[];
   isVisible: boolean;
+  projectType: string[];
+  isFeatured: boolean;
+  featuredOrder: number | null;
   url?: string;
   company: string;
 }
@@ -47,6 +50,9 @@ export const PROJECTS_SITE: ISiteProject[] = [
     keywords: ['GoogleMap API 활용', '문서 다운로드 기능', '배포 및 운영'],
     domain: [],
     isVisible: true,
+    projectType: [],
+    isFeatured: true,
+    featuredOrder: 1,
     url: 'https://dino100.notion.site/OHCOACH-Admin-19c653a2c55e4ff7a3ae601aef929362?pvs=4',
     company: '핏투게더 (https://www.notion.so/ac39715c45de4b359daa30cf52a10664?pvs=21)',
   },
@@ -75,6 +81,9 @@ export const PROJECTS_SITE: ISiteProject[] = [
     keywords: ['D3', 'UX 개선기획', 'chart', 'pdf기능', '데이터 시각화', '리펙토링'],
     domain: [],
     isVisible: true,
+    projectType: [],
+    isFeatured: true,
+    featuredOrder: 2,
     url: 'https://dino100.notion.site/OHCOACH-Ultimate-fd838cf131fc4d718d2b4d89e7d42dd8',
     company: '핏투게더 (https://www.notion.so/ac39715c45de4b359daa30cf52a10664?pvs=21)',
   },
@@ -102,6 +111,9 @@ export const PROJECTS_SITE: ISiteProject[] = [
     keywords: ['구글 시트 API', '사내 최적화 ERP 모듈 개발', '슬랙 웹 훅'],
     domain: [],
     isVisible: true,
+    projectType: [],
+    isFeatured: true,
+    featuredOrder: 3,
     url: 'https://dino100.notion.site/ERP-3e2c2b03001f4989b54164f087c9f269',
     company: '핏투게더 (https://www.notion.so/ac39715c45de4b359daa30cf52a10664?pvs=21)',
   },

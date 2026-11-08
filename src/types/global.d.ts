@@ -73,6 +73,9 @@ declare global {
     techStack?: INotionMultiSelect;
     slug?: INotionText;
     isVisible?: INotionCheckbox;
+    projectType?: INotionMultiSelect;
+    isFeatured?: INotionCheckbox;
+    featuredOrder?: INotionNumber;
     name: INotionTitleName;
   }
 
@@ -176,7 +179,7 @@ declare global {
   }
 
   interface INotionSelect extends INotionDefaultProperties {
-    select: ISelectProperty;
+    select: ISelectProperty | null;
   }
 
   interface INotionSelectOptions {
@@ -264,6 +267,9 @@ declare global {
     details: string;
     background: string;
     isVisible: boolean;
+    projectType: readonly ISelectProperty[];
+    isFeatured: boolean;
+    featuredOrder: number | null;
     asls: IRichText[];
     challenge: IRichText[];
     tobe: IRichText[];

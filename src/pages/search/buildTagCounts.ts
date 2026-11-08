@@ -67,3 +67,9 @@ export const buildCompanyCounts = (
 
 export const buildVisibilityCounts = (projects: readonly IProjectData[]): TTagCount[] =>
   countStringTags(projects, project => [project.isVisible ? 'true' : 'false']);
+
+export const buildFeaturedCounts = (projects: readonly IProjectData[]): TTagCount[] =>
+  countStringTags(projects, project => [project.isFeatured ? 'true' : 'false']);
+
+export const buildProjectTypeCounts = (projects: readonly IProjectData[]): TTagCount[] =>
+  countSelectTags(projects, project => project.projectType ?? []);
