@@ -94,6 +94,20 @@ const ResumeContainer = () => {
     );
   };
 
+  const handleToggleAllCompanies = () => {
+    setSelectedCompanies(prev => (prev?.length === companies.length ? [] : [...companies]));
+  };
+
+  const handleToggleAllSkills = () => {
+    setSelectedSkillOptions(prev => (prev?.length === skillOptions.length ? [] : [...skillOptions]));
+  };
+
+  const handleToggleAllProjectTypes = () => {
+    setSelectedProjectTypes(prev =>
+      prev?.length === projectTypeOptions.length ? [] : [...projectTypeOptions],
+    );
+  };
+
   return (
     <ResumeView
       isLoading={projectQuery.isLoading}
@@ -108,6 +122,9 @@ const ResumeContainer = () => {
       onChangeCompany={handleChangeSelectedCompanies}
       onChangeSkill={handleChangeSelectedSkillOptions}
       onChangeProjectType={handleChangeSelectedProjectTypes}
+      onToggleAllCompanies={handleToggleAllCompanies}
+      onToggleAllSkills={handleToggleAllSkills}
+      onToggleAllProjectTypes={handleToggleAllProjectTypes}
       pointColorHex={pointColor.hex}
       mode={mode}
       parseCompanyQuery={parseCompanyQuery}

@@ -26,6 +26,9 @@ interface IResumeViewProps {
   onChangeCompany: (company: string) => void;
   onChangeSkill: (skill: string) => void;
   onChangeProjectType: (projectType: string) => void;
+  onToggleAllCompanies: () => void;
+  onToggleAllSkills: () => void;
+  onToggleAllProjectTypes: () => void;
   pointColorHex: string;
   mode: 'print' | '';
   parseCompanyQuery: ICompanyData[];
@@ -54,6 +57,9 @@ const ResumeView = ({
   onChangeCompany,
   onChangeSkill,
   onChangeProjectType,
+  onToggleAllCompanies,
+  onToggleAllSkills,
+  onToggleAllProjectTypes,
   pointColorHex,
   mode,
   parseCompanyQuery,
@@ -138,6 +144,7 @@ const ResumeView = ({
               selected={selectedCompanies}
               color={pointColorHex}
               onChange={onChangeCompany}
+              onToggleAll={onToggleAllCompanies}
             />
             <FilterOption
               title='skill'
@@ -145,6 +152,7 @@ const ResumeView = ({
               color={pointColorHex}
               selected={selectedSkillOptions}
               onChange={onChangeSkill}
+              onToggleAll={onToggleAllSkills}
             />
             <FilterOption
               title='projectType'
@@ -152,6 +160,7 @@ const ResumeView = ({
               color={pointColorHex}
               selected={selectedProjectTypes}
               onChange={onChangeProjectType}
+              onToggleAll={onToggleAllProjectTypes}
             />
           </ul>
 
