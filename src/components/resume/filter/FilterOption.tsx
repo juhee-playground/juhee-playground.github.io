@@ -13,12 +13,14 @@ interface IFilterOptionProps {
 
 const FilterOption = ({ title, options, colorOptions, color, selected, onChange }: IFilterOptionProps) => {
   return (
-    <li className='flex items-center my-2 md:flex-row flex-col'>
-      <p className='mr-4 w-[15%] border-[#dddddd] py-2 px-2 flex items-center justify-start md:self-auto self-start'>
-        <span className='pixel-font text-sm font-bold text-[#4b5563]'>{formatFirstLetterToUpper(title)}</span>
+    <li className='flex items-start my-1 md:flex-row flex-col'>
+      <p className='mr-4 w-full md:w-36 shrink-0 border-[#dddddd] py-2 px-2 flex items-center justify-start'>
+        <span className='pixel-font text-sm font-bold text-[#4b5563] whitespace-nowrap'>
+          {formatFirstLetterToUpper(title)}
+        </span>
       </p>
 
-      <div className='flex flex-wrap gap-2 w-[75%] py-2 px-2'>
+      <div className='flex flex-wrap gap-2 flex-1 min-w-0 py-2 px-2'>
         {colorOptions
           ? colorOptions.map(({ id, name, color: chipColor }: ISelectProperty) => (
               <DChip

@@ -67,7 +67,7 @@ const ResumeView = ({
         {isLoading && <Loading />}
 
         <section className={cn('', mode === 'print' && 'hidden')}>
-          <ul className='flex flex-col gap-4'>
+          <ul className='flex flex-col'>
             <FilterOption
               options={companies}
               title='company'
