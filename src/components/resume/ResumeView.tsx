@@ -82,15 +82,13 @@ const ResumeView = ({
               selected={selectedSkillOptions}
               onChange={onChangeSkill}
             />
-            {projectTypeOptions.length > 0 && (
-              <FilterOption
-                title='projectType'
-                options={projectTypeOptions}
-                color={pointColorHex}
-                selected={selectedProjectTypes}
-                onChange={onChangeProjectType}
-              />
-            )}
+            <FilterOption
+              title='projectType'
+              options={projectTypeOptions}
+              color={pointColorHex}
+              selected={selectedProjectTypes}
+              onChange={onChangeProjectType}
+            />
           </ul>
 
           <div className='flex justify-end'>

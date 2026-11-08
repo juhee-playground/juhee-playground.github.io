@@ -50,8 +50,13 @@ const ResumeContainer = () => {
   }, [skillOptions, selectedSkillOptions]);
 
   useEffect(() => {
-    if (!selectedProjectTypes) setSelectedProjectTypes(projectTypeOptions);
-  }, [projectTypeOptions, selectedProjectTypes]);
+    if (projectTypeOptions.length === 0) return;
+    setSelectedProjectTypes(current => {
+      if (!current) return [...projectTypeOptions];
+      const arrived = projectTypeOptions.filter(name => !current.includes(name));
+      return arrived.length === 0 ? current : [...current, ...arrived];
+    });
+  }, [projectTypeOptions]);
 
   const handleChangeSelect = (event: SelectChangeEvent) => setSortValue(event.target.value);
 
