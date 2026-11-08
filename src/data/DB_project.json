@@ -280,7 +280,17 @@
         }
       ]
     },
-    "id": "c45bc8dc-95c8-49e0-99d3-d33c9ae46195"
+    "id": "c45bc8dc-95c8-49e0-99d3-d33c9ae46195",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   },
   {
     "details": {
@@ -662,7 +672,17 @@
         }
       ]
     },
-    "id": "fd838cf1-31fc-4d71-8d2b-4d89e7d42dd8"
+    "id": "fd838cf1-31fc-4d71-8d2b-4d89e7d42dd8",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   },
   {
     "details": {
@@ -1027,7 +1047,17 @@
         }
       ]
     },
-    "id": "19c653a2-c55e-4ff7-a3ae-601aef929362"
+    "id": "19c653a2-c55e-4ff7-a3ae-601aef929362",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   },
   {
     "details": {
@@ -1416,7 +1446,17 @@
         }
       ]
     },
-    "id": "3e2c2b03-001f-4989-b541-64f087c9f269"
+    "id": "3e2c2b03-001f-4989-b541-64f087c9f269",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   },
   {
     "details": {
@@ -1793,7 +1833,17 @@
         }
       ]
     },
-    "id": "d8267476-4f3e-40f6-818a-aab191950c69"
+    "id": "d8267476-4f3e-40f6-818a-aab191950c69",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   },
   {
     "details": {
@@ -2118,7 +2168,17 @@
         }
       ]
     },
-    "id": "e0c1949b-a3da-4af1-8efc-13261ce4ca9c"
+    "id": "e0c1949b-a3da-4af1-8efc-13261ce4ca9c",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   },
   {
     "details": {
@@ -2378,7 +2438,17 @@
         }
       ]
     },
-    "id": "b76d36e7-d657-4886-bf76-052cb9ba668e"
+    "id": "b76d36e7-d657-4886-bf76-052cb9ba668e",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   },
   {
     "details": {
@@ -2796,7 +2866,17 @@
         }
       ]
     },
-    "id": "587102b3-8173-4784-9198-51a49bbd2a6c"
+    "id": "587102b3-8173-4784-9198-51a49bbd2a6c",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   },
   {
     "details": {
@@ -3188,7 +3268,17 @@
         }
       ]
     },
-    "id": "135e25ad-cbe6-4a1d-a56c-5510688fd50c"
+    "id": "135e25ad-cbe6-4a1d-a56c-5510688fd50c",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   },
   {
     "details": {
@@ -3517,6 +3607,16 @@
         }
       ]
     },
-    "id": "465ebd26-b8f0-44dc-9dd8-42adcfb68082"
+    "id": "465ebd26-b8f0-44dc-9dd8-42adcfb68082",
+    "domain": {
+      "id": "domain",
+      "type": "multi_select",
+      "multi_select": []
+    },
+    "background": {
+      "id": "background",
+      "type": "rich_text",
+      "rich_text": []
+    }
   }
 ]

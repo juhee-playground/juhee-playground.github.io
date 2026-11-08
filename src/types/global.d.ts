@@ -49,9 +49,12 @@ declare global {
     url: INotionURL;
     role: INotionText;
     description: INotionText;
+    details?: INotionText;
+    background?: INotionText;
     experience: INotionText;
     skill: INotionMultiSelect;
     keywords?: INotionMultiSelect;
+    domain?: INotionMultiSelect;
     numberOfParticipants: INotionNumber;
     participationRate?: INotionNumber;
     asls: INotionText;
@@ -249,7 +252,10 @@ declare global {
     skills: ISelectProperty[];
     role: string;
     keywords: readonly ISelectProperty[];
+    domain: readonly ISelectProperty[];
     description: string;
+    details: string;
+    background: string;
     asls: IRichText[];
     challenge: IRichText[];
     tobe: IRichText[];
