@@ -20,6 +20,7 @@ interface IUseResumeMainDataProps {
   selectedCompanies: string[] | undefined;
   selectedSkillOptions: string[] | undefined;
   selectedProjectTypes: string[] | undefined;
+  selectedProjectIds: readonly string[] | undefined;
   sortValue: string;
 }
 
@@ -30,11 +31,17 @@ export default function useResumeMainData({
   selectedCompanies,
   selectedSkillOptions,
   selectedProjectTypes,
+  selectedProjectIds,
   sortValue,
 }: IUseResumeMainDataProps) {
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
   const mainSkillSelectOptions = useSkillOptionQuery('mainSkill');
+
+  const allProjects = useMemo(() => {
+    const projects = projectQuery.data ?? DB_PROJECT_DATAS;
+    return [...projects].sort((a, b) => a.name.localeCompare(b.name));
+  }, [projectQuery.data]);
 
   const toyProjectData = useMemo(() => {
     const data = companyQuery.data ?? DB_COMPANY_DATAS;
@@ -55,11 +62,10 @@ export default function useResumeMainData({
   );
 
   const projectTypeOptions = useMemo(() => {
-    const projects = projectQuery.data ?? DB_PROJECT_DATAS;
-    return [...new Set(projects.flatMap(project => getProjectTypeNames(project)))].sort((a, b) =>
+    return [...new Set(allProjects.flatMap(project => getProjectTypeNames(project)))].sort((a, b) =>
       a.localeCompare(b),
     );
-  }, [projectQuery.data]);
+  }, [allProjects]);
 
   const parseCompanyQuery: ICompanyData[] = useMemo(() => {
     const companyData = (companyQuery.data ?? DB_COMPANY_DATAS)
@@ -70,8 +76,13 @@ export default function useResumeMainData({
   }, [companyQuery.data, sortValue, selectedCompanies]);
 
   const parseProjectQuery: IProjectData[] = useMemo(() => {
-    return (projectQuery.data ?? DB_PROJECT_DATAS).filter(project => {
-      if (!project.isVisible) return false;
+    return allProjects.filter(project => {
+      if (selectedProjectIds) {
+        if (!selectedProjectIds.includes(project.id)) return false;
+      } else if (!project.isVisible) {
+        return false;
+      }
+
       const skillInfo = JSON.stringify(project.techStack);
       const matchesSkill = selectedSkillOptions?.some(item => new RegExp(item).test(skillInfo));
       if (!matchesSkill) return false;
@@ -80,7 +91,7 @@ export default function useResumeMainData({
       if (typeNames.length === 0) return true;
       return typeNames.some(typeName => selectedProjectTypes.includes(typeName));
     });
-  }, [projectQuery.data, selectedProjectTypes, selectedSkillOptions]);
+  }, [allProjects, selectedProjectIds, selectedProjectTypes, selectedSkillOptions]);
 
   return {
     companyQuery,
@@ -90,6 +101,7 @@ export default function useResumeMainData({
     companies,
     skillOptions,
     projectTypeOptions,
+    allProjects,
     parseCompanyQuery,
     parseProjectQuery,
   };

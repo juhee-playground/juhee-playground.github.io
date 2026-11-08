@@ -7,6 +7,7 @@ import { useTheme } from '@mui/material/styles';
 import Loading from '@/components/Loading';
 import CareerSection from '@/components/resume/CareerSection';
 import FilterOption from '@/components/resume/filter/FilterOption';
+import { ProjectSelectionEditor } from '@/components/resume/filter/ProjectSelectionEditor';
 import PointStackCard from '@/components/resume/overview/Card';
 import LeftSection from '@/components/resume/panel/LeftInfoPanel';
 import SideProjectSection from '@/components/resume/SideProjectSection';
@@ -30,6 +31,14 @@ interface IResumeViewProps {
   parseCompanyQuery: ICompanyData[];
   parseProjectQuery: IProjectData[];
   toyProjectData: ICompanyData[];
+  allProjects: readonly IProjectData[];
+  isProjectEditMode: boolean;
+  draftProjectIds: readonly string[];
+  onStartProjectEdit: () => void;
+  onCancelProjectEdit: () => void;
+  onCommitProjectEdit: () => void;
+  onResetProjectEdit: () => void;
+  onToggleDraftProject: (projectId: string) => void;
 }
 
 const ResumeView = ({
@@ -50,8 +59,17 @@ const ResumeView = ({
   parseCompanyQuery,
   parseProjectQuery,
   toyProjectData,
+  allProjects,
+  isProjectEditMode,
+  draftProjectIds,
+  onStartProjectEdit,
+  onCancelProjectEdit,
+  onCommitProjectEdit,
+  onResetProjectEdit,
+  onToggleDraftProject,
 }: IResumeViewProps) => {
   const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
 
   return (
     <>
@@ -59,14 +77,60 @@ const ResumeView = ({
       <div
         className={cn(
           'flex-1 flex flex-col py-3 px-4 min-w-0 min-h-screen',
-          theme.palette.mode === 'light'
-            ? 'bg-white text-[#181717]'
-            : 'bg-[#181717] text-white'
+          isDark ? 'bg-[#181717] text-white' : 'bg-white text-[#181717]',
         )}
       >
         {isLoading && <Loading />}
 
         <section className={cn('', mode === 'print' && 'hidden')}>
+          <div className='mb-2 flex items-center justify-end gap-2'>
+            {isProjectEditMode ? (
+              <>
+                <button
+                  type='button'
+                  onClick={onResetProjectEdit}
+                  className={cn(
+                    'rounded-md border px-2.5 py-1 text-xs font-medium',
+                    isDark ? 'border-white/20 text-white/60' : 'border-black/15 text-black/55',
+                  )}
+                >
+                  기본값
+                </button>
+                <button
+                  type='button'
+                  onClick={onCancelProjectEdit}
+                  className={cn(
+                    'rounded-md border px-2.5 py-1 text-xs font-medium',
+                    isDark ? 'border-white/20 text-white/60' : 'border-black/15 text-black/55',
+                  )}
+                >
+                  Cancel
+                </button>
+                <button
+                  type='button'
+                  onClick={onCommitProjectEdit}
+                  className='rounded-md px-2.5 py-1 text-xs font-medium text-[#111]'
+                  style={{ backgroundColor: pointColorHex }}
+                >
+                  Done
+                </button>
+              </>
+            ) : (
+              <button
+                type='button'
+                onClick={onStartProjectEdit}
+                className={cn(
+                  'rounded-md border px-2.5 py-1 text-xs font-medium',
+                  isDark
+                    ? 'border-white/25 text-white/70 hover:border-white/40'
+                    : 'border-black/20 text-black/60 hover:border-black/35',
+                )}
+              >
+                Edit projects
+              </button>
+            )}
+          </div>
+
           <ul className='flex flex-col'>
             <FilterOption
               options={companies}
@@ -91,6 +155,15 @@ const ResumeView = ({
             />
           </ul>
 
+          {isProjectEditMode && (
+            <ProjectSelectionEditor
+              projects={allProjects}
+              selectedIds={draftProjectIds}
+              pointColorHex={pointColorHex}
+              onToggle={onToggleDraftProject}
+            />
+          )}
+
           <div className='flex justify-end'>
             <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
               <InputLabel id='demo-select-small-label'>정렬방법</InputLabel>
@@ -101,16 +174,15 @@ const ResumeView = ({
                 label='정렬방법'
                 onChange={onChangeSort}
               >
-                <MenuItem sx={{ color: theme.palette.mode === 'dark' ? 'white' : 'black' }} value='N'>
+                <MenuItem sx={{ color: isDark ? 'white' : 'black' }} value='N'>
                   최신순
                 </MenuItem>
-                <MenuItem sx={{ color: theme.palette.mode === 'dark' ? 'white' : 'black' }} value='O'>
+                <MenuItem sx={{ color: isDark ? 'white' : 'black' }} value='O'>
                   오래된순
                 </MenuItem>
               </Select>
             </FormControl>
           </div>
-
         </section>
 
         <PointStackCard />

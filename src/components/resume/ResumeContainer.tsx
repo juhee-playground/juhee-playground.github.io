@@ -5,6 +5,7 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import ResumeView from '@/components/resume/ResumeView';
 import usePrintMode from '@/hooks/usePrintMode';
 import useResumeData from '@/hooks/useResumeMainData';
+import { useResumeProjectSelection } from '@/hooks/useResumeProjectSelection';
 import { useSettings } from '@/stores/useSettings';
 
 const ResumeContainer = () => {
@@ -18,6 +19,18 @@ const ResumeContainer = () => {
   const seenCompaniesRef = useRef<readonly string[]>([]);
 
   const {
+    allProjects,
+    isEditing,
+    selectedProjectIds,
+    draftProjectIds,
+    startEdit,
+    cancelEdit,
+    commitEdit,
+    resetDraftToDefault,
+    toggleDraftProject,
+  } = useResumeProjectSelection();
+
+  const {
     projectQuery,
     toyProjectData,
     companies,
@@ -29,6 +42,7 @@ const ResumeContainer = () => {
     selectedCompanies,
     selectedSkillOptions,
     selectedProjectTypes,
+    selectedProjectIds,
     sortValue,
   });
 
@@ -99,6 +113,14 @@ const ResumeContainer = () => {
       parseCompanyQuery={parseCompanyQuery}
       parseProjectQuery={parseProjectQuery}
       toyProjectData={toyProjectData}
+      allProjects={allProjects}
+      isProjectEditMode={isEditing}
+      draftProjectIds={draftProjectIds}
+      onStartProjectEdit={startEdit}
+      onCancelProjectEdit={cancelEdit}
+      onCommitProjectEdit={commitEdit}
+      onResetProjectEdit={resetDraftToDefault}
+      onToggleDraftProject={toggleDraftProject}
     />
   );
 };
