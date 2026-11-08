@@ -49,9 +49,12 @@ declare global {
     url: INotionURL;
     role: INotionText;
     description: INotionText;
+    details?: INotionText;
+    background?: INotionText;
     experience: INotionText;
     skill: INotionMultiSelect;
     keywords?: INotionMultiSelect;
+    domain?: INotionMultiSelect;
     numberOfParticipants: INotionNumber;
     participationRate?: INotionNumber;
     asls: INotionText;
@@ -69,7 +72,17 @@ declare global {
     keyFeatures?: INotionText;
     techStack?: INotionMultiSelect;
     slug?: INotionText;
+    isVisible?: INotionCheckbox;
+    projectType?: INotionMultiSelect;
+    isFeatured?: INotionCheckbox;
+    featuredOrder?: INotionNumber;
     name: INotionTitleName;
+  }
+
+  interface INotionCheckbox {
+    id: string;
+    type: 'checkbox';
+    checkbox: boolean;
   }
 
   interface ICompanyProperties {
@@ -166,7 +179,7 @@ declare global {
   }
 
   interface INotionSelect extends INotionDefaultProperties {
-    select: ISelectProperty;
+    select: ISelectProperty | null;
   }
 
   interface INotionSelectOptions {
@@ -249,7 +262,14 @@ declare global {
     skills: ISelectProperty[];
     role: string;
     keywords: readonly ISelectProperty[];
+    domain: readonly ISelectProperty[];
     description: string;
+    details: string;
+    background: string;
+    isVisible: boolean;
+    projectType: readonly ISelectProperty[];
+    isFeatured: boolean;
+    featuredOrder: number | null;
     asls: IRichText[];
     challenge: IRichText[];
     tobe: IRichText[];

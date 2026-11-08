@@ -5,20 +5,46 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import ResumeView from '@/components/resume/ResumeView';
 import usePrintMode from '@/hooks/usePrintMode';
 import useResumeData from '@/hooks/useResumeMainData';
+import { useResumeProjectSelection } from '@/hooks/useResumeProjectSelection';
 import { useSettings } from '@/stores/useSettings';
 
 const ResumeContainer = () => {
   const [sortValue, setSortValue] = useState('N');
   const [selectedCompanies, setSelectedCompanies] = useState<string[]>();
   const [selectedSkillOptions, setSelectedSkillOptions] = useState<string[]>();
+  const [selectedProjectTypes, setSelectedProjectTypes] = useState<string[]>();
 
   const { pointColor } = useSettings();
   const { mode } = usePrintMode();
   const seenCompaniesRef = useRef<readonly string[]>([]);
 
-  const { projectQuery, toyProjectData, companies, skillOptions, parseCompanyQuery, parseProjectQuery } = useResumeData(
-    { selectedCompanies, selectedSkillOptions, sortValue },
-  );
+  const {
+    allProjects,
+    isEditing,
+    selectedProjectIds,
+    draftProjectIds,
+    startEdit,
+    cancelEdit,
+    commitEdit,
+    resetDraftToDefault,
+    toggleDraftProject,
+  } = useResumeProjectSelection();
+
+  const {
+    projectQuery,
+    toyProjectData,
+    companies,
+    skillOptions,
+    projectTypeOptions,
+    parseCompanyQuery,
+    parseProjectQuery,
+  } = useResumeData({
+    selectedCompanies,
+    selectedSkillOptions,
+    selectedProjectTypes,
+    selectedProjectIds,
+    sortValue,
+  });
 
   useEffect(() => {
     const seen = seenCompaniesRef.current;
@@ -37,6 +63,15 @@ const ResumeContainer = () => {
     if (!selectedSkillOptions) setSelectedSkillOptions(skillOptions);
   }, [skillOptions, selectedSkillOptions]);
 
+  useEffect(() => {
+    if (projectTypeOptions.length === 0) return;
+    setSelectedProjectTypes(current => {
+      if (!current) return [...projectTypeOptions];
+      const arrived = projectTypeOptions.filter(name => !current.includes(name));
+      return arrived.length === 0 ? current : [...current, ...arrived];
+    });
+  }, [projectTypeOptions]);
+
   const handleChangeSelect = (event: SelectChangeEvent) => setSortValue(event.target.value);
 
   const handleChangeSelectedCompanies = (company: string) => {
@@ -51,6 +86,28 @@ const ResumeContainer = () => {
     );
   };
 
+  const handleChangeSelectedProjectTypes = (projectType: string) => {
+    setSelectedProjectTypes(prev =>
+      prev?.includes(projectType)
+        ? prev.filter(name => name !== projectType)
+        : [...(prev || []), projectType],
+    );
+  };
+
+  const handleToggleAllCompanies = () => {
+    setSelectedCompanies(prev => (prev?.length === companies.length ? [] : [...companies]));
+  };
+
+  const handleToggleAllSkills = () => {
+    setSelectedSkillOptions(prev => (prev?.length === skillOptions.length ? [] : [...skillOptions]));
+  };
+
+  const handleToggleAllProjectTypes = () => {
+    setSelectedProjectTypes(prev =>
+      prev?.length === projectTypeOptions.length ? [] : [...projectTypeOptions],
+    );
+  };
+
   return (
     <ResumeView
       isLoading={projectQuery.isLoading}
@@ -58,15 +115,29 @@ const ResumeContainer = () => {
       onChangeSort={handleChangeSelect}
       companies={companies}
       skillOptions={skillOptions}
+      projectTypeOptions={projectTypeOptions}
       selectedCompanies={selectedCompanies}
       selectedSkillOptions={selectedSkillOptions}
+      selectedProjectTypes={selectedProjectTypes}
       onChangeCompany={handleChangeSelectedCompanies}
       onChangeSkill={handleChangeSelectedSkillOptions}
+      onChangeProjectType={handleChangeSelectedProjectTypes}
+      onToggleAllCompanies={handleToggleAllCompanies}
+      onToggleAllSkills={handleToggleAllSkills}
+      onToggleAllProjectTypes={handleToggleAllProjectTypes}
       pointColorHex={pointColor.hex}
       mode={mode}
       parseCompanyQuery={parseCompanyQuery}
       parseProjectQuery={parseProjectQuery}
       toyProjectData={toyProjectData}
+      allProjects={allProjects}
+      isProjectEditMode={isEditing}
+      draftProjectIds={draftProjectIds}
+      onStartProjectEdit={startEdit}
+      onCancelProjectEdit={cancelEdit}
+      onCommitProjectEdit={commitEdit}
+      onResetProjectEdit={resetDraftToDefault}
+      onToggleDraftProject={toggleDraftProject}
     />
   );
 };

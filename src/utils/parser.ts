@@ -40,33 +40,18 @@ export const parseCompanyData = (
     order: info.order?.number || 0,
   };
 };
+const asPlainString = (value: unknown): string => (typeof value === 'string' ? value : '');
+
 export const parseProjectData = (info: IProjectProperties) => {
-  const raw = info as unknown as {
-    id?: string;
-    slug?: string;
-    companyId?: string;
-    company?: string;
-    name?: string;
-    period?: string;
-    techStack?: string[];
-    role?: string;
-    summary?: string;
-    hero?: string;
-    problem?: string;
-    solution?: string;
-    impact?: string;
-    mainWork?: string;
-    keyContributions?: string;
-    architecture?: string;
-    keyFeatures?: string;
-    numberOfParticipants?: number;
-    participationRate?: number;
-    url?: string;
-  };
+  const raw = info as unknown as Record<string, unknown>;
   const date = info.period?.date;
   const getRichTextValue = (field?: INotionText) => {
     if (!Array.isArray(field?.rich_text)) return '';
     return field.rich_text.map(item => item.plain_text).join('\n');
+  };
+  const firstFilled = (...values: unknown[]): string => {
+    const matched = values.find(value => typeof value === 'string' && value.length > 0);
+    return typeof matched === 'string' ? matched : '';
   };
 
   const notionMainSkills = Array.isArray(info.mainSkill?.multi_select) ? info.mainSkill.multi_select : [];
@@ -80,43 +65,63 @@ export const parseProjectData = (info: IProjectProperties) => {
     }
   });
 
-  (Array.isArray(raw.techStack) ? raw.techStack : []).forEach((name, index) => {
-    if (!techStackOptionMap.has(name)) {
-      techStackOptionMap.set(name, {
-        id: `raw-tech-${index}-${name}`,
-        name,
-        color: 'default',
-      });
-    }
+  const rawTechStack = Array.isArray(raw.techStack) ? raw.techStack : [];
+  rawTechStack.forEach((name, index) => {
+    if (typeof name !== 'string' || techStackOptionMap.has(name)) return;
+    techStackOptionMap.set(name, {
+      id: `raw-tech-${index}-${name}`,
+      name,
+      color: 'default',
+    });
   });
 
   const techStackOptions = Array.from(techStackOptionMap.values());
-  const mergedTechStack = [
-    ...new Set(techStackOptions.map(select => select.name)),
-  ];
+  const mergedTechStack = [...new Set(techStackOptions.map(select => select.name))];
 
   return {
-    id: info.id || raw.id || '',
-    slug: getRichTextValue(info.slug) || raw.slug || '',
-    companyId: info.company?.relation?.[0]?.id || raw.companyId || raw.company || '',
-    name: info.name?.title?.[0]?.plain_text || raw.name || '',
-    period: date?.start ? `${date.start}~${date.end ?? ''}` : raw.period || '',
+    id: asPlainString(info.id) || asPlainString(raw.id),
+    slug: firstFilled(getRichTextValue(info.slug), raw.slug),
+    companyId: firstFilled(info.company?.relation?.[0]?.id, raw.companyId, raw.company),
+    name: firstFilled(info.name?.title?.[0]?.plain_text, raw.name),
+    period: date?.start ? `${date.start}~${date.end ?? ''}` : asPlainString(raw.period),
     techStack: mergedTechStack,
     techStackOptions,
-    summary: getRichTextValue(info.summary) || getRichTextValue(info.description) || raw.summary || '',
-    hero: getRichTextValue(info.hero) || raw.hero || '',
-    problem: getRichTextValue(info.problem) || getRichTextValue(info.asls) || raw.problem || '',
-    solution: getRichTextValue(info.solution) || getRichTextValue(info.challenge) || raw.solution || '',
-    impact: getRichTextValue(info.impact) || getRichTextValue(info.tobe) || raw.impact || '',
-    mainWork: getRichTextValue(info.mainWork) || raw.mainWork || '',
-    keyContributions: getRichTextValue(info.keyContributions) || raw.keyContributions || '',
-    architecture: getRichTextValue(info.architecture) || raw.architecture || '',
-    keyFeatures: getRichTextValue(info.keyFeatures) || raw.keyFeatures || '',
+    summary: firstFilled(getRichTextValue(info.summary), getRichTextValue(info.description), raw.summary),
+    hero: firstFilled(getRichTextValue(info.hero), raw.hero),
+    problem: firstFilled(getRichTextValue(info.problem), getRichTextValue(info.asls), raw.problem),
+    solution: firstFilled(getRichTextValue(info.solution), getRichTextValue(info.challenge), raw.solution),
+    impact: firstFilled(getRichTextValue(info.impact), getRichTextValue(info.tobe), raw.impact),
+    mainWork: firstFilled(getRichTextValue(info.mainWork), raw.mainWork),
+    keyContributions: firstFilled(getRichTextValue(info.keyContributions), raw.keyContributions),
+    architecture: firstFilled(getRichTextValue(info.architecture), raw.architecture),
+    keyFeatures: firstFilled(getRichTextValue(info.keyFeatures), raw.keyFeatures),
     mainSkills: notionMainSkills,
     skills: notionSkills,
-    role: info.role?.rich_text?.[0]?.plain_text || raw.role || '',
+    role: firstFilled(info.role?.rich_text?.[0]?.plain_text, raw.role),
     keywords: Array.isArray(info.keywords?.multi_select) ? info.keywords.multi_select : [],
-    description: getRichTextValue(info.description) || raw.summary || '',
+    domain: Array.isArray(info.domain?.multi_select) ? info.domain.multi_select : [],
+    description: firstFilled(getRichTextValue(info.description), raw.summary),
+    details: firstFilled(getRichTextValue(info.details), raw.details),
+    background: firstFilled(getRichTextValue(info.background), raw.background),
+    isVisible:
+      typeof info.isVisible?.checkbox === 'boolean'
+        ? info.isVisible.checkbox
+        : typeof raw.isVisible === 'boolean'
+          ? raw.isVisible
+          : true,
+    projectType: Array.isArray(info.projectType?.multi_select) ? info.projectType.multi_select : [],
+    isFeatured:
+      typeof info.isFeatured?.checkbox === 'boolean'
+        ? info.isFeatured.checkbox
+        : typeof raw.isFeatured === 'boolean'
+          ? raw.isFeatured
+          : false,
+    featuredOrder:
+      typeof info.featuredOrder?.number === 'number'
+        ? info.featuredOrder.number
+        : typeof raw.featuredOrder === 'number'
+          ? raw.featuredOrder
+          : null,
     asls: Array.isArray(info.asls?.rich_text) ? info.asls.rich_text : [],
     challenge: Array.isArray(info.challenge?.rich_text) ? info.challenge.rich_text : [],
     tobe: Array.isArray(info.tobe?.rich_text) ? info.tobe.rich_text : [],
@@ -133,6 +138,6 @@ export const parseProjectData = (info: IProjectProperties) => {
         : typeof raw.participationRate === 'number'
           ? raw.participationRate
           : null,
-    url: info.url?.url || raw.url || '',
+    url: firstFilled(info.url?.url, raw.url),
   };
 };

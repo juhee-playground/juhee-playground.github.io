@@ -19,17 +19,29 @@ const DESCENDING_ORDER = -1;
 interface IUseResumeMainDataProps {
   selectedCompanies: string[] | undefined;
   selectedSkillOptions: string[] | undefined;
+  selectedProjectTypes: string[] | undefined;
+  selectedProjectIds: readonly string[] | undefined;
   sortValue: string;
 }
+
+const getProjectTypeNames = (project: IProjectData): readonly string[] =>
+  (project.projectType ?? []).map(tag => tag.name);
 
 export default function useResumeMainData({
   selectedCompanies,
   selectedSkillOptions,
+  selectedProjectTypes,
+  selectedProjectIds,
   sortValue,
 }: IUseResumeMainDataProps) {
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
   const mainSkillSelectOptions = useSkillOptionQuery('mainSkill');
+
+  const allProjects = useMemo(() => {
+    const projects = projectQuery.data ?? DB_PROJECT_DATAS;
+    return [...projects].sort((a, b) => a.name.localeCompare(b.name));
+  }, [projectQuery.data]);
 
   const toyProjectData = useMemo(() => {
     const data = companyQuery.data ?? DB_COMPANY_DATAS;
@@ -49,6 +61,12 @@ export default function useResumeMainData({
     [mainSkillSelectOptions.data],
   );
 
+  const projectTypeOptions = useMemo(() => {
+    return [...new Set(allProjects.flatMap(project => getProjectTypeNames(project)))].sort((a, b) =>
+      a.localeCompare(b),
+    );
+  }, [allProjects]);
+
   const parseCompanyQuery: ICompanyData[] = useMemo(() => {
     const companyData = (companyQuery.data ?? DB_COMPANY_DATAS)
       .filter(company => selectedCompanies?.includes(company.name))
@@ -58,11 +76,22 @@ export default function useResumeMainData({
   }, [companyQuery.data, sortValue, selectedCompanies]);
 
   const parseProjectQuery: IProjectData[] = useMemo(() => {
-    return (projectQuery.data ?? DB_PROJECT_DATAS).filter(project => {
+    return allProjects.filter(project => {
+      if (selectedProjectIds) {
+        if (!selectedProjectIds.includes(project.id)) return false;
+      } else if (!project.isVisible) {
+        return false;
+      }
+
       const skillInfo = JSON.stringify(project.techStack);
-      return selectedSkillOptions?.some(item => new RegExp(item).test(skillInfo));
+      const matchesSkill = selectedSkillOptions?.some(item => new RegExp(item).test(skillInfo));
+      if (!matchesSkill) return false;
+      if (!selectedProjectTypes || selectedProjectTypes.length === 0) return false;
+      const typeNames = getProjectTypeNames(project);
+      if (typeNames.length === 0) return true;
+      return typeNames.some(typeName => selectedProjectTypes.includes(typeName));
     });
-  }, [projectQuery.data, selectedSkillOptions]);
+  }, [allProjects, selectedProjectIds, selectedProjectTypes, selectedSkillOptions]);
 
   return {
     companyQuery,
@@ -71,6 +100,8 @@ export default function useResumeMainData({
     toyProjectData,
     companies,
     skillOptions,
+    projectTypeOptions,
+    allProjects,
     parseCompanyQuery,
     parseProjectQuery,
   };
