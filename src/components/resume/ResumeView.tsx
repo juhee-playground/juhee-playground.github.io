@@ -18,10 +18,13 @@ interface IResumeViewProps {
   onChangeSort: (event: SelectChangeEvent) => void;
   companies: string[];
   skillOptions: string[];
+  projectTypeOptions: string[];
   selectedCompanies?: string[];
   selectedSkillOptions?: string[];
+  selectedProjectTypes?: string[];
   onChangeCompany: (company: string) => void;
   onChangeSkill: (skill: string) => void;
+  onChangeProjectType: (projectType: string) => void;
   pointColorHex: string;
   mode: 'print' | '';
   parseCompanyQuery: ICompanyData[];
@@ -35,10 +38,13 @@ const ResumeView = ({
   onChangeSort,
   companies,
   skillOptions,
+  projectTypeOptions,
   selectedCompanies,
   selectedSkillOptions,
+  selectedProjectTypes,
   onChangeCompany,
   onChangeSkill,
+  onChangeProjectType,
   pointColorHex,
   mode,
   parseCompanyQuery,
@@ -76,6 +82,15 @@ const ResumeView = ({
               selected={selectedSkillOptions}
               onChange={onChangeSkill}
             />
+            {projectTypeOptions.length > 0 && (
+              <FilterOption
+                title='projectType'
+                options={projectTypeOptions}
+                color={pointColorHex}
+                selected={selectedProjectTypes}
+                onChange={onChangeProjectType}
+              />
+            )}
           </ul>
 
           <div className='flex justify-end'>

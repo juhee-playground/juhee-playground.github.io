@@ -11,14 +11,26 @@ const ResumeContainer = () => {
   const [sortValue, setSortValue] = useState('N');
   const [selectedCompanies, setSelectedCompanies] = useState<string[]>();
   const [selectedSkillOptions, setSelectedSkillOptions] = useState<string[]>();
+  const [selectedProjectTypes, setSelectedProjectTypes] = useState<string[]>();
 
   const { pointColor } = useSettings();
   const { mode } = usePrintMode();
   const seenCompaniesRef = useRef<readonly string[]>([]);
 
-  const { projectQuery, toyProjectData, companies, skillOptions, parseCompanyQuery, parseProjectQuery } = useResumeData(
-    { selectedCompanies, selectedSkillOptions, sortValue },
-  );
+  const {
+    projectQuery,
+    toyProjectData,
+    companies,
+    skillOptions,
+    projectTypeOptions,
+    parseCompanyQuery,
+    parseProjectQuery,
+  } = useResumeData({
+    selectedCompanies,
+    selectedSkillOptions,
+    selectedProjectTypes,
+    sortValue,
+  });
 
   useEffect(() => {
     const seen = seenCompaniesRef.current;
@@ -37,6 +49,10 @@ const ResumeContainer = () => {
     if (!selectedSkillOptions) setSelectedSkillOptions(skillOptions);
   }, [skillOptions, selectedSkillOptions]);
 
+  useEffect(() => {
+    if (!selectedProjectTypes) setSelectedProjectTypes(projectTypeOptions);
+  }, [projectTypeOptions, selectedProjectTypes]);
+
   const handleChangeSelect = (event: SelectChangeEvent) => setSortValue(event.target.value);
 
   const handleChangeSelectedCompanies = (company: string) => {
@@ -51,6 +67,14 @@ const ResumeContainer = () => {
     );
   };
 
+  const handleChangeSelectedProjectTypes = (projectType: string) => {
+    setSelectedProjectTypes(prev =>
+      prev?.includes(projectType)
+        ? prev.filter(name => name !== projectType)
+        : [...(prev || []), projectType],
+    );
+  };
+
   return (
     <ResumeView
       isLoading={projectQuery.isLoading}
@@ -58,10 +82,13 @@ const ResumeContainer = () => {
       onChangeSort={handleChangeSelect}
       companies={companies}
       skillOptions={skillOptions}
+      projectTypeOptions={projectTypeOptions}
       selectedCompanies={selectedCompanies}
       selectedSkillOptions={selectedSkillOptions}
+      selectedProjectTypes={selectedProjectTypes}
       onChangeCompany={handleChangeSelectedCompanies}
       onChangeSkill={handleChangeSelectedSkillOptions}
+      onChangeProjectType={handleChangeSelectedProjectTypes}
       pointColorHex={pointColor.hex}
       mode={mode}
       parseCompanyQuery={parseCompanyQuery}
