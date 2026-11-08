@@ -36,6 +36,7 @@ export default function Layout({ children }: IMainLayoutProps) {
   const { pathname } = useLocation();
 
   const isResumePage = pathname === '/resume';
+  const isSearchPage = pathname === '/search';
   const isErrorPage = pathname === '/404';
 
   const childrenArray = React.Children.toArray(children);
@@ -45,7 +46,8 @@ export default function Layout({ children }: IMainLayoutProps) {
   return (
     <main
       className={cn(
-        'max-w-[1080px] mx-auto min-h-screen flex flex-col',
+        'mx-auto min-h-screen flex flex-col',
+        isSearchPage ? 'max-w-[1600px] w-full' : 'max-w-[1080px]',
         themeMode === 'light' ? 'bg-[#fefefe] text-[#181717]' : 'bg-[#242424] text-white'
       )}
     >
@@ -57,6 +59,7 @@ export default function Layout({ children }: IMainLayoutProps) {
       <div
         className={cn(
           'flex gap-[0.4em] flex-1',
+          isSearchPage && 'w-full min-w-0',
           isPrintMode && 'flex-col',
           isPrintMode && 'items-stretch',
           isErrorPage && 'justify-center items-center min-h-[80vh]',
