@@ -164,6 +164,26 @@ const ResumeView = ({
             />
           )}
 
+          <div
+            className={cn(
+              'mt-2 mb-1 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-1 text-xs',
+              isDark ? 'text-white/55' : 'text-black/50',
+            )}
+          >
+            <p>
+              회사 {parseCompanyQuery.length}
+              <span className='mx-1.5 opacity-40'>·</span>
+              프로젝트 {parseProjectQuery.length}
+            </p>
+            <p>
+              company {selectedCompanies?.length ?? 0}
+              <span className='mx-1.5 opacity-40'>·</span>
+              skill {selectedSkillOptions?.length ?? 0}
+              <span className='mx-1.5 opacity-40'>·</span>
+              projectType {selectedProjectTypes?.length ?? 0}
+            </p>
+          </div>
+
           <div className='flex justify-end'>
             <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
               <InputLabel id='demo-select-small-label'>정렬방법</InputLabel>
