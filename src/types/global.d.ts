@@ -72,7 +72,14 @@ declare global {
     keyFeatures?: INotionText;
     techStack?: INotionMultiSelect;
     slug?: INotionText;
+    isVisible?: INotionCheckbox;
     name: INotionTitleName;
+  }
+
+  interface INotionCheckbox {
+    id: string;
+    type: 'checkbox';
+    checkbox: boolean;
   }
 
   interface ICompanyProperties {
@@ -256,6 +263,7 @@ declare global {
     description: string;
     details: string;
     background: string;
+    isVisible: boolean;
     asls: IRichText[];
     challenge: IRichText[];
     tobe: IRichText[];

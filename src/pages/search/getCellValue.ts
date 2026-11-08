@@ -31,6 +31,8 @@ export const getCellText = (project: IProjectData, columnId: TSearchColumnId): s
       return asCellText(project.details);
     case 'background':
       return asCellText(project.background);
+    case 'isVisible':
+      return project.isVisible ? 'true' : 'false';
     case 'hero':
       return asCellText(project.hero);
     case 'problem':

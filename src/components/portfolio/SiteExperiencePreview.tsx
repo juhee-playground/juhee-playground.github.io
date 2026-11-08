@@ -69,7 +69,7 @@ const SiteExperiencePreview = () => {
     if (!hasSelected) setSelectedCompanyId(companies[0].id);
   }, [companies, selectedCompanyId]);
 
-  const projects = projectQuery.data ?? [];
+  const projects = (projectQuery.data ?? []).filter(project => project.isVisible);
   const selectedCompany = companies.find(company => company.id === selectedCompanyId) ?? companies[0];
 
   const getScaleLabel = (scale: string) => {

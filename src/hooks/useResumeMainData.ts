@@ -59,6 +59,7 @@ export default function useResumeMainData({
 
   const parseProjectQuery: IProjectData[] = useMemo(() => {
     return (projectQuery.data ?? DB_PROJECT_DATAS).filter(project => {
+      if (!project.isVisible) return false;
       const skillInfo = JSON.stringify(project.techStack);
       return selectedSkillOptions?.some(item => new RegExp(item).test(skillInfo));
     });

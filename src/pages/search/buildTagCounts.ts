@@ -64,3 +64,6 @@ export const buildCompanyCounts = (
     const companyName = companyNameById[project.companyId] || project.companyId;
     return companyName ? [companyName] : [];
   });
+
+export const buildVisibilityCounts = (projects: readonly IProjectData[]): TTagCount[] =>
+  countStringTags(projects, project => [project.isVisible ? 'true' : 'false']);

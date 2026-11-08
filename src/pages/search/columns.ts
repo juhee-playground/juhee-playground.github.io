@@ -17,7 +17,8 @@ export type TSearchColumnId =
   | 'period'
   | 'description'
   | 'details'
-  | 'background';
+  | 'background'
+  | 'isVisible';
 
 export type TSearchCellKind = 'text' | 'tags' | 'number' | 'link';
 
@@ -51,6 +52,7 @@ export const SEARCH_COLUMNS: readonly ISearchColumn[] = [
   { id: 'description', label: 'description', kind: 'text', defaultVisible: false, minWidth: '240px' },
   { id: 'details', label: 'details', kind: 'text', defaultVisible: false, minWidth: '240px' },
   { id: 'background', label: 'background', kind: 'text', defaultVisible: false, minWidth: '240px' },
+  { id: 'isVisible', label: 'isVisible', kind: 'text', defaultVisible: true, minWidth: '100px' },
 ] as const;
 
 export const DEFAULT_VISIBLE_COLUMN_IDS: readonly TSearchColumnId[] = SEARCH_COLUMNS.filter(

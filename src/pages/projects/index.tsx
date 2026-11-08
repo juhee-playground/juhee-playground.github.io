@@ -22,7 +22,7 @@ const ProjectsPage = () => {
   const isDark = useTheme().palette.mode === 'dark';
   const pt = pointColor.hex;
   const projectQuery = useProjectsQuery();
-  const projects = projectQuery.data ?? [];
+  const projects = (projectQuery.data ?? []).filter(project => project.isVisible);
 
   return (
     <div className={cn('min-h-screen w-full', isDark ? 'bg-[#181717] text-white' : 'bg-[#fafafa] text-[#181717]')}>

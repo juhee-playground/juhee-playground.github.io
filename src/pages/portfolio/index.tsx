@@ -27,10 +27,11 @@ const PortfolioPage = () => {
   const gb = getGameBoyPalette(shellStyle, pointColor.hex);
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
-  const projects = (projectQuery.data ?? DB_PROJECT).slice(0, FEATURED_PROJECT_COUNT);
+  const visibleProjects = (projectQuery.data ?? DB_PROJECT).filter(project => project.isVisible);
+  const projects = visibleProjects.slice(0, FEATURED_PROJECT_COUNT);
   const companies = (companyQuery.data ?? []).filter(company => company.type === 'C');
   const companyNameById = Object.fromEntries(companies.map(company => [company.id, company.name]));
-  const projectsForStats = projectQuery.data ?? [];
+  const projectsForStats = visibleProjects;
 
   const projectCount = projectsForStats.length;
   const techStackCount = new Set(

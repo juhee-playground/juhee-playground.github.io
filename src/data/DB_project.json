@@ -290,6 +290,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   },
   {
@@ -682,6 +687,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   },
   {
@@ -1057,6 +1067,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   },
   {
@@ -1456,6 +1471,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   },
   {
@@ -1843,6 +1863,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   },
   {
@@ -2178,6 +2203,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   },
   {
@@ -2448,6 +2478,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   },
   {
@@ -2876,6 +2911,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   },
   {
@@ -3278,6 +3318,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   },
   {
@@ -3617,6 +3662,11 @@
       "id": "background",
       "type": "rich_text",
       "rich_text": []
+    },
+    "isVisible": {
+      "id": "isVisible",
+      "type": "checkbox",
+      "checkbox": true
     }
   }
 ]

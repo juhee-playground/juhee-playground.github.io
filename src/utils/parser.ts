@@ -103,6 +103,12 @@ export const parseProjectData = (info: IProjectProperties) => {
     description: firstFilled(getRichTextValue(info.description), raw.summary),
     details: firstFilled(getRichTextValue(info.details), raw.details),
     background: firstFilled(getRichTextValue(info.background), raw.background),
+    isVisible:
+      typeof info.isVisible?.checkbox === 'boolean'
+        ? info.isVisible.checkbox
+        : typeof raw.isVisible === 'boolean'
+          ? raw.isVisible
+          : true,
     asls: Array.isArray(info.asls?.rich_text) ? info.asls.rich_text : [],
     challenge: Array.isArray(info.challenge?.rich_text) ? info.challenge.rich_text : [],
     tobe: Array.isArray(info.tobe?.rich_text) ? info.tobe.rich_text : [],
