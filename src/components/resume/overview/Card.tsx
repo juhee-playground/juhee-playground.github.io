@@ -1,3 +1,4 @@
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { useTheme } from '@mui/material/styles';
 
 import { useResumeOverviewEdit } from '@/hooks/useResumeOverviewEdit';
@@ -111,14 +112,16 @@ const PointStackCard = () => {
               <button
                 type='button'
                 onClick={startEdit}
+                aria-label='Edit overview'
+                title='Edit overview'
                 className={cn(
-                  'rounded-md border px-2.5 py-1 text-xs font-medium',
+                  'inline-flex h-8 w-8 items-center justify-center rounded-md border border-transparent',
                   isDark
-                    ? 'border-white/25 text-white/70 hover:border-white/40'
-                    : 'border-black/20 text-black/60 hover:border-black/35',
+                    ? 'text-white/55 hover:border-white/30 hover:text-white/85'
+                    : 'text-black/45 hover:border-black/20 hover:text-black/75',
                 )}
               >
-                Edit overview
+                <EditOutlinedIcon sx={{ fontSize: 16 }} />
               </button>
             )}
           </div>

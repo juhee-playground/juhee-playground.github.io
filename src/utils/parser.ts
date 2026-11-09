@@ -47,7 +47,8 @@ export const parseProjectData = (info: IProjectProperties) => {
   const date = info.period?.date;
   const getRichTextValue = (field?: INotionText) => {
     if (!Array.isArray(field?.rich_text)) return '';
-    return field.rich_text.map(item => item.plain_text).join('\n');
+    // Notion plain_text에 줄바꿈이 이미 포함되므로 span 사이를 \n으로 이으면 빈 줄이 과해진다.
+    return field.rich_text.map(item => item.plain_text).join('');
   };
   const firstFilled = (...values: unknown[]): string => {
     const matched = values.find(value => typeof value === 'string' && value.length > 0);
