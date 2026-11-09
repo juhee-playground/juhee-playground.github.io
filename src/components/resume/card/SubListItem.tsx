@@ -8,11 +8,49 @@ import usePrintMode from '@/hooks/usePrintMode';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
 
+const KEYWORD_TEXT_ALPHA = {
+  solid: 1,
+  purpleDark: 0.96,
+  dark: 0.82,
+  light: 0.88,
+} as const;
+
+const KEYWORD_FILL_ALPHA = {
+  print: 0.45,
+  purpleLight: 0.5,
+  purpleDark: 0.18,
+  dark: 0.16,
+  light: 0.42,
+} as const;
+
+const KEYWORD_BORDER_ALPHA = {
+  print: 0.4,
+  purple: 0.45,
+  purpleDark: 0.62,
+  dark: 0.34,
+  light: 0.28,
+} as const;
+
+const PARTICIPATION_RATE_MAX = 100;
+const PARTICIPATION_RATE_MIN = 0;
+
 const readKeywordTone = (colorName: string, isDark: boolean, isPrintMode: boolean) => {
   if (colorName === 'purple') {
     return isDark && !isPrintMode
-      ? { accent: '#d7b3f5', fill: '#d7b3f5', textAlpha: 0.96, fillAlpha: 0.18, borderAlpha: 0.62 }
-      : { accent: '#7b1fa2', fill: '#e1bee7', textAlpha: 1, fillAlpha: isPrintMode ? 0.45 : 0.5, borderAlpha: 0.45 };
+      ? {
+          accent: '#d7b3f5',
+          fill: '#d7b3f5',
+          textAlpha: KEYWORD_TEXT_ALPHA.purpleDark,
+          fillAlpha: KEYWORD_FILL_ALPHA.purpleDark,
+          borderAlpha: KEYWORD_BORDER_ALPHA.purpleDark,
+        }
+      : {
+          accent: '#7b1fa2',
+          fill: '#e1bee7',
+          textAlpha: KEYWORD_TEXT_ALPHA.solid,
+          fillAlpha: isPrintMode ? KEYWORD_FILL_ALPHA.print : KEYWORD_FILL_ALPHA.purpleLight,
+          borderAlpha: KEYWORD_BORDER_ALPHA.purple,
+        };
   }
 
   const notionColor = NOTION_COLOR_SET[colorName] ?? NOTION_COLOR_SET.default;
@@ -22,9 +60,21 @@ const readKeywordTone = (colorName: string, isDark: boolean, isPrintMode: boolea
   return {
     accent,
     fill,
-    textAlpha: isPrintMode ? 1 : isDark ? 0.82 : 0.88,
-    fillAlpha: isPrintMode ? 0.45 : isDark ? 0.16 : 0.42,
-    borderAlpha: isPrintMode ? 0.4 : isDark ? 0.34 : 0.28,
+    textAlpha: isPrintMode
+      ? KEYWORD_TEXT_ALPHA.solid
+      : isDark
+        ? KEYWORD_TEXT_ALPHA.dark
+        : KEYWORD_TEXT_ALPHA.light,
+    fillAlpha: isPrintMode
+      ? KEYWORD_FILL_ALPHA.print
+      : isDark
+        ? KEYWORD_FILL_ALPHA.dark
+        : KEYWORD_FILL_ALPHA.light,
+    borderAlpha: isPrintMode
+      ? KEYWORD_BORDER_ALPHA.print
+      : isDark
+        ? KEYWORD_BORDER_ALPHA.dark
+        : KEYWORD_BORDER_ALPHA.light,
   };
 };
 
@@ -82,7 +132,7 @@ const SubListItem = ({ info }: ISubListProps) => {
   const periodLabel = projectData.period.replace('~', ' ~ ');
   const showFolded = isDetailOpen;
   const participationRate = typeof projectData.participationRate === 'number'
-    ? Math.min(100, Math.max(0, projectData.participationRate))
+    ? Math.min(PARTICIPATION_RATE_MAX, Math.max(PARTICIPATION_RATE_MIN, projectData.participationRate))
     : null;
 
   return (
