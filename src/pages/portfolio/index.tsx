@@ -68,10 +68,11 @@ const PortfolioPage = () => {
 
         {/* ─── #projects ─── */}
         <SiteSection id='projects' title='Projects'>
-          <div className='flex flex-col gap-5'>
+          <div className='flex flex-col items-center gap-5'>
             {projects.map((project, i) => (
               <motion.div
                 key={project.id || project.slug || project.name}
+                className='w-full'
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
