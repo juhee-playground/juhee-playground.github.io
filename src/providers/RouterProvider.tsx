@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
+import { useAnalyticsPageView } from '@/hooks/useAnalyticsPageView';
 import Header from '@/layout/header/Header';
 import Layout from '@/layout/Layout';
 import Router from '@/router';
@@ -12,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function RouterProvider() {
   const location = useLocation();
   const { pathname } = location;
+  useAnalyticsPageView();
 
   const isLandingPage = pathname === '/';
   const isProjectsPath = pathname === '/projects' || pathname.startsWith('/projects/');
