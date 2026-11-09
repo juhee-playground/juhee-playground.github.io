@@ -135,62 +135,56 @@ const ItemList = ({ items, isDark, ordered = false }: IItemListProps) => {
   );
 };
 
-const getProjectNavMeta = (
-  target: IProjectData,
-  companies: readonly ICompanyData[] | undefined,
-): string | null => {
-  const company = companies?.find(item => item.id === target.companyId);
-  const isSideProject = !company || company.type === 'T';
-
-  if (isSideProject) return 'Side Project';
-
-  const companyName = company.name?.trim();
-  if (!companyName) return null;
-
-  const projectTypeLabel =
-    toSelectNames(target.projectType)
-      .map(name => name.trim())
-      .find(Boolean) ?? 'Company Project';
-
-  return `${companyName} · ${projectTypeLabel}`;
-};
-
-interface INavProjectLinkProps {
-  readonly label: string;
-  readonly project: IProjectData;
-  readonly meta: string | null;
+interface IBrowseNavProps {
+  readonly previousProject: IProjectData | null;
+  readonly nextProject: IProjectData | null;
   readonly isDark: boolean;
-  readonly align?: 'start' | 'end';
 }
 
-const NavProjectLink = ({
-  label,
-  project,
-  meta,
-  isDark,
-  align = 'start',
-}: INavProjectLinkProps) => (
-  <Link
-    to={`/projects/${project.slug}`}
-    className={cn(
-      'group flex min-w-0 flex-col gap-0.5 no-underline transition-colors',
-      align === 'end' && 'sm:items-end',
-      isDark ? 'text-white/55 hover:text-white/85' : 'text-black/50 hover:text-black/80',
-    )}
+/** 상세 페이지 안에서 이전/다음 프로젝트로 이동 (Portfolio로 나가지 않음) */
+const ProjectBrowseNav = ({ previousProject, nextProject, isDark }: IBrowseNavProps) => (
+  <nav
+    aria-label='Project navigation'
+    className='flex items-center justify-between gap-3'
   >
-    <span className='text-xs font-medium tracking-wide'>{label}</span>
-    <span className='truncate text-sm font-semibold'>{project.name}</span>
-    {meta && (
-      <span
+    {previousProject ? (
+      <Link
+        to={`/projects/${previousProject.slug}`}
         className={cn(
-          'max-w-full truncate text-[11px] font-medium leading-snug',
-          isDark ? 'text-white/35' : 'text-black/35',
+          'min-w-0 flex-1 truncate text-sm no-underline transition-colors',
+          isDark ? 'text-white/50 hover:text-white/85' : 'text-black/45 hover:text-black/75',
         )}
       >
-        {meta}
-      </span>
+        {previousProject.name}
+      </Link>
+    ) : (
+      <span className='flex-1' />
     )}
-  </Link>
+
+    <Link
+      to='/projects'
+      className={cn(
+        'shrink-0 text-xs font-medium transition-colors',
+        isDark ? 'text-white/40 hover:text-white/70' : 'text-black/35 hover:text-black/60',
+      )}
+    >
+      All Projects
+    </Link>
+
+    {nextProject ? (
+      <Link
+        to={`/projects/${nextProject.slug}`}
+        className={cn(
+          'min-w-0 flex-1 truncate text-right text-sm no-underline transition-colors',
+          isDark ? 'text-white/50 hover:text-white/85' : 'text-black/45 hover:text-black/75',
+        )}
+      >
+        {nextProject.name}
+      </Link>
+    ) : (
+      <span className='flex-1' />
+    )}
+  </nav>
 );
 
 interface IContributionCardsProps {
@@ -257,8 +251,6 @@ const ProjectDetailPage = () => {
 
   const companies = companyQuery.data;
   const companyName = companies?.find(company => company.id === project?.companyId)?.name;
-  const previousMeta = previousProject ? getProjectNavMeta(previousProject, companies) : null;
-  const nextMeta = nextProject ? getProjectNavMeta(nextProject, companies) : null;
 
   const bgClass = cn(
     'min-h-screen w-full',
@@ -320,6 +312,12 @@ const ProjectDetailPage = () => {
   return (
     <div className={bgClass}>
       <main className='mx-auto flex w-full max-w-[1000px] flex-col gap-12 px-5 py-12 md:gap-16 md:px-6 md:py-16'>
+        <ProjectBrowseNav
+          previousProject={previousProject}
+          nextProject={nextProject}
+          isDark={isDark}
+        />
+
         {/* Section 1. Project Overview */}
         <header className='flex flex-col gap-5'>
           <div className='flex flex-col gap-2'>
@@ -511,51 +509,6 @@ const ProjectDetailPage = () => {
           </section>
         )}
 
-        {/* Section 7. Navigation */}
-        <nav
-          aria-label='Project navigation'
-          className={cn(
-            'flex flex-col gap-4 border-t pt-8 sm:flex-row sm:items-center sm:justify-between',
-            isDark ? 'border-white/10' : 'border-black/8',
-          )}
-        >
-          <div className='flex min-w-0 flex-1 flex-col gap-1'>
-            {previousProject ? (
-              <NavProjectLink
-                label='← Previous'
-                project={previousProject}
-                meta={previousMeta}
-                isDark={isDark}
-              />
-            ) : (
-              <span />
-            )}
-          </div>
-
-          <Link
-            to='/projects'
-            className={cn(
-              'shrink-0 text-sm font-medium transition-colors',
-              isDark ? 'text-white/50 hover:text-white/80' : 'text-black/45 hover:text-black/75',
-            )}
-          >
-            All Projects
-          </Link>
-
-          <div className='flex min-w-0 flex-1 flex-col gap-1 sm:items-end'>
-            {nextProject ? (
-              <NavProjectLink
-                label='Next →'
-                project={nextProject}
-                meta={nextMeta}
-                isDark={isDark}
-                align='end'
-              />
-            ) : (
-              <span />
-            )}
-          </div>
-        </nav>
       </main>
     </div>
   );
