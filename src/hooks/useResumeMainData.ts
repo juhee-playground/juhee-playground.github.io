@@ -79,7 +79,7 @@ export default function useResumeMainData({
     return allProjects.filter(project => {
       if (selectedProjectIds) {
         if (!selectedProjectIds.includes(project.id)) return false;
-      } else if (!project.isVisible) {
+      } else if (!project.isFeatured) {
         return false;
       }
 

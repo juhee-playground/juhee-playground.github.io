@@ -17,4 +17,4 @@ export const writeResumeProjectSelection = (projectIds: readonly string[]): void
 };
 
 export const getDefaultResumeProjectIds = (projects: readonly IProjectData[]): readonly string[] =>
-  projects.filter(project => project.isVisible).map(project => project.id).filter(Boolean);
+  projects.filter(project => project.isFeatured).map(project => project.id).filter(Boolean);
