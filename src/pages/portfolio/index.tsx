@@ -12,13 +12,14 @@ import SiteSection from '@/components/portfolio/SiteSection';
 import SiteSideNav from '@/components/portfolio/SiteSideNav';
 import PROJECT_DATA from '@/data/DB_project.json';
 import useCompaniesQuery from '@/hooks/queries/useCompaniesQuery';
-import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
+import useProjectsQuery, { useFeaturedProjectsQuery } from '@/hooks/queries/useProjectsQuery';
 import { useSettings } from '@/stores/useSettings';
+import { getFeaturedProjects } from '@/utils/getFeaturedProjects';
 import { parseProjectData } from '@/utils/parser';
 
 const DB_PROJECT = (PROJECT_DATA as IProjectProperties[]).map(p => parseProjectData(p));
+const DB_FEATURED_PROJECTS = getFeaturedProjects(DB_PROJECT);
 
-const FEATURED_PROJECT_COUNT = 3;
 const PROJECT_CARD_STAGGER = 0.08;
 const STATS_CARD_STAGGER = 0.07;
 
@@ -27,15 +28,11 @@ const PortfolioPage = () => {
   const gb = getGameBoyPalette(shellStyle, pointColor.hex);
   const companyQuery = useCompaniesQuery();
   const projectQuery = useProjectsQuery();
-  const visibleProjects = (projectQuery.data ?? DB_PROJECT).filter(project => project.isVisible);
-  const featuredProjects = visibleProjects
-    .filter(project => project.isFeatured)
-    .sort((a, b) => (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) - (b.featuredOrder ?? Number.MAX_SAFE_INTEGER));
-  const projects =
-    featuredProjects.length > 0 ? featuredProjects : visibleProjects.slice(0, FEATURED_PROJECT_COUNT);
+  const featuredQuery = useFeaturedProjectsQuery();
+  const projects = featuredQuery.data ?? DB_FEATURED_PROJECTS;
   const companies = (companyQuery.data ?? []).filter(company => company.type === 'C');
   const companyNameById = Object.fromEntries(companies.map(company => [company.id, company.name]));
-  const projectsForStats = visibleProjects;
+  const projectsForStats = (projectQuery.data ?? DB_PROJECT).filter(project => project.isVisible);
 
   const projectCount = projectsForStats.length;
   const techStackCount = new Set(
