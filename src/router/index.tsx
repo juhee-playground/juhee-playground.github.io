@@ -9,6 +9,7 @@ const Main = lazy(() => import('../pages/resume'));
 const ProjectDetailPage = lazy(() => import('../pages/projects/ProjectDetailPage'));
 const ProjectsPage = lazy(() => import('../pages/projects'));
 const PortfolioPage = lazy(() => import('../pages/portfolio'));
+const SearchPage = lazy(() => import('../pages/search'));
 
 const renderLoader = () => <p>Loading</p>;
 
@@ -28,6 +29,7 @@ export default function Router() {
           <Route path='/projects' element={<ProjectsPage />} />
           <Route path='/projects/:slug' element={<ProjectDetailPage />} />
           <Route path='/portfolio' element={<PortfolioPage />} />
+          <Route path='/search' element={<SearchPage />} />
         </Routes>
       ) : (
         <NotFound />

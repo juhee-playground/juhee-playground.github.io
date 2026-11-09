@@ -7,12 +7,54 @@ import { NOTION_COLOR_SET } from '@/constants/notion';
 import usePrintMode from '@/hooks/usePrintMode';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
+import {
+  canRenderArchitectureBlocks,
+  parseArchitectureBlocks,
+} from '@/utils/parseArchitecture';
+
+const KEYWORD_TEXT_ALPHA = {
+  solid: 1,
+  purpleDark: 0.96,
+  dark: 0.82,
+  light: 0.88,
+} as const;
+
+const KEYWORD_FILL_ALPHA = {
+  print: 0.45,
+  purpleLight: 0.5,
+  purpleDark: 0.18,
+  dark: 0.16,
+  light: 0.42,
+} as const;
+
+const KEYWORD_BORDER_ALPHA = {
+  print: 0.4,
+  purple: 0.45,
+  purpleDark: 0.62,
+  dark: 0.34,
+  light: 0.28,
+} as const;
+
+const PARTICIPATION_RATE_MAX = 100;
+const PARTICIPATION_RATE_MIN = 0;
 
 const readKeywordTone = (colorName: string, isDark: boolean, isPrintMode: boolean) => {
   if (colorName === 'purple') {
     return isDark && !isPrintMode
-      ? { accent: '#d7b3f5', fill: '#d7b3f5', textAlpha: 0.96, fillAlpha: 0.18, borderAlpha: 0.62 }
-      : { accent: '#7b1fa2', fill: '#e1bee7', textAlpha: 1, fillAlpha: isPrintMode ? 0.45 : 0.5, borderAlpha: 0.45 };
+      ? {
+          accent: '#d7b3f5',
+          fill: '#d7b3f5',
+          textAlpha: KEYWORD_TEXT_ALPHA.purpleDark,
+          fillAlpha: KEYWORD_FILL_ALPHA.purpleDark,
+          borderAlpha: KEYWORD_BORDER_ALPHA.purpleDark,
+        }
+      : {
+          accent: '#7b1fa2',
+          fill: '#e1bee7',
+          textAlpha: KEYWORD_TEXT_ALPHA.solid,
+          fillAlpha: isPrintMode ? KEYWORD_FILL_ALPHA.print : KEYWORD_FILL_ALPHA.purpleLight,
+          borderAlpha: KEYWORD_BORDER_ALPHA.purple,
+        };
   }
 
   const notionColor = NOTION_COLOR_SET[colorName] ?? NOTION_COLOR_SET.default;
@@ -22,9 +64,21 @@ const readKeywordTone = (colorName: string, isDark: boolean, isPrintMode: boolea
   return {
     accent,
     fill,
-    textAlpha: isPrintMode ? 1 : isDark ? 0.82 : 0.88,
-    fillAlpha: isPrintMode ? 0.45 : isDark ? 0.16 : 0.42,
-    borderAlpha: isPrintMode ? 0.4 : isDark ? 0.34 : 0.28,
+    textAlpha: isPrintMode
+      ? KEYWORD_TEXT_ALPHA.solid
+      : isDark
+        ? KEYWORD_TEXT_ALPHA.dark
+        : KEYWORD_TEXT_ALPHA.light,
+    fillAlpha: isPrintMode
+      ? KEYWORD_FILL_ALPHA.print
+      : isDark
+        ? KEYWORD_FILL_ALPHA.dark
+        : KEYWORD_FILL_ALPHA.light,
+    borderAlpha: isPrintMode
+      ? KEYWORD_BORDER_ALPHA.print
+      : isDark
+        ? KEYWORD_BORDER_ALPHA.dark
+        : KEYWORD_BORDER_ALPHA.light,
   };
 };
 
@@ -36,6 +90,15 @@ const FOLDED_SECTIONS = [
   { key: 'impact', label: 'Impact' },
 ] as const;
 
+const normalizeDetailContent = (content: string) =>
+  content
+    .replace(/\r\n/g, '\n')
+    .split('\n')
+    .map(line => line.trimEnd())
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
 interface IDetailBlockProps {
   label: string;
   content: string;
@@ -43,26 +106,90 @@ interface IDetailBlockProps {
   isDark: boolean;
 }
 
-const DetailBlock = ({ label, content, isPrintMode, isDark }: IDetailBlockProps) => (
-  <div className='my-2'>
-    <p
-      className={cn(
-        'm-0 mb-1 text-avatar font-bold tracking-wide',
-        isPrintMode ? 'text-[#333]' : isDark ? 'text-white/45' : 'text-black/45',
+const ArchitectureDetail = ({
+  content,
+  isPrintMode,
+  isDark,
+}: {
+  readonly content: string;
+  readonly isPrintMode: boolean;
+  readonly isDark: boolean;
+}) => {
+  const blocks = parseArchitectureBlocks(content);
+  if (!canRenderArchitectureBlocks(blocks)) return null;
+
+  return (
+    <div className='flex flex-col gap-2'>
+      {blocks.map(block => (
+        <div key={`${block.title}_${block.description}`} className='flex flex-col gap-0.5'>
+          {block.title && (
+            <p
+              className={cn(
+                'm-0 text-sm font-semibold',
+                isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/85' : 'text-[#181717]',
+              )}
+            >
+              {block.title}
+            </p>
+          )}
+          {block.description && (
+            <p
+              className={cn(
+                'm-0 text-sm leading-relaxed whitespace-pre-line',
+                isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/70' : 'text-black/70',
+              )}
+            >
+              {block.description}
+            </p>
+          )}
+          {block.children.map(child => (
+            <p
+              key={`${block.title}_${child.title}`}
+              className={cn(
+                'm-0 text-sm leading-relaxed',
+                isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/70' : 'text-black/70',
+              )}
+            >
+              {child.title ? `${child.title}: ${child.description}` : child.description}
+            </p>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const DetailBlock = ({ label, content, isPrintMode, isDark }: IDetailBlockProps) => {
+  const normalized = normalizeDetailContent(content);
+  const architectureBlocks =
+    label === 'Architecture' ? parseArchitectureBlocks(normalized) : [];
+  const useArchitectureLayout = canRenderArchitectureBlocks(architectureBlocks);
+
+  return (
+    <div className='my-2'>
+      <p
+        className={cn(
+          'm-0 mb-1 text-avatar font-bold tracking-wide',
+          isPrintMode ? 'text-[#333]' : isDark ? 'text-white/45' : 'text-black/45',
+        )}
+      >
+        {label}
+      </p>
+      {useArchitectureLayout ? (
+        <ArchitectureDetail content={normalized} isPrintMode={isPrintMode} isDark={isDark} />
+      ) : (
+        <p
+          className={cn(
+            'm-0 text-sm leading-relaxed whitespace-pre-line',
+            isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/80' : 'text-[#181717]',
+          )}
+        >
+          {normalized}
+        </p>
       )}
-    >
-      {label}
-    </p>
-    <p
-      className={cn(
-        'm-0 text-sm leading-relaxed whitespace-pre-line',
-        isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/80' : 'text-[#181717]',
-      )}
-    >
-      {content}
-    </p>
-  </div>
-);
+    </div>
+  );
+};
 
 const SubListItem = ({ info }: ISubListProps) => {
   const projectData = info;
@@ -82,7 +209,7 @@ const SubListItem = ({ info }: ISubListProps) => {
   const periodLabel = projectData.period.replace('~', ' ~ ');
   const showFolded = isDetailOpen;
   const participationRate = typeof projectData.participationRate === 'number'
-    ? Math.min(100, Math.max(0, projectData.participationRate))
+    ? Math.min(PARTICIPATION_RATE_MAX, Math.max(PARTICIPATION_RATE_MIN, projectData.participationRate))
     : null;
 
   return (

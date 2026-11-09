@@ -32,35 +32,36 @@ const LeftInfoPanel = () => {
       <div
         className={cn(
           'flex flex-col items-center w-full',
-          isPrintMode && 'grid grid-cols-[0.5fr_1fr_1fr] items-start gap-4 [grid-template-areas:"profile_contact_aside"]',
-          isPrintMode && 'print:grid print:grid-cols-[0.5fr_1fr_1fr] print:gap-4 print:grid-areas-[profile_contact_aside]',
+          isPrintMode && 'grid grid-cols-[0.5fr_1fr_1fr] items-start gap-2 [grid-template-areas:"profile_contact_aside"]',
+          isPrintMode && 'print:grid print:grid-cols-[0.5fr_1fr_1fr] print:gap-2 print:grid-areas-[profile_contact_aside]',
         )}
       >
         <section
           className={cn(
-            'flex flex-col justify-center my-2 w-[80%]',
+            'my-1 flex w-[80%] flex-col justify-center',
             isPrintMode && 'w-full justify-start [grid-area:profile]',
             'print:w-full print:justify-start',
           )}
         >
           <header
             className={cn(
-              'text-center mt-[11px]',
+              'mt-1 text-center',
               themeMode === 'light' ? 'text-[#181717]' : 'text-white',
-              '[&_h2]:mt-4 [&_h2]:m-0 [&_h2]:text-[30px]'
+              '[&_h2]:m-0 [&_h2]:mt-1.5 [&_h2]:text-[24px]',
+              isPrintMode && '[&_h2]:mt-1 [&_h2]:text-[18px]',
             )}
           >
             <h2 style={{ color: pointColor.hex }} className='pixel-font m-0'>
               BAEK
             </h2>
             <h2 className='pixel-font m-0'>JU HEE</h2>
-            <p className='my-2'>Front Developer</p>
+            <p className='my-0.5 text-xs'>Front Developer</p>
           </header>
         </section>
         {contactInfo && (
           <section
             className={cn(
-              'flex flex-col justify-center my-2 w-[80%]',
+              'my-1 flex w-[80%] flex-col justify-center',
               isPrintMode && 'w-full [grid-area:contact]',
               isPrintMode && `profile__box--${mode}`,
               'contact',
@@ -72,8 +73,8 @@ const LeftInfoPanel = () => {
 
         <section
           className={cn(
-            'flex flex-col gap-4 my-2 w-[80%]',
-            isPrintMode && 'w-full [grid-area:aside]',
+            'my-1 flex w-[80%] flex-col gap-2.5',
+            isPrintMode && 'w-full gap-2 [grid-area:aside]',
             isPrintMode && `profile__box--${mode}`,
             'aside',
           )}

@@ -69,46 +69,31 @@ const SiteExperiencePreview = () => {
     if (!hasSelected) setSelectedCompanyId(companies[0].id);
   }, [companies, selectedCompanyId]);
 
-  const projects = projectQuery.data ?? [];
+  const projects = (projectQuery.data ?? []).filter(project => project.isVisible);
   const selectedCompany = companies.find(company => company.id === selectedCompanyId) ?? companies[0];
-
-  const getScaleLabel = (scale: string) => {
-    if (!scale?.trim()) return '-';
-    return scale.includes('+') ? scale : `${scale}+`;
-  };
 
   const getCompanyProjectCount = (companyId: string) =>
     projects.filter(project => project.companyId === companyId).length;
 
-  const getCompanyHighlight = (companyId: string) => {
-    const companyProjects = projects.filter(project => project.companyId === companyId);
-    const candidate =
-      companyProjects
-        .map(project => (project.impact || project.summary || '').trim())
-        .find(Boolean) ?? '';
-
-    if (!candidate) return '핵심 성과 데이터 업데이트 예정';
-    return candidate.split('\n')[0];
-  };
-
   return (
     <div className='flex flex-col gap-5'>
-      <div className='grid grid-cols-1 justify-items-center gap-7 sm:grid-cols-2 lg:grid-cols-3'>
+      <div className='grid grid-cols-3 gap-2 sm:grid-cols-2 sm:justify-items-center sm:gap-7 lg:grid-cols-3'>
         {companies.map((company, index) => (
-          <CompanyCartridge
-            key={company.id}
-            company={{
-              id: company.id,
-              name: company.name,
-              period: formatCartPeriod(company.startDate, company.endDate),
-              orderLabel: String(index + 1).padStart(2, '0'),
-              ...getCartLogo(company),
-              description: toRoleEn(company.role),
-              theme: getCompanyCartTheme(company.name),
-              isActive: company.id === selectedCompanyId,
-              onClick: () => setSelectedCompanyId(company.id),
-            }}
-          />
+          <div key={company.id} className='min-w-0 w-full sm:flex sm:justify-center'>
+            <CompanyCartridge
+              company={{
+                id: company.id,
+                name: company.name,
+                period: formatCartPeriod(company.startDate, company.endDate),
+                orderLabel: String(index + 1).padStart(2, '0'),
+                ...getCartLogo(company),
+                description: toRoleEn(company.role),
+                theme: getCompanyCartTheme(company.name),
+                isActive: company.id === selectedCompanyId,
+                onClick: () => setSelectedCompanyId(company.id),
+              }}
+            />
+          </div>
         ))}
       </div>
 
@@ -146,31 +131,32 @@ const SiteExperiencePreview = () => {
             <span className='font-semibold' style={{ color: gb.text }}>
               {selectedCompany.role}
             </span>
-            <span> | {selectedCompany.department}</span>
-            <span> | 회사규모: </span>
-            <span className='font-semibold' style={{ color: gb.text }}>
-              {getScaleLabel(selectedCompany.scale)}
-            </span>
+            {selectedCompany.department && <span> | {selectedCompany.department}</span>}
+            {selectedCompany.scale && (
+              <>
+                <span> | 회사규모: </span>
+                <span className='font-semibold' style={{ color: gb.text }}>
+                  {selectedCompany.scale}
+                </span>
+              </>
+            )}
             <span> | 프로젝트 수: </span>
             <span className='font-semibold' style={{ color: gb.text }}>
               {projectQuery.isLoading ? '-' : getCompanyProjectCount(selectedCompany.id)}
             </span>
           </p>
-          <p
-            className={`m-0 text-base leading-7 ${detailBodyClass}`}
-            style={isDarkShell ? undefined : { color: gb.text }}
-          >
-            {selectedCompany.description.join(' ')}
-          </p>
-          <p
-            className={`m-0 text-base leading-7 ${detailBodyClass}`}
-            style={isDarkShell ? undefined : { color: gb.text }}
-          >
-            <span className='font-semibold' style={{ color: gb.text }}>
-              핵심 성과:{' '}
-            </span>
-            <span>{getCompanyHighlight(selectedCompany.id)}</span>
-          </p>
+          {selectedCompany.description.length > 0 && (
+            <div
+              className={`flex flex-col gap-1 text-base leading-7 ${detailBodyClass}`}
+              style={isDarkShell ? undefined : { color: gb.text }}
+            >
+              {selectedCompany.description.map((line, index) => (
+                <p key={`${selectedCompany.id}_${index}`} className='m-0'>
+                  {line}
+                </p>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
