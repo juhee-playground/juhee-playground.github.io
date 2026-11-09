@@ -176,7 +176,7 @@ export const CompanyCartDeco = ({
   if (compact) {
     return (
       <div
-        className='pointer-events-none absolute bottom-1 right-1 h-[72px] w-[88px] overflow-hidden opacity-55'
+        className='pointer-events-none absolute bottom-9 right-2 z-0 h-[80px] w-[96px] overflow-hidden opacity-80'
         aria-hidden
       >
         {deco}

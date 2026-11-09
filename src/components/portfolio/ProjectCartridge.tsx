@@ -4,7 +4,7 @@ import { useSettings } from '@/stores/useSettings';
 
 import { CART_SHELL } from './cartShell';
 import { CompanyCartDeco } from './CompanyCartridge';
-import { getCompanyCartTheme } from './companyCartTheme';
+import { getProjectCartTheme } from './domainCartTheme';
 import { getGameBoyPalette } from './gameboyPalette';
 
 interface IProjectCartridgeProps {
@@ -35,7 +35,8 @@ export const ProjectCartridge = ({ project, index, companyName }: IProjectCartri
   const { pointColor, shellStyle } = useSettings();
   const gb = getGameBoyPalette(shellStyle, pointColor.hex);
   const cart = CART_SHELL[shellStyle] ?? CART_SHELL.dmg;
-  const theme = getCompanyCartTheme(companyName ?? '');
+  const domainNames = (project.domain ?? []).map(tag => tag.name);
+  const theme = getProjectCartTheme(domainNames, companyName ?? '');
 
   const orderLabel = String(index + 1).padStart(2, '0');
   const summary = (project.summary || project.description || '').trim();
@@ -57,13 +58,13 @@ export const ProjectCartridge = ({ project, index, companyName }: IProjectCartri
         }}
       >
         <div
-          className='rounded-[12px] p-[2px]'
+          className='rounded-xl p-0.5'
           style={{
             background: `linear-gradient(145deg, ${edgeHi} 0%, ${body} 42%, ${edgeLo} 100%)`,
           }}
         >
           <div
-            className='relative flex flex-col rounded-[10px] px-3 pt-2.5 pb-0'
+            className='relative flex flex-col rounded-lg px-3 pt-2.5 pb-0'
             style={{
               background: `linear-gradient(180deg, ${bodyHi} 0%, ${body} 28%, ${body} 100%)`,
               boxShadow: `inset 1px 1px 0 rgba(255,255,255,0.16), inset -1px -1px 0 rgba(0,0,0,0.14)`,
@@ -102,17 +103,28 @@ export const ProjectCartridge = ({ project, index, companyName }: IProjectCartri
                   boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.35)',
                 }}
               >
-                <div className='pointer-events-none absolute inset-0 opacity-[0.22]' aria-hidden>
-                  <CompanyCartDeco type={theme.deco} />
-                </div>
+                <CompanyCartDeco type={theme.deco} compact />
 
                 <div className='relative z-1 flex items-start justify-between gap-3'>
-                  <span
-                    className='rounded-sm px-1.5 py-0.5 text-body-2xs font-bold tracking-wide text-white'
-                    style={{ backgroundColor: theme.accent }}
-                  >
-                    CART {orderLabel}
-                  </span>
+                  <div className='flex min-w-0 flex-wrap items-center gap-1.5'>
+                    <span
+                      className='rounded-sm px-1.5 py-0.5 text-body-2xs font-bold tracking-wide text-white'
+                      style={{ backgroundColor: theme.accent }}
+                    >
+                      CART {orderLabel}
+                    </span>
+                    {theme.domainLabel && (
+                      <span
+                        className='rounded-sm px-1.5 py-0.5 text-body-2xs font-bold tracking-wide'
+                        style={{
+                          backgroundColor: theme.tagBg,
+                          color: theme.ink,
+                        }}
+                      >
+                        {theme.domainLabel}
+                      </span>
+                    )}
+                  </div>
                   <span
                     className='shrink-0 text-avatar font-medium tabular-nums'
                     style={{ color: theme.muted }}
