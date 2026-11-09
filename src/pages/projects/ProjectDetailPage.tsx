@@ -309,12 +309,17 @@ const ProjectDetailPage = () => {
   const hasImpact = impactItems.length > 0;
 
   const mutedText = isDark ? 'text-white/55' : 'text-black/50';
-  const panelBorder = isDark ? 'border-white/12' : 'border-black/10';
-  const panelBg = isDark ? 'bg-white/[0.03]' : 'bg-black/[0.02]';
+  const roleLabel = project.role?.trim() ?? '';
+  const participationLabel = [
+    hasParticipants ? `${project.numberOfParticipants}명` : null,
+    hasParticipationRate ? `${project.participationRate}%` : null,
+  ]
+    .filter(Boolean)
+    .join(' / ');
 
   return (
     <div className={bgClass}>
-      <main className='mx-auto flex w-full max-w-[800px] flex-col gap-16 px-5 py-12 md:gap-20 md:px-6 md:py-16'>
+      <main className='mx-auto flex w-full max-w-[1000px] flex-col gap-12 px-5 py-12 md:gap-16 md:px-6 md:py-16'>
         {/* Section 1. Project Overview */}
         <header className='flex flex-col gap-5'>
           <div className='flex flex-col gap-2'>
@@ -375,54 +380,42 @@ const ProjectDetailPage = () => {
               </div>
             </div>
           )}
-        </header>
 
-        {/* Section 2. My Role */}
-        {hasRoleMeta && (
-          <section className='flex flex-col gap-5'>
-            <SectionHeading isDark={isDark}>My Role</SectionHeading>
-
-            <div className='flex flex-col gap-3'>
-              {project.role?.trim() && (
-                <p
-                  className={cn(
-                    'm-0 text-[15px] leading-[1.75] md:text-base md:leading-[1.8]',
-                    isDark ? 'text-white/80' : 'text-black/75',
-                  )}
-                >
-                  <span className={cn('font-semibold', isDark ? 'text-white' : 'text-[#181717]')}>
+          {hasRoleMeta && (
+            <div
+              className={cn(
+                'flex flex-col gap-1.5 border-t pt-4 text-sm leading-relaxed sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-1',
+                isDark ? 'border-white/10' : 'border-black/8',
+                mutedText,
+              )}
+            >
+              {roleLabel && (
+                <p className='m-0'>
+                  <span className={cn('font-medium', isDark ? 'text-white/70' : 'text-black/60')}>
                     Role
                   </span>
-                  <span className={cn('mx-2 opacity-40', mutedText)}>·</span>
-                  <span>{project.role.trim()}</span>
+                  <span className='mx-1.5 opacity-40' aria-hidden>
+                    ·
+                  </span>
+                  <span>{roleLabel}</span>
                 </p>
               )}
-
-              {(hasParticipants || hasParticipationRate) && (
-                <p
-                  className={cn(
-                    'm-0 text-[15px] leading-[1.75] md:text-base md:leading-[1.8]',
-                    isDark ? 'text-white/80' : 'text-black/75',
-                  )}
-                >
-                  <span className={cn('font-semibold', isDark ? 'text-white' : 'text-[#181717]')}>
+              {participationLabel && (
+                <p className='m-0'>
+                  <span className={cn('font-medium', isDark ? 'text-white/70' : 'text-black/60')}>
                     Participation
                   </span>
-                  <span className={cn('mx-2 opacity-40', mutedText)}>·</span>
-                  <span>
-                    {[
-                      hasParticipants ? `${project.numberOfParticipants}명` : null,
-                      hasParticipationRate ? `${project.participationRate}%` : null,
-                    ]
-                      .filter(Boolean)
-                      .join(' / ')}
+                  <span className='mx-1.5 opacity-40' aria-hidden>
+                    ·
                   </span>
+                  <span>{participationLabel}</span>
                 </p>
               )}
             </div>
-          </section>
-        )}
+          )}
+        </header>
 
+        {/* Section 2. Key Contributions */}
         {hasContributions && (
           <section className='flex flex-col gap-5'>
             <SectionHeading isDark={isDark}>Key Contributions</SectionHeading>
@@ -430,79 +423,48 @@ const ProjectDetailPage = () => {
           </section>
         )}
 
-        {/* Section 3. Problem & Solution */}
+        {/* Section 3. Problem */}
         {hasProblemSolution && (
-          <section className='flex flex-col gap-5'>
+          <section className='flex flex-col gap-4'>
             <SectionHeading isDark={isDark}>
               {problem && solution ? 'Problem & Solution' : problem ? 'Problem' : 'Solution'}
             </SectionHeading>
-            <div
-              className={cn(
-                'grid w-full grid-cols-1 gap-4 md:gap-5',
-                problem && solution ? 'md:grid-cols-2' : 'md:grid-cols-1',
-              )}
-            >
+            <div className='flex flex-col gap-5'>
               {problem && (
-                <div
-                  className={cn(
-                    'flex w-full flex-col gap-3 rounded-lg border px-5 py-5 md:px-6 md:py-6',
-                    panelBorder,
-                    panelBg,
-                  )}
-                >
-                  {problem && solution && (
-                    <h3
+                <div className='flex flex-col gap-1.5'>
+                  {solution && (
+                    <p
                       className={cn(
-                        'm-0 text-sm font-bold tracking-wide',
-                        isDark ? 'text-white/80' : 'text-black/70',
+                        'm-0 text-xs font-semibold uppercase tracking-wider',
+                        mutedText,
                       )}
                     >
                       Problem
-                    </h3>
+                    </p>
                   )}
-                  <p
-                    className={cn(
-                      'm-0 whitespace-pre-line text-base leading-[1.8] md:text-[17px] md:leading-[1.85]',
-                      isDark ? 'text-white/80' : 'text-black/75',
-                    )}
-                  >
-                    {problem}
-                  </p>
+                  <BodyText isDark={isDark}>{problem}</BodyText>
                 </div>
               )}
               {solution && (
-                <div
-                  className={cn(
-                    'flex w-full flex-col gap-3 rounded-lg border px-5 py-5 md:px-6 md:py-6',
-                    panelBorder,
-                    panelBg,
-                  )}
-                >
-                  {problem && solution && (
-                    <h3
+                <div className='flex flex-col gap-1.5'>
+                  {problem && (
+                    <p
                       className={cn(
-                        'm-0 text-sm font-bold tracking-wide',
-                        isDark ? 'text-white/80' : 'text-black/70',
+                        'm-0 text-xs font-semibold uppercase tracking-wider',
+                        mutedText,
                       )}
                     >
                       Solution
-                    </h3>
+                    </p>
                   )}
-                  <p
-                    className={cn(
-                      'm-0 whitespace-pre-line text-base leading-[1.8] md:text-[17px] md:leading-[1.85]',
-                      isDark ? 'text-white/80' : 'text-black/75',
-                    )}
-                  >
-                    {solution}
-                  </p>
+                  <BodyText isDark={isDark}>{solution}</BodyText>
                 </div>
               )}
             </div>
           </section>
         )}
 
-        {/* Section 4. Key Implementations — screenshots 없으면 기능 텍스트만 */}
+        {/* Section 4. Key Implementations */}
         {hasKeyImplementations && (
           <section className='flex flex-col gap-5'>
             <SectionHeading isDark={isDark}>Key Implementations</SectionHeading>
