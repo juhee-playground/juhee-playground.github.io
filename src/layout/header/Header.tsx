@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import ClearIcon from '@mui/icons-material/Clear';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
 import PaletteIcon from '@mui/icons-material/Palette';
 import PrintIcon from '@mui/icons-material/Print';
 
@@ -77,15 +75,7 @@ export default function DenseAppBar() {
     right: false,
   });
 
-  const {
-    pointColor,
-    isPrintMode,
-    togglePrintMode,
-    themeMode,
-    toggleThemeMode,
-    shellStyle,
-    setShellStyle,
-  } = useSettings();
+  const { pointColor, isPrintMode, togglePrintMode, shellStyle, setShellStyle } = useSettings();
   const { mode } = usePrintMode();
   const { pathname } = useLocation();
 
@@ -183,19 +173,6 @@ export default function DenseAppBar() {
             />
             ON
           </span>
-
-          <IconButton
-            aria-label='toggleTheme'
-            onClick={toggleThemeMode}
-            size='small'
-            sx={{ color: iconColor }}
-          >
-            {themeMode === 'light' ? (
-              <DarkModeIcon fontSize='small' />
-            ) : (
-              <LightModeIcon fontSize='small' />
-            )}
-          </IconButton>
 
           {isResumePage && (
             <IconButton
