@@ -17,6 +17,9 @@ const isBulletLine = (line: string) => /^[-•*]\s+/.test(line) || /^\d+[.)]\s+/
 
 const stripBullet = (line: string) => line.replace(/^[-•*]\s+/, '').replace(/^\d+[.)]\s+/, '');
 
+const toSelectNames = (items: readonly ISelectProperty[] | undefined): readonly string[] =>
+  (items ?? []).map(tag => tag.name).filter(Boolean);
+
 const toContentItems = (content: string): readonly string[] => {
   const lines = splitContentLines(content);
   if (lines.length === 0) return [];
@@ -56,7 +59,7 @@ const MetaChip = ({ label, isDark }: IChipProps) => (
   <span
     className={cn(
       'rounded-sm px-2.5 py-1 text-xs font-medium',
-      isDark ? 'bg-white/10 text-white/75' : 'bg-black/[0.06] text-black/65',
+      isDark ? 'bg-white/10 text-white/75' : 'bg-black/6 text-black/65',
     )}
   >
     {label}
@@ -145,8 +148,8 @@ const getProjectNavMeta = (
   if (!companyName) return null;
 
   const projectTypeLabel =
-    (target.projectType ?? [])
-      .map(tag => tag.name.trim())
+    toSelectNames(target.projectType)
+      .map(name => name.trim())
       .find(Boolean) ?? 'Company Project';
 
   return `${companyName} · ${projectTypeLabel}`;
@@ -288,11 +291,11 @@ const ProjectDetailPage = () => {
   const architectureItems = toContentItems(architecture);
   const impactItems = toContentItems(impact);
 
-  const keywords = (project.keywords ?? []).map(tag => tag.name).filter(Boolean);
-  const domains = (project.domain ?? []).map(tag => tag.name).filter(Boolean);
-  const projectTypes = (project.projectType ?? []).map(tag => tag.name).filter(Boolean);
+  const keywords = toSelectNames(project.keywords);
+  const domains = toSelectNames(project.domain);
+  const projectTypes = toSelectNames(project.projectType);
   const techStack = project.techStack ?? [];
-  const mainSkills = (project.mainSkills ?? []).map(tag => tag.name).filter(Boolean);
+  const mainSkills = toSelectNames(project.mainSkills);
 
   const typeLabels = [...projectTypes, ...domains].filter(Boolean);
   const hasParticipants = project.numberOfParticipants > 0;

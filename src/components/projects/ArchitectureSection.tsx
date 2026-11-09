@@ -27,7 +27,7 @@ const ArchitectureCard = ({
     <div
       className={cn(
         'flex h-full flex-col gap-3 rounded-xl border px-4 py-4 md:px-5 md:py-5',
-        isDark ? 'border-white/12 bg-white/[0.03]' : 'border-black/10 bg-black/[0.02]',
+        isDark ? 'border-white/12 bg-white/3' : 'border-black/10 bg-black/2',
         hasChildren && 'md:col-span-2',
       )}
     >
@@ -39,7 +39,7 @@ const ArchitectureCard = ({
           />
           <h3
             className={cn(
-              'm-0 text-sm font-bold tracking-tight md:text-[15px]',
+              'm-0 text-sm font-bold tracking-tight md:text-md',
               isDark ? 'text-white' : 'text-[#181717]',
             )}
           >
@@ -49,7 +49,7 @@ const ArchitectureCard = ({
         {block.description && (
           <p
             className={cn(
-              'm-0 text-[15px] leading-[1.75] md:text-base md:leading-[1.8]',
+              'm-0 text-md leading-[1.75] md:text-base md:leading-[1.8]',
               isDark ? 'text-white/70' : 'text-black/65',
             )}
           >
@@ -79,7 +79,7 @@ const ArchitectureCard = ({
               {child.description && (
                 <p
                   className={cn(
-                    'm-0 text-[15px] leading-[1.75]',
+                    'm-0 text-md leading-[1.75]',
                     isDark ? 'text-white/65' : 'text-black/60',
                   )}
                 >
