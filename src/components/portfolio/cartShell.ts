@@ -24,14 +24,14 @@ export const CART_SHELL = {
     muted: '#5a6270',
   },
   pocket: {
-    body: '#2a2e36',
-    bodyHi: '#353a44',
-    edgeHi: '#4a515c',
-    edgeLo: '#0c0e12',
-    well: '#14171d',
-    step: '#050608',
-    ink: '#e6e9ef',
-    muted: '#8b95a5',
+    body: '#5c636e',
+    bodyHi: '#6c7480',
+    edgeHi: '#8a929e',
+    edgeLo: '#3a404a',
+    well: '#4a515c',
+    step: '#2e333b',
+    ink: '#f0f2f5',
+    muted: '#c5cad3',
   },
 } as const;
 
