@@ -203,30 +203,29 @@ export const CompanyCartridge = ({ company }: ICompanyCartridgeProps) => {
       onClick={company.onClick}
       aria-pressed={company.isActive}
       aria-label={`${company.name} 경력 상세 보기`}
-      className='group w-full max-w-56 cursor-pointer border-0 bg-transparent p-0 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500'
+      className='group w-full max-w-none cursor-pointer border-0 bg-transparent p-0 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500 sm:max-w-56'
     >
       <div
-        className='rounded-b-xl transition-[filter] duration-200'
+        className='rounded-b-lg transition-[filter] duration-200 sm:rounded-b-xl'
         style={{
           filter: company.isActive
             ? 'none'
-            : `drop-shadow(0 3px 0 ${step}) drop-shadow(0 6px 14px rgba(0,0,0,0.22))`,
+            : `drop-shadow(0 2px 0 ${step}) drop-shadow(0 4px 10px rgba(0,0,0,0.18))`,
         }}
       >
-        <div className='relative overflow-hidden rounded-b-xl'>
-          {/* bevel rim — 프로젝트 팩과 동일 */}
+        <div className='relative overflow-hidden rounded-b-lg sm:rounded-b-xl'>
           <div
             className={
               company.isActive
-                ? 'rounded-[14px] p-[3px] transition-transform duration-200 translate-y-7'
-                : 'rounded-[14px] p-[3px] transition-transform duration-200 group-hover:-translate-y-1 group-active:translate-y-px'
+                ? 'rounded-[10px] p-[2px] transition-transform duration-200 translate-y-2 sm:rounded-[14px] sm:p-[3px] sm:translate-y-7'
+                : 'rounded-[10px] p-[2px] transition-transform duration-200 group-hover:-translate-y-1 group-active:translate-y-px sm:rounded-[14px] sm:p-[3px]'
             }
             style={{
               background: `linear-gradient(145deg, ${edgeHi} 0%, ${body} 42%, ${edgeLo} 100%)`,
             }}
           >
             <div
-              className='relative flex aspect-5/6 flex-col overflow-hidden rounded-[11px] px-3 pb-3 pt-2.5'
+              className='relative flex aspect-5/6 flex-col overflow-hidden rounded-[8px] px-1.5 pb-1.5 pt-1.5 sm:rounded-[11px] sm:px-3 sm:pb-3 sm:pt-2.5'
               style={{
                 background: `linear-gradient(180deg, ${bodyHi} 0%, ${body} 28%, ${body} 100%)`,
                 boxShadow: company.isActive
@@ -236,33 +235,38 @@ export const CompanyCartridge = ({ company }: ICompanyCartridgeProps) => {
             >
               <div
                 aria-hidden
-                className='mx-auto mb-2 h-1.5 w-8 rounded-sm'
+                className='mx-auto mb-1 h-1 w-5 rounded-sm sm:mb-2 sm:h-1.5 sm:w-8'
                 style={{
                   backgroundColor: edgeLo,
                   boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.12)',
                 }}
               />
 
-              <div className='mb-2 flex items-start justify-between px-0.5'>
-                <div className='flex flex-col leading-none gap-0.5'>
-                  <span className='text-xs font-semibold tracking-wide' style={{ color: ink }}>
+              <div className='mb-1 flex items-start justify-between px-0.5 sm:mb-2'>
+                <div className='flex min-w-0 flex-col leading-none gap-0.5'>
+                  <span
+                    className='truncate text-[8px] font-semibold tracking-wide sm:text-xs'
+                    style={{ color: ink }}
+                  >
                     JUHEE-OS
                   </span>
                   <span
-                    className='text-body-2xs font-medium tracking-[0.08em]'
+                    className='hidden text-body-2xs font-medium tracking-[0.08em] sm:inline'
                     style={{ color: muted }}
                   >
                     WORK CARTRIDGE
                   </span>
                 </div>
-                <span className='text-avatar font-semibold tabular-nums' style={{ color: muted }}>
+                <span
+                  className='text-[8px] font-semibold tabular-nums sm:text-avatar'
+                  style={{ color: muted }}
+                >
                   {company.orderLabel}
                 </span>
               </div>
 
-              {/* recessed label well */}
               <div
-                className='relative flex flex-1 flex-col rounded-md p-1.5'
+                className='relative flex flex-1 flex-col rounded-md p-1 sm:p-1.5'
                 style={{
                   backgroundColor: well,
                   boxShadow:
@@ -270,36 +274,37 @@ export const CompanyCartridge = ({ company }: ICompanyCartridgeProps) => {
                 }}
               >
                 <div
-                  className='relative flex flex-1 flex-col overflow-hidden rounded-[4px] px-2.5 pb-2 pt-2'
+                  className='relative flex flex-1 flex-col overflow-hidden rounded-[4px] px-1.5 pb-1.5 pt-1.5 sm:px-2.5 sm:pb-2 sm:pt-2'
                   style={{
                     background: `linear-gradient(165deg, ${theme.labelFrom} 0%, ${theme.labelTo} 100%)`,
                     boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.4)',
                   }}
                 >
-                  <div className='pointer-events-none absolute inset-0 opacity-[0.32]' aria-hidden>
+                  <div className='pointer-events-none absolute inset-0 opacity-[0.28] sm:opacity-[0.32]' aria-hidden>
                     <CompanyCartDeco type={theme.deco} />
                   </div>
 
-                  <div className='relative z-1 flex items-start justify-between gap-2'>
+                  <div className='relative z-1 flex items-start justify-between gap-1 sm:gap-2'>
                     <span
-                      className='shrink-0 rounded-sm px-2 py-0.5 text-body-2xs font-bold tracking-wide text-white'
+                      className='shrink-0 rounded-sm px-1 py-0.5 text-[8px] font-bold tracking-wide text-white sm:px-2 sm:text-body-2xs'
                       style={{ backgroundColor: theme.accent }}
                     >
-                      WORK {company.orderLabel}
+                      <span className='sm:hidden'>{company.orderLabel}</span>
+                      <span className='hidden sm:inline'>WORK {company.orderLabel}</span>
                     </span>
                     <span
-                      className='text-right text-avatar font-medium leading-tight tabular-nums'
+                      className='hidden text-right text-avatar font-medium leading-tight tabular-nums sm:block'
                       style={{ color: theme.muted }}
                     >
                       {company.period}
                     </span>
                   </div>
 
-                  <div className='relative z-1 mt-2 flex flex-1 flex-col items-center justify-center text-center'>
-                    <div className='mb-1.5 flex h-12 w-full items-center justify-center'>
+                  <div className='relative z-1 mt-1 flex flex-1 flex-col items-center justify-center text-center sm:mt-2'>
+                    <div className='mb-1 flex h-7 w-full items-center justify-center sm:mb-1.5 sm:h-12'>
                       {company.logoLabel ? (
                         <span
-                          className='flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold tracking-wide'
+                          className='flex h-7 w-7 items-center justify-center rounded-full text-[9px] font-bold tracking-wide sm:h-12 sm:w-12 sm:text-sm'
                           style={{ backgroundColor: theme.accent, color: '#fff' }}
                         >
                           {company.logoLabel}
@@ -308,15 +313,15 @@ export const CompanyCartridge = ({ company }: ICompanyCartridgeProps) => {
                         <img
                           src={company.logoSrc}
                           alt={`${company.name} 로고`}
-                          className='block max-h-12 max-w-[78%] object-contain drop-shadow-sm'
+                          className='block max-h-7 max-w-[78%] object-contain drop-shadow-sm sm:max-h-12'
                         />
                       ) : company.logoEmoji ? (
-                        <span className='text-[36px] leading-none drop-shadow-sm'>
+                        <span className='text-[20px] leading-none drop-shadow-sm sm:text-[36px]'>
                           {company.logoEmoji}
                         </span>
                       ) : (
                         <span
-                          className='flex h-10 w-10 items-center justify-center rounded-full text-base font-semibold'
+                          className='flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-semibold sm:h-10 sm:w-10 sm:text-base'
                           style={{ backgroundColor: theme.accentSoft, color: theme.ink }}
                         >
                           {company.name.slice(0, 1)}
@@ -324,13 +329,16 @@ export const CompanyCartridge = ({ company }: ICompanyCartridgeProps) => {
                       )}
                     </div>
                     <span
-                      className='text-base font-semibold tracking-tight'
+                      className='line-clamp-2 text-[10px] font-semibold leading-tight tracking-tight sm:text-base'
                       style={{ color: theme.ink }}
                     >
                       {company.name}
                     </span>
                     {company.description && (
-                      <span className='mt-0.5 text-xs font-normal' style={{ color: theme.muted }}>
+                      <span
+                        className='mt-0.5 hidden text-xs font-normal sm:block'
+                        style={{ color: theme.muted }}
+                      >
                         {company.description}
                       </span>
                     )}
@@ -341,7 +349,7 @@ export const CompanyCartridge = ({ company }: ICompanyCartridgeProps) => {
               {company.isActive && (
                 <div
                   aria-hidden
-                  className='pointer-events-none absolute inset-x-0 bottom-0 h-14'
+                  className='pointer-events-none absolute inset-x-0 bottom-0 h-8 sm:h-14'
                   style={{
                     background:
                       'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.14) 100%)',
@@ -354,7 +362,7 @@ export const CompanyCartridge = ({ company }: ICompanyCartridgeProps) => {
           {company.isActive && (
             <div
               aria-hidden
-              className='pointer-events-none absolute inset-x-0 bottom-0 z-10 h-4'
+              className='pointer-events-none absolute inset-x-0 bottom-0 z-10 h-3 sm:h-4'
               style={{ boxShadow: 'inset 0 10px 12px rgba(0,0,0,0.16)' }}
             />
           )}

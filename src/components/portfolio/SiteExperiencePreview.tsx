@@ -93,22 +93,23 @@ const SiteExperiencePreview = () => {
 
   return (
     <div className='flex flex-col gap-5'>
-      <div className='grid grid-cols-1 justify-items-center gap-7 sm:grid-cols-2 lg:grid-cols-3'>
+      <div className='grid grid-cols-3 gap-2 sm:grid-cols-2 sm:justify-items-center sm:gap-7 lg:grid-cols-3'>
         {companies.map((company, index) => (
-          <CompanyCartridge
-            key={company.id}
-            company={{
-              id: company.id,
-              name: company.name,
-              period: formatCartPeriod(company.startDate, company.endDate),
-              orderLabel: String(index + 1).padStart(2, '0'),
-              ...getCartLogo(company),
-              description: toRoleEn(company.role),
-              theme: getCompanyCartTheme(company.name),
-              isActive: company.id === selectedCompanyId,
-              onClick: () => setSelectedCompanyId(company.id),
-            }}
-          />
+          <div key={company.id} className='min-w-0 w-full sm:flex sm:justify-center'>
+            <CompanyCartridge
+              company={{
+                id: company.id,
+                name: company.name,
+                period: formatCartPeriod(company.startDate, company.endDate),
+                orderLabel: String(index + 1).padStart(2, '0'),
+                ...getCartLogo(company),
+                description: toRoleEn(company.role),
+                theme: getCompanyCartTheme(company.name),
+                isActive: company.id === selectedCompanyId,
+                onClick: () => setSelectedCompanyId(company.id),
+              }}
+            />
+          </div>
         ))}
       </div>
 
