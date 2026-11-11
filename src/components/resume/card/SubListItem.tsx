@@ -158,13 +158,13 @@ const SubListItem = ({ info }: ISubListProps) => {
     : null;
 
   return (
-    <section className='my-3' key={`project__${projectData.id}`}>
-      <div className='flex flex-col gap-1 my-1'>
+    <section className='print-keep my-3' key={`project__${projectData.id}`}>
+      <div className='my-1 flex flex-wrap items-center gap-x-3 gap-y-1'>
         <div className='flex items-center gap-2'>
           <span aria-hidden='true' className='inline-block shrink-0 text-xs font-black leading-none'>
             ▶
           </span>
-          {projectData.slug ? (
+          {projectData.slug && !isPrintMode ? (
             <Link to={`/projects/${projectData.slug}`} className='text-xl font-semibold leading-none m-0 hover:underline'>
               {projectData.name}
             </Link>
@@ -173,9 +173,7 @@ const SubListItem = ({ info }: ISubListProps) => {
           )}
         </div>
 
-      </div>
-
-      <p className='my-1 flex flex-wrap items-center gap-x-1'>
+      <p className='m-0 flex flex-wrap items-center gap-x-1'>
         {periodLabel && (
           <>
             <span className='text-sm leading-none m-0'>{periodLabel}</span>
@@ -213,6 +211,7 @@ const SubListItem = ({ info }: ISubListProps) => {
           </>
         )}
       </p>
+      </div>
 
       {(projectData.keywords ?? []).length > 0 && (
         <ul className='flex flex-wrap gap-1.5 list-none my-2 p-0'>
@@ -250,14 +249,6 @@ const SubListItem = ({ info }: ISubListProps) => {
             style={{ backgroundColor: pointColor.hex }}
           />
           <div className='flex min-w-0 flex-col gap-1'>
-            <p
-              className={cn(
-                'm-0 text-avatar font-bold tracking-wide',
-                isPrintMode ? 'text-[#333]' : isDark ? 'text-white/45' : 'text-black/45',
-              )}
-            >
-              Key Contributions
-            </p>
             <ul className='m-0 flex list-disc flex-col gap-0.5 pl-4'>
               {contributionItems.map(item => (
                 <li

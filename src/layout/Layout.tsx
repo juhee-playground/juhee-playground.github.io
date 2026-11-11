@@ -48,17 +48,18 @@ export default function Layout({ children }: IMainLayoutProps) {
       className={cn(
         'mx-auto min-h-screen flex flex-col',
         isSearchPage ? 'max-w-[1600px] w-full' : 'max-w-[1080px]',
+        'print:max-w-none print:min-h-0 print:bg-white print:text-[#181717]',
         themeMode === 'light' ? 'bg-[#fefefe] text-[#181717]' : 'bg-[#242424] text-white'
       )}
     >
       {headerChild && (
-        <div className="shrink-0 sticky top-0 z-50">
+        <div className="shrink-0 sticky top-0 z-50 print:hidden">
           {headerChild}
         </div>
       )}
       <div
         className={cn(
-          'flex gap-[0.4em] flex-1',
+          'flex gap-[0.4em] flex-1 print:gap-0',
           isSearchPage && 'w-full min-w-0',
           isPrintMode && 'flex-col',
           isPrintMode && 'items-stretch',

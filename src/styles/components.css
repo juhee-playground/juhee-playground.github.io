@@ -229,6 +229,21 @@
       print-color-adjust: exact;
       forced-color-adjust: none;
     }
+
+    .print-keep {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      height: auto;
+      min-height: 0;
+      flex: 0 0 auto;
+    }
+
+    .print-keep-with-next {
+      break-inside: avoid;
+      break-after: avoid;
+      page-break-inside: avoid;
+      page-break-after: avoid;
+    }
   }
 
   /* Lexical 체크리스트 아이템 */

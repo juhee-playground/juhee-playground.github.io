@@ -86,7 +86,7 @@ const ResumeView = ({
       <LeftSection />
       <div
         className={cn(
-          'flex-1 flex flex-col py-3 px-4 min-w-0 min-h-screen',
+          'flex-1 flex flex-col py-3 px-4 min-w-0 min-h-screen print:min-h-0 print:flex-none print:py-0',
           isDark ? 'bg-[#181717] text-white' : 'bg-white text-[#181717]',
         )}
       >

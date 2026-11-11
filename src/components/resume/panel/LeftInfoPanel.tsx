@@ -21,8 +21,9 @@ const LeftInfoPanel = () => {
       id='profileInfo'
       className={cn(
         'flex flex-col items-center justify-start py-6 px-3 pb-[18px] shrink-0 border-r',
+        'print:h-auto print:min-h-0 print:flex-none print:py-1 print:pb-1',
         !isPrintMode && 'flex-[0_0_30%] min-h-screen',
-        isPrintMode && 'w-full min-h-fit flex-none border-r-0 pb-4',
+        isPrintMode && 'w-full min-h-fit flex-none border-r-0 pb-1',
         themeMode === 'light'
           ? 'bg-white text-[#181717] border-black/[0.07]'
           : 'bg-[#111111] text-white border-white/[0.07]',
@@ -32,7 +33,7 @@ const LeftInfoPanel = () => {
       <div
         className={cn(
           'flex flex-col items-center w-full',
-          isPrintMode && 'grid grid-cols-[0.5fr_1fr_1fr] items-start gap-2 [grid-template-areas:"profile_contact_aside"]',
+          isPrintMode && 'grid grid-cols-[0.5fr_1fr_1fr] items-start gap-2 print:gap-x-3 print:gap-y-0 [grid-template-areas:"profile_contact_aside"]',
           isPrintMode && 'print:grid print:grid-cols-[0.5fr_1fr_1fr] print:gap-2 print:grid-areas-[profile_contact_aside]',
         )}
       >

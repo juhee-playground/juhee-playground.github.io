@@ -70,7 +70,7 @@ const PointStackCard = () => {
   );
 
   return (
-    <div className='p-3'>
+    <div className='print-keep p-3 print:px-0 print:pt-1 print:pb-2'>
       <div className='mb-4 flex items-center gap-3'>
         <span
           className={cn(
