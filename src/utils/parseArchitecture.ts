@@ -74,7 +74,7 @@ const isSectionTitleLine = (line: string) => {
   if (resolveArchitectureIcon(cleaned) !== 'default') return true;
 
   // 짧은 영문 제목만 허용 (한글 설명 줄은 제목으로 취급하지 않음)
-  return /^[A-Za-z][A-Za-z0-9 +&/\-]*$/.test(cleaned) && cleaned.length <= 40;
+  return /^[A-Za-z][A-Za-z0-9 +&/-]*$/.test(cleaned) && cleaned.length <= 40;
 };
 
 const matchTitledChild = (line: string) =>
@@ -82,7 +82,7 @@ const matchTitledChild = (line: string) =>
   line.match(/^-\s*\*\*(.+?)\*\*:\s*(.*)$/) ??
   line.match(/^-\s*\*\*(.+?)\*\*\s*[—–-]?\s*(.*)$/) ??
   // Notion bold가 풀린 `- SSE: 설명`
-  line.match(/^-\s*([A-Za-z][A-Za-z0-9 +&/\-]{0,24}):\s+(.+)$/);
+  line.match(/^-\s*([A-Za-z][A-Za-z0-9 +&/-]{0,24}):\s+(.+)$/);
 
 const matchPlainBullet = (line: string) => line.match(/^-\s+(.+)$/);
 

@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 const COUNT_OF_MONTH = 12;
-const BULLET_PREFIX = /^\s*[•\-]\s+/;
+const BULLET_PREFIX = /^\s*[•-]\s+/;
 
 const readCompanyDescription = (
   richText: ReadonlyArray<{ readonly plain_text?: string }> | undefined,
