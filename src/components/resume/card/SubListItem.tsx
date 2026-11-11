@@ -7,10 +7,6 @@ import { NOTION_COLOR_SET } from '@/constants/notion';
 import usePrintMode from '@/hooks/usePrintMode';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
-import {
-  canRenderArchitectureBlocks,
-  parseArchitectureBlocks,
-} from '@/utils/parseArchitecture';
 
 const KEYWORD_TEXT_ALPHA = {
   solid: 1,
@@ -84,8 +80,6 @@ const readKeywordTone = (colorName: string, isDark: boolean, isPrintMode: boolea
 
 const FOLDED_SECTIONS = [
   { key: 'problem', label: 'Problem' },
-  { key: 'architecture', label: 'Architecture' },
-  { key: 'keyFeatures', label: 'Key Features' },
   { key: 'impact', label: 'Impact' },
 ] as const;
 
@@ -118,64 +112,8 @@ interface IDetailBlockProps {
   isDark: boolean;
 }
 
-const ArchitectureDetail = ({
-  content,
-  isPrintMode,
-  isDark,
-}: {
-  readonly content: string;
-  readonly isPrintMode: boolean;
-  readonly isDark: boolean;
-}) => {
-  const blocks = parseArchitectureBlocks(content);
-  if (!canRenderArchitectureBlocks(blocks)) return null;
-
-  return (
-    <div className='flex flex-col gap-2'>
-      {blocks.map(block => (
-        <div key={`${block.title}_${block.description}`} className='flex flex-col gap-0.5'>
-          {block.title && (
-            <p
-              className={cn(
-                'm-0 text-sm font-semibold',
-                isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/85' : 'text-[#181717]',
-              )}
-            >
-              {block.title}
-            </p>
-          )}
-          {block.description && (
-            <p
-              className={cn(
-                'm-0 text-sm leading-relaxed whitespace-pre-line',
-                isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/70' : 'text-black/70',
-              )}
-            >
-              {block.description}
-            </p>
-          )}
-          {block.children.map(child => (
-            <p
-              key={`${block.title}_${child.title}`}
-              className={cn(
-                'm-0 text-sm leading-relaxed',
-                isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/70' : 'text-black/70',
-              )}
-            >
-              {child.title ? `${child.title}: ${child.description}` : child.description}
-            </p>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-};
-
 const DetailBlock = ({ label, content, isPrintMode, isDark }: IDetailBlockProps) => {
   const normalized = normalizeDetailContent(content);
-  const architectureBlocks =
-    label === 'Architecture' ? parseArchitectureBlocks(normalized) : [];
-  const useArchitectureLayout = canRenderArchitectureBlocks(architectureBlocks);
 
   return (
     <div className='my-2'>
@@ -187,18 +125,14 @@ const DetailBlock = ({ label, content, isPrintMode, isDark }: IDetailBlockProps)
       >
         {label}
       </p>
-      {useArchitectureLayout ? (
-        <ArchitectureDetail content={normalized} isPrintMode={isPrintMode} isDark={isDark} />
-      ) : (
-        <p
-          className={cn(
-            'm-0 text-sm leading-relaxed whitespace-pre-line',
-            isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/80' : 'text-[#181717]',
-          )}
-        >
-          {normalized}
-        </p>
-      )}
+      <p
+        className={cn(
+          'm-0 text-sm leading-relaxed whitespace-pre-line',
+          isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/80' : 'text-[#181717]',
+        )}
+      >
+        {normalized}
+      </p>
     </div>
   );
 };
