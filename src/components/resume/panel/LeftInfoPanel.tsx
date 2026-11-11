@@ -49,7 +49,7 @@ const LeftInfoPanel = () => {
               'mt-1 flex flex-col items-center gap-3 text-center',
               themeMode === 'light' ? 'text-[#181717]' : 'text-white',
               '[&_h2]:m-0 [&_h2]:text-[24px] [&_h2]:leading-none',
-              isPrintMode && 'gap-3 [&_h2]:text-[18px]',
+              isPrintMode && 'gap-5 [&_h2]:text-[18px]',
             )}
           >
             <h2 style={{ color: pointColor.hex }} className='pixel-font m-0'>
