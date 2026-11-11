@@ -3,6 +3,8 @@ import { createPageViewTracker } from '@/utils/createPageViewTracker';
 const MEASUREMENT_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined)?.trim();
 
 declare global {
+  // DOM Window 병합은 이름이 Window여야 한다.
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   interface Window {
     dataLayer: unknown[];
     gtag: (...args: unknown[]) => void;

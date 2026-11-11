@@ -1,15 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import PROJECT_DATA from '@/data/DB_project.json';
 import useProjectsQuery from '@/hooks/queries/useProjectsQuery';
 import {
   getDefaultResumeProjectIds,
   readResumeProjectSelection,
   writeResumeProjectSelection,
 } from '@/lib/resumeProjectSelection';
-import { parseProjectData } from '@/utils/parser';
-
-const DB_PROJECT_DATAS = (PROJECT_DATA as IProjectProperties[]).map(project => parseProjectData(project));
 
 interface IUseResumeProjectSelectionReturn {
   readonly allProjects: readonly IProjectData[];
@@ -26,7 +22,7 @@ interface IUseResumeProjectSelectionReturn {
 export const useResumeProjectSelection = (): IUseResumeProjectSelectionReturn => {
   const projectQuery = useProjectsQuery();
   const allProjects = useMemo(() => {
-    const projects = projectQuery.data ?? DB_PROJECT_DATAS;
+    const projects = projectQuery.data ?? [];
     return [...projects].sort((a, b) => a.name.localeCompare(b.name));
   }, [projectQuery.data]);
 
@@ -35,15 +31,13 @@ export const useResumeProjectSelection = (): IUseResumeProjectSelectionReturn =>
   const [draftProjectIds, setDraftProjectIds] = useState<readonly string[]>([]);
 
   useEffect(() => {
-    if (allProjects.length === 0) return;
+    if (!projectQuery.isSuccess || !projectQuery.data) return;
+    const projects = projectQuery.data;
 
-    setSelectedProjectIds(current => {
-      if (current) return current;
-      const saved = readResumeProjectSelection();
-      if (saved) return saved;
-      return getDefaultResumeProjectIds(allProjects);
-    });
-  }, [allProjects]);
+    setSelectedProjectIds(
+      current => current ?? readResumeProjectSelection() ?? getDefaultResumeProjectIds(projects),
+    );
+  }, [projectQuery.data, projectQuery.isSuccess]);
 
   const startEdit = () => {
     setDraftProjectIds(selectedProjectIds ?? getDefaultResumeProjectIds(allProjects));

@@ -4,7 +4,7 @@ import { cn } from '@/utils/classNames';
 
 import { getGameBoyPalette } from './gameboyPalette';
 
-type TContactKey = 'email' | 'github' | 'phone';
+type TContactKey = 'email' | 'github';
 
 interface IContactCard {
   key: TContactKey;
@@ -16,7 +16,6 @@ interface IContactCard {
 
 const email = import.meta.env.VITE_APP_EMAIL;
 const github = import.meta.env.VITE_APP_GITHUB;
-const phone = import.meta.env.VITE_APP_PHONE_NUMBER;
 
 const CONTACT_CARDS: IContactCard[] = [
   {
@@ -30,13 +29,6 @@ const CONTACT_CARDS: IContactCard[] = [
     label: 'GitHub',
     value: github ?? 'https://github.com/juhee-playground',
     href: github ?? 'https://github.com/juhee-playground',
-  },
-  {
-    key: 'phone',
-    label: 'Phone',
-    value: phone,
-    href: phone ? `tel:${phone}` : undefined,
-    hidden: !phone,
   },
 ];
 
@@ -54,7 +46,7 @@ const SiteContact = () => {
 
       <ul className='flex flex-col gap-5 m-0 p-0 list-none'>
         {visibleCards.map(({ key, label, value, href }) => {
-          const isSecret = key === 'email' || key === 'phone';
+          const isSecret = key === 'email';
           const openHref = href && (!isSecret || isContactVisible) ? href : undefined;
           const rowClass = cn(
             'group flex items-baseline justify-between gap-4',

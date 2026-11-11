@@ -7,10 +7,6 @@ import { NOTION_COLOR_SET } from '@/constants/notion';
 import usePrintMode from '@/hooks/usePrintMode';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
-import {
-  canRenderArchitectureBlocks,
-  parseArchitectureBlocks,
-} from '@/utils/parseArchitecture';
 
 const KEYWORD_TEXT_ALPHA = {
   solid: 1,
@@ -84,11 +80,21 @@ const readKeywordTone = (colorName: string, isDark: boolean, isPrintMode: boolea
 
 const FOLDED_SECTIONS = [
   { key: 'problem', label: 'Problem' },
-  { key: 'keyContributions', label: 'Key Contributions' },
-  { key: 'architecture', label: 'Architecture' },
-  { key: 'keyFeatures', label: 'Key Features' },
   { key: 'impact', label: 'Impact' },
 ] as const;
+
+const CONTRIBUTION_BULLET = /^[-•*]\s+|^\d+[.)]\s+/;
+
+const readContributionItems = (content: string): readonly string[] => {
+  const lines = content
+    .split(/\n+/)
+    .map(line => line.trim())
+    .filter(Boolean);
+  const bullets = lines.filter(line => CONTRIBUTION_BULLET.test(line));
+  const source = bullets.length > 0 ? bullets : lines;
+
+  return source.map(line => line.replace(CONTRIBUTION_BULLET, '').trim()).filter(Boolean);
+};
 
 const normalizeDetailContent = (content: string) =>
   content
@@ -106,64 +112,8 @@ interface IDetailBlockProps {
   isDark: boolean;
 }
 
-const ArchitectureDetail = ({
-  content,
-  isPrintMode,
-  isDark,
-}: {
-  readonly content: string;
-  readonly isPrintMode: boolean;
-  readonly isDark: boolean;
-}) => {
-  const blocks = parseArchitectureBlocks(content);
-  if (!canRenderArchitectureBlocks(blocks)) return null;
-
-  return (
-    <div className='flex flex-col gap-2'>
-      {blocks.map(block => (
-        <div key={`${block.title}_${block.description}`} className='flex flex-col gap-0.5'>
-          {block.title && (
-            <p
-              className={cn(
-                'm-0 text-sm font-semibold',
-                isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/85' : 'text-[#181717]',
-              )}
-            >
-              {block.title}
-            </p>
-          )}
-          {block.description && (
-            <p
-              className={cn(
-                'm-0 text-sm leading-relaxed whitespace-pre-line',
-                isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/70' : 'text-black/70',
-              )}
-            >
-              {block.description}
-            </p>
-          )}
-          {block.children.map(child => (
-            <p
-              key={`${block.title}_${child.title}`}
-              className={cn(
-                'm-0 text-sm leading-relaxed',
-                isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/70' : 'text-black/70',
-              )}
-            >
-              {child.title ? `${child.title}: ${child.description}` : child.description}
-            </p>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-};
-
 const DetailBlock = ({ label, content, isPrintMode, isDark }: IDetailBlockProps) => {
   const normalized = normalizeDetailContent(content);
-  const architectureBlocks =
-    label === 'Architecture' ? parseArchitectureBlocks(normalized) : [];
-  const useArchitectureLayout = canRenderArchitectureBlocks(architectureBlocks);
 
   return (
     <div className='my-2'>
@@ -175,18 +125,14 @@ const DetailBlock = ({ label, content, isPrintMode, isDark }: IDetailBlockProps)
       >
         {label}
       </p>
-      {useArchitectureLayout ? (
-        <ArchitectureDetail content={normalized} isPrintMode={isPrintMode} isDark={isDark} />
-      ) : (
-        <p
-          className={cn(
-            'm-0 text-sm leading-relaxed whitespace-pre-line',
-            isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/80' : 'text-[#181717]',
-          )}
-        >
-          {normalized}
-        </p>
-      )}
+      <p
+        className={cn(
+          'm-0 text-sm leading-relaxed whitespace-pre-line',
+          isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/80' : 'text-[#181717]',
+        )}
+      >
+        {normalized}
+      </p>
     </div>
   );
 };
@@ -199,8 +145,7 @@ const SubListItem = ({ info }: ISubListProps) => {
     .map(section => ({ ...section, content: readSection(projectData[section.key]) }))
     .filter(section => section.content);
 
-  const summary = readSection(projectData.summary);
-  const hero = readSection(projectData.hero);
+  const contributionItems = readContributionItems(readSection(projectData.keyContributions));
   const foldedSections = readSections(FOLDED_SECTIONS);
 
   const { isPrintMode } = usePrintMode();
@@ -213,13 +158,13 @@ const SubListItem = ({ info }: ISubListProps) => {
     : null;
 
   return (
-    <section className='my-3' key={`project__${projectData.id}`}>
-      <div className='flex flex-col gap-1 my-1'>
+    <section className='print-keep my-3 pb-0.5' key={`project__${projectData.id}`}>
+      <div className='my-1 flex w-full flex-wrap items-center justify-between gap-x-3 gap-y-1'>
         <div className='flex items-center gap-2'>
           <span aria-hidden='true' className='inline-block shrink-0 text-xs font-black leading-none'>
             ▶
           </span>
-          {projectData.slug ? (
+          {projectData.slug && !isPrintMode ? (
             <Link to={`/projects/${projectData.slug}`} className='text-xl font-semibold leading-none m-0 hover:underline'>
               {projectData.name}
             </Link>
@@ -228,9 +173,7 @@ const SubListItem = ({ info }: ISubListProps) => {
           )}
         </div>
 
-      </div>
-
-      <p className='my-1 flex flex-wrap items-center gap-x-1'>
+      <p className='m-0 ml-auto flex flex-wrap items-center gap-x-1'>
         {periodLabel && (
           <>
             <span className='text-sm leading-none m-0'>{periodLabel}</span>
@@ -268,6 +211,7 @@ const SubListItem = ({ info }: ISubListProps) => {
           </>
         )}
       </p>
+      </div>
 
       {(projectData.keywords ?? []).length > 0 && (
         <ul className='flex flex-wrap gap-1.5 list-none my-2 p-0'>
@@ -292,48 +236,34 @@ const SubListItem = ({ info }: ISubListProps) => {
         </ul>
       )}
 
-      {(summary || hero) && (
+      {contributionItems.length > 0 && (
         <div
           className={cn(
             'my-2 flex gap-3 rounded-md px-3 py-2.5',
             isPrintMode ? 'border border-[#e6e6e6] bg-[#f7f7f7]' : isDark ? 'bg-white/5' : 'bg-black/3',
           )}
         >
-          <span aria-hidden='true' className='w-0.5 shrink-0 self-stretch rounded-full' style={{ backgroundColor: pointColor.hex }} />
+          <span
+            aria-hidden='true'
+            className='w-0.5 shrink-0 self-stretch rounded-full'
+            style={{ backgroundColor: pointColor.hex }}
+          />
           <div className='flex min-w-0 flex-col gap-1'>
-            {summary && (
-              <p
-                className={cn(
-                  'm-0 text-sm leading-relaxed whitespace-pre-line',
-                  isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/75' : 'text-[#181717]',
-                )}
-              >
-                {summary}
-              </p>
-            )}
-            {hero && (
-              <p className='m-0 text-sm font-semibold leading-relaxed whitespace-pre-line' style={{ color: pointColor.hex }}>
-                {hero}
-              </p>
-            )}
+            <ul className='m-0 flex list-disc flex-col gap-0.5 pl-4'>
+              {contributionItems.map(item => (
+                <li
+                  key={`${projectData.id}_${item}`}
+                  className={cn(
+                    'text-sm leading-relaxed',
+                    isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/80' : 'text-[#181717]',
+                  )}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      )}
-
-      {!isPrintMode && foldedSections.length > 0 && (
-        <button
-          type='button'
-          aria-expanded={isDetailOpen}
-          aria-controls={`project-detail-${projectData.id}`}
-          onClick={() => setIsDetailOpen(open => !open)}
-          className={cn(
-            'my-2 cursor-pointer border-0 bg-transparent p-0 text-[11px] font-bold tracking-wide',
-            'print:hidden',
-            isDark ? 'text-white/45 hover:text-white/75' : 'text-black/45 hover:text-black/75',
-          )}
-        >
-          {isDetailOpen ? '접기' : '더보기'}
-        </button>
       )}
 
       <ul className='flex flex-wrap gap-1.5 list-none my-2 p-0'>
@@ -355,6 +285,22 @@ const SubListItem = ({ info }: ISubListProps) => {
           </li>
         ))}
       </ul>
+
+      {!isPrintMode && foldedSections.length > 0 && (
+        <button
+          type='button'
+          aria-expanded={isDetailOpen}
+          aria-controls={`project-detail-${projectData.id}`}
+          onClick={() => setIsDetailOpen(open => !open)}
+          className={cn(
+            'my-2 cursor-pointer border-0 bg-transparent p-0 text-[11px] font-bold tracking-wide',
+            'print:hidden',
+            isDark ? 'text-white/45 hover:text-white/75' : 'text-black/45 hover:text-black/75',
+          )}
+        >
+          {isDetailOpen ? '접기' : '더보기'}
+        </button>
+      )}
 
       {foldedSections.length > 0 && (
         <div id={`project-detail-${projectData.id}`} className={cn(!showFolded && 'hidden')}>
