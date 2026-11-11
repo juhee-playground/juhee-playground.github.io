@@ -40,8 +40,8 @@ const LeftInfoPanel = () => {
         <section
           className={cn(
             'my-1 flex w-[80%] flex-col justify-center',
-            isPrintMode && 'w-auto justify-start pr-2 [grid-area:profile]',
-            'print:w-auto print:justify-start print:pr-2',
+            isPrintMode && 'w-auto self-center justify-center pr-2 [grid-area:profile]',
+            'print:w-auto print:self-center print:justify-center print:pr-2',
           )}
         >
           <header
@@ -58,6 +58,24 @@ const LeftInfoPanel = () => {
             <h2 className='pixel-font m-0'>JU HEE</h2>
             <p className='m-0 text-xs leading-none'>Front Developer</p>
           </header>
+          {!isPrintMode && (
+            <div className='name-lane' aria-hidden='true'>
+              <span className='name-walker'>
+                <span className='name-dribble'>
+                  <svg width='34' height='28' viewBox='0 0 34 28' fill='none'>
+                    <rect x='1' y='16' width='7' height='2' fill='#2f7d32' />
+                    <rect x='7' y='13' width='14' height='7' fill='#43a047' />
+                    <rect x='18' y='6' width='3' height='10' fill='#43a047' />
+                    <rect x='18' y='3' width='9' height='4' fill='#43a047' />
+                    <rect x='24' y='4' width='2' height='2' fill='#111' />
+                    <rect x='9' y='20' width='2' height='6' fill='#2f7d32' />
+                    <rect x='16' y='20' width='2' height='6' fill='#2f7d32' />
+                  </svg>
+                  <span className='name-dribble-ball' />
+                </span>
+              </span>
+            </div>
+          )}
         </section>
         {contactInfo && (
           <section
