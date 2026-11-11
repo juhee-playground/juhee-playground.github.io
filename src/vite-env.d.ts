@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 
-interface ImportMetaEnv {
+interface IAppImportMetaEnv {
   readonly VITE_APP_NODE_ENV: string;
   readonly VITE_APP_PUBLIC_URL: string;
   readonly VITE_APP_BACK_END_POINT: string;
@@ -11,6 +11,6 @@ interface ImportMetaEnv {
   readonly VITE_GA_MEASUREMENT_ID?: string;
 }
 
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
+interface IAppImportMeta {
+  readonly env: IAppImportMetaEnv;
 }

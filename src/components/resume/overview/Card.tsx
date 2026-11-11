@@ -1,8 +1,8 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { useTheme } from '@mui/material/styles';
 
-import { useResumeOverviewEdit } from '@/hooks/useResumeOverviewEdit';
 import usePrintMode from '@/hooks/usePrintMode';
+import { useResumeOverviewEdit } from '@/hooks/useResumeOverviewEdit';
 import { TOverviewItem } from '@/lib/resumeOverviewDraft';
 import { useSettings } from '@/stores/useSettings';
 import { cn } from '@/utils/classNames';
@@ -70,7 +70,7 @@ const PointStackCard = () => {
   );
 
   return (
-    <div className='p-3'>
+    <div className='print-keep p-3 print:px-0 print:pt-1 print:pb-2'>
       <div className='mb-4 flex items-center gap-3'>
         <span
           className={cn(

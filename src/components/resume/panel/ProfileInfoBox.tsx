@@ -3,7 +3,6 @@ import { useSettings } from '@/stores/useSettings';
 
 interface IContactProperties {
   [key: string]: string | undefined;
-  phone_number: string | undefined;
   email: string | undefined;
   github: string | undefined;
   portfolio: string | undefined;
@@ -18,7 +17,6 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
   const lang = 'ko';
 
   const contactInfo: IContactProperties = {
-    phone_number: import.meta.env.VITE_APP_PHONE_NUMBER,
     email: import.meta.env.VITE_APP_EMAIL,
     github: import.meta.env.VITE_APP_GITHUB,
     portfolio: import.meta.env.VITE_APP_PORTFOLIO,
@@ -28,7 +26,7 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
   const headingIcon = <i className='pixel-icon-common' aria-hidden='true' />;
 
   return (
-    <>
+    <div className='flex w-full flex-col gap-2.5'>
       <div className='flex items-center'>
         {isContact ? <ContactRevealButton>{headingIcon}</ContactRevealButton> : headingIcon}
         <h4 style={{ color: pointColor.hex }} className='pixel-font m-0 px-1 text-[11px] leading-4'>
@@ -36,18 +34,18 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
         </h4>
       </div>
 
-      <hr className='my-px w-full' />
+      <hr className='m-0 w-full' />
 
       {info.isSubTitle && info.subTitle && (
         <div className='flex w-full'>
-          <dl className='m-0 flex w-full list-none flex-col gap-1 p-0'>
+          <dl className='m-0 flex w-full list-none flex-col gap-2.5 p-0'>
             {info.subTitle.map((item: ISubTitleItem, index: number) => {
               const key = item.value;
               return (
                 <div className='flex flex-col gap-px leading-4' key={`profile_subTitle_${index}`}>
                   <dt className='m-0 text-[12px] font-semibold'>{item.subTitle}</dt>
                   <dd className='m-0 wrap-break-word text-[11px] font-normal'>
-                    {key === 'email' || key === 'phone_number' ? (
+                    {key === 'email' ? (
                       <SecretText value={contactInfo[key]} />
                     ) : key === 'github' || key === 'portfolio' ? (
                       <a href={contactInfo[key]} className='text-inherit underline' color='inherit'>
@@ -88,7 +86,7 @@ const ProfileInfoBox = ({ info }: INavProfileProps) => {
           </ul>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
