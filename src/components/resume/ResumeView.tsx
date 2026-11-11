@@ -1,8 +1,4 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useTheme } from '@mui/material/styles';
 
 import Loading from '@/components/Loading';
@@ -14,10 +10,17 @@ import LeftSection from '@/components/resume/panel/LeftInfoPanel';
 import SideProjectSection from '@/components/resume/SideProjectSection';
 import { cn } from '@/utils/classNames';
 
+const SORT_OPTIONS = [
+  { value: 'N', label: '최신순' },
+  { value: 'O', label: '오래된순' },
+] as const;
+
+type TResumeSort = (typeof SORT_OPTIONS)[number]['value'];
+
 interface IResumeViewProps {
   isLoading: boolean;
-  sortValue: string;
-  onChangeSort: (event: SelectChangeEvent) => void;
+  sortValue: TResumeSort;
+  onChangeSort: (sortValue: TResumeSort) => void;
   companies: string[];
   skillOptions: string[];
   projectTypeOptions: string[];
@@ -187,33 +190,42 @@ const ResumeView = ({
               <span className='mx-1.5 opacity-40'>·</span>
               프로젝트 {parseProjectQuery.length}
             </p>
-            <p>
-              company {selectedCompanies?.length ?? 0}
-              <span className='mx-1.5 opacity-40'>·</span>
-              skill {selectedSkillOptions?.length ?? 0}
-              <span className='mx-1.5 opacity-40'>·</span>
-              projectType {selectedProjectTypes?.length ?? 0}
-            </p>
-          </div>
-
-          <div className='flex justify-end'>
-            <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
-              <InputLabel id='demo-select-small-label'>정렬방법</InputLabel>
-              <Select
-                labelId='demo-simple-select-label'
-                id='demo-select-small'
-                value={sortValue}
-                label='정렬방법'
-                onChange={onChangeSort}
+            <div className='flex flex-wrap items-center gap-x-3 gap-y-1'>
+              <p>
+                company {selectedCompanies?.length ?? 0}
+                <span className='mx-1.5 opacity-40'>·</span>
+                skill {selectedSkillOptions?.length ?? 0}
+                <span className='mx-1.5 opacity-40'>·</span>
+                projectType {selectedProjectTypes?.length ?? 0}
+              </p>
+              <div
+                role='group'
+                aria-label='정렬방법'
+                className={cn(
+                  'inline-flex overflow-hidden rounded-md border',
+                  isDark ? 'border-white/15' : 'border-black/12',
+                )}
               >
-                <MenuItem sx={{ color: isDark ? 'white' : 'black' }} value='N'>
-                  최신순
-                </MenuItem>
-                <MenuItem sx={{ color: isDark ? 'white' : 'black' }} value='O'>
-                  오래된순
-                </MenuItem>
-              </Select>
-            </FormControl>
+                {SORT_OPTIONS.map(option => {
+                  const isSelected = sortValue === option.value;
+                  return (
+                    <button
+                      key={option.value}
+                      type='button'
+                      aria-pressed={isSelected}
+                      onClick={() => onChangeSort(option.value)}
+                      className={cn(
+                        'px-2.5 py-1 text-xs font-medium transition-colors',
+                        isSelected ? 'text-[#111]' : isDark ? 'text-white/45' : 'text-black/40',
+                      )}
+                      style={isSelected ? { backgroundColor: pointColorHex } : undefined}
+                    >
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </section>
 

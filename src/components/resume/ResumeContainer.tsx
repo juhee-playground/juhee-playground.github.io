@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { SelectChangeEvent } from '@mui/material/Select';
-
 import ResumeView from '@/components/resume/ResumeView';
 import usePrintMode from '@/hooks/usePrintMode';
 import useResumeData from '@/hooks/useResumeMainData';
@@ -9,7 +7,7 @@ import { useResumeProjectSelection } from '@/hooks/useResumeProjectSelection';
 import { useSettings } from '@/stores/useSettings';
 
 const ResumeContainer = () => {
-  const [sortValue, setSortValue] = useState('N');
+  const [sortValue, setSortValue] = useState<'N' | 'O'>('N');
   const [selectedCompanies, setSelectedCompanies] = useState<string[]>();
   const [selectedSkillOptions, setSelectedSkillOptions] = useState<string[]>();
   const [selectedProjectTypes, setSelectedProjectTypes] = useState<string[]>();
@@ -72,7 +70,7 @@ const ResumeContainer = () => {
     });
   }, [projectTypeOptions]);
 
-  const handleChangeSelect = (event: SelectChangeEvent) => setSortValue(event.target.value);
+  const handleChangeSort = (nextSort: 'N' | 'O') => setSortValue(nextSort);
 
   const handleChangeSelectedCompanies = (company: string) => {
     setSelectedCompanies(prev =>
@@ -112,7 +110,7 @@ const ResumeContainer = () => {
     <ResumeView
       isLoading={projectQuery.isLoading}
       sortValue={sortValue}
-      onChangeSort={handleChangeSelect}
+      onChangeSort={handleChangeSort}
       companies={companies}
       skillOptions={skillOptions}
       projectTypeOptions={projectTypeOptions}
