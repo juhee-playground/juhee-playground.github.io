@@ -158,8 +158,8 @@ const SubListItem = ({ info }: ISubListProps) => {
     : null;
 
   return (
-    <section className='print-keep my-3' key={`project__${projectData.id}`}>
-      <div className='my-1 flex flex-wrap items-center gap-x-3 gap-y-1'>
+    <section className='print-keep my-3 pb-0.5' key={`project__${projectData.id}`}>
+      <div className='my-1 flex w-full flex-wrap items-center justify-between gap-x-3 gap-y-1'>
         <div className='flex items-center gap-2'>
           <span aria-hidden='true' className='inline-block shrink-0 text-xs font-black leading-none'>
             ▶
@@ -173,7 +173,7 @@ const SubListItem = ({ info }: ISubListProps) => {
           )}
         </div>
 
-      <p className='m-0 flex flex-wrap items-center gap-x-1'>
+      <p className='m-0 ml-auto flex flex-wrap items-center gap-x-1'>
         {periodLabel && (
           <>
             <span className='text-sm leading-none m-0'>{periodLabel}</span>

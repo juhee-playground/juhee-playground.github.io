@@ -30,42 +30,44 @@ const CardListItem = ({ info, subInfo, filters }: ICardListProps) => {
         id={companyData.id}
       >
         <div className='print-keep-with-next flex flex-col'>
-          <div className='flex items-center py-1'>
-            <span className='text-2xl font-semibold leading-none m-0'>{companyData.name}</span>
+          <div className='flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-1 py-1'>
+            <div className='flex items-center'>
+              <span className='text-2xl font-semibold leading-none m-0'>{companyData.name}</span>
 
-            <Box className='ml-5'>
-              <Typography variant='caption' color='text.primary' className='text-sm font-semibold leading-none m-0'>
-                {displayStart}
-              </Typography>
-              {displayStart && (
-                <Typography variant='caption' color='text.primary' className='text-sm leading-none m-0'>
-                  ~
+              <Box className='ml-5'>
+                <Typography variant='caption' color='text.primary' className='text-sm font-semibold leading-none m-0'>
+                  {displayStart}
                 </Typography>
-              )}
-              <Typography variant='caption' color='text.primary' className='text-sm font-semibold leading-none m-0'>
-                {displayEnd}
-              </Typography>
-              <Typography variant='caption' color='text.primary' className='text-sm leading-none m-0'>
-                {companyData.period}
-              </Typography>
-            </Box>
+                {displayStart && (
+                  <Typography variant='caption' color='text.primary' className='text-sm leading-none m-0'>
+                    ~
+                  </Typography>
+                )}
+                <Typography variant='caption' color='text.primary' className='text-sm font-semibold leading-none m-0'>
+                  {displayEnd}
+                </Typography>
+                <Typography variant='caption' color='text.primary' className='text-sm leading-none m-0'>
+                  {companyData.period}
+                </Typography>
+              </Box>
+            </div>
+
+            {companyData.type === 'C' && (
+              <p className='m-0 ml-auto flex flex-wrap items-center'>
+                <span className='text-sm font-semibold leading-none m-0'>{companyData.role}</span>
+                <span className='text-sm leading-none m-0'> | </span>
+                <span className='text-sm font-semibold leading-none m-0'>{companyData.department}</span>
+                <span className='text-sm leading-none m-0'> | 설립년도:</span>
+                <span className='text-sm font-semibold leading-none m-0'> {companyData.year}</span>
+                <span className='text-sm leading-none m-0'> | 회사규모: </span>
+                <span className='text-sm font-semibold leading-none m-0'> {companyData.scale}</span>
+              </p>
+            )}
           </div>
 
-          {companyData.type === 'C' && (
-            <p className='py-1'>
-              <span className='text-sm font-semibold leading-none m-0'>{companyData.role}</span>
-              <span className='text-sm leading-none m-0'> | </span>
-              <span className='text-sm font-semibold leading-none m-0'>{companyData.department}</span>
-              <span className='text-sm leading-none m-0'> | 설립년도:</span>
-              <span className='text-sm font-semibold leading-none m-0'> {companyData.year}</span>
-              <span className='text-sm leading-none m-0'> | 회사규모: </span>
-              <span className='text-sm font-semibold leading-none m-0'> {companyData.scale}</span>
-            </p>
-          )}
-
-          <p className='flex flex-col mb-3'>
+          <p className='mb-3 flex flex-col gap-1'>
             {companyData.description.map((text, index) => (
-              <span key={`description_${index}`} className='text-sm leading-none m-0'>
+              <span key={`description_${index}`} className='m-0 text-sm leading-relaxed'>
                 {text}
               </span>
             ))}

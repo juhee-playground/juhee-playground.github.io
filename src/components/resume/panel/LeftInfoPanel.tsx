@@ -32,31 +32,31 @@ const LeftInfoPanel = () => {
     >
       <div
         className={cn(
-          'flex flex-col items-center w-full',
-          isPrintMode && 'grid grid-cols-[0.5fr_1fr_1fr] items-start gap-2 print:gap-x-3 print:gap-y-0 [grid-template-areas:"profile_contact_aside"]',
-          isPrintMode && 'print:grid print:grid-cols-[0.5fr_1fr_1fr] print:gap-2 print:grid-areas-[profile_contact_aside]',
+          'flex flex-col items-center w-full gap-3',
+          isPrintMode && 'grid grid-cols-[auto_1fr_1fr] items-start gap-x-8 gap-y-0 [grid-template-areas:"profile_contact_aside"]',
+          isPrintMode && 'print:grid print:grid-cols-[auto_1fr_1fr] print:gap-x-8 print:grid-areas-[profile_contact_aside]',
         )}
       >
         <section
           className={cn(
             'my-1 flex w-[80%] flex-col justify-center',
-            isPrintMode && 'w-full justify-start [grid-area:profile]',
-            'print:w-full print:justify-start',
+            isPrintMode && 'w-auto justify-start pr-2 [grid-area:profile]',
+            'print:w-auto print:justify-start print:pr-2',
           )}
         >
           <header
             className={cn(
-              'mt-1 text-center',
+              'mt-1 flex flex-col items-center gap-3 text-center',
               themeMode === 'light' ? 'text-[#181717]' : 'text-white',
-              '[&_h2]:m-0 [&_h2]:mt-1.5 [&_h2]:text-[24px]',
-              isPrintMode && '[&_h2]:mt-1 [&_h2]:text-[18px]',
+              '[&_h2]:m-0 [&_h2]:text-[24px] [&_h2]:leading-none',
+              isPrintMode && 'gap-3 [&_h2]:text-[18px]',
             )}
           >
             <h2 style={{ color: pointColor.hex }} className='pixel-font m-0'>
               BAEK
             </h2>
             <h2 className='pixel-font m-0'>JU HEE</h2>
-            <p className='my-0.5 text-xs'>Front Developer</p>
+            <p className='m-0 text-xs leading-none'>Front Developer</p>
           </header>
         </section>
         {contactInfo && (

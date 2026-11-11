@@ -1,6 +1,19 @@
 import dayjs from 'dayjs';
 
 const COUNT_OF_MONTH = 12;
+const BULLET_PREFIX = /^\s*[•\-]\s+/;
+
+const readCompanyDescription = (
+  richText: ReadonlyArray<{ readonly plain_text?: string }> | undefined,
+): string[] => {
+  const source = (richText ?? []).map(item => item.plain_text ?? '').join('');
+
+  return source
+    .split(/\n+/)
+    .flatMap(line => line.split(/\s*•\s+/))
+    .map(line => line.replace(BULLET_PREFIX, '').trim())
+    .filter(line => line.length > 0);
+};
 
 export function parserPeriod(start: string, end: string | null): string {
   const endDate = end ?? dayjs().format('YYYY-MM-DD');
@@ -28,7 +41,7 @@ export const parseCompanyData = (
     name: info.name?.title?.[0]?.plain_text || '',
     iconEmoji: info.icon?.type === 'emoji' ? info.icon.emoji : undefined,
     iconUrl: info.icon?.type === 'file' ? info.icon.file?.url : undefined,
-    description: info.description?.rich_text?.[0]?.plain_text.split('- ') || [],
+    description: readCompanyDescription(info.description?.rich_text),
     type: info.type?.rich_text?.[0]?.plain_text || '',
     startDate: start,
     endDate: end,

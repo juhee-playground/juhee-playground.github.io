@@ -6,7 +6,6 @@
     "basic": [],
     "isSubTitle": true,
     "subTitle": [
-      { "icon": "📞", "subTitle": "Phone", "value": "phone_number" },
       { "icon": "📧", "subTitle": "Email", "value": "email" },
       { "icon": "⚽️", "subTitle": "Github", "value": "github" },
       { "icon": "🦖", "subTitle": "Portfolio", "value": "portfolio" }
