@@ -84,11 +84,23 @@ const readKeywordTone = (colorName: string, isDark: boolean, isPrintMode: boolea
 
 const FOLDED_SECTIONS = [
   { key: 'problem', label: 'Problem' },
-  { key: 'keyContributions', label: 'Key Contributions' },
   { key: 'architecture', label: 'Architecture' },
   { key: 'keyFeatures', label: 'Key Features' },
   { key: 'impact', label: 'Impact' },
 ] as const;
+
+const CONTRIBUTION_BULLET = /^[-•*]\s+|^\d+[.)]\s+/;
+
+const readContributionItems = (content: string): readonly string[] => {
+  const lines = content
+    .split(/\n+/)
+    .map(line => line.trim())
+    .filter(Boolean);
+  const bullets = lines.filter(line => CONTRIBUTION_BULLET.test(line));
+  const source = bullets.length > 0 ? bullets : lines;
+
+  return source.map(line => line.replace(CONTRIBUTION_BULLET, '').trim()).filter(Boolean);
+};
 
 const normalizeDetailContent = (content: string) =>
   content
@@ -199,8 +211,7 @@ const SubListItem = ({ info }: ISubListProps) => {
     .map(section => ({ ...section, content: readSection(projectData[section.key]) }))
     .filter(section => section.content);
 
-  const summary = readSection(projectData.summary);
-  const hero = readSection(projectData.hero);
+  const contributionItems = readContributionItems(readSection(projectData.keyContributions));
   const foldedSections = readSections(FOLDED_SECTIONS);
 
   const { isPrintMode } = usePrintMode();
@@ -292,48 +303,42 @@ const SubListItem = ({ info }: ISubListProps) => {
         </ul>
       )}
 
-      {(summary || hero) && (
+      {contributionItems.length > 0 && (
         <div
           className={cn(
             'my-2 flex gap-3 rounded-md px-3 py-2.5',
             isPrintMode ? 'border border-[#e6e6e6] bg-[#f7f7f7]' : isDark ? 'bg-white/5' : 'bg-black/3',
           )}
         >
-          <span aria-hidden='true' className='w-0.5 shrink-0 self-stretch rounded-full' style={{ backgroundColor: pointColor.hex }} />
+          <span
+            aria-hidden='true'
+            className='w-0.5 shrink-0 self-stretch rounded-full'
+            style={{ backgroundColor: pointColor.hex }}
+          />
           <div className='flex min-w-0 flex-col gap-1'>
-            {summary && (
-              <p
-                className={cn(
-                  'm-0 text-sm leading-relaxed whitespace-pre-line',
-                  isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/75' : 'text-[#181717]',
-                )}
-              >
-                {summary}
-              </p>
-            )}
-            {hero && (
-              <p className='m-0 text-sm font-semibold leading-relaxed whitespace-pre-line' style={{ color: pointColor.hex }}>
-                {hero}
-              </p>
-            )}
+            <p
+              className={cn(
+                'm-0 text-avatar font-bold tracking-wide',
+                isPrintMode ? 'text-[#333]' : isDark ? 'text-white/45' : 'text-black/45',
+              )}
+            >
+              Key Contributions
+            </p>
+            <ul className='m-0 flex list-disc flex-col gap-0.5 pl-4'>
+              {contributionItems.map(item => (
+                <li
+                  key={`${projectData.id}_${item}`}
+                  className={cn(
+                    'text-sm leading-relaxed',
+                    isPrintMode ? 'text-[#181717]' : isDark ? 'text-white/80' : 'text-[#181717]',
+                  )}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      )}
-
-      {!isPrintMode && foldedSections.length > 0 && (
-        <button
-          type='button'
-          aria-expanded={isDetailOpen}
-          aria-controls={`project-detail-${projectData.id}`}
-          onClick={() => setIsDetailOpen(open => !open)}
-          className={cn(
-            'my-2 cursor-pointer border-0 bg-transparent p-0 text-[11px] font-bold tracking-wide',
-            'print:hidden',
-            isDark ? 'text-white/45 hover:text-white/75' : 'text-black/45 hover:text-black/75',
-          )}
-        >
-          {isDetailOpen ? '접기' : '더보기'}
-        </button>
       )}
 
       <ul className='flex flex-wrap gap-1.5 list-none my-2 p-0'>
@@ -355,6 +360,22 @@ const SubListItem = ({ info }: ISubListProps) => {
           </li>
         ))}
       </ul>
+
+      {!isPrintMode && foldedSections.length > 0 && (
+        <button
+          type='button'
+          aria-expanded={isDetailOpen}
+          aria-controls={`project-detail-${projectData.id}`}
+          onClick={() => setIsDetailOpen(open => !open)}
+          className={cn(
+            'my-2 cursor-pointer border-0 bg-transparent p-0 text-[11px] font-bold tracking-wide',
+            'print:hidden',
+            isDark ? 'text-white/45 hover:text-white/75' : 'text-black/45 hover:text-black/75',
+          )}
+        >
+          {isDetailOpen ? '접기' : '더보기'}
+        </button>
+      )}
 
       {foldedSections.length > 0 && (
         <div id={`project-detail-${projectData.id}`} className={cn(!showFolded && 'hidden')}>
